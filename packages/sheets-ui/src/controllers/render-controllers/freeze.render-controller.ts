@@ -570,7 +570,7 @@ export class HeaderFreezeRenderController extends Disposable implements IRenderC
             const oldFreeze = worksheet.getConfig()?.freeze;
             let xSplit = oldFreeze?.xSplit || 0;
             let ySplit = oldFreeze?.ySplit || 0;
-            const viewPortKey = this._activeViewport?.viewPortKey;
+            const viewPortKey = this._activeViewport?.viewportKey;
             if (freezeDirectionType === FREEZE_DIRECTION_TYPE.ROW) {
                 if (
                     !viewPortKey ||
@@ -728,6 +728,7 @@ export class HeaderFreezeRenderController extends Disposable implements IRenderC
         if (!viewports) {
             return;
         }
+
 
         const {
             viewMain,
@@ -1516,6 +1517,15 @@ export class HeaderFreezeRenderController extends Disposable implements IRenderC
         return getSheetObject(this._context.unit, this._context);
     }
 
+    /**
+     * 调整冻结 & 缩放都会进入
+     * 但是窗口 resize 并不会进入
+     * @param startRow
+     * @param startColumn
+     * @param ySplit
+     * @param xSplit
+     * @param resetScroll
+     */
     private _refreshFreeze(
         startRow: number,
         startColumn: number,
@@ -1535,7 +1545,11 @@ export class HeaderFreezeRenderController extends Disposable implements IRenderC
         this._createFreeze(FREEZE_DIRECTION_TYPE.COLUMN, newFreeze);
 
         this._updateViewport(startRow, startColumn, ySplit, xSplit, resetScroll);
-
         this._getSheetObject()?.spreadsheet.makeForceDirty();
+
+        // no need to set viewport markForceDirty again
+        // when change freeze area ---> viewport.resize ---> viewport.markForceDity()
+        // this._getSheetObject()?.spreadsheet.makeForceDirty();
+        // this._getSheetObject()?.scene.getViewports().forEach(vp => vp.makeForceDirty());
     }
 }

@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
+import type { Nullable } from '@univerjs/core';
 
 import { RENDER_CLASS_TYPE } from '../../basics/const';
 import type { IDocumentSkeletonGlyph, IDocumentSkeletonLine, IDocumentSkeletonPage } from '../../basics/i-document-skeleton-cached';
 import { PageLayoutType } from '../../basics/i-document-skeleton-cached';
-import type { IBoundRectNoAngle, IViewportBound } from '../../basics/vector2';
+import type { IBoundRectNoAngle, IViewportInfo } from '../../basics/vector2';
 import type { UniverRenderingContext } from '../../context';
 import { RenderComponent } from '../component';
 import type { DOCS_EXTENSION_TYPE } from './doc-extension';
@@ -83,7 +84,7 @@ export abstract class DocComponent extends RenderComponent<
         }
     }
 
-    override render(mainCtx: UniverRenderingContext, bounds?: IViewportBound) {
+    override render(mainCtx: UniverRenderingContext, bounds?: IViewportInfo) {
         if (!this.visible) {
             this.makeDirty(false);
             return this;
@@ -119,7 +120,7 @@ export abstract class DocComponent extends RenderComponent<
         };
     }
 
-    isSkipByDiffBounds(page: IDocumentSkeletonPage, pageTop: number, pageLeft: number, bounds?: IViewportBound) {
+    isSkipByDiffBounds(page: IDocumentSkeletonPage, pageTop: number, pageLeft: number, bounds?: IViewportInfo) {
         if (bounds === null || bounds === undefined) {
             return false;
         }
