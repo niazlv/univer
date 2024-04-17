@@ -24,7 +24,7 @@ import type {
     LocaleService,
     Nullable,
 } from '@univerjs/core';
-import { BaselineOffset, FontStyleType, Tools } from '@univerjs/core';
+import { BaselineOffset, ColorKit, FontStyleType, Tools } from '@univerjs/core';
 import * as cjk from 'cjk-regex';
 
 import { FontCache } from '../components/docs/layout/shaping-engine/font-cache';
@@ -760,4 +760,21 @@ export function ptToPixel(pt: number) {
 
 export function pixelToPt(px: number) {
     return px * PX_TO_PT_RATIO;
+}
+
+// Get system highlight color in rgb format.
+export function getSystemHighlightColor() {
+    const hiddenEle = document.createElement('div');
+    hiddenEle.style.width = '0';
+    hiddenEle.style.height = '0';
+    hiddenEle.style.backgroundColor = 'highlight';
+    document.body.append(hiddenEle);
+
+    const highlightColor = getComputedStyle(hiddenEle).backgroundColor;
+
+    hiddenEle.remove();
+
+    const colorParser = new ColorKit(highlightColor);
+
+    return colorParser.toRgb();
 }
