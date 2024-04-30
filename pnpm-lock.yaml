@@ -348,6 +348,7 @@ importers:
     dependencies:
       '@univerjs/protocol':
 <<<<<<< HEAD
+<<<<<<< HEAD
         specifier: ^0.1.20
 <<<<<<< HEAD
         version: 0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
@@ -357,7 +358,14 @@ importers:
         specifier: ^0.1.23
         version: 0.1.23(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
 >>>>>>> 99f228957 (feat(selection-protection): init)
+<<<<<<< HEAD
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+=======
+        specifier: ^0.1.26-permission-6
+        version: 0.1.26-permission-6(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+>>>>>>> e8f894d87 (chore(protocol): update version)
+>>>>>>> 2d3cde24b (chore(protocol): update version)
       nanoid:
         specifier: 5.0.7
         version: 5.0.7
@@ -393,8 +401,8 @@ importers:
   packages/data-validation:
     dependencies:
       '@univerjs/protocol':
-        specifier: ^0.1.23
-        version: 0.1.23(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+        specifier: ^0.1.26-permission-6
+        version: 0.1.26-permission-6(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
     devDependencies:
       '@univerjs/core':
         specifier: workspace:*
@@ -941,8 +949,8 @@ importers:
   packages/sheets:
     dependencies:
       '@univerjs/protocol':
-        specifier: ^0.1.23
-        version: 0.1.23(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+        specifier: ^0.1.26-permission-6
+        version: 0.1.26-permission-6(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
     devDependencies:
       '@univerjs/core':
         specifier: workspace:*
@@ -978,8 +986,8 @@ importers:
   packages/sheets-conditional-formatting:
     dependencies:
       '@univerjs/protocol':
-        specifier: ^0.1.23
-        version: 0.1.23(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+        specifier: ^0.1.26-permission-6
+        version: 0.1.26-permission-6(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
     devDependencies:
       '@univerjs/core':
         specifier: workspace:*
@@ -1425,8 +1433,8 @@ importers:
         specifier: ^0.1.44
         version: 0.1.44(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@univerjs/protocol':
-        specifier: ^0.1.23
-        version: 0.1.23(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+        specifier: ^0.1.26-permission-6
+        version: 0.1.26-permission-6(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
     devDependencies:
       '@types/react':
         specifier: ^18.2.75
@@ -1790,8 +1798,17 @@ importers:
         specifier: workspace:*
         version: link:../network
       '@univerjs/protocol':
+<<<<<<< HEAD
         specifier: ^0.1.20
+<<<<<<< HEAD
         version: 0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+=======
+        version: 0.1.23(@grpc/grpc-js@1.10.4)(rxjs@7.8.1)
+=======
+        specifier: ^0.1.26-permission-6
+        version: 0.1.26-permission-6(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+>>>>>>> e8f894d87 (chore(protocol): update version)
+>>>>>>> 2d3cde24b (chore(protocol): update version)
       '@univerjs/rpc':
         specifier: workspace:*
         version: link:../rpc
@@ -4214,8 +4231,14 @@ packages:
       react: '*'
       react-dom: '*'
 
+<<<<<<< HEAD
   '@univerjs/protocol@0.1.20':
     resolution: {integrity: sha512-obplLf02e+x+E/Hezh3ES9H/JsFtHgYla7C1G1ffTVbbrqmRssebQ5birqgMcVx1Sj3WG5vsCJ0forISNRjkLg==}
+=======
+<<<<<<< HEAD
+  '@univerjs/protocol@0.1.23':
+    resolution: {integrity: sha512-xOilOZjr+qA3RtKsgcVhRXp5Bo45JryPutrcVNeM06PoGmljWBfbQZhHZ0HjHxN1iYZNl9AO4LPuouLEeB4IZQ==}
+>>>>>>> 2d3cde24b (chore(protocol): update version)
     engines: {node: '>=16.0.0', npm: '>=8.0.0'}
     peerDependencies:
       '@grpc/grpc-js': ^1.9.14
@@ -4223,6 +4246,10 @@ packages:
 
   '@univerjs/protocol@0.1.23':
     resolution: {integrity: sha512-xOilOZjr+qA3RtKsgcVhRXp5Bo45JryPutrcVNeM06PoGmljWBfbQZhHZ0HjHxN1iYZNl9AO4LPuouLEeB4IZQ==}
+=======
+  '@univerjs/protocol@0.1.26-permission-6':
+    resolution: {integrity: sha512-pYUx/XJcfiCNp8T+19LX6u4cHnlTFYFvUQ+lPO1FurAGHRj0kw/Y/MLgOpf7XwkzxSC3y/soi0PcCw7CoO17Ag==}
+>>>>>>> e8f894d87 (chore(protocol): update version)
     engines: {node: '>=16.0.0', npm: '>=8.0.0'}
     peerDependencies:
       '@grpc/grpc-js': ^1.9.14
@@ -13675,7 +13702,12 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
+<<<<<<< HEAD
   '@univerjs/protocol@0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
+=======
+<<<<<<< HEAD
+  '@univerjs/protocol@0.1.23(@grpc/grpc-js@1.10.4)(rxjs@7.8.1)':
+>>>>>>> 2d3cde24b (chore(protocol): update version)
     dependencies:
       '@grpc/grpc-js': 1.10.6
       rxjs: 7.8.1
@@ -13687,6 +13719,9 @@ snapshots:
   '@vitejs/plugin-react@4.2.1(vite@5.2.10)':
 =======
   '@univerjs/protocol@0.1.23(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
+=======
+  '@univerjs/protocol@0.1.26-permission-6(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
+>>>>>>> e8f894d87 (chore(protocol): update version)
     dependencies:
       '@grpc/grpc-js': 1.10.6
       rxjs: 7.8.1
