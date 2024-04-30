@@ -76,9 +76,8 @@ export enum SubUnitPermissionType {
 
 export enum RangeUnitPermissionType {
     Edit = 'Edit',
-    Copy = 'Copy',
-    SetCellStyle = 'SetCellStyle',
-    SetCellValue = 'SetCellValue',
+    View = 'View',
+    ManageCollaborator = 'ManageCollaborator',
 }
 export type IUnitPermissionId = `${PermissionType}.${UnitPermissionType}`;
 export type ISubUnitPermissionId = `${PermissionType}.${SubUnitPermissionType}`;

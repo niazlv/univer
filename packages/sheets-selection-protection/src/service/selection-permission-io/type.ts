@@ -29,6 +29,7 @@ export interface ISelectionPermissionIoService {
     create(config: ICreateRequest_SelectRangeObject, context?: ILogContext): Promise<string>;
     allowed(config: IAllowedRequest, context?: ILogContext): Promise<Record<string, boolean>>;
     batchAllowed(config: IAllowedRequest[], context?: ILogContext): Promise<Record<string, Record<string, boolean>>>;
+    list(unitId: string): Promise<IPermissionPoint[]>;
     listRoles(type: string, context?: ILogContext): Promise<{ roles: IUnitRoleKV[]; actions: IUnitAction[] }>;
     listCollaborators(config: {
         permissionId: string;
@@ -90,3 +91,13 @@ export const defaultSheetActions = [
     UnitAction.Edit,
     UnitAction.Copy,
 ];
+
+export interface IPermissionPoint {
+    objectID: string;
+    unitID: string;
+    objectType: UnitObject;
+    name: string;
+    shareOn: boolean;
+    shareRole: UnitRole;
+    creator: IUser | undefined;
+}

@@ -31,9 +31,7 @@ export class SelectionPermissionIoService implements ISelectionPermissionIoServi
     async allowed(): Promise<Record<RangeUnitPermissionType, boolean>> {
         return Promise.resolve({
             [RangeUnitPermissionType.Edit]: true,
-            [RangeUnitPermissionType.SetCellStyle]: true,
-            [RangeUnitPermissionType.Copy]: true,
-            [RangeUnitPermissionType.SetCellValue]: true,
+            [RangeUnitPermissionType.View]: true,
         });
     }
 
@@ -87,5 +85,9 @@ export class SelectionPermissionIoService implements ISelectionPermissionIoServi
             roles: [],
             actions: [],
         };
+    }
+
+    async list(unitId: string) {
+        return Promise.resolve([]);
     }
 }

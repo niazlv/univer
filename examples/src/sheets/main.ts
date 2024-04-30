@@ -97,9 +97,9 @@ univer.registerPlugin(UniverSheetsFilterPlugin);
 // sheet condition formatting
 univer.registerPlugin(UniverSheetsConditionalFormattingUIPlugin);
 
-univer.registerPlugin(UniverSheetsSelectionProtectionPlugin);
 // sheet permission
 univer.registerPlugin(UniverSheetsPermissionUIPlugin);
+univer.registerPlugin(UniverSheetsSelectionProtectionPlugin);
 
 
 // create univer sheet instance

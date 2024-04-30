@@ -18,12 +18,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { Avatar, Tooltip } from '@univerjs/design';
 import { useDependency } from '@wendellhu/redi/react-bindings';
-import type { ISelectionProtectionRule } from '@univerjs/sheets-selection-protection';
-import { SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
-import type { Workbook } from '@univerjs/core';
+import type { ICellPermission, ISelectionProtectionRule } from '@univerjs/sheets-selection-protection';
+import { ISelectionPermissionIoService, SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
+import type { ICellDataForSheetInterceptor, Workbook } from '@univerjs/core';
 import { ICommandService, IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
 import { ISidebarService } from '@univerjs/ui';
 import { merge } from 'rxjs';
+import type { IPermissionPoint } from '@univerjs/sheets-selection-protection/service/selection-permission-io/type.js';
 import { SheetPermissionPanelService } from '../../service';
 import { DeleteSheetPermissionCommand } from '../../command/sheet-permission.command';
 import { UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER } from '../../const';
@@ -47,52 +48,36 @@ export const SheetPermissionPanelList = () => {
     const subUnitId = worksheet.getSheetId();
     const commandService = useDependency(ICommandService);
     const sidebarService = useDependency(ISidebarService);
-    const selectionProtectionRuleModel = useDependency(SelectionProtectionRuleModel);
+    const selectionPermissionIoService = useDependency(ISelectionPermissionIoService);
 
-    const getRuleList = useCallback((isCurrentSheet: boolean) => {
+    const getRuleList = useCallback(async (isCurrentSheet: boolean) => {
         const worksheet = workbook.getActiveSheet()!;
         const unitId = workbook.getUnitId();
         const subUnitId = worksheet.getSheetId();
 
-        const allPermissionRule = Array.from(workbook.getWorksheets().values()).reduce((acc, sheet) => {
-            const subUnitId = sheet.getSheetId();
-            const subUnitRuleList = selectionProtectionModel.getSubunitRuleList(unitId, sheet.getSheetId()).map((item) => {
-                return {
-                    ...item,
-                    unitId,
-                    subUnitId,
-                };
-            });
-            if (subUnitRuleList.length) {
-                acc.push(...subUnitRuleList);
-            }
-            return acc;
-        }, [] as IRuleItem[]);
+        const allPermissionRule = await selectionPermissionIoService.list(unitId);
 
-        const subUnitRuleList = selectionProtectionModel.getSubunitRuleList(unitId, subUnitId).map((item) => {
-            return {
-                ...item,
-                unitId,
-                subUnitId,
-            };
-        });
+        const subUnitPermissionIds = selectionProtectionModel.getSubunitRuleList(unitId, subUnitId).map((item) => item.permissionId);
+        const subUnitRuleList = allPermissionRule.filter((item) => subUnitPermissionIds.includes(item.objectID));
+
         return isCurrentSheet ? subUnitRuleList : allPermissionRule;
-    }, [selectionProtectionModel, workbook]);
+    }, [selectionPermissionIoService, selectionProtectionModel, workbook]);
 
 
-    const [ruleList, setRuleList] = useState(() => getRuleList(isCurrentSheet));
+    const [ruleList, setRuleList] = useState<IPermissionPoint[]>([]);
 
     useEffect(() => {
         const subscription = merge(
-            selectionProtectionRuleModel.ruleChange$,
+            selectionProtectionModel.ruleChange$,
             workbook.activeSheet$
-        ).subscribe(() => {
-            setRuleList(getRuleList(isCurrentSheet));
+        ).subscribe(async () => {
+            const ruleList = await getRuleList(isCurrentSheet);
+            setRuleList(ruleList);
         });
         return () => {
             subscription.unsubscribe();
         };
-    }, [getRuleList, isCurrentSheet, selectionProtectionRuleModel, workbook]);
+    }, [getRuleList, isCurrentSheet, selectionProtectionModel, workbook]);
 
 
     useEffect(() => {
@@ -136,10 +121,20 @@ export const SheetPermissionPanelList = () => {
         });
     };
 
-    const handleChangeHeaderType = (isCurrentSheet: boolean) => {
+    const handleChangeHeaderType = async (isCurrentSheet: boolean) => {
         setIsCurrentSheet(isCurrentSheet);
-        setRuleList(getRuleList(isCurrentSheet));
+        const ruleList = await getRuleList(isCurrentSheet);
+        setRuleList(ruleList);
     };
+
+    const allRuleMap = new Map<string, ISelectionProtectionRule>();
+    workbook.getSheets().forEach((sheet) => {
+        const sheetId = sheet.getSheetId();
+        const rules = selectionProtectionModel.getSubunitRuleList(unitId, sheetId);
+        rules.forEach((rule) => {
+            allRuleMap.set(rule.permissionId, rule);
+        });
+    });
 
     return (
         <div className={styles.sheetPermissionListPanelWrapper}>
@@ -156,37 +151,70 @@ export const SheetPermissionPanelList = () => {
 
             <div className={styles.sheetPermissionListPanelContent}>
                 {ruleList?.map((item) => {
+                    const rule = allRuleMap.get(item.objectID);
+
+                    if (!rule) {
+                        return null;
+                    }
+
+                    let hasEditPermission = true;
+                    let hasViewPermission = true;
+                    let hasManageCollaboratorPermission = true;
+
+                    const ranges = rule?.ranges || [];
+
+                    for (let i = 0; i < ranges.length; i++) {
+                        const range = ranges[i];
+                        for (let j = range?.startRow; j <= range?.endRow; j++) {
+                            for (let k = range?.startColumn; k <= range?.endColumn; k++) {
+                                const permission = (worksheet.getCell(j, k) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
+                                if (permission.Edit === false) {
+                                    hasEditPermission = false;
+                                }
+                                if (permission.View === false) {
+                                    hasViewPermission = false;
+                                }
+                                if (permission.ManageCollaborator === false) {
+                                    hasManageCollaboratorPermission = false;
+                                }
+                            }
+                        }
+                    }
+
+
                     return (
-                        <div key={item.permissionId} className={styles.sheetPermissionListItem}>
+                        <div key={item.objectID} className={styles.sheetPermissionListItem}>
                             <div className={styles.sheetPermissionListItemHeader}>
-                                <Tooltip title={item.name}>
-                                    <div className={styles.sheetPermissionListItemHeaderName}>{item.name}</div>
+                                <Tooltip title={rule.name}>
+                                    <div className={styles.sheetPermissionListItemHeaderName}>{rule.name}</div>
                                 </Tooltip>
-                                <div className={styles.sheetPermissionListItemHeaderOperator}>
-                                    <Tooltip title={localeService.t('permission.panel.edit')}>
-                                        <div onClick={() => handleEdit(item)}>edit</div>
-                                    </Tooltip>
-                                    <Tooltip title={localeService.t('permission.panel.delete')}>
-                                        <div onClick={() => handleDelete(item)}>delete</div>
-                                    </Tooltip>
-                                </div>
+                                {hasManageCollaboratorPermission && (
+                                    <div className={styles.sheetPermissionListItemHeaderOperator}>
+                                        <Tooltip title={localeService.t('permission.panel.edit')}>
+                                            <div onClick={() => handleEdit(rule)}>edit</div>
+                                        </Tooltip>
+                                        <Tooltip title={localeService.t('permission.panel.delete')}>
+                                            <div onClick={() => handleDelete(rule)}>delete</div>
+                                        </Tooltip>
+                                    </div>
+                                )}
                             </div>
                             <div className={styles.sheetPermissionListItemSplit} />
                             <div className={styles.sheetPermissionListItemContent}>
                                 <div className={styles.sheetPermissionListItemContentEdit}>
-                                    <Avatar style={{ marginRight: 6 }} size={24} />
+                                    <Avatar src={item.creator?.avatar} style={{ marginRight: 6 }} size={24} />
                                     <span className={styles.sheetPermissionListItemContentTitle}>created</span>
-                                    <span className={styles.sheetPermissionListItemContentSub}>i can edit</span>
+                                    <span className={styles.sheetPermissionListItemContentSub}>{hasEditPermission ? 'i can edit' : 'i can not edit'}</span>
 
                                 </div>
                                 <div className={styles.sheetPermissionListItemContentView}>
                                     <span className={styles.sheetPermissionListItemContentTitle}>view permissions</span>
-                                    <span className={styles.sheetPermissionListItemContentSub}>i can view</span>
+                                    <span className={styles.sheetPermissionListItemContentSub}>{hasViewPermission ? 'i can view' : 'i can not view'}</span>
                                 </div>
-                                {item.description && (
-                                    <Tooltip title={item.description}>
+                                {rule.description && (
+                                    <Tooltip title={rule.description}>
                                         <div className={styles.sheetPermissionListItemContentDesc}>
-                                            {item.description}
+                                            {rule.description}
                                         </div>
                                     </Tooltip>
                                 )}

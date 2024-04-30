@@ -17,7 +17,7 @@
 import type { IRange, RangeUnitPermissionType } from '@univerjs/core';
 
 export interface ISelectionProtectionRule {
-    ranges?: IRange[];
+    ranges: IRange[];
     permissionId: string;
     id: string;
     name: string;

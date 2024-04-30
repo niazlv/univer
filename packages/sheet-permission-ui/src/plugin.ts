@@ -26,7 +26,7 @@ import { SheetPermissionOpenDialogOperation } from './operation/sheet-permission
 
 export class UniverSheetsPermissionUIPlugin extends Plugin {
     static override pluginName = UNIVER_SHEET_PERMISSION_PLUGIN_NAME;
-    static override type = UniverInstanceType.UNIVER;
+    static override type = UniverInstanceType.UNIVER_SHEET;
 
     constructor(
         _config: unknown,
@@ -37,13 +37,13 @@ export class UniverSheetsPermissionUIPlugin extends Plugin {
         super();
     }
 
-    override onStarting(injector: Injector) {
+    override onStarting() {
         ([
             [SheetPermissionPanelService],
             [SheetPermissionUserManagerService],
             [SheetPermissionRenderController],
         ] as Dependency[]).forEach((dep) => {
-            injector.add(dep);
+            this._injector.add(dep);
         });
 
         [
