@@ -17,20 +17,24 @@
 import type { ILogContext } from '@univerjs/core';
 import { LifecycleStages, runOnLifecycle } from '@univerjs/core';
 import { createIdentifier } from '@wendellhu/redi';
-import type { ICollaborator, ICreateRequest_SelectRangeObject, IUnitAction, IUnitRoleKV } from '@univerjs/protocol';
+import type { ICollaborator, ICreateRequest_SelectRangeObject, IUnitRoleKV, IPermissionPoint } from '@univerjs/protocol';
+import * as E from '@univerjs/protocol'
 
 export interface IAllowedRequest {
     permissionId: string;
     permissionType: UnitObject;
     unitId: string;
-    actions: UnitAction[];
+    actions: E.UnitAction[];
 }
 export interface ISelectionPermissionIoService {
     create(config: ICreateRequest_SelectRangeObject, context?: ILogContext): Promise<string>;
     allowed(config: IAllowedRequest, context?: ILogContext): Promise<Record<string, boolean>>;
     batchAllowed(config: IAllowedRequest[], context?: ILogContext): Promise<Record<string, Record<string, boolean>>>;
-    list(unitId: string): Promise<IPermissionPoint[]>;
-    listRoles(type: string, context?: ILogContext): Promise<{ roles: IUnitRoleKV[]; actions: IUnitAction[] }>;
+    list(
+        config: {
+            unitId: string, permissionIdList: string[]
+        }, context?: ILogContext): Promise<IPermissionPoint[]>;
+    listRoles(type: string, context?: ILogContext): Promise<{ roles: IUnitRoleKV[]; actions: E.UnitAction[] }>;
     listCollaborators(config: {
         permissionId: string;
         unitId: string;
@@ -92,12 +96,3 @@ export const defaultSheetActions = [
     UnitAction.Copy,
 ];
 
-export interface IPermissionPoint {
-    objectID: string;
-    unitID: string;
-    objectType: UnitObject;
-    name: string;
-    shareOn: boolean;
-    shareRole: UnitRole;
-    creator: IUser | undefined;
-}
