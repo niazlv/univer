@@ -22,9 +22,9 @@ import { createInternalEditorID, isValidRange, IUniverInstanceService, LocaleSer
 import { IDialogService, RangeSelector, useObservable } from '@univerjs/ui';
 import { SelectionManagerService } from '@univerjs/sheets';
 import { serializeRange } from '@univerjs/engine-formula';
-import type { ICollaborator } from '@univerjs/sheets-selection-protection';
-import { ISelectionPermissionIoService, UnitRole } from '@univerjs/sheets-selection-protection';
-import { UnitObject } from '@univerjs/sheets-selection-protection/model/type.js';
+import { ISelectionPermissionIoService } from '@univerjs/sheets-selection-protection';
+import { UnitObject } from '@univerjs/protocol';
+import { type ICollaborator, UnitRole } from '@univerjs/protocol';
 import { SheetPermissionPanelService, SheetPermissionUserManagerService } from '../../service';
 import { UNIVER_SHEET_PERMISSION_USER_DIALOG, UNIVER_SHEET_PERMISSION_USER_DIALOG_ID } from '../../const';
 import { viewState } from '../../service/sheet-permission-side-panel.service';

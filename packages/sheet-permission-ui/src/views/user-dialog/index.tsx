@@ -19,11 +19,10 @@ import { Avatar, Button, Input } from '@univerjs/design';
 import clsx from 'clsx';
 import { useDependency } from '@wendellhu/redi/react-bindings';
 import { LocaleService } from '@univerjs/core';
-import type { ICollaborator } from '@univerjs/sheets-selection-protection';
 import { IDialogService } from '@univerjs/ui';
+import type { ICollaborator } from '@univerjs/protocol';
 import { SheetPermissionUserManagerService } from '../../service';
 import { UNIVER_SHEET_PERMISSION_USER_DIALOG_ID } from '../../const';
-import type { ICollaboratorWithPermission } from '../../service/sheet-permission-user-list.service';
 import styles from './index.module.less';
 
 export const SheetPermissionUserDialog = () => {
@@ -35,12 +34,12 @@ export const SheetPermissionUserDialog = () => {
     const searchUserList = userList.filter((item) => {
         return item.subject?.name.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase());
     });
-    const [selectUserInfo, setSelectUserInfo] = useState<ICollaboratorWithPermission[]>(sheetPermissionUserManagerService.selectUserList);
+    const [selectUserInfo, setSelectUserInfo] = useState<ICollaborator[]>(sheetPermissionUserManagerService.selectUserList);
 
     const handleChangeUser = (item: ICollaborator) => {
         const index = selectUserInfo?.findIndex((v) => v.subject?.userID === item.subject?.userID);
         if (index === -1) {
-            const select: ICollaboratorWithPermission = { ...item, selectValue: 'edit' };
+            const select: ICollaborator = { ...item, selectValue: 'edit' };
             setSelectUserInfo([...selectUserInfo, select]);
         } else {
             const newSelectUserInfo = selectUserInfo.filter((v) => v.subject?.userID !== item.subject?.userID);

@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 
-export { SelectionPermissionIoService, UnitRole } from './selection-permission-io';
-export type { ICollaborator, ISelectionPermissionIoService } from './selection-permission-io';
+export { SelectionPermissionIoService } from './selection-permission-io';
+export type { ISelectionPermissionIoService } from './selection-permission-io';
 

@@ -17,14 +17,14 @@
 import { Inject } from '@wendellhu/redi';
 import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { IPermissionService, LifecycleStages, LRUMap, OnLifecycle, PermissionType, Range } from '@univerjs/core';
-import type { SelectionProtectionPermissionCellStylePoint, SelectionProtectionPermissionCellValuePoint, SelectionProtectionPermissionCopyPoint, SelectionProtectionPermissionEditPoint } from '../service/selection-protection/permission-point';
 import { getAllPermissionPoint, getDefaultPermission } from '../service/selection-protection/permission-point';
+import type { ISelectionPermissionPoint } from '../service/selection-protection/permission-point';
+
 import { SelectionProtectionRuleModel } from './selection-protection-rule.model';
 import type { ICellPermission } from './type';
 
 const defaultPermission = getDefaultPermission();
 
-type IPermissionPoint = SelectionProtectionPermissionCellStylePoint | SelectionProtectionPermissionCellValuePoint | SelectionProtectionPermissionCopyPoint | SelectionProtectionPermissionEditPoint;
 @OnLifecycle(LifecycleStages.Ready, SelectionProtectionRenderModel)
 export class SelectionProtectionRenderModel {
     _cache = new LRUMap<string, ICellPermission[]>(10000);
@@ -39,7 +39,7 @@ export class SelectionProtectionRenderModel {
         this._permissionService.permissionPointUpdate$.pipe(
             filter((permission) => permission.type === PermissionType.SHEET_RANGE),
             filter((permission) => getAllPermissionPoint().some((F) => permission instanceof F)),
-            map((permission) => permission as IPermissionPoint),
+            map((permission) => permission as ISelectionPermissionPoint),
             distinctUntilChanged((pre, cur) => pre.permissionId === cur.permissionId)
         )
             .subscribe((permission) => {

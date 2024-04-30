@@ -24,7 +24,7 @@ import type { ICellDataForSheetInterceptor, Workbook } from '@univerjs/core';
 import { ICommandService, IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
 import { ISidebarService } from '@univerjs/ui';
 import { merge } from 'rxjs';
-import type { IPermissionPoint } from '@univerjs/sheets-selection-protection/service/selection-permission-io/type.js';
+import type { IPermissionPoint } from '@univerjs/protocol';
 import { SheetPermissionPanelService } from '../../service';
 import { DeleteSheetPermissionCommand } from '../../command/sheet-permission.command';
 import { UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER } from '../../const';

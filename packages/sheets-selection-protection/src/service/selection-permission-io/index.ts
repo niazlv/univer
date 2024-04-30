@@ -15,5 +15,4 @@
  */
 
 export { SelectionPermissionIoService } from './selection-permission-io.service';
-export { ISelectionPermissionIoService, UnitRole } from './type';
-export type { ICollaborator } from './type';
+export { ISelectionPermissionIoService } from './type';

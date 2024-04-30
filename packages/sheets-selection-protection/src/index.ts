@@ -16,9 +16,8 @@
 
 export { UniverSheetsSelectionProtectionPlugin } from './selection-protection-plugin';
 
-export { SelectionPermissionIoService, UnitRole } from './service';
+export { SelectionPermissionIoService } from './service';
 export { ISelectionPermissionIoService } from './service/selection-permission-io';
-export type { ICollaborator } from './service';
 export { getAllPermissionPoint, getDefaultPermission } from './service/selection-protection/permission-point';
 
 export { AddSelectionProtection, DeleteSelectionProtection } from './commands';

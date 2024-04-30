@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-import type { ICollaborator } from '@univerjs/sheets-selection-protection';
 import { BehaviorSubject } from 'rxjs';
-
+import type { ICollaborator } from '@univerjs/protocol';
 
 export class SheetPermissionUserManagerService {
     private _userList: ICollaborator[] = [];

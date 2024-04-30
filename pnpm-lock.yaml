@@ -901,6 +901,9 @@ importers:
       '@univerjs/icons':
         specifier: ^0.1.44
         version: 0.1.44(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@univerjs/protocol':
+        specifier: ^0.1.26-permission-7
+        version: 0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
       dayjs:
         specifier: ^1.11.10
         version: 1.11.10

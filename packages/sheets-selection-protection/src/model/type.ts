@@ -15,6 +15,7 @@
  */
 
 import type { IRange, RangeUnitPermissionType } from '@univerjs/core';
+import type { UnitObject } from '@univerjs/protocol';
 
 export interface ISelectionProtectionRule {
     ranges: IRange[];
@@ -32,11 +33,3 @@ export type IObjectModel = Record<string, Record<string, ISelectionProtectionRul
 
 export type IModel = Map<string, Map<string, Map<string, ISelectionProtectionRule>>>;
 
-export enum UnitObject {
-    Unkonwn = 0,
-    Workbook = 1,
-    Worksheet = 2,
-    SelectRange = 3,
-    Document = 4,
-    UNRECOGNIZED = -1,
-}

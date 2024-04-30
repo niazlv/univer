@@ -17,14 +17,13 @@
 import type { ILogContext } from '@univerjs/core';
 import { LifecycleStages, runOnLifecycle } from '@univerjs/core';
 import { createIdentifier } from '@wendellhu/redi';
-import type { ICollaborator, ICreateRequest_SelectRangeObject, IUnitRoleKV, IPermissionPoint } from '@univerjs/protocol';
-import * as E from '@univerjs/protocol'
+import { type ICollaborator, type ICreateRequest_SelectRangeObject, type IPermissionPoint, type IUnitRoleKV, UnitAction, type UnitObject } from '@univerjs/protocol';
 
 export interface IAllowedRequest {
     permissionId: string;
     permissionType: UnitObject;
     unitId: string;
-    actions: E.UnitAction[];
+    actions: UnitAction[];
 }
 export interface ISelectionPermissionIoService {
     create(config: ICreateRequest_SelectRangeObject, context?: ILogContext): Promise<string>;
@@ -32,9 +31,9 @@ export interface ISelectionPermissionIoService {
     batchAllowed(config: IAllowedRequest[], context?: ILogContext): Promise<Record<string, Record<string, boolean>>>;
     list(
         config: {
-            unitId: string, permissionIdList: string[]
+            unitId: string; permissionIdList: string[];
         }, context?: ILogContext): Promise<IPermissionPoint[]>;
-    listRoles(type: string, context?: ILogContext): Promise<{ roles: IUnitRoleKV[]; actions: E.UnitAction[] }>;
+    listRoles(type: string, context?: ILogContext): Promise<{ roles: IUnitRoleKV[]; actions: UnitAction[] }>;
     listCollaborators(config: {
         permissionId: string;
         unitId: string;
@@ -43,48 +42,6 @@ export interface ISelectionPermissionIoService {
 
 export const ISelectionPermissionIoService = createIdentifier<ISelectionPermissionIoService>('ISelectionPermissionIoService');
 runOnLifecycle(LifecycleStages.Starting, ISelectionPermissionIoService);
-
-
-// todo ybzky replace in univerjs/protocol
-export enum UnitObject {
-    Unkonwn = 0,
-    Workbook = 1,
-    Worksheet = 2,
-    SelectRange = 3,
-    Document = 4,
-    UNRECOGNIZED = -1,
-}
-
-export enum UnitRole {
-    Reader = 0,
-    Editor = 1,
-    Owner = 2,
-    UNRECOGNIZED = -1,
-}
-
-export interface ICollaborator {
-    id: string;
-    role: UnitRole;
-    subject: IUser | undefined;
-}
-
-export interface IUser {
-    userID: string;
-    name: string;
-    avatar: string;
-}
-
-export enum UnitAction {
-    View = 0,
-    Edit = 1,
-    ManageCollaborator = 2,
-    Print = 3,
-    Duplicate = 4,
-    Comment = 5,
-    Copy = 6,
-    Share = 7,
-    UNRECOGNIZED = -1,
-}
 
 export const defaultRangeActions = [
     UnitAction.Edit,

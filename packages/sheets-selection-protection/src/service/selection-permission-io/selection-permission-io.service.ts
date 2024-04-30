@@ -16,9 +16,9 @@
 
 import type { ILogContext } from '@univerjs/core';
 import { RangeUnitPermissionType, Tools } from '@univerjs/core';
-import type { IUnitAction, IUnitRoleKV } from '@univerjs/protocol';
-import type { IAllowedRequest, ICollaborator, ISelectionPermissionIoService } from './type';
-import { UnitRole } from './type';
+import { type ICollaborator, type IUnitRoleKV, type UnitAction, UnitRole } from '@univerjs/protocol';
+
+import type { IAllowedRequest, ISelectionPermissionIoService } from './type';
 
 export class SelectionPermissionIoService implements ISelectionPermissionIoService {
     async create(): Promise<string> {
@@ -32,6 +32,7 @@ export class SelectionPermissionIoService implements ISelectionPermissionIoServi
         return Promise.resolve({
             [RangeUnitPermissionType.Edit]: true,
             [RangeUnitPermissionType.View]: true,
+            [RangeUnitPermissionType.ManageCollaborator]: true,
         });
     }
 
@@ -80,14 +81,14 @@ export class SelectionPermissionIoService implements ISelectionPermissionIoServi
         return Promise.resolve(result);
     }
 
-    async listRoles(type: string, context?: ILogContext | undefined): Promise<{ roles: IUnitRoleKV[]; actions: IUnitAction[] }> {
+    async listRoles(type: string, context?: ILogContext | undefined): Promise<{ roles: IUnitRoleKV[]; actions: UnitAction[] }> {
         return {
             roles: [],
             actions: [],
         };
     }
 
-    async list(unitId: string) {
+    async list(config: {}) {
         return Promise.resolve([]);
     }
 }

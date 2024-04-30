@@ -51,8 +51,10 @@ export class SelectionProtectionPermissionViewPoint implements IPermissionPoint 
     }
 }
 
+export type ISelectionPermissionPoint = SelectionProtectionPermissionViewPoint | SelectionProtectionPermissionEditPoint;
 
 export const getAllPermissionPoint = () => [SelectionProtectionPermissionViewPoint, SelectionProtectionPermissionEditPoint];
+
 
 export const getDefaultPermission = (unitId = 'unitId', subUnitId = 'subUnitId', permissionId = 'permissionId') => getAllPermissionPoint().reduce((r, F) => {
     const i = new F(unitId, subUnitId, permissionId);

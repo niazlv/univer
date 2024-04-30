@@ -16,7 +16,7 @@
 
 import { Disposable } from '@univerjs/core';
 import type { ISelectionProtectionRule } from '@univerjs/sheets-selection-protection';
-import { UnitObject } from '@univerjs/sheets-selection-protection/model/type.js';
+import { UnitObject } from '@univerjs/protocol';
 import { BehaviorSubject } from 'rxjs';
 
 export enum viewState {
@@ -35,7 +35,7 @@ export const DEFAULT_RULE = {
     viewStatus: viewState.othersCanView,
 };
 
-export interface ISelectionProtectionRuleWithViewStatus extends ISelectionProtectionRule {
+export interface ISelectionProtectionRuleWithViewStatus extends Omit<ISelectionProtectionRule, 'ranges'> {
     viewStatus: viewState;
 }
 
