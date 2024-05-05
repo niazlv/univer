@@ -36,6 +36,7 @@ import type { ISetRangeValuesCommandParams } from '../set-range-values.command';
 import { SetRangeValuesCommand } from '../set-range-values.command';
 import { WorkbookPermissionService } from '../../../services/permission/workbook-permission.service';
 import { WorksheetPermissionService } from '../../../services/permission/worksheet-permission/worksheet-permission.service';
+import { WorksheetPermissionIoService, WorksheetProtectionRuleModel } from '../../../services/permission/worksheet-permission';
 import { createCommandTestBed } from './create-command-test-bed';
 
 const getTestWorkbookDataDemo = (): IWorkbookData => ({
@@ -102,7 +103,11 @@ describe('Test set range values commands', () => {
     let getStyle: () => any;
 
     beforeEach(() => {
+<<<<<<< HEAD
         const testBed = createCommandTestBed(getTestWorkbookDataDemo());
+=======
+        const testBed = createCommandTestBed(undefined, [[WorkbookPermissionService], [WorksheetPermissionService], [WorksheetProtectionRuleModel], [WorksheetPermissionIoService]]);
+>>>>>>> b43a2a569 (fix: test)
         univer = testBed.univer;
         get = testBed.get;
 

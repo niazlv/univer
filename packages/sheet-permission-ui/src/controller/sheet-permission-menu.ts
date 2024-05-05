@@ -19,8 +19,8 @@ import { MenuGroup, MenuItemType, MenuPosition } from '@univerjs/ui';
 import type { IAccessor } from '@wendellhu/redi';
 import { combineLatestWith, map } from 'rxjs';
 import { SheetPermissionOpenPanelOperation } from '../operation/sheet-permission-open-panel.operation';
-import { AddRangeProtectionFromContextMenuCommand, AddRangeProtectionFromSheetBarCommand, ChangeSheetProtectionFromSheetBarCommand, DeleteRangeProtectionFromContextMenuCommand, SetRangeProtectionFromContextMenuCommand, ViewSheetPermissionFromContextMenuCommand, ViewSheetPermissionFromSheetBarCommand } from '../command/range-protection.command';
-import { DeleteWOrksheetProtectionFormSheetBarCommand } from '../command/worksheet-protection.command';
+import { AddRangeProtectionFromContextMenuCommand, AddRangeProtectionFromSheetBarCommand, DeleteRangeProtectionFromContextMenuCommand, SetRangeProtectionFromContextMenuCommand, ViewSheetPermissionFromContextMenuCommand, ViewSheetPermissionFromSheetBarCommand } from '../command/range-protection.command';
+import { ChangeSheetProtectionFromSheetBarCommand, DeleteWOrksheetProtectionFormSheetBarCommand } from '../command/worksheet-protection.command';
 import { getAddPermissionDisable$, getAddPermissionHidden$, getEditPermissionHiddenOrDelete$, getPermissionDisableBase$ } from './utils';
 
 export const tmpIcon = 'data-validation-single';

@@ -20,7 +20,7 @@ import { CommandType, ICommandService, IUndoRedoService, IUniverInstanceService 
 import { AddWorksheetProtectionMutation } from '@univerjs/sheets/commands/mutations/add-worksheet-protection.mutation.js';
 import { DeleteWorksheetProtectionMutation } from '@univerjs/sheets/commands/mutations/delete-worksheet-protection.mutation.js';
 import { WorksheetProtectionRuleModel } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.model.js';
-import { UniverType } from '@univerjs/protocol/lib/types/ts/univer/constants/univer.js';
+import { UniverType } from '@univerjs/protocol';
 import type { IAddWorksheetProtectionParams, IDeleteWorksheetProtectionParams, ISetWorksheetProtectionParams } from './type';
 
 export const AddWorksheetProtectionCommand: ICommand<IAddWorksheetProtectionParams> = {

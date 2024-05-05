@@ -10,7 +10,15 @@ importers:
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.15.0
+<<<<<<< HEAD
         version: 2.15.0(@eslint-react/eslint-plugin@1.5.9(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@vue/compiler-sfc@3.4.24)(eslint-plugin-format@0.1.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react-refresh@0.4.6(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.5)(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
+=======
+<<<<<<< HEAD
+        version: 2.16.0(@eslint-react/eslint-plugin@1.5.9(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react-refresh@0.4.6(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.5)(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
+=======
+        version: 2.15.0(@eslint-react/eslint-plugin@1.5.9(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@vue/compiler-sfc@3.4.24)(eslint-plugin-format@0.1.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react-refresh@0.4.6(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.5)(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       '@commitlint/cli':
         specifier: ^19.3.0
         version: 19.3.0(@types/node@20.12.7)(typescript@5.4.5)
@@ -25,10 +33,24 @@ importers:
         version: 1.43.1
       '@release-it-plugins/workspaces':
         specifier: ^4.2.0
+<<<<<<< HEAD
         version: 4.2.0(release-it@17.2.0(typescript@5.4.5))
       '@release-it/conventional-changelog':
         specifier: ^8.0.1
         version: 8.0.1(release-it@17.2.0(typescript@5.4.5))
+=======
+<<<<<<< HEAD
+        version: 4.2.0(release-it@17.2.1(typescript@5.4.5))
+      '@release-it/conventional-changelog':
+        specifier: ^8.0.1
+        version: 8.0.1(release-it@17.2.1(typescript@5.4.5))
+=======
+        version: 4.2.0(release-it@17.2.0(typescript@5.4.5))
+      '@release-it/conventional-changelog':
+        specifier: ^8.0.1
+        version: 8.0.1(release-it@17.2.0(typescript@5.4.5))
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       '@storybook/react':
         specifier: 8.0.9
         version: 8.0.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.4.5)
@@ -118,7 +140,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vite-plugin-dts:
         specifier: ^3.9.0
+<<<<<<< HEAD
         version: 3.9.0(@types/node@20.12.7)(rollup@4.16.4)(typescript@5.4.5)(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
+=======
+<<<<<<< HEAD
+        version: 3.9.0(@types/node@20.12.7)(rollup@4.13.2)(typescript@5.4.5)(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
+=======
+        version: 3.9.0(@types/node@20.12.7)(rollup@4.16.4)(typescript@5.4.5)(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       vitest:
         specifier: ^1.5.2
         version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
@@ -130,7 +160,15 @@ importers:
         version: 1.3.3(react@18.2.0)
       '@storybook/addon-essentials':
         specifier: 8.0.9
+<<<<<<< HEAD
         version: 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+<<<<<<< HEAD
+        version: 8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+        version: 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       '@storybook/addon-interactions':
         specifier: 8.0.9
         version: 8.0.9(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
@@ -145,7 +183,15 @@ importers:
         version: 1.0.2(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
       '@storybook/blocks':
         specifier: 8.0.9
+<<<<<<< HEAD
         version: 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+<<<<<<< HEAD
+        version: 8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+        version: 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       '@storybook/icons':
         specifier: ^1.2.9
         version: 1.2.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -302,7 +348,15 @@ importers:
         version: 18.2.0(react@18.2.0)
       react-mosaic-component:
         specifier: ^6.1.0
+<<<<<<< HEAD
         version: 6.1.0(@types/node@20.12.7)(@types/react@18.2.79)(dnd-core@16.0.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+<<<<<<< HEAD
+        version: 6.1.0(@types/node@20.12.7)(@types/react@18.3.1)(dnd-core@16.0.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+        version: 6.1.0(@types/node@20.12.7)(@types/react@18.2.79)(dnd-core@16.0.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       rxjs:
         specifier: ^7.8.1
         version: 7.8.1
@@ -350,6 +404,7 @@ importers:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         specifier: ^0.1.20
 <<<<<<< HEAD
         version: 0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
@@ -374,6 +429,10 @@ importers:
         version: 0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
 >>>>>>> 0308e2e13 (chore(protocol): update version)
 >>>>>>> 86df6b4b5 (chore(protocol): update version)
+=======
+        specifier: ^0.1.26-permission-7
+        version: 0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+>>>>>>> b43a2a569 (fix: test)
       nanoid:
         specifier: 5.0.7
         version: 5.0.7
@@ -404,7 +463,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/data-validation:
     dependencies:
@@ -435,7 +502,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/design:
     dependencies:
@@ -532,7 +607,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/docs:
     devDependencies:
@@ -559,7 +642,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/docs-ui:
     devDependencies:
@@ -604,7 +695,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/engine-formula:
     dependencies:
@@ -638,7 +737,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/engine-numfmt:
     dependencies:
@@ -657,7 +764,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/engine-render:
     dependencies:
@@ -691,7 +806,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/facade:
     devDependencies:
@@ -748,10 +871,24 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest-canvas-mock:
         specifier: ^0.3.3
         version: 0.3.3(vitest@1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+      vitest-canvas-mock:
+        specifier: ^0.3.3
+        version: 0.3.3(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+      vitest-canvas-mock:
+        specifier: ^0.3.3
+        version: 0.3.3(vitest@1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/find-replace:
     dependencies:
@@ -800,7 +937,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/image:
     dependencies:
@@ -846,7 +991,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/network:
     devDependencies:
@@ -870,7 +1023,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/rpc:
     devDependencies:
@@ -894,7 +1055,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/sheet-permission-ui:
     dependencies:
@@ -992,7 +1161,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/sheets-conditional-formatting:
     dependencies:
@@ -1038,7 +1215,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/sheets-conditional-formatting-ui:
     dependencies:
@@ -1123,7 +1308,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/sheets-data-validation:
     dependencies:
@@ -1187,7 +1380,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/sheets-filter:
     devDependencies:
@@ -1314,7 +1515,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/sheets-formula:
     dependencies:
@@ -1378,7 +1587,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/sheets-numfmt:
     dependencies:
@@ -1436,7 +1653,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/sheets-selection-protection:
     dependencies:
@@ -1564,7 +1789,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/sheets-zen-editor:
     dependencies:
@@ -1616,7 +1849,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/slides:
     devDependencies:
@@ -1643,7 +1884,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/slides-ui:
     devDependencies:
@@ -1691,7 +1940,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/ui:
     dependencies:
@@ -1717,7 +1974,15 @@ importers:
         version: 14.2.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@testing-library/react-hooks':
         specifier: ^8.0.1
+<<<<<<< HEAD
         version: 8.0.1(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+<<<<<<< HEAD
+        version: 8.0.1(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+        version: 8.0.1(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       '@types/react':
         specifier: ^18.2.79
         version: 18.2.79
@@ -1768,7 +2033,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   packages/umd:
     dependencies:
@@ -1811,6 +2084,7 @@ importers:
       '@univerjs/protocol':
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         specifier: ^0.1.20
 <<<<<<< HEAD
         version: 0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
@@ -1828,6 +2102,10 @@ importers:
         version: 0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
 >>>>>>> 0308e2e13 (chore(protocol): update version)
 >>>>>>> 86df6b4b5 (chore(protocol): update version)
+=======
+        specifier: ^0.1.26-permission-7
+        version: 0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+>>>>>>> b43a2a569 (fix: test)
       '@univerjs/rpc':
         specifier: workspace:*
         version: link:../rpc
@@ -1942,7 +2220,15 @@ importers:
         version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest:
         specifier: ^1.5.0
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+<<<<<<< HEAD
+        version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
 packages:
 
@@ -3418,12 +3704,15 @@ packages:
     libc: [glibc]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
   '@rollup/rollup-linux-arm64-gnu@4.13.2':
     resolution: {integrity: sha512-L1+D8/wqGnKQIlh4Zre9i4R4b4noxzH5DDciyahX4oOz62CphY7WDWqJoQ66zNR4oScLNOqQJfNSIAe/6TPUmQ==}
 =======
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
   '@rollup/rollup-linux-arm-musleabihf@4.16.4':
     resolution: {integrity: sha512-tJfJaXPiFAG+Jn3cutp7mCs1ePltuAgRqdDZrzb1aeE3TktWWJ+g7xK9SNlaSUFw6IU4QgOxAY4rA+wZUT5Wfg==}
     cpu: [arm]
@@ -3437,8 +3726,11 @@ packages:
 
   '@rollup/rollup-linux-arm64-gnu@4.16.4':
     resolution: {integrity: sha512-7dy1BzQkgYlUTapDTvK997cgi0Orh5Iu7JlZVBy1MBURk7/HSbHkzRnXZa19ozy+wwD8/SlpJnOOckuNZtJR9w==}
+<<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
@@ -4070,6 +4362,7 @@ packages:
     resolution: {integrity: sha512-hT/+s0VQs2ojCX823m60m5f0sL5idt9SO6Tj6Dg+rdphGPIeJbJ6CxvBYkgkGKrYeDjvIpKTR38UzmtHJOGW3Q==}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@types/react@18.2.79':
     resolution: {integrity: sha512-RwGAGXPl9kSXwdNTafkOEuFrTBD5SA2B3iEB96xi8+xu5ddUa/cpvyVCSNn+asgLCTHkb5ZxN8gbuibYJi4s1w==}
 =======
@@ -4077,13 +4370,18 @@ packages:
   '@types/react@18.3.1':
     resolution: {integrity: sha512-V0kuGBX3+prX+DQ/7r2qsv1NsdfnCLnTgnRJ1pYnxykBhGMz+qj+box5lq7XsO5mtZsBqpjwwTu/7wszPfMBcw==}
 =======
+=======
+>>>>>>> b43a2a569 (fix: test)
   '@types/react@18.2.75':
     resolution: {integrity: sha512-+DNnF7yc5y0bHkBTiLKqXFe+L4B3nvOphiMY3tuA5X10esmjqk7smyBZzbGTy2vsiy/Bnzj8yFIBL8xhRacoOg==}
 
   '@types/react@18.2.79':
     resolution: {integrity: sha512-RwGAGXPl9kSXwdNTafkOEuFrTBD5SA2B3iEB96xi8+xu5ddUa/cpvyVCSNn+asgLCTHkb5ZxN8gbuibYJi4s1w==}
+<<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
 
   '@types/resolve@1.20.6':
     resolution: {integrity: sha512-A4STmOXPhMUtHH+S6ymgE2GiBSMqf4oTvcQZMcHzokuTLVYzXTB8ttjcgxOVaAp2lGwEdzZ0J+cRbbeevQj1UQ==}
@@ -4252,6 +4550,7 @@ packages:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@univerjs/protocol@0.1.20':
     resolution: {integrity: sha512-obplLf02e+x+E/Hezh3ES9H/JsFtHgYla7C1G1ffTVbbrqmRssebQ5birqgMcVx1Sj3WG5vsCJ0forISNRjkLg==}
 =======
@@ -4273,9 +4572,10 @@ packages:
     resolution: {integrity: sha512-pYUx/XJcfiCNp8T+19LX6u4cHnlTFYFvUQ+lPO1FurAGHRj0kw/Y/MLgOpf7XwkzxSC3y/soi0PcCw7CoO17Ag==}
 >>>>>>> e8f894d87 (chore(protocol): update version)
 =======
+=======
+>>>>>>> b43a2a569 (fix: test)
   '@univerjs/protocol@0.1.26-permission-7':
     resolution: {integrity: sha512-cD2Uv2JoAyJJly0ZTF0vwdz9OYRzktN1ooMVXTEzkMBPEBU//FnlRj1KQiOJHiIdFBeRt8SVNPFqvmnOW9bJFQ==}
->>>>>>> 0308e2e13 (chore(protocol): update version)
     engines: {node: '>=16.0.0', npm: '>=8.0.0'}
     peerDependencies:
       '@grpc/grpc-js': ^1.9.14
@@ -4295,6 +4595,7 @@ packages:
   '@vitest/expect@1.3.1':
     resolution: {integrity: sha512-xofQFwIzfdmLLlHa6ag0dPV8YsnKOCP1KdAeVVh34vSjN2dcUiXYCD9htu/9eM7t8Xln4v03U9HLxLpPlsXdZw==}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   '@vitest/expect@1.5.0':
     resolution: {integrity: sha512-0pzuCI6KYi2SIC3LQezmxujU9RK/vwC1U9R0rLuGlNGcOuDWxqWKu6nUdFsX9tH1WU0SXtAxToOsEjeUn1s3hA==}
@@ -4317,6 +4618,8 @@ packages:
 
 =======
 =======
+=======
+>>>>>>> b43a2a569 (fix: test)
   '@vitest/expect@1.4.0':
     resolution: {integrity: sha512-Jths0sWCJZ8BxjKe+p+eKsoqev1/T8lYcrjavEaz8auEJ4jAVY0GwW3JKmdVU4mmNPLPHixh4GNXP7GFtAiDHA==}
 
@@ -4341,8 +4644,11 @@ packages:
   '@vitest/snapshot@1.5.0':
     resolution: {integrity: sha512-qpv3fSEuNrhAO3FpH6YYRdaECnnRjg9VxbhdtPwPRnzSfHVXnNzzrpX4cJxqiwgRMo7uRMWDFBlsBq4Cr+rO3A==}
 
+<<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
   '@vitest/snapshot@1.5.2':
     resolution: {integrity: sha512-CTEp/lTYos8fuCc9+Z55Ga5NVPKUgExritjF5VY7heRFUfheoAqBneUlvXSUJHUZPjnPmyZA96yLRJDP1QATFQ==}
 
@@ -4355,13 +4661,14 @@ packages:
 =======
   '@vitest/spy@1.4.0':
     resolution: {integrity: sha512-Ywau/Qs1DzM/8Uc+yA77CwSegizMlcgTJuYGAi0jujOteJOUf1ujunHThYo243KG9nAyWT3L9ifPYZ5+As/+6Q==}
-<<<<<<< HEAD
-=======
 
   '@vitest/spy@1.5.0':
     resolution: {integrity: sha512-vu6vi6ew5N5MMHJjD5PoakMRKYdmIrNJmyfkhRpQt5d9Ewhw9nZ5Aqynbi3N61bvk9UvZ5UysMT6ayIrZ8GA9w==}
+<<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
 
   '@vitest/spy@1.5.2':
     resolution: {integrity: sha512-xCcPvI8JpCtgikT9nLpHPL1/81AYqZy1GCy4+MCHBE7xi8jgsYkULpW5hrx5PGLgOQjUpb6fd15lqcriJ40tfQ==}
@@ -4375,13 +4682,14 @@ packages:
 =======
   '@vitest/utils@1.4.0':
     resolution: {integrity: sha512-mx3Yd1/6e2Vt/PUC98DcqTirtfxUyAZ32uK82r8rZzbtBeBo+nqgnjx/LvqQdWsrvNtm14VmurNgcf4nqY5gJg==}
-<<<<<<< HEAD
-=======
 
   '@vitest/utils@1.5.0':
     resolution: {integrity: sha512-BDU0GNL8MWkRkSRdNFvCUCAVOeHaUlVJ9Tx0TYBZyXaaOTmGtUFObzchCivIBrIwKzvZA7A9sCejVhXM2aY98A==}
+<<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
 
   '@vitest/utils@1.5.2':
     resolution: {integrity: sha512-sWOmyofuXLJ85VvXNsroZur7mOJGiQeM0JN3/0D1uU8U9bGFM69X1iqHaRXl6R8BwaLY6yPCogP257zxTzkUdA==}
@@ -4784,8 +5092,14 @@ packages:
   assert@2.1.0:
     resolution: {integrity: sha512-eLHpSK/Y4nhMJ07gDaAzoX/XAKS8PSaojml3M0DM4JpV1LAi5JOJ/p6H/XWrl8L+DzVEvVCW1z3vWAaB9oTsQw==}
 
+<<<<<<< HEAD
   assertion-error@1.1.0:
     resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
+=======
+  assertion-error@https://r2.cnpmjs.org/assertion-error/-/assertion-error-1.1.0.tgz:
+    resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==, tarball: https://r2.cnpmjs.org/assertion-error/-/assertion-error-1.1.0.tgz}
+    version: 1.1.0
+>>>>>>> b43a2a569 (fix: test)
 
   ast-types@0.16.1:
     resolution: {integrity: sha512-6t10qk83GOG8p0vKmaCr8eiilZwO171AvbROMtvvNiwrTly62t+7XkA8RdIIVbpMhCASAsxgAzdRSwh6nw/5Dg==}
@@ -5010,11 +5324,14 @@ packages:
     resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
+<<<<<<< HEAD
   chalk@https://r2.cnpmjs.org/chalk/-/chalk-3.0.0.tgz:
     resolution: {integrity: sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==, tarball: https://r2.cnpmjs.org/chalk/-/chalk-3.0.0.tgz}
     version: 3.0.0
     engines: {node: '>=8'}
 
+=======
+>>>>>>> b43a2a569 (fix: test)
   chalk@https://r2.cnpmjs.org/chalk/-/chalk-4.1.2.tgz:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==, tarball: https://r2.cnpmjs.org/chalk/-/chalk-4.1.2.tgz}
     version: 4.1.2
@@ -5225,24 +5542,40 @@ packages:
     resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
     engines: {node: '>=16'}
 
+<<<<<<< HEAD
+=======
+  commander@2.20.3:
+    resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
+
+  commander@8.3.0:
+    resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
+    engines: {node: '>= 12'}
+
+>>>>>>> b43a2a569 (fix: test)
   commander@9.5.0:
     resolution: {integrity: sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==}
     engines: {node: ^12.20.0 || >=14}
 
+<<<<<<< HEAD
   commander@https://r2.cnpmjs.org/commander/-/commander-2.20.3.tgz:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==, tarball: https://r2.cnpmjs.org/commander/-/commander-2.20.3.tgz}
     version: 2.20.3
 
+=======
+>>>>>>> b43a2a569 (fix: test)
   commander@https://r2.cnpmjs.org/commander/-/commander-6.2.1.tgz:
     resolution: {integrity: sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==, tarball: https://r2.cnpmjs.org/commander/-/commander-6.2.1.tgz}
     version: 6.2.1
     engines: {node: '>= 6'}
 
+<<<<<<< HEAD
   commander@https://r2.cnpmjs.org/commander/-/commander-8.3.0.tgz:
     resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==, tarball: https://r2.cnpmjs.org/commander/-/commander-8.3.0.tgz}
     version: 8.3.0
     engines: {node: '>= 12'}
 
+=======
+>>>>>>> b43a2a569 (fix: test)
   comment-parser@1.4.1:
     resolution: {integrity: sha512-buhp5kePrmda3vhc5B9t7pUQXAb2Tnd0qgpkIhPhkHXxJpiPJ11H0ZEU0oBpJ2QztSbzG/ZxMj/CHsYJqRHmyg==}
     engines: {node: '>= 12.0.0'}
@@ -6361,11 +6694,14 @@ packages:
     resolution: {integrity: sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==}
     engines: {node: '>=4.0'}
 
+<<<<<<< HEAD
   estraverse@https://r2.cnpmjs.org/estraverse/-/estraverse-4.3.0.tgz:
     resolution: {integrity: sha512-39nnKffWz8xN1BU/2c79n9nB9HDzo0niYUqx6xyqUnyoAnQyyWpOTdZEeiCch8BBu515t4wp9ZmgVfVhn9EBpw==, tarball: https://r2.cnpmjs.org/estraverse/-/estraverse-4.3.0.tgz}
     version: 4.3.0
     engines: {node: '>=4.0'}
 
+=======
+>>>>>>> b43a2a569 (fix: test)
   estraverse@https://r2.cnpmjs.org/estraverse/-/estraverse-5.3.0.tgz:
     resolution: {integrity: sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==, tarball: https://r2.cnpmjs.org/estraverse/-/estraverse-5.3.0.tgz}
     version: 5.3.0
@@ -8081,6 +8417,14 @@ packages:
   mkdirp-classic@https://r2.cnpmjs.org/mkdirp-classic/-/mkdirp-classic-0.5.3.tgz:
     resolution: {integrity: sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==, tarball: https://r2.cnpmjs.org/mkdirp-classic/-/mkdirp-classic-0.5.3.tgz}
     version: 0.5.3
+<<<<<<< HEAD
+=======
+
+  mkdirp@1.0.4:
+    resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
+    engines: {node: '>=10'}
+    hasBin: true
+>>>>>>> b43a2a569 (fix: test)
 
   mkdirp@2.1.3:
     resolution: {integrity: sha512-sjAkg21peAG9HS+Dkx7hlG9Ztx7HLeKnvB3NQRcu/mltCVmvkF0pisbiTSfDVYTT86XEfZrTUosLdZLStquZUw==}
@@ -8587,8 +8931,9 @@ packages:
   pathe@1.1.2:
     resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
 
-  pathval@1.1.1:
-    resolution: {integrity: sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==}
+  pathval@https://r2.cnpmjs.org/pathval/-/pathval-1.1.1.tgz:
+    resolution: {integrity: sha512-Dp6zGqpTdETdR63lehJYPeIOqpiNBNtc7BpWSLrOje7UaIsE5aY92r/AunQA7rsXvet3lrJ3JnZX29UPTKXyKQ==, tarball: https://r2.cnpmjs.org/pathval/-/pathval-1.1.1.tgz}
+    version: 1.1.1
 
   peek-stream@https://r2.cnpmjs.org/peek-stream/-/peek-stream-1.1.3.tgz:
     resolution: {integrity: sha512-FhJ+YbOSBb9/rIl2ZeE/QHEsWn7PqNYt8ARAY3kIgNGOk13g9FGyIY6JIl/xB/3TFRVoTv5as0l11weORrTekA==, tarball: https://r2.cnpmjs.org/peek-stream/-/peek-stream-1.1.3.tgz}
@@ -10033,6 +10378,14 @@ packages:
     resolution: {integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==}
     engines: {node: '>=4'}
 
+<<<<<<< HEAD
+=======
+  type-detect@https://r2.cnpmjs.org/type-detect/-/type-detect-4.0.8.tgz:
+    resolution: {integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==, tarball: https://r2.cnpmjs.org/type-detect/-/type-detect-4.0.8.tgz}
+    version: 4.0.8
+    engines: {node: '>=4'}
+
+>>>>>>> b43a2a569 (fix: test)
   type-fest@0.20.2:
     resolution: {integrity: sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==}
     engines: {node: '>=10'}
@@ -10285,10 +10638,13 @@ packages:
     engines: {node: '>= 0.8'}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
   vary@https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==, tarball: https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz}
     version: 1.1.2
@@ -10308,9 +10664,12 @@ packages:
     hasBin: true
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
   vite-node@1.5.2:
     resolution: {integrity: sha512-Y8p91kz9zU+bWtF7HGt6DVw2JbhyuB2RlZix3FPYAYmUyZ3n7iTp8eSyLyY6sxtPegvxQtmlTMhfPhUfCUF93A==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -10388,9 +10747,12 @@ packages:
       vitest: '*'
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> b43a2a569 (fix: test)
   vitest@1.4.0:
     resolution: {integrity: sha512-gujzn0g7fmwf83/WzrDTnncZt2UiXP41mHuFYFrdwaLRVQ6JYQEiME2IfEjU3vcFL3VKa75XhI3lFgn+hfVsQw==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -10443,9 +10805,12 @@ packages:
         optional: true
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
   vitest@1.5.2:
     resolution: {integrity: sha512-l9gwIkq16ug3xY7BxHwcBQovLZG75zZL0PlsiYQbf76Rz6QGs54416UWMtC0jXeihvHvcHrf2ROEjkQRVpoZYw==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -10779,7 +11144,15 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
+<<<<<<< HEAD
   '@antfu/eslint-config@2.15.0(@eslint-react/eslint-plugin@1.5.9(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@vue/compiler-sfc@3.4.24)(eslint-plugin-format@0.1.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react-refresh@0.4.6(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.5)(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))':
+=======
+<<<<<<< HEAD
+  '@antfu/eslint-config@2.16.0(@eslint-react/eslint-plugin@1.5.9(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@vue/compiler-sfc@3.4.21)(eslint-plugin-format@0.1.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react-refresh@0.4.6(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.5)(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))':
+=======
+  '@antfu/eslint-config@2.15.0(@eslint-react/eslint-plugin@1.5.9(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@vue/compiler-sfc@3.4.24)(eslint-plugin-format@0.1.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react-refresh@0.4.6(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.5)(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))':
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     dependencies:
       '@antfu/install-pkg': 0.3.2
       '@clack/prompts': 0.7.0
@@ -10791,14 +11164,31 @@ snapshots:
       eslint-flat-config-utils: 0.2.3
       eslint-merge-processors: 0.1.0(eslint@8.57.0)
       eslint-plugin-antfu: 2.1.2(eslint@8.57.0)
+<<<<<<< HEAD
       eslint-plugin-eslint-comments: https://r2.cnpmjs.org/eslint-plugin-eslint-comments/-/eslint-plugin-eslint-comments-3.2.0.tgz(eslint@8.57.0)
+=======
+<<<<<<< HEAD
+      eslint-plugin-command: 0.1.2(eslint@8.57.0)
+      eslint-plugin-eslint-comments: 3.2.0(eslint@8.57.0)
+=======
+      eslint-plugin-eslint-comments: https://r2.cnpmjs.org/eslint-plugin-eslint-comments/-/eslint-plugin-eslint-comments-3.2.0.tgz(eslint@8.57.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       eslint-plugin-import-x: 0.5.0(eslint@8.57.0)(typescript@5.4.5)
       eslint-plugin-jsdoc: 48.2.3(eslint@8.57.0)
       eslint-plugin-jsonc: 2.15.1(eslint@8.57.0)
       eslint-plugin-markdown: 4.0.1(eslint@8.57.0)
       eslint-plugin-n: 17.3.0(eslint@8.57.0)
       eslint-plugin-no-only-tests: 3.1.0
+<<<<<<< HEAD
       eslint-plugin-perfectionist: 2.9.0(eslint@8.57.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@8.57.0))
+=======
+<<<<<<< HEAD
+      eslint-plugin-perfectionist: 2.10.0(eslint@8.57.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@8.57.0))
+=======
+      eslint-plugin-perfectionist: 2.9.0(eslint@8.57.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@8.57.0))
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       eslint-plugin-toml: 0.11.0(eslint@8.57.0)
       eslint-plugin-unicorn: 52.0.0(eslint@8.57.0)
       eslint-plugin-unused-imports: 3.1.0(@typescript-eslint/eslint-plugin@7.7.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)
@@ -11005,12 +11395,12 @@ snapshots:
       picocolors: https://r2.cnpmjs.org/picocolors/-/picocolors-1.0.0.tgz
 =======
       js-tokens: 4.0.0
-<<<<<<< HEAD
-      picocolors: 1.0.0
-=======
       picocolors: https://r2.cnpmjs.org/picocolors/-/picocolors-1.0.0.tgz
+<<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
 
   '@babel/parser@7.24.1':
     dependencies:
@@ -11702,9 +12092,21 @@ snapshots:
       chalk: 5.3.0
       cosmiconfig: 9.0.0(typescript@5.4.5)
       cosmiconfig-typescript-loader: 5.0.0(@types/node@20.12.7)(cosmiconfig@9.0.0(typescript@5.4.5))(typescript@5.4.5)
+<<<<<<< HEAD
       lodash.isplainobject: https://r2.cnpmjs.org/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz
       lodash.merge: https://r2.cnpmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz
       lodash.uniq: https://r2.cnpmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz
+=======
+<<<<<<< HEAD
+      lodash.isplainobject: 4.0.6
+      lodash.merge: 4.6.2
+      lodash.uniq: 4.5.0
+=======
+      lodash.isplainobject: https://r2.cnpmjs.org/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz
+      lodash.merge: https://r2.cnpmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz
+      lodash.uniq: https://r2.cnpmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -12304,15 +12706,37 @@ snapshots:
       '@babel/runtime': 7.24.1
       react: 18.2.0
     optionalDependencies:
+<<<<<<< HEAD
       '@types/react': 18.2.79
+=======
+<<<<<<< HEAD
+      '@types/react': 18.3.1
+=======
+      '@types/react': 18.2.79
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   '@radix-ui/react-slot@1.0.2(@types/react@18.2.79)(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.24.1
+<<<<<<< HEAD
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.79)(react@18.2.0)
       react: 18.2.0
     optionalDependencies:
       '@types/react': 18.2.79
+=======
+<<<<<<< HEAD
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.3.1)(react@18.2.0)
+      react: 18.2.0
+    optionalDependencies:
+      '@types/react': 18.3.1
+=======
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.79)(react@18.2.0)
+      react: 18.2.0
+    optionalDependencies:
+      '@types/react': 18.2.79
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   '@rc-component/color-picker@1.5.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
@@ -12363,7 +12787,15 @@ snapshots:
 
   '@react-dnd/shallowequal@4.0.2': {}
 
+<<<<<<< HEAD
   '@release-it-plugins/workspaces@4.2.0(release-it@17.2.0(typescript@5.4.5))':
+=======
+<<<<<<< HEAD
+  '@release-it-plugins/workspaces@4.2.0(release-it@17.2.1(typescript@5.4.5))':
+=======
+  '@release-it-plugins/workspaces@4.2.0(release-it@17.2.0(typescript@5.4.5))':
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     dependencies:
       detect-indent: 6.1.0
       detect-newline: 3.1.0
@@ -12374,7 +12806,15 @@ snapshots:
       walk-sync: 2.2.0
       yaml: 2.4.1
 
+<<<<<<< HEAD
   '@release-it/conventional-changelog@8.0.1(release-it@17.2.0(typescript@5.4.5))':
+=======
+<<<<<<< HEAD
+  '@release-it/conventional-changelog@8.0.1(release-it@17.2.1(typescript@5.4.5))':
+=======
+  '@release-it/conventional-changelog@8.0.1(release-it@17.2.0(typescript@5.4.5))':
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     dependencies:
       concat-stream: 2.0.0
       conventional-changelog: 5.1.0
@@ -12382,13 +12822,29 @@ snapshots:
       release-it: 17.2.0(typescript@5.4.5)
       semver: 7.6.0
 
+<<<<<<< HEAD
   '@rollup/pluginutils@5.1.0(rollup@4.16.4)':
+=======
+<<<<<<< HEAD
+  '@rollup/pluginutils@5.1.0(rollup@4.13.2)':
+=======
+  '@rollup/pluginutils@5.1.0(rollup@4.16.4)':
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     dependencies:
       '@types/estree': 1.0.5
       estree-walker: https://r2.cnpmjs.org/estree-walker/-/estree-walker-2.0.2.tgz
       picomatch: 2.3.1
     optionalDependencies:
+<<<<<<< HEAD
       rollup: 4.16.4
+=======
+<<<<<<< HEAD
+      rollup: 4.13.2
+=======
+      rollup: 4.16.4
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   '@rollup/rollup-android-arm-eabi@4.16.4':
     optional: true
@@ -12440,9 +12896,21 @@ snapshots:
 
   '@rushstack/node-core-library@4.0.2(@types/node@20.12.7)':
     dependencies:
+<<<<<<< HEAD
       fs-extra: https://r2.cnpmjs.org/fs-extra/-/fs-extra-7.0.1.tgz
       import-lazy: https://r2.cnpmjs.org/import-lazy/-/import-lazy-4.0.0.tgz
       jju: https://r2.cnpmjs.org/jju/-/jju-1.4.0.tgz
+=======
+<<<<<<< HEAD
+      fs-extra: 7.0.1
+      import-lazy: 4.0.0
+      jju: 1.4.0
+=======
+      fs-extra: https://r2.cnpmjs.org/fs-extra/-/fs-extra-7.0.1.tgz
+      import-lazy: https://r2.cnpmjs.org/import-lazy/-/import-lazy-4.0.0.tgz
+      jju: https://r2.cnpmjs.org/jju/-/jju-1.4.0.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       resolve: 1.22.8
       semver: 7.5.4
       z-schema: 5.0.5
@@ -12457,7 +12925,15 @@ snapshots:
   '@rushstack/terminal@0.10.0(@types/node@20.12.7)':
     dependencies:
       '@rushstack/node-core-library': 4.0.2(@types/node@20.12.7)
+<<<<<<< HEAD
       supports-color: https://r2.cnpmjs.org/supports-color/-/supports-color-8.1.1.tgz
+=======
+<<<<<<< HEAD
+      supports-color: 8.1.1
+=======
+      supports-color: https://r2.cnpmjs.org/supports-color/-/supports-color-8.1.1.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     optionalDependencies:
       '@types/node': 20.12.7
 
@@ -12491,11 +12967,27 @@ snapshots:
       memoizerific: https://r2.cnpmjs.org/memoizerific/-/memoizerific-1.11.3.tgz
       ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
 
+<<<<<<< HEAD
   '@storybook/addon-controls@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@storybook/blocks': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       lodash: https://r2.cnpmjs.org/lodash/-/lodash-4.17.21.tgz
       ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
+=======
+<<<<<<< HEAD
+  '@storybook/addon-controls@8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@storybook/blocks': 8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      lodash: 4.17.21
+      ts-dedent: 2.2.0
+=======
+  '@storybook/addon-controls@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@storybook/blocks': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      lodash: https://r2.cnpmjs.org/lodash/-/lodash-4.17.21.tgz
+      ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     transitivePeerDependencies:
       - '@types/react'
       - encoding
@@ -12506,10 +12998,24 @@ snapshots:
   '@storybook/addon-docs@8.0.9':
     dependencies:
       '@babel/core': 7.24.3
+<<<<<<< HEAD
       '@mdx-js/react': 3.0.1(@types/react@18.2.79)(react@18.2.0)
       '@storybook/blocks': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@storybook/client-logger': 8.0.9
       '@storybook/components': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+<<<<<<< HEAD
+      '@mdx-js/react': 3.0.1(@types/react@18.3.1)(react@18.2.0)
+      '@storybook/blocks': 8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@storybook/client-logger': 8.0.9
+      '@storybook/components': 8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+      '@mdx-js/react': 3.0.1(@types/react@18.2.79)(react@18.2.0)
+      '@storybook/blocks': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@storybook/client-logger': 8.0.9
+      '@storybook/components': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       '@storybook/csf-plugin': 8.0.9
       '@storybook/csf-tools': 8.0.9
       '@storybook/global': 5.0.0
@@ -12529,11 +13035,27 @@ snapshots:
       - encoding
       - supports-color
 
+<<<<<<< HEAD
   '@storybook/addon-essentials@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@storybook/addon-actions': 8.0.9
       '@storybook/addon-backgrounds': 8.0.9
       '@storybook/addon-controls': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+<<<<<<< HEAD
+  '@storybook/addon-essentials@8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@storybook/addon-actions': 8.0.9
+      '@storybook/addon-backgrounds': 8.0.9
+      '@storybook/addon-controls': 8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+  '@storybook/addon-essentials@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@storybook/addon-actions': 8.0.9
+      '@storybook/addon-backgrounds': 8.0.9
+      '@storybook/addon-controls': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       '@storybook/addon-docs': 8.0.9
       '@storybook/addon-highlight': 8.0.9
       '@storybook/addon-measure': 8.0.9
@@ -12575,7 +13097,15 @@ snapshots:
     dependencies:
       '@storybook/csf': 0.1.4
       '@storybook/global': 5.0.0
+<<<<<<< HEAD
       ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
+=======
+<<<<<<< HEAD
+      ts-dedent: 2.2.0
+=======
+      ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     optionalDependencies:
       react: 18.2.0
 
@@ -12608,11 +13138,27 @@ snapshots:
       - '@swc/helpers'
       - webpack
 
+<<<<<<< HEAD
   '@storybook/blocks@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@storybook/channels': 8.0.9
       '@storybook/client-logger': 8.0.9
       '@storybook/components': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+<<<<<<< HEAD
+  '@storybook/blocks@8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@storybook/channels': 8.0.9
+      '@storybook/client-logger': 8.0.9
+      '@storybook/components': 8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+  '@storybook/blocks@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@storybook/channels': 8.0.9
+      '@storybook/client-logger': 8.0.9
+      '@storybook/components': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       '@storybook/core-events': 8.0.9
       '@storybook/csf': 0.1.4
       '@storybook/docs-tools': 8.0.9
@@ -12632,8 +13178,18 @@ snapshots:
       react-colorful: 5.6.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       telejson: 7.2.0
       tocbot: 4.25.0
+<<<<<<< HEAD
       ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
       util-deprecate: https://r2.cnpmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz
+=======
+<<<<<<< HEAD
+      ts-dedent: 2.2.0
+      util-deprecate: 1.0.2
+=======
+      ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
+      util-deprecate: https://r2.cnpmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     optionalDependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -12677,13 +13233,22 @@ snapshots:
       browser-assert: https://r2.cnpmjs.org/browser-assert/-/browser-assert-1.2.1.tgz
       case-sensitive-paths-webpack-plugin: https://r2.cnpmjs.org/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.4.0.tgz
       cjs-module-lexer: 1.2.3
+<<<<<<< HEAD
       constants-browserify: https://r2.cnpmjs.org/constants-browserify/-/constants-browserify-1.0.0.tgz
+=======
+<<<<<<< HEAD
+      constants-browserify: 1.0.0
+=======
+      constants-browserify: https://r2.cnpmjs.org/constants-browserify/-/constants-browserify-1.0.0.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       css-loader: 6.10.0(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
       es-module-lexer: 1.5.0
       express: 4.19.2
       fork-ts-checker-webpack-plugin: 8.0.0(typescript@5.4.5)(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
       fs-extra: 11.2.0
       html-webpack-plugin: 5.6.0(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
+<<<<<<< HEAD
       magic-string: 0.30.10
       path-browserify: https://r2.cnpmjs.org/path-browserify/-/path-browserify-1.0.1.tgz
       process: https://r2.cnpmjs.org/process/-/process-0.11.10.tgz
@@ -12691,6 +13256,25 @@ snapshots:
       style-loader: 3.3.4(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
       terser-webpack-plugin: 5.3.10(@swc/core@1.4.11)(esbuild@0.20.2)(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
       ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
+=======
+<<<<<<< HEAD
+      magic-string: 0.30.8
+      path-browserify: 1.0.1
+      process: 0.11.10
+      semver: 7.6.0
+      style-loader: 3.3.4(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
+      terser-webpack-plugin: 5.3.10(@swc/core@1.4.11)(esbuild@0.20.2)(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
+      ts-dedent: 2.2.0
+=======
+      magic-string: 0.30.10
+      path-browserify: https://r2.cnpmjs.org/path-browserify/-/path-browserify-1.0.1.tgz
+      process: https://r2.cnpmjs.org/process/-/process-0.11.10.tgz
+      semver: 7.6.0
+      style-loader: 3.3.4(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
+      terser-webpack-plugin: 5.3.10(@swc/core@1.4.11)(esbuild@0.20.2)(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
+      ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       url: 0.11.3
       util: 0.12.5
       util-deprecate: https://r2.cnpmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz
@@ -12745,8 +13329,18 @@ snapshots:
       giget: 1.2.3
       globby: 11.1.0
       jscodeshift: 0.15.2(@babel/preset-env@7.24.3(@babel/core@7.24.3))
+<<<<<<< HEAD
       leven: https://r2.cnpmjs.org/leven/-/leven-3.1.0.tgz
       ora: https://r2.cnpmjs.org/ora/-/ora-5.4.1.tgz
+=======
+<<<<<<< HEAD
+      leven: 3.1.0
+      ora: 5.4.1
+=======
+      leven: https://r2.cnpmjs.org/leven/-/leven-3.1.0.tgz
+      ora: https://r2.cnpmjs.org/ora/-/ora-5.4.1.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       prettier: 3.2.5
       prompts: https://r2.cnpmjs.org/prompts/-/prompts-2.4.2.tgz
       read-pkg-up: https://r2.cnpmjs.org/read-pkg-up/-/read-pkg-up-7.0.1.tgz
@@ -12781,14 +13375,30 @@ snapshots:
       cross-spawn: https://r2.cnpmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz
       globby: 11.1.0
       jscodeshift: 0.15.2(@babel/preset-env@7.24.3(@babel/core@7.24.3))
+<<<<<<< HEAD
       lodash: https://r2.cnpmjs.org/lodash/-/lodash-4.17.21.tgz
+=======
+<<<<<<< HEAD
+      lodash: 4.17.21
+=======
+      lodash: https://r2.cnpmjs.org/lodash/-/lodash-4.17.21.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       prettier: 3.2.5
       recast: 0.23.6
       tiny-invariant: 1.3.3
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
   '@storybook/components@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+=======
+<<<<<<< HEAD
+  '@storybook/components@8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+=======
+  '@storybook/components@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     dependencies:
       '@radix-ui/react-slot': 1.0.2(@types/react@18.2.79)(react@18.2.0)
       '@storybook/client-logger': 8.0.9
@@ -12812,7 +13422,11 @@ snapshots:
       '@storybook/types': 8.0.9
       '@yarnpkg/fslib': 2.10.3
       '@yarnpkg/libzip': 2.3.0
+<<<<<<< HEAD
       chalk: https://r2.cnpmjs.org/chalk/-/chalk-4.1.2.tgz
+=======
+      chalk: 4.1.2
+>>>>>>> b43a2a569 (fix: test)
       cross-spawn: https://r2.cnpmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz
       esbuild: 0.20.2
       esbuild-register: 3.5.0(esbuild@0.20.2)
@@ -13101,7 +13715,15 @@ snapshots:
       semver: 7.6.0
       ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
       type-fest: 2.19.0
+<<<<<<< HEAD
       util-deprecate: https://r2.cnpmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz
+=======
+<<<<<<< HEAD
+      util-deprecate: 1.0.2
+=======
+      util-deprecate: https://r2.cnpmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
@@ -13119,7 +13741,11 @@ snapshots:
       '@storybook/client-logger': 8.0.9
       '@storybook/core-common': 8.0.9
       '@storybook/csf-tools': 8.0.9
+<<<<<<< HEAD
       chalk: https://r2.cnpmjs.org/chalk/-/chalk-4.1.2.tgz
+=======
+      chalk: 4.1.2
+>>>>>>> b43a2a569 (fix: test)
       detect-package-manager: https://r2.cnpmjs.org/detect-package-manager/-/detect-package-manager-2.0.1.tgz
       fetch-retry: 5.0.6
       fs-extra: 11.2.0
@@ -13152,7 +13778,15 @@ snapshots:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@storybook/client-logger': 8.0.9
       '@storybook/global': 5.0.0
+<<<<<<< HEAD
       memoizerific: https://r2.cnpmjs.org/memoizerific/-/memoizerific-1.11.3.tgz
+=======
+<<<<<<< HEAD
+      memoizerific: 1.11.3
+=======
+      memoizerific: https://r2.cnpmjs.org/memoizerific/-/memoizerific-1.11.3.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     optionalDependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -13283,6 +13917,7 @@ snapshots:
       '@adobe/css-tools': 4.3.3
       '@babel/runtime': 7.24.1
       aria-query: 5.3.0
+<<<<<<< HEAD
       chalk: https://r2.cnpmjs.org/chalk/-/chalk-3.0.0.tgz
       css.escape: https://r2.cnpmjs.org/css.escape/-/css.escape-1.5.1.tgz
       dom-accessibility-api: 0.6.3
@@ -13292,12 +13927,40 @@ snapshots:
       vitest: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 
   '@testing-library/react-hooks@8.0.1(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+=======
+      chalk: 3.0.0
+      css.escape: https://r2.cnpmjs.org/css.escape/-/css.escape-1.5.1.tgz
+      dom-accessibility-api: 0.6.3
+<<<<<<< HEAD
+      lodash: 4.17.21
+      redent: 3.0.0
+    optionalDependencies:
+      vitest: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+
+  '@testing-library/react-hooks@8.0.1(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+=======
+      lodash: https://r2.cnpmjs.org/lodash/-/lodash-4.17.21.tgz
+      redent: https://r2.cnpmjs.org/redent/-/redent-3.0.0.tgz
+    optionalDependencies:
+      vitest: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+
+  '@testing-library/react-hooks@8.0.1(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     dependencies:
       '@babel/runtime': 7.24.1
       react: 18.2.0
       react-error-boundary: 3.1.4(react@18.2.0)
     optionalDependencies:
+<<<<<<< HEAD
       '@types/react': 18.2.79
+=======
+<<<<<<< HEAD
+      '@types/react': 18.3.1
+=======
+      '@types/react': 18.2.79
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       react-dom: 18.2.0(react@18.2.0)
 
   '@testing-library/react@14.2.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
@@ -13473,19 +14136,25 @@ snapshots:
       '@types/react': 18.2.79
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@types/react@18.2.79':
 =======
 <<<<<<< HEAD
   '@types/react@18.3.1':
 =======
+=======
+>>>>>>> b43a2a569 (fix: test)
   '@types/react@18.2.75':
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
 
   '@types/react@18.2.79':
+<<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
@@ -13615,6 +14284,7 @@ snapshots:
       - supports-color
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@typescript-eslint/typescript-estree@7.6.0(typescript@5.4.5)':
     dependencies:
       '@typescript-eslint/types': 7.6.0
@@ -13632,6 +14302,8 @@ snapshots:
 
 =======
 >>>>>>> 99f228957 (feat(selection-protection): init)
+=======
+>>>>>>> adde9bdbd (fix: test)
   '@typescript-eslint/typescript-estree@7.7.0(typescript@5.4.5)':
     dependencies:
       '@typescript-eslint/types': 7.7.0
@@ -13730,10 +14402,13 @@ snapshots:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@univerjs/protocol@0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
 =======
 =======
 >>>>>>> 86df6b4b5 (chore(protocol): update version)
+=======
+>>>>>>> b43a2a569 (fix: test)
 <<<<<<< HEAD
   '@univerjs/protocol@0.1.23(@grpc/grpc-js@1.10.4)(rxjs@7.8.1)':
 >>>>>>> 2d3cde24b (chore(protocol): update version)
@@ -13752,15 +14427,19 @@ snapshots:
   '@univerjs/protocol@0.1.26-permission-6(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
 >>>>>>> e8f894d87 (chore(protocol): update version)
 =======
+=======
+>>>>>>> adde9bdbd (fix: test)
   '@univerjs/protocol@0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
->>>>>>> 0308e2e13 (chore(protocol): update version)
     dependencies:
       '@grpc/grpc-js': 1.10.6
       rxjs: 7.8.1
 
   '@vitejs/plugin-react@4.2.1(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))':
+<<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 2815385ea (feat(selection-protection): init)
+=======
+>>>>>>> adde9bdbd (fix: test)
     dependencies:
       '@babel/core': 7.24.3
       '@babel/plugin-transform-react-jsx-self': 7.24.1(@babel/core@7.24.3)
@@ -13793,9 +14472,12 @@ snapshots:
       chai: 4.4.1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> b43a2a569 (fix: test)
   '@vitest/expect@1.4.0':
     dependencies:
       '@vitest/spy': 1.4.0
@@ -13810,9 +14492,12 @@ snapshots:
       chai: 4.4.1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
   '@vitest/expect@1.5.2':
     dependencies:
       '@vitest/spy': 1.5.2
@@ -13820,9 +14505,12 @@ snapshots:
       chai: 4.4.1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> b43a2a569 (fix: test)
   '@vitest/runner@1.4.0':
     dependencies:
       '@vitest/utils': 1.4.0
@@ -13837,9 +14525,12 @@ snapshots:
       pathe: 1.1.2
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
   '@vitest/runner@1.5.2':
     dependencies:
       '@vitest/utils': 1.5.2
@@ -13847,9 +14538,12 @@ snapshots:
       pathe: 1.1.2
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
+=======
+>>>>>>> b43a2a569 (fix: test)
   '@vitest/snapshot@1.4.0':
     dependencies:
       magic-string: 0.30.8
@@ -13864,9 +14558,12 @@ snapshots:
       pretty-format: 29.7.0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
   '@vitest/snapshot@1.5.2':
     dependencies:
       magic-string: 0.30.10
@@ -13881,14 +14578,15 @@ snapshots:
   '@vitest/spy@1.5.0':
 =======
   '@vitest/spy@1.4.0':
-<<<<<<< HEAD
-=======
     dependencies:
       tinyspy: 2.2.1
 
   '@vitest/spy@1.5.0':
+<<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
     dependencies:
       tinyspy: 2.2.1
 
@@ -13907,8 +14605,6 @@ snapshots:
   '@vitest/utils@1.5.0':
 =======
   '@vitest/utils@1.4.0':
-<<<<<<< HEAD
-=======
     dependencies:
       diff-sequences: 29.6.3
       estree-walker: 3.0.3
@@ -13916,8 +14612,11 @@ snapshots:
       pretty-format: 29.7.0
 
   '@vitest/utils@1.5.0':
+<<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+>>>>>>> b43a2a569 (fix: test)
     dependencies:
       diff-sequences: 29.6.3
       estree-walker: 3.0.3
@@ -14013,7 +14712,15 @@ snapshots:
       computeds: 0.0.1
       minimatch: 9.0.4
       muggle-string: 0.3.1
+<<<<<<< HEAD
       path-browserify: https://r2.cnpmjs.org/path-browserify/-/path-browserify-1.0.1.tgz
+=======
+<<<<<<< HEAD
+      path-browserify: 1.0.1
+=======
+      path-browserify: https://r2.cnpmjs.org/path-browserify/-/path-browserify-1.0.1.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       vue-template-compiler: 2.7.16
     optionalDependencies:
       typescript: 5.4.5
@@ -14044,6 +14751,11 @@ snapshots:
       '@vue/shared': 3.4.21
       csstype: 3.1.3
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> b43a2a569 (fix: test)
   '@vue/runtime-dom@3.4.24':
     dependencies:
       '@vue/runtime-core': 3.4.24
@@ -14051,6 +14763,10 @@ snapshots:
       csstype: 3.1.3
     optional: true
 
+<<<<<<< HEAD
+=======
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
   '@vue/server-renderer@3.4.21(vue@3.4.21(typescript@5.4.5))':
     dependencies:
       '@vue/compiler-ssr': 3.4.21
@@ -14214,7 +14930,15 @@ snapshots:
       clean-stack: 2.2.0
       indent-string: 4.0.0
 
+<<<<<<< HEAD
   ajv-formats@https://r2.cnpmjs.org/ajv-formats/-/ajv-formats-2.1.1.tgz(ajv@8.12.0):
+=======
+<<<<<<< HEAD
+  ajv-formats@2.1.1(ajv@8.12.0):
+=======
+  ajv-formats@https://r2.cnpmjs.org/ajv-formats/-/ajv-formats-2.1.1.tgz(ajv@8.12.0):
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     optionalDependencies:
       ajv: 8.12.0
 
@@ -14243,7 +14967,11 @@ snapshots:
 
   ajv@https://r2.cnpmjs.org/ajv/-/ajv-6.12.6.tgz:
     dependencies:
+<<<<<<< HEAD
       fast-deep-equal: https://r2.cnpmjs.org/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz
+=======
+      fast-deep-equal: 3.1.3
+>>>>>>> b43a2a569 (fix: test)
       fast-json-stable-stringify: https://r2.cnpmjs.org/fast-json-stable-stringify/-/fast-json-stable-stringify-2.1.0.tgz
       json-schema-traverse: https://r2.cnpmjs.org/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz
       uri-js: https://r2.cnpmjs.org/uri-js/-/uri-js-4.4.1.tgz
@@ -14414,7 +15142,11 @@ snapshots:
       object.assign: 4.1.5
       util: 0.12.5
 
+<<<<<<< HEAD
   assertion-error@1.1.0: {}
+=======
+  assertion-error@https://r2.cnpmjs.org/assertion-error/-/assertion-error-1.1.0.tgz: {}
+>>>>>>> b43a2a569 (fix: test)
 
   ast-types@0.16.1:
     dependencies:
@@ -14628,13 +15360,13 @@ snapshots:
 
   chai@4.4.1:
     dependencies:
-      assertion-error: 1.1.0
+      assertion-error: https://r2.cnpmjs.org/assertion-error/-/assertion-error-1.1.0.tgz
       check-error: 1.0.3
       deep-eql: 4.1.3
       get-func-name: 2.0.2
       loupe: 2.3.7
-      pathval: 1.1.1
-      type-detect: 4.0.8
+      pathval: https://r2.cnpmjs.org/pathval/-/pathval-1.1.1.tgz
+      type-detect: https://r2.cnpmjs.org/type-detect/-/type-detect-4.0.8.tgz
 
   chalk-template@0.4.0:
     dependencies:
@@ -14655,11 +15387,14 @@ snapshots:
 
   chalk@5.3.0: {}
 
+<<<<<<< HEAD
   chalk@https://r2.cnpmjs.org/chalk/-/chalk-3.0.0.tgz:
     dependencies:
       ansi-styles: https://r2.cnpmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz
       supports-color: https://r2.cnpmjs.org/supports-color/-/supports-color-7.2.0.tgz
 
+=======
+>>>>>>> b43a2a569 (fix: test)
   chalk@https://r2.cnpmjs.org/chalk/-/chalk-4.1.2.tgz:
     dependencies:
       ansi-styles: https://r2.cnpmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz
@@ -14829,6 +15564,7 @@ snapshots:
 
   commander@11.1.0: {}
 
+<<<<<<< HEAD
   commander@9.5.0:
     optional: true
 
@@ -14838,6 +15574,17 @@ snapshots:
 
   commander@https://r2.cnpmjs.org/commander/-/commander-8.3.0.tgz: {}
 
+=======
+  commander@2.20.3: {}
+
+  commander@8.3.0: {}
+
+  commander@9.5.0:
+    optional: true
+
+  commander@https://r2.cnpmjs.org/commander/-/commander-6.2.1.tgz: {}
+
+>>>>>>> b43a2a569 (fix: test)
   comment-parser@1.4.1: {}
 
   commondir@https://r2.cnpmjs.org/commondir/-/commondir-1.0.1.tgz: {}
@@ -15014,10 +15761,23 @@ snapshots:
 
   cosmiconfig@9.0.0(typescript@5.4.5):
     dependencies:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      env-paths: 2.2.1
+      import-fresh: 3.3.0
+      js-yaml: 4.1.0
+      parse-json: 5.2.0
+=======
+>>>>>>> b43a2a569 (fix: test)
       env-paths: https://r2.cnpmjs.org/env-paths/-/env-paths-2.2.1.tgz
       import-fresh: https://r2.cnpmjs.org/import-fresh/-/import-fresh-3.3.0.tgz
       js-yaml: https://r2.cnpmjs.org/js-yaml/-/js-yaml-4.1.0.tgz
       parse-json: https://r2.cnpmjs.org/parse-json/-/parse-json-5.2.0.tgz
+<<<<<<< HEAD
+=======
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     optionalDependencies:
       typescript: 5.4.5
 
@@ -15802,12 +16562,28 @@ snapshots:
 
   eslint-plugin-no-only-tests@3.1.0: {}
 
+<<<<<<< HEAD
   eslint-plugin-perfectionist@2.9.0(eslint@8.57.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@8.57.0)):
+=======
+<<<<<<< HEAD
+  eslint-plugin-perfectionist@2.10.0(eslint@8.57.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@8.57.0)):
+=======
+  eslint-plugin-perfectionist@2.9.0(eslint@8.57.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@8.57.0)):
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     dependencies:
       '@typescript-eslint/utils': 6.21.0(eslint@8.57.0)(typescript@5.4.5)
       eslint: 8.57.0
       minimatch: 9.0.4
+<<<<<<< HEAD
       natural-compare-lite: https://r2.cnpmjs.org/natural-compare-lite/-/natural-compare-lite-1.4.0.tgz
+=======
+<<<<<<< HEAD
+      natural-compare-lite: 1.4.0
+=======
+      natural-compare-lite: https://r2.cnpmjs.org/natural-compare-lite/-/natural-compare-lite-1.4.0.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     optionalDependencies:
       vue-eslint-parser: 9.4.2(eslint@8.57.0)
     transitivePeerDependencies:
@@ -15958,7 +16734,15 @@ snapshots:
   eslint-plugin-unused-imports@3.1.0(@typescript-eslint/eslint-plugin@7.7.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0):
     dependencies:
       eslint: 8.57.0
+<<<<<<< HEAD
       eslint-rule-composer: https://r2.cnpmjs.org/eslint-rule-composer/-/eslint-rule-composer-0.3.0.tgz
+=======
+<<<<<<< HEAD
+      eslint-rule-composer: 0.3.0
+=======
+      eslint-rule-composer: https://r2.cnpmjs.org/eslint-rule-composer/-/eslint-rule-composer-0.3.0.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 7.7.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)
 
@@ -16004,6 +16788,14 @@ snapshots:
       eslint: 8.57.0
 
   eslint-rule-composer@https://r2.cnpmjs.org/eslint-rule-composer/-/eslint-rule-composer-0.3.0.tgz: {}
+<<<<<<< HEAD
+=======
+
+  eslint-scope@5.1.1:
+    dependencies:
+      esrecurse: 4.3.0
+      estraverse: 4.3.0
+>>>>>>> b43a2a569 (fix: test)
 
   eslint-scope@7.1.1:
     dependencies:
@@ -16091,8 +16883,11 @@ snapshots:
 
   estraverse@5.3.0: {}
 
+<<<<<<< HEAD
   estraverse@https://r2.cnpmjs.org/estraverse/-/estraverse-4.3.0.tgz: {}
 
+=======
+>>>>>>> b43a2a569 (fix: test)
   estraverse@https://r2.cnpmjs.org/estraverse/-/estraverse-5.3.0.tgz: {}
 
   estree-walker@2.0.2: {}
@@ -16268,7 +17063,11 @@ snapshots:
   find-cache-dir@https://r2.cnpmjs.org/find-cache-dir/-/find-cache-dir-2.1.0.tgz:
     dependencies:
       commondir: https://r2.cnpmjs.org/commondir/-/commondir-1.0.1.tgz
+<<<<<<< HEAD
       make-dir: https://r2.cnpmjs.org/make-dir/-/make-dir-2.1.0.tgz
+=======
+      make-dir: 2.1.0
+>>>>>>> b43a2a569 (fix: test)
       pkg-dir: https://r2.cnpmjs.org/pkg-dir/-/pkg-dir-3.0.0.tgz
 
   find-cache-dir@https://r2.cnpmjs.org/find-cache-dir/-/find-cache-dir-3.3.2.tgz:
@@ -16679,7 +17478,11 @@ snapshots:
     dependencies:
       camel-case: https://r2.cnpmjs.org/camel-case/-/camel-case-4.1.2.tgz
       clean-css: 5.3.3
+<<<<<<< HEAD
       commander: https://r2.cnpmjs.org/commander/-/commander-8.3.0.tgz
+=======
+      commander: 8.3.0
+>>>>>>> b43a2a569 (fix: test)
       he: https://r2.cnpmjs.org/he/-/he-1.2.0.tgz
       param-case: https://r2.cnpmjs.org/param-case/-/param-case-3.0.4.tgz
       relateurl: https://r2.cnpmjs.org/relateurl/-/relateurl-0.2.7.tgz
@@ -16689,11 +17492,25 @@ snapshots:
 
   html-webpack-plugin@5.6.0(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2)):
     dependencies:
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      '@types/html-minifier-terser': 6.1.0
+      html-minifier-terser: 6.1.0
+      lodash: 4.17.21
+      pretty-error: 4.0.0
+      tapable: 2.2.1
+=======
+>>>>>>> b43a2a569 (fix: test)
       '@types/html-minifier-terser': https://r2.cnpmjs.org/@types/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz
       html-minifier-terser: https://r2.cnpmjs.org/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz
       lodash: https://r2.cnpmjs.org/lodash/-/lodash-4.17.21.tgz
       pretty-error: https://r2.cnpmjs.org/pretty-error/-/pretty-error-4.0.0.tgz
       tapable: https://r2.cnpmjs.org/tapable/-/tapable-2.2.1.tgz
+<<<<<<< HEAD
+=======
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     optionalDependencies:
       webpack: 5.91.0(@swc/core@1.4.11)(esbuild@0.20.2)
 
@@ -17248,15 +18065,29 @@ snapshots:
       '@babel/preset-typescript': 7.24.1(@babel/core@7.24.3)
       '@babel/register': 7.23.7(@babel/core@7.24.3)
       babel-core: https://r2.cnpmjs.org/babel-core/-/babel-core-7.0.0-bridge.0.tgz(@babel/core@7.24.3)
+<<<<<<< HEAD
       chalk: https://r2.cnpmjs.org/chalk/-/chalk-4.1.2.tgz
+=======
+      chalk: 4.1.2
+>>>>>>> b43a2a569 (fix: test)
       flow-parser: 0.232.0
       graceful-fs: 4.2.11
       micromatch: 4.0.5
       neo-async: https://r2.cnpmjs.org/neo-async/-/neo-async-2.6.2.tgz
       node-dir: https://r2.cnpmjs.org/node-dir/-/node-dir-0.1.17.tgz
       recast: 0.23.6
+<<<<<<< HEAD
       temp: https://r2.cnpmjs.org/temp/-/temp-0.8.4.tgz
       write-file-atomic: https://r2.cnpmjs.org/write-file-atomic/-/write-file-atomic-2.4.3.tgz
+=======
+<<<<<<< HEAD
+      temp: 0.8.4
+      write-file-atomic: 2.4.3
+=======
+      temp: https://r2.cnpmjs.org/temp/-/temp-0.8.4.tgz
+      write-file-atomic: https://r2.cnpmjs.org/write-file-atomic/-/write-file-atomic-2.4.3.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     optionalDependencies:
       '@babel/preset-env': 7.24.3(@babel/core@7.24.3)
     transitivePeerDependencies:
@@ -17521,7 +18352,11 @@ snapshots:
 
   log-symbols@https://r2.cnpmjs.org/log-symbols/-/log-symbols-4.1.0.tgz:
     dependencies:
+<<<<<<< HEAD
       chalk: https://r2.cnpmjs.org/chalk/-/chalk-4.1.2.tgz
+=======
+      chalk: 4.1.2
+>>>>>>> b43a2a569 (fix: test)
       is-unicode-supported: https://r2.cnpmjs.org/is-unicode-supported/-/is-unicode-supported-0.1.0.tgz
 
   log-update@6.0.0:
@@ -17586,7 +18421,10 @@ snapshots:
     dependencies:
       pify: https://r2.cnpmjs.org/pify/-/pify-4.0.1.tgz
       semver: 5.7.2
+<<<<<<< HEAD
     optional: true
+=======
+>>>>>>> b43a2a569 (fix: test)
 
   make-dir@4.0.0:
     dependencies:
@@ -17733,6 +18571,11 @@ snapshots:
       yallist: https://r2.cnpmjs.org/yallist/-/yallist-4.0.0.tgz
 
   mkdirp-classic@https://r2.cnpmjs.org/mkdirp-classic/-/mkdirp-classic-0.5.3.tgz: {}
+<<<<<<< HEAD
+=======
+
+  mkdirp@1.0.4: {}
+>>>>>>> b43a2a569 (fix: test)
 
   mkdirp@2.1.3: {}
 
@@ -18000,7 +18843,11 @@ snapshots:
   ora@https://r2.cnpmjs.org/ora/-/ora-5.4.1.tgz:
     dependencies:
       bl: https://r2.cnpmjs.org/bl/-/bl-4.1.0.tgz
+<<<<<<< HEAD
       chalk: https://r2.cnpmjs.org/chalk/-/chalk-4.1.2.tgz
+=======
+      chalk: 4.1.2
+>>>>>>> b43a2a569 (fix: test)
       cli-cursor: https://r2.cnpmjs.org/cli-cursor/-/cli-cursor-3.1.0.tgz
       cli-spinners: 2.9.2
       is-interactive: https://r2.cnpmjs.org/is-interactive/-/is-interactive-1.0.0.tgz
@@ -18200,7 +19047,7 @@ snapshots:
 
   pathe@1.1.2: {}
 
-  pathval@1.1.1: {}
+  pathval@https://r2.cnpmjs.org/pathval/-/pathval-1.1.1.tgz: {}
 
   peek-stream@https://r2.cnpmjs.org/peek-stream/-/peek-stream-1.1.3.tgz:
     dependencies:
@@ -18299,7 +19146,7 @@ snapshots:
   postcss@8.4.38:
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.0.0
+      picocolors: https://r2.cnpmjs.org/picocolors/-/picocolors-1.0.0.tgz
       source-map-js: 1.2.0
 
   prelude-ls@1.1.2: {}
@@ -18654,16 +19501,40 @@ snapshots:
     dependencies:
       dnd-core: 16.0.1
 
+<<<<<<< HEAD
   react-dnd-multi-backend@8.0.3(dnd-core@16.0.1)(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+=======
+<<<<<<< HEAD
+  react-dnd-multi-backend@8.0.3(dnd-core@16.0.1)(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.3.1)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+=======
+  react-dnd-multi-backend@8.0.3(dnd-core@16.0.1)(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     dependencies:
       dnd-core: 16.0.1
       dnd-multi-backend: 8.0.3(dnd-core@16.0.1)
       react: 18.2.0
+<<<<<<< HEAD
       react-dnd: 16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0)
       react-dnd-preview: 8.0.3(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       react-dom: 18.2.0(react@18.2.0)
 
   react-dnd-preview@8.0.3(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react@18.2.0):
+=======
+<<<<<<< HEAD
+      react-dnd: 16.0.1(@types/node@20.12.7)(@types/react@18.3.1)(react@18.2.0)
+      react-dnd-preview: 8.0.3(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.3.1)(react@18.2.0))(react@18.2.0)
+      react-dom: 18.2.0(react@18.2.0)
+
+  react-dnd-preview@8.0.3(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.3.1)(react@18.2.0))(react@18.2.0):
+=======
+      react-dnd: 16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0)
+      react-dnd-preview: 8.0.3(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
+      react-dom: 18.2.0(react@18.2.0)
+
+  react-dnd-preview@8.0.3(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react@18.2.0):
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     dependencies:
       react: 18.2.0
       react-dnd: 16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0)
@@ -18683,7 +19554,15 @@ snapshots:
       react: 18.2.0
     optionalDependencies:
       '@types/node': 20.12.7
+<<<<<<< HEAD
       '@types/react': 18.2.79
+=======
+<<<<<<< HEAD
+      '@types/react': 18.3.1
+=======
+      '@types/react': 18.2.79
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
 
   react-docgen-typescript@https://r2.cnpmjs.org/react-docgen-typescript/-/react-docgen-typescript-2.2.2.tgz(typescript@5.4.5):
     dependencies:
@@ -18747,9 +19626,19 @@ snapshots:
 
   react-is@18.2.0: {}
 
+<<<<<<< HEAD
   react-is@https://r2.cnpmjs.org/react-is/-/react-is-17.0.2.tgz: {}
 
   react-mosaic-component@6.1.0(@types/node@20.12.7)(@types/react@18.2.79)(dnd-core@16.0.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+=======
+<<<<<<< HEAD
+  react-mosaic-component@6.1.0(@types/node@20.12.7)(@types/react@18.3.1)(dnd-core@16.0.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+=======
+  react-is@https://r2.cnpmjs.org/react-is/-/react-is-17.0.2.tgz: {}
+
+  react-mosaic-component@6.1.0(@types/node@20.12.7)(@types/react@18.2.79)(dnd-core@16.0.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
     dependencies:
       classnames: 2.5.1
       immutability-helper: 3.1.1
@@ -18759,7 +19648,15 @@ snapshots:
       react: 18.2.0
       react-dnd: 16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0)
       react-dnd-html5-backend: 16.0.1
+<<<<<<< HEAD
       react-dnd-multi-backend: 8.0.3(dnd-core@16.0.1)(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+<<<<<<< HEAD
+      react-dnd-multi-backend: 8.0.3(dnd-core@16.0.1)(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.3.1)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+=======
+      react-dnd-multi-backend: 8.0.3(dnd-core@16.0.1)(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       react-dnd-touch-backend: 16.0.1
       uuid: 9.0.1
     transitivePeerDependencies:
@@ -18842,7 +19739,11 @@ snapshots:
     dependencies:
       ast-types: 0.16.1
       esprima: https://r2.cnpmjs.org/esprima/-/esprima-4.0.1.tgz
+<<<<<<< HEAD
       source-map: https://r2.cnpmjs.org/source-map/-/source-map-0.6.1.tgz
+=======
+      source-map: 0.6.1
+>>>>>>> b43a2a569 (fix: test)
       tiny-invariant: 1.3.3
       tslib: 2.6.2
 
@@ -19623,7 +20524,11 @@ snapshots:
       fs-minipass: https://r2.cnpmjs.org/fs-minipass/-/fs-minipass-2.1.0.tgz
       minipass: 5.0.0
       minizlib: https://r2.cnpmjs.org/minizlib/-/minizlib-2.1.2.tgz
+<<<<<<< HEAD
       mkdirp: https://r2.cnpmjs.org/mkdirp/-/mkdirp-1.0.4.tgz
+=======
+      mkdirp: 1.0.4
+>>>>>>> b43a2a569 (fix: test)
       yallist: https://r2.cnpmjs.org/yallist/-/yallist-4.0.0.tgz
 
   telejson@7.2.0:
@@ -19784,6 +20689,11 @@ snapshots:
 
   type-detect@4.0.8: {}
 
+<<<<<<< HEAD
+=======
+  type-detect@https://r2.cnpmjs.org/type-detect/-/type-detect-4.0.8.tgz: {}
+
+>>>>>>> b43a2a569 (fix: test)
   type-fest@0.20.2: {}
 
   type-fest@2.19.0: {}
@@ -19932,7 +20842,7 @@ snapshots:
     dependencies:
       browserslist: 4.23.0
       escalade: 3.1.2
-      picocolors: 1.0.0
+      picocolors: https://r2.cnpmjs.org/picocolors/-/picocolors-1.0.0.tgz
 
   update-check@1.5.4:
     dependencies:
@@ -20014,6 +20924,7 @@ snapshots:
   vary@1.1.2: {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   vary@https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz: {}
 
   vite-node@1.5.0(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
@@ -20036,11 +20947,16 @@ snapshots:
 =======
 <<<<<<< HEAD
 >>>>>>> 5c195a17c (feat(selection-protection): init)
+=======
+<<<<<<< HEAD
+>>>>>>> b43a2a569 (fix: test)
   vite-node@1.5.2(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
 =======
 <<<<<<< HEAD
   vite-node@1.5.2(@types/node@20.12.7)(less@4.2.0):
 =======
+=======
+>>>>>>> adde9bdbd (fix: test)
   vary@https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz: {}
 
   vite-node@1.4.0(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
@@ -20078,8 +20994,11 @@ snapshots:
       - terser
 
   vite-node@1.5.2(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
+<<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 2815385ea (feat(selection-protection): init)
+=======
+>>>>>>> adde9bdbd (fix: test)
     dependencies:
       cac: 6.7.14
       debug: 4.3.4
@@ -20096,10 +21015,24 @@ snapshots:
       - supports-color
       - terser
 
+<<<<<<< HEAD
   vite-plugin-dts@3.9.0(@types/node@20.12.7)(rollup@4.16.4)(typescript@5.4.5)(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)):
     dependencies:
       '@microsoft/api-extractor': 7.43.0(@types/node@20.12.7)
       '@rollup/pluginutils': 5.1.0(rollup@4.16.4)
+=======
+<<<<<<< HEAD
+  vite-plugin-dts@3.9.0(@types/node@20.12.7)(rollup@4.13.2)(typescript@5.4.5)(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)):
+    dependencies:
+      '@microsoft/api-extractor': 7.43.0(@types/node@20.12.7)
+      '@rollup/pluginutils': 5.1.0(rollup@4.13.2)
+=======
+  vite-plugin-dts@3.9.0(@types/node@20.12.7)(rollup@4.16.4)(typescript@5.4.5)(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)):
+    dependencies:
+      '@microsoft/api-extractor': 7.43.0(@types/node@20.12.7)
+      '@rollup/pluginutils': 5.1.0(rollup@4.16.4)
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       '@vue/language-core': 1.8.27(typescript@5.4.5)
       debug: 4.3.4
       kolorist: 1.8.0
@@ -20126,14 +21059,19 @@ snapshots:
       terser: 5.30.0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   vitest-canvas-mock@0.3.3(vitest@1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)):
 =======
+=======
+>>>>>>> b43a2a569 (fix: test)
 <<<<<<< HEAD
   vitest-canvas-mock@0.3.3(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)):
 =======
 <<<<<<< HEAD
   vitest-canvas-mock@0.3.3(vitest@1.5.2):
 =======
+=======
+>>>>>>> adde9bdbd (fix: test)
   vite@5.2.8(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
     dependencies:
       esbuild: 0.20.2
@@ -20147,6 +21085,7 @@ snapshots:
       terser: 5.30.0
 
   vitest-canvas-mock@0.3.3(vitest@1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)):
+<<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 2815385ea (feat(selection-protection): init)
 >>>>>>> 5c195a17c (feat(selection-protection): init)
@@ -20195,6 +21134,12 @@ snapshots:
 <<<<<<< HEAD
   vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8):
 =======
+=======
+    dependencies:
+      jest-canvas-mock: 2.5.2
+      vitest: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+
+>>>>>>> adde9bdbd (fix: test)
   vitest@1.4.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
     dependencies:
       '@vitest/expect': 1.4.0
@@ -20231,8 +21176,66 @@ snapshots:
       - terser
 
   vitest@1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
+<<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 2815385ea (feat(selection-protection): init)
+    dependencies:
+      '@vitest/expect': 1.5.2
+      '@vitest/runner': 1.5.2
+      '@vitest/snapshot': 1.5.2
+      '@vitest/spy': 1.5.2
+      '@vitest/utils': 1.5.2
+=======
+    dependencies:
+      '@vitest/expect': 1.5.0
+      '@vitest/runner': 1.5.0
+      '@vitest/snapshot': 1.5.0
+      '@vitest/spy': 1.5.0
+      '@vitest/utils': 1.5.0
+>>>>>>> adde9bdbd (fix: test)
+      acorn-walk: 8.3.2
+      chai: 4.4.1
+      debug: 4.3.4
+      execa: 8.0.1
+      local-pkg: 0.5.0
+<<<<<<< HEAD
+      magic-string: 0.30.8
+      pathe: 1.1.2
+      picocolors: 1.0.0
+      std-env: 3.7.0
+      strip-literal: 2.1.0
+      tinybench: 2.6.0
+      tinypool: 0.8.3
+      vite: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+      vite-node: 1.5.2(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+=======
+      magic-string: 0.30.10
+      pathe: 1.1.2
+      picocolors: https://r2.cnpmjs.org/picocolors/-/picocolors-1.0.0.tgz
+      std-env: 3.7.0
+      strip-literal: 2.1.0
+      tinybench: 2.8.0
+      tinypool: 0.8.4
+      vite: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+      vite-node: 1.5.0(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> adde9bdbd (fix: test)
+      why-is-node-running: 2.2.2
+    optionalDependencies:
+      '@types/node': 20.12.7
+      happy-dom: 13.3.8
+      jsdom: 24.0.0
+<<<<<<< HEAD
+=======
+    transitivePeerDependencies:
+      - less
+      - lightningcss
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
+  vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
     dependencies:
       '@vitest/expect': 1.5.2
       '@vitest/runner': 1.5.2
@@ -20258,6 +21261,7 @@ snapshots:
       '@types/node': 20.12.7
       happy-dom: 13.3.8
       jsdom: 24.0.0
+>>>>>>> adde9bdbd (fix: test)
     transitivePeerDependencies:
       - less
       - lightningcss
@@ -20337,8 +21341,16 @@ snapshots:
 
   webidl-conversions@7.0.0: {}
 
+<<<<<<< HEAD
   webidl-conversions@https://r2.cnpmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz: {}
 
+=======
+<<<<<<< HEAD
+=======
+  webidl-conversions@https://r2.cnpmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz: {}
+
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
   webpack-dev-middleware@6.1.3(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2)):
     dependencies:
       colorette: 2.0.20
@@ -20374,7 +21386,11 @@ snapshots:
       chrome-trace-event: https://r2.cnpmjs.org/chrome-trace-event/-/chrome-trace-event-1.0.3.tgz
       enhanced-resolve: 5.16.0
       es-module-lexer: 1.5.0
+<<<<<<< HEAD
       eslint-scope: https://r2.cnpmjs.org/eslint-scope/-/eslint-scope-5.1.1.tgz
+=======
+      eslint-scope: 5.1.1
+>>>>>>> b43a2a569 (fix: test)
       events: https://r2.cnpmjs.org/events/-/events-3.3.0.tgz
       glob-to-regexp: https://r2.cnpmjs.org/glob-to-regexp/-/glob-to-regexp-0.4.1.tgz
       graceful-fs: 4.2.11
@@ -20383,7 +21399,15 @@ snapshots:
       mime-types: 2.1.35
       neo-async: https://r2.cnpmjs.org/neo-async/-/neo-async-2.6.2.tgz
       schema-utils: 3.3.0
+<<<<<<< HEAD
       tapable: https://r2.cnpmjs.org/tapable/-/tapable-2.2.1.tgz
+=======
+<<<<<<< HEAD
+      tapable: 2.2.1
+=======
+      tapable: https://r2.cnpmjs.org/tapable/-/tapable-2.2.1.tgz
+>>>>>>> adde9bdbd (fix: test)
+>>>>>>> b43a2a569 (fix: test)
       terser-webpack-plugin: 5.3.10(@swc/core@1.4.11)(esbuild@0.20.2)(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
       watchpack: 2.4.1
       webpack-sources: 3.2.3
@@ -20499,7 +21523,11 @@ snapshots:
 
   wrap-ansi@https://r2.cnpmjs.org/wrap-ansi/-/wrap-ansi-6.2.0.tgz:
     dependencies:
+<<<<<<< HEAD
       ansi-styles: https://r2.cnpmjs.org/ansi-styles/-/ansi-styles-4.3.0.tgz
+=======
+      ansi-styles: 4.3.0
+>>>>>>> b43a2a569 (fix: test)
       string-width: https://r2.cnpmjs.org/string-width/-/string-width-4.2.3.tgz
       strip-ansi: https://r2.cnpmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz
 
