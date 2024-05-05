@@ -180,7 +180,6 @@ export const SheetPermissionPanelDetail = () => {
                             return range.startRow === 0 && range.startColumn === 0 && range.endRow === worksheet.getRowCount() - 1 && range.endColumn === worksheet.getColumnCount() - 1;
                         });
                         if (ruleRangeHasWholeSheet) {
-                            rule.ranges = [];
                             rule.unitType = UnitObject.Worksheet;
                         }
                         sheetPermissionPanelService.setRule(rule);

@@ -25,8 +25,9 @@ import { ICommandService, IUniverInstanceService, LocaleService, UniverInstanceT
 import { ISidebarService } from '@univerjs/ui';
 import { merge } from 'rxjs';
 import type { IPermissionPoint } from '@univerjs/protocol';
+import { WorksheetProtectionRuleModel } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.model.js';
 import { SheetPermissionPanelService } from '../../service';
-import { DeleteSheetPermissionCommand } from '../../command/sheet-permission.command';
+import { DeleteRangeSelectionCommand } from '../../command/range-protection.command';
 import { UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER } from '../../const';
 import styles from './index.module.less';
 
@@ -41,11 +42,11 @@ export const SheetPermissionPanelList = () => {
     const sheetPermissionPanelService = useDependency(SheetPermissionPanelService);
     const localeService = useDependency(LocaleService);
     const selectionProtectionModel = useDependency(SelectionProtectionRuleModel);
+    const worksheetProtectionModel = useDependency(WorksheetProtectionRuleModel);
     const univerInstanceService = useDependency(IUniverInstanceService);
     const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
     const worksheet = workbook.getActiveSheet()!;
     const unitId = workbook.getUnitId();
-    const subUnitId = worksheet.getSheetId();
     const commandService = useDependency(ICommandService);
     const sidebarService = useDependency(ISidebarService);
     const selectionPermissionIoService = useDependency(ISelectionPermissionIoService);
@@ -55,13 +56,39 @@ export const SheetPermissionPanelList = () => {
         const unitId = workbook.getUnitId();
         const subUnitId = worksheet.getSheetId();
 
-        const allPermissionRule = await selectionPermissionIoService.list(unitId);
+        const allRangePermissionId: string[] = [];
+        const allSheetPermissionId: string[] = [];
+
+        workbook.getSheets().forEach((sheet) => {
+            const sheetId = sheet.getSheetId();
+            const rules = selectionProtectionModel.getSubunitRuleList(unitId, sheetId);
+            rules.forEach((rule) => {
+                allRangePermissionId.push(rule.permissionId);
+            });
+            const worksheetPermissionId = worksheetProtectionModel.getRule(unitId, sheetId)?.permissionId;
+            if (worksheetPermissionId) {
+                allSheetPermissionId.push(worksheetPermissionId);
+            }
+        });
+
+        const allPermissionId = [...allRangePermissionId, ...allSheetPermissionId];
+
+        const allPermissionRule = await selectionPermissionIoService.list({
+            unitId,
+            permissionIdList: allPermissionId,
+        });
 
         const subUnitPermissionIds = selectionProtectionModel.getSubunitRuleList(unitId, subUnitId).map((item) => item.permissionId);
-        const subUnitRuleList = allPermissionRule.filter((item) => subUnitPermissionIds.includes(item.objectID));
+        const sheetPermissionId = worksheetProtectionModel.getRule(unitId, subUnitId)?.permissionId;
+        if (sheetPermissionId) {
+            subUnitPermissionIds.push(sheetPermissionId);
+        }
+        const subUnitRuleList = allPermissionRule.filter((item) => {
+            return subUnitPermissionIds.includes(item.objectID) || item.objectID === worksheetProtectionModel.getRule(unitId, subUnitId)?.permissionId;
+        });
 
         return isCurrentSheet ? subUnitRuleList : allPermissionRule;
-    }, [selectionPermissionIoService, selectionProtectionModel, workbook]);
+    }, [selectionPermissionIoService, selectionProtectionModel, workbook, worksheetProtectionModel]);
 
 
     const [ruleList, setRuleList] = useState<IPermissionPoint[]>([]);
@@ -89,7 +116,7 @@ export const SheetPermissionPanelList = () => {
 
     const handleDelete = async (rule: IRuleItem) => {
         const { unitId, subUnitId } = rule;
-        const res = await commandService.executeCommand(DeleteSheetPermissionCommand.id, { unitId, subUnitId, rule });
+        const res = await commandService.executeCommand(DeleteRangeSelectionCommand.id, { unitId, subUnitId, rule });
         if (res) {
             setForceUpdateFlag(!forceUpdateFlag);
         }

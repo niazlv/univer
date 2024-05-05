@@ -20,11 +20,12 @@ import React from 'react';
 import { ISidebarService, useObservable } from '@univerjs/ui';
 import { ICommandService, LocaleService } from '@univerjs/core';
 import { ISelectionPermissionIoService } from '@univerjs/sheets-selection-protection';
-import { UnitRole } from '@univerjs/protocol';
+import { UnitObject, UnitRole } from '@univerjs/protocol';
 import { SheetPermissionPanelService, SheetPermissionUserManagerService } from '../../service';
 import { UNIVER_SHEET_PERMISSION_PANEL_ADD_FOOTER, UNIVER_SHEET_PERMISSION_PANEL_LIST } from '../../const';
-import { AddSheetPermissionCommand, SetSheetPermissionCommand } from '../../command/sheet-permission.command';
+import { AddRangeProtectionCommand, SetRangeProtectionCommand } from '../../command/range-protection.command';
 import { viewState } from '../../service/sheet-permission-side-panel.service';
+import { AddWorksheetProtectionCommand } from '../../command/worksheet-protection.command';
 import styles from './index.module.less';
 
 export const SheetPermissionPanelFooter = () => {
@@ -61,19 +62,31 @@ export const SheetPermissionPanelFooter = () => {
                             collaborators,
                             unitID: activeRule.unitId,
                         });
-                        result = await commandService.executeCommand(SetSheetPermissionCommand.id, {
-                            rule: activeRule,
-                            permissionId,
-                        });
+                        if (activeRule.unitType === UnitObject.Worksheet) {
+                            // result = await commandService.executeCommand()
+                        } else if (activeRule.unitType === UnitObject.SelectRange) {
+                            result = await commandService.executeCommand(SetRangeProtectionCommand.id, {
+                                rule: activeRule,
+                                permissionId,
+                            });
+                        }
                     } else {
                         const permissionId = await selectionPermissionIoService.create({
                             collaborators,
                             unitID: activeRule.unitId,
                         });
-                        result = await commandService.executeCommand(AddSheetPermissionCommand.id, {
-                            rule: activeRule,
-                            permissionId,
-                        });
+                        if (activeRule.unitType === UnitObject.Worksheet) {
+                            const { ranges, ...sheetRule } = activeRule;
+                            result = await commandService.executeCommand(AddWorksheetProtectionCommand.id, {
+                                rule: sheetRule,
+                                unitId: activeRule.unitId,
+                            });
+                        } else if (activeRule.unitType === UnitObject.SelectRange) {
+                            result = await commandService.executeCommand(AddRangeProtectionCommand.id, {
+                                rule: activeRule,
+                                permissionId,
+                            });
+                        }
                     }
                     if (result) {
                         sheetPermissionPanelService.setShowDetail(false);

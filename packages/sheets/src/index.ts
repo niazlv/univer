@@ -47,7 +47,7 @@ export { alignToMergedCellsBorders, getCellAtRowCol, setEndForRange, isSingleCel
 export { MAX_CELL_PER_SHEET_KEY } from './controllers/config/config';
 export { BorderStyleManagerService, type IBorderInfo } from './services/border-style-manager.service';
 export { WorkbookEditablePermission, WorksheetEditablePermission } from './services/permission/permission-point';
-export { WorksheetPermissionService } from './services/permission/worksheet-permission.service';
+export { WorksheetPermissionService } from './services/permission/worksheet-permission/worksheet-permission.service';
 export { WorkbookPermissionService } from './services/permission/workbook-permission.service';
 export { getCurrentSheetDisabled$ } from './services/permission/tool';
 export {

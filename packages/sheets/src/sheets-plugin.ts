@@ -27,12 +27,12 @@ import { BorderStyleManagerService } from './services/border-style-manager.servi
 import { NumfmtService } from './services/numfmt/numfmt.service';
 import { INumfmtService } from './services/numfmt/type';
 import { WorkbookPermissionService } from './services/permission/workbook-permission.service';
-import { WorksheetPermissionService } from './services/permission/worksheet-permission.service';
 
 import { RefRangeService } from './services/ref-range/ref-range.service';
 import { SelectionManagerService } from './services/selection-manager.service';
 import { SheetInterceptorService } from './services/sheet-interceptor/sheet-interceptor.service';
 import { DefinedNameDataController } from './controllers/defined-name-data.controller';
+import { WorksheetPermissionIoService, WorksheetPermissionService, WorksheetProtectionRuleModel } from './services/permission/worksheet-permission';
 
 const PLUGIN_NAME = 'sheets';
 
@@ -70,7 +70,6 @@ export class UniverSheetsPlugin extends Plugin {
             [BorderStyleManagerService],
             [SelectionManagerService],
             [RefRangeService],
-            [WorksheetPermissionService],
             [WorkbookPermissionService],
             [INumfmtService, { useClass: NumfmtService }],
             [SheetInterceptorService],
@@ -79,6 +78,11 @@ export class UniverSheetsPlugin extends Plugin {
             [BasicWorksheetController],
             [MergeCellController],
             [DefinedNameDataController],
+
+            // permission
+            [WorksheetPermissionService],
+            [WorksheetPermissionIoService],
+            [WorksheetProtectionRuleModel],
         ];
 
         if (!this._config?.notExecuteFormula) {

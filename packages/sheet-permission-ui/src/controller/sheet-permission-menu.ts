@@ -19,7 +19,8 @@ import { MenuGroup, MenuItemType, MenuPosition } from '@univerjs/ui';
 import type { IAccessor } from '@wendellhu/redi';
 import { combineLatestWith, map } from 'rxjs';
 import { SheetPermissionOpenPanelOperation } from '../operation/sheet-permission-open-panel.operation';
-import { AddSheetPermissionFromContextMenuCommand, AddSheetPermissionFromSheetBarCommand, ChangeSheetPermissionFromSheetBarCommand, deleteSheetPermissionFromContextMenuCommand, SetSheetPermissionFromContextMenuCommand, ViewSheetPermissionFromContextMenuCommand, ViewSheetPermissionFromSheetBarCommand } from '../command/sheet-permission.command';
+import { AddRangeProtectionFromContextMenuCommand, AddRangeProtectionFromSheetBarCommand, ChangeSheetProtectionFromSheetBarCommand, DeleteRangeProtectionFromContextMenuCommand, SetRangeProtectionFromContextMenuCommand, ViewSheetPermissionFromContextMenuCommand, ViewSheetPermissionFromSheetBarCommand } from '../command/range-protection.command';
+import { DeleteWOrksheetProtectionFormSheetBarCommand } from '../command/worksheet-protection.command';
 import { getAddPermissionDisable$, getAddPermissionHidden$, getEditPermissionHiddenOrDelete$, getPermissionDisableBase$ } from './utils';
 
 export const tmpIcon = 'data-validation-single';
@@ -60,7 +61,7 @@ export function sheetPermissionContextMenuFactory(): IMenuSelectorItem<string> {
 
 export function sheetPermissionAddProtectContextMenuFactory(accessor: IAccessor): IMenuButtonItem {
     return {
-        id: AddSheetPermissionFromContextMenuCommand.id,
+        id: AddRangeProtectionFromContextMenuCommand.id,
         type: MenuItemType.BUTTON,
         title: 'rightClick.turnOnProtectRange',
         icon: tmpIcon,
@@ -72,7 +73,7 @@ export function sheetPermissionAddProtectContextMenuFactory(accessor: IAccessor)
 
 export function sheetPermissionEditProtectContextMenuFactory(accessor: IAccessor): IMenuButtonItem {
     return {
-        id: SetSheetPermissionFromContextMenuCommand.id,
+        id: SetRangeProtectionFromContextMenuCommand.id,
         type: MenuItemType.BUTTON,
         title: 'rightClick.editProtectRange',
         icon: tmpIcon,
@@ -85,7 +86,7 @@ export function sheetPermissionEditProtectContextMenuFactory(accessor: IAccessor
 export function sheetPermissionRemoveProtectContextMenuFactory(accessor: IAccessor): IMenuButtonItem {
     const baseDisable$ = getPermissionDisableBase$(accessor);
     return {
-        id: deleteSheetPermissionFromContextMenuCommand.id,
+        id: DeleteRangeProtectionFromContextMenuCommand.id,
         type: MenuItemType.BUTTON,
         title: 'rightClick.removeProtectRange',
         icon: tmpIcon,
@@ -109,7 +110,7 @@ export function sheetPermissionViewAllProtectRuleContextMenuFactory(): IMenuButt
 
 export function sheetPermissionProtectSheetInSheetBarMenuFactory(): IMenuButtonItem {
     return {
-        id: AddSheetPermissionFromSheetBarCommand.id,
+        id: AddRangeProtectionFromSheetBarCommand.id,
         type: MenuItemType.BUTTON,
         positions: [SheetMenuPosition.SHEET_BAR],
         title: 'sheetConfig.addProtectSheet',
@@ -118,7 +119,7 @@ export function sheetPermissionProtectSheetInSheetBarMenuFactory(): IMenuButtonI
 
 export function sheetPermissionRemoveProtectionSheetBarMenuFactory(): IMenuButtonItem {
     return {
-        id: 'tmp 2 ',
+        id: DeleteWOrksheetProtectionFormSheetBarCommand.id,
         type: MenuItemType.BUTTON,
         positions: [SheetMenuPosition.SHEET_BAR],
         title: 'sheetConfig.removeProtectSheet',
@@ -127,7 +128,7 @@ export function sheetPermissionRemoveProtectionSheetBarMenuFactory(): IMenuButto
 
 export function sheetPermissionChangeSheetPermissionSheetBarMenuFactory(): IMenuButtonItem {
     return {
-        id: ChangeSheetPermissionFromSheetBarCommand.id,
+        id: ChangeSheetProtectionFromSheetBarCommand.id,
         type: MenuItemType.BUTTON,
         positions: [SheetMenuPosition.SHEET_BAR],
         title: 'sheetConfig.changeSheetPermission',

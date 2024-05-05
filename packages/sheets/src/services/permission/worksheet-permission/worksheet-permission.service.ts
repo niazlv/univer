@@ -15,11 +15,13 @@
  */
 
 import type { IPermissionParam, IPermissionPoint, Workbook } from '@univerjs/core';
-import { IPermissionService, IUniverInstanceService, LifecycleStages, OnLifecycle, RxDisposable, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
-import { Inject } from '@wendellhu/redi';
+import { IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, OnLifecycle, RxDisposable, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
+import { Inject, Injector } from '@wendellhu/redi';
 import { map, takeUntil } from 'rxjs/operators';
 
 import type { Observable } from 'rxjs';
+import type { IAllowedRequest } from '@univerjs/protocol';
+import { UniverType } from '@univerjs/protocol';
 import {
     WorkbookCommentPermission,
     WorkbookCopyPermission,
@@ -49,11 +51,18 @@ import {
     WorksheetSharePermission,
     WorksheetSortPermission,
     WorksheetViewPermission,
-} from './permission-point';
+} from '../permission-point';
+import type { IObjectModel } from '../type';
+import { WorksheetProtectionRuleModel } from './worksheet-permission.model';
+import { WorksheetPermissionIoService } from './worksheet-permission-io.service';
+import { defaultSheetActions } from './type';
+import { getAllPermissionPoint } from './utils';
 
 type getWorksheetPermission$ = (permissionParma: IPermissionParam) => Observable<boolean>;
 type getWorksheetPermission = (permissionParma: IPermissionParam) => boolean;
 type setWorksheetPermission = (value: boolean, unitId?: string, subUnitId?: string) => void;
+
+export const PLUGIN_NAME = 'SHEET_WORKSHEET_PROTECTION_PLUGIN';
 
 @OnLifecycle(LifecycleStages.Starting, WorksheetPermissionService)
 export class WorksheetPermissionService extends RxDisposable {
@@ -136,12 +145,19 @@ export class WorksheetPermissionService extends RxDisposable {
 
     constructor(
         @Inject(IPermissionService) private _permissionService: IPermissionService,
-        @Inject(IUniverInstanceService) private _univerInstanceService: IUniverInstanceService
+        @Inject(IUniverInstanceService) private _univerInstanceService: IUniverInstanceService,
+        @Inject(Injector) readonly _injector: Injector,
+        @Inject(WorksheetProtectionRuleModel) private _worksheetProtectionRuleModel: WorksheetProtectionRuleModel,
+        @Inject(WorksheetPermissionIoService) private _worksheetProtectionIoService: WorksheetPermissionIoService,
+        @Inject(IResourceManagerService) private _resourceManagerService: IResourceManagerService
     ) {
         super();
         this._init();
         this._initializePermissions();
+        this._initRuleChange();
+        this._initSnapshot();
     }
+
 
     private _init() {
         const handleWorkbook = (workbook: Workbook) => {
@@ -355,5 +371,108 @@ export class WorksheetPermissionService extends RxDisposable {
             this[`get${type}Permission`] = get;
             this[`set${type}Permission`] = set;
         });
+    }
+
+    private _initRuleChange() {
+        this.disposeWithMe(
+            this._worksheetProtectionRuleModel.ruleChange$.subscribe((info) => {
+                if (info.type !== 'delete') {
+                    this._worksheetProtectionIoService.allowed({
+                        permissionId: info.rule.permissionId,
+                        permissionType: info.rule.unitType,
+                        unitId: info.unitId,
+                        actions: defaultSheetActions,
+                    }).then((permissionMap) => {
+                        Object.keys(permissionMap).forEach(() => {
+                            getAllPermissionPoint().forEach((F) => {
+                                const rule = info.rule;
+                                const instance = new F(rule.unitId, rule.subUnitId);
+                                if (permissionMap[instance.subType] !== undefined) {
+                                    this._permissionService.updatePermissionPoint(instance.id, permissionMap[instance.subType]);
+                                }
+                            });
+                        });
+                    });
+                }
+
+                switch (info.type) {
+                    case 'add': {
+                        getAllPermissionPoint().forEach((F) => {
+                            const instance = new F(info.unitId, info.subUnitId);
+                            this._permissionService.addPermissionPoint(instance);
+                        });
+                        break;
+                    }
+                    case 'delete': {
+                        getAllPermissionPoint().forEach((F) => {
+                            const instance = new F(info.unitId, info.subUnitId);
+                            this._permissionService.deletePermissionPoint(instance.id);
+                        });
+                        break;
+                    }
+                    case 'set': {
+                        getAllPermissionPoint().forEach((F) => {
+                            const instance = new F(info.unitId, info.subUnitId);
+                            this._permissionService.updatePermissionPoint(instance.id, info.rule);
+                        });
+                        break;
+                    }
+                }
+            }));
+    }
+
+    private _initSnapshot() {
+        const toJson = () => {
+            const object = this._worksheetProtectionRuleModel.toObject();
+            return JSON.stringify(object);
+        };
+        const parseJson = (json: string): IObjectModel => {
+            if (!json) {
+                return {};
+            }
+            try {
+                return JSON.parse(json);
+            } catch (err) {
+                return {};
+            }
+        };
+        this.disposeWithMe(
+            this._resourceManagerService.registerPluginResource({
+                toJson, parseJson,
+                pluginName: PLUGIN_NAME,
+                businesses: [UniverType.UNIVER_SHEET],
+                onLoad: (unitId, resources) => {
+                    const allAllowedParams: IAllowedRequest[] = [];
+                    Object.keys(resources).forEach((subUnitId) => {
+                        const rule = resources[subUnitId];
+                        allAllowedParams.push({
+                            objectId: rule.permissionId,
+                            objectType: rule.unitType,
+                            unitId: rule.unitId,
+                            actions: defaultSheetActions,
+                        });
+                    });
+
+                    this._worksheetProtectionIoService.batchAllowed(allAllowedParams).then((permissionMap) => {
+                        Object.keys(permissionMap).forEach((permissionId) => {
+                            const result = permissionMap[permissionId]; // Record<IPermissionSubType, boolean>
+                            getAllPermissionPoint().forEach((F) => {
+                                const rule = resources[permissionId];
+                                if (rule) {
+                                    const instance = new F(unitId, rule.subUnitId);
+                                    if (result[instance.subType] !== undefined) {
+                                        //  todo 这里统一使用setPermission吗 还是说现在这样就可以
+                                        this._permissionService.updatePermissionPoint(instance.id, result[instance.subType]);
+                                    }
+                                }
+                            });
+                        });
+                    });
+                },
+                onUnLoad: () => {
+                    this._worksheetProtectionRuleModel.deleteUnitModel();
+                },
+            })
+        );
     }
 }

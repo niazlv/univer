@@ -14,4 +14,6 @@
  * limitations under the License.
  */
 
-export { AddRangeProtectionCommand } from './range-protection.command';
+export { WorksheetPermissionService } from './worksheet-permission.service';
+export { WorksheetPermissionIoService } from './worksheet-permission-io.service';
+export { WorksheetProtectionRuleModel } from './worksheet-permission.model';

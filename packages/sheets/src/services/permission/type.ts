@@ -14,4 +14,17 @@
  * limitations under the License.
  */
 
-export { AddRangeProtectionCommand } from './range-protection.command';
+import type { UnitObject } from '@univerjs/protocol/lib/types/ts/univer/permission.js';
+
+export interface IWorksheetProtectionRule {
+    permissionId: string;
+    name: string;
+    description?: string;
+    unitType: UnitObject;
+    unitId: string;
+    subUnitId: string;
+}
+
+export type IObjectModel = Record<string, IWorksheetProtectionRule>;
+
+export type IModel = Map<string, IWorksheetProtectionRule>;

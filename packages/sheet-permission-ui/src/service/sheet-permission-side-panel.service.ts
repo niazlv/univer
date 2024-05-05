@@ -33,9 +33,10 @@ export const DEFAULT_RULE = {
     unitType: UnitObject.Unkonwn,
     id: '',
     viewStatus: viewState.othersCanView,
+    ranges: [],
 };
 
-export interface ISelectionProtectionRuleWithViewStatus extends Omit<ISelectionProtectionRule, 'ranges'> {
+export interface ISelectionProtectionRuleWithViewStatus extends ISelectionProtectionRule {
     viewStatus: viewState;
 }
 

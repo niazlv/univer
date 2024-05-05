@@ -32,6 +32,36 @@ export enum PermissionType {
     SHEET_RANGE = 'SHEET_RANGE',
 }
 
+// export enum UnitAction {
+//     View = 0,
+//     Edit = 1,
+//     ManageCollaborator = 2,
+//     Print = 3,
+//     /** Duplicate - create a copy */
+//     Duplicate = 4,
+//     Comment = 5,
+//     Copy = 6,
+//     Share = 7,
+//     Export = 8,
+//     MoveWorksheet = 9,
+//     DeleteWorksheet = 10,
+//     HideWorksheet = 11,
+//     RenameWorksheet = 12,
+//     CreateWorksheet = 13,
+//     SetWorksheetStyle = 14,
+//     EditWorksheetCell = 15,
+//     InsertHyperlink = 16,
+//     Sort = 17,
+//     Filter = 18,
+//     PivotTable = 19,
+//     FloatImg = 20,
+//     History = 21,
+//     RwHgtClWdt = 22,
+//     ViemRwHgtClWdt = 23,
+//     ViewFilter = 24,
+//     UNRECOGNIZED = -1,
+//   }
+
 export enum UnitPermissionType {
     Edit = 'Edit',
     View = 'View',
@@ -72,6 +102,7 @@ export enum SubUnitPermissionType {
     RowHeightColWidthReadonly = 'RowHeightColWidthReadonly',
     FilterReadonly = 'FilterReadonly',
     ManageCollaborator = 'ManageCollaborator',
+    UnRecognized = 'UnRecognized',
 }
 
 export enum RangeUnitPermissionType {
@@ -90,6 +121,7 @@ export interface IPermissionPoint<V = boolean> {
      */
     id: IUnitPermissionId | ISubUnitPermissionId | IRangePermissionId;
     status: PermissionStatus;
+    subType: UnitPermissionType | SubUnitPermissionType;
     value: V;
 }
 

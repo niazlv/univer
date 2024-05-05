@@ -35,3 +35,27 @@ export const UNIVER_SHEET_PERMISSION_ALERT_DIALOG = 'UNIVER_SHEET_PERMISSION_ALE
 export const UNIVER_SHEET_PERMISSION_USER_DIALOG_ID = 'UNIVER_SHEET_PERMISSION_USER_DIALOG_ID';
 export const UNIVER_SHEET_PERMISSION_DIALOG_ID = 'UNIVER_SHEET_PERMISSION_DIALOG_ID';
 export const UNIVER_SHEET_PERMISSION_ALERT_DIALOG_ID = 'UNIVER_SHEET_PERMISSION_ALERT_DIALOG_ID';
+
+
+//
+export const sheetPermissionList = [
+    'Edit',
+    'View',
+    'Share',
+    'Comment',
+    'Duplicate',
+    'Export',
+    'Print',
+    'Copy',
+    'SetCellStyle',
+    'SetCellValue',
+    'SetHyperLink',
+    'Sort',
+    'Filter',
+    'PivotTable',
+    'FloatImage',
+    'RowHeightColWidth',
+    'RowHeightColWidthReadonly',
+    'FilterReadonly',
+    'ManageCollaborator',
+];

@@ -23,11 +23,12 @@ export interface ISwitchProps {
 }
 
 const Switch = (props: ISwitchProps) => {
-    const [checked, setChecked] = useState(props.defaultChecked ?? false);
+    const { defaultChecked = false, onChange } = props;
+    const [checked, setChecked] = useState(defaultChecked);
 
     const handleChange = () => {
         setChecked(!checked);
-        props.onChange?.(!checked);
+        onChange?.(!checked);
     };
 
     return (

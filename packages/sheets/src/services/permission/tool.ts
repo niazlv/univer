@@ -19,7 +19,7 @@ import { IUniverInstanceService, UniverInstanceType } from '@univerjs/core';
 import type { IAccessor } from '@wendellhu/redi';
 import { map } from 'rxjs';
 
-import { WorksheetPermissionService } from './worksheet-permission.service';
+import { WorksheetPermissionService } from './worksheet-permission/worksheet-permission.service';
 
 export function getCurrentSheetDisabled$(accessor: IAccessor) {
     const univerInstanceService = accessor.get(IUniverInstanceService);

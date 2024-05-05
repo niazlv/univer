@@ -113,6 +113,9 @@ import { InsertDefinedNameCommand } from '../commands/commands/insert-defined-na
 import { RemoveDefinedNameCommand } from '../commands/commands/remove-defined-name.command';
 import { SetDefinedNameCommand } from '../commands/commands/set-defined-name.command';
 import { ScrollToCellOperation } from '../commands/operations/scroll-to-cell.operation';
+import { AddWorksheetProtectionMutation } from '../commands/mutations/add-worksheet-protection.mutation';
+import { SetWorksheetProtectionMutation } from '../commands/mutations/set-worksheet-protection.mutation';
+import { DeleteWorksheetProtectionMutation } from '../commands/mutations/delete-worksheet-protection.mutation';
 import { MAX_CELL_PER_SHEET_DEFAULT, MAX_CELL_PER_SHEET_KEY } from './config/config';
 
 export interface IStyleTypeValue<T> {
@@ -222,6 +225,10 @@ export class BasicWorksheetController extends Disposable implements IDisposable 
             RemoveDefinedNameCommand,
             SetDefinedNameCommand,
             ScrollToCellOperation,
+
+            AddWorksheetProtectionMutation,
+            SetWorksheetProtectionMutation,
+            DeleteWorksheetProtectionMutation,
         ].forEach((command) => this.disposeWithMe(this._commandService.registerCommand(command)));
 
         this._configService.setConfig(MAX_CELL_PER_SHEET_KEY, MAX_CELL_PER_SHEET_DEFAULT);

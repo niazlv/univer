@@ -14,17 +14,35 @@
  * limitations under the License.
  */
 
-import type { IProtectRule } from '../service';
+import type { ISelectionProtectionRule } from '@univerjs/sheets-selection-protection';
+import type { IWorksheetProtectionRule } from '@univerjs/sheets/services/permission/type.js';
 
-export interface IAddSheetPermissionParams {
+
+export interface IAddRangeProtectionParams {
     permissionId: string;
-    rule: IProtectRule;
+    rule: ISelectionProtectionRule;
 }
 
-export type ISetSheetPermissionParams = IAddSheetPermissionParams;
+export type ISetRangeProtectionParams = IAddRangeProtectionParams;
 
-export interface IDeleteSheetPermissionParams {
+export interface IDeleteRangeProtectionParams {
     unitId: string;
     subUnitId: string;
-    rule: IProtectRule;
+    rule: ISelectionProtectionRule;
+}
+
+export interface IAddWorksheetProtectionParams {
+    unitId: string;
+    rule: IWorksheetProtectionRule;
+}
+
+export interface IDeleteWorksheetProtectionParams {
+    unitId: string;
+    subUnitId: string;
+}
+
+export interface ISetWorksheetProtectionParams {
+    unitId: string;
+    rule: IWorksheetProtectionRule;
+    oldRule: IWorksheetProtectionRule;
 }

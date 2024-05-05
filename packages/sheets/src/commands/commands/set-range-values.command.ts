@@ -31,7 +31,7 @@ import { SelectionManagerService } from '../../services/selection-manager.servic
 import { SheetInterceptorService } from '../../services/sheet-interceptor/sheet-interceptor.service';
 import { SetRangeValuesMutation, SetRangeValuesUndoMutationFactory } from '../mutations/set-range-values.mutation';
 import type { ISheetCommandSharedParams } from '../utils/interface';
-import { WorksheetPermissionService } from '../../services/permission/worksheet-permission.service';
+import { WorksheetPermissionService } from '../../services/permission/worksheet-permission/worksheet-permission.service';
 import { getSheetCommandTarget } from './utils/target-util';
 
 export interface ISetRangeValuesCommandParams extends Partial<ISheetCommandSharedParams> {

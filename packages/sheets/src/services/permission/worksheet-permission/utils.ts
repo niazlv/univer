@@ -14,4 +14,10 @@
  * limitations under the License.
  */
 
-export { AddRangeProtectionCommand } from './range-protection.command';
+import { WorksheetCopyPermission, WorksheetEditablePermission } from '../permission-point';
+
+export const getAllPermissionPoint = () => [
+    WorksheetEditablePermission,
+    WorksheetCopyPermission,
+];
+

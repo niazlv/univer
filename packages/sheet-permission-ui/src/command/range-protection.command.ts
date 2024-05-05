@@ -21,11 +21,11 @@ import { SetSelectionProtection } from '@univerjs/sheets-selection-protection/co
 import { SelectionManagerService } from '@univerjs/sheets';
 import { SheetPermissionPanelService } from '../service';
 import { SheetPermissionOpenPanelOperation } from '../operation/sheet-permission-open-panel.operation';
-import type { IAddSheetPermissionParams, IDeleteSheetPermissionParams, ISetSheetPermissionParams } from './type';
+import type { IAddRangeProtectionParams, IDeleteRangeProtectionParams, ISetRangeProtectionParams } from './type';
 
-export const AddSheetPermissionFromContextMenuCommand: ICommand = {
+export const AddRangeProtectionFromContextMenuCommand: ICommand = {
     type: CommandType.COMMAND,
-    id: 'sheets.command.add-sheet-permission-from-context-menu',
+    id: 'sheets.command.add-range-protection-from-context-menu',
     async handler(accessor) {
         const commandService = accessor.get(ICommandService);
         await commandService.executeCommand(SheetPermissionOpenPanelOperation.id);
@@ -45,9 +45,9 @@ export const ViewSheetPermissionFromContextMenuCommand: ICommand = {
     },
 };
 
-export const AddSheetPermissionFromSheetBarCommand: ICommand = {
+export const AddRangeProtectionFromSheetBarCommand: ICommand = {
     type: CommandType.COMMAND,
-    id: 'sheets.command.add-sheet-permission-from-sheet-bar',
+    id: 'sheets.command.add-range-protection-from-sheet-bar',
     async handler(accessor) {
         const commandService = accessor.get(ICommandService);
         await commandService.executeCommand(SheetPermissionOpenPanelOperation.id, { fromSheetBar: true });
@@ -67,19 +67,10 @@ export const ViewSheetPermissionFromSheetBarCommand: ICommand = {
     },
 };
 
-export const ChangeSheetPermissionFromSheetBarCommand: ICommand = {
-    type: CommandType.COMMAND,
-    id: 'sheets.command.change-sheet-permission-from-sheet-bar',
-    async handler(accessor) {
-        const commandService = accessor.get(ICommandService);
-        await commandService.executeCommand('sheet-permission.operation.openDialog');
-        return true;
-    },
-};
 
-export const AddSheetPermissionCommand: ICommand<IAddSheetPermissionParams> = {
+export const AddRangeProtectionCommand: ICommand<IAddRangeProtectionParams> = {
     type: CommandType.COMMAND,
-    id: 'sheets.command.add-sheet-permission',
+    id: 'sheets.command.add-range-protection',
     async handler(accessor, params) {
         if (!params) {
             return false;
@@ -118,9 +109,9 @@ export const AddSheetPermissionCommand: ICommand<IAddSheetPermissionParams> = {
     },
 };
 
-export const DeleteSheetPermissionCommand: ICommand<IDeleteSheetPermissionParams> = {
+export const DeleteRangeSelectionCommand: ICommand<IDeleteRangeProtectionParams> = {
     type: CommandType.COMMAND,
-    id: 'sheets.command.delete-sheet-permission',
+    id: 'sheets.command.delete-range-protection',
     async handler(accessor, params) {
         if (!params) {
             return false;
@@ -148,9 +139,9 @@ export const DeleteSheetPermissionCommand: ICommand<IDeleteSheetPermissionParams
     },
 };
 
-export const SetSheetPermissionCommand: ICommand<ISetSheetPermissionParams> = {
+export const SetRangeProtectionCommand: ICommand<ISetRangeProtectionParams> = {
     type: CommandType.COMMAND,
-    id: 'sheets.command.set-sheet-permission',
+    id: 'sheets.command.set-range-protection',
     async handler(accessor, params) {
         if (!params) {
             return false;
@@ -202,9 +193,9 @@ export const SetSheetPermissionCommand: ICommand<ISetSheetPermissionParams> = {
 };
 
 
-export const deleteSheetPermissionFromContextMenuCommand: ICommand = {
+export const DeleteRangeProtectionFromContextMenuCommand: ICommand = {
     type: CommandType.COMMAND,
-    id: 'sheets.command.delete-sheet-permission-from-context-menu',
+    id: 'sheets.command.delete-range-protection-from-context-menu',
     async handler(accessor) {
         const commandService = accessor.get(ICommandService);
         const univerInstanceService = accessor.get(IUniverInstanceService);
@@ -246,9 +237,9 @@ export const deleteSheetPermissionFromContextMenuCommand: ICommand = {
 
 };
 
-export const SetSheetPermissionFromContextMenuCommand: ICommand = {
+export const SetRangeProtectionFromContextMenuCommand: ICommand = {
     type: CommandType.COMMAND,
-    id: 'sheets.command.set-sheet-permission-from-context-menu',
+    id: 'sheets.command.set-range-protection-from-context-menu',
     async handler(accessor) {
         const commandService = accessor.get(ICommandService);
         const univerInstanceService = accessor.get(IUniverInstanceService);

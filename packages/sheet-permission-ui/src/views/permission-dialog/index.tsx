@@ -14,59 +14,57 @@
  * limitations under the License.
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { Button, Switch } from '@univerjs/design';
 import clsx from 'clsx';
 import { useDependency } from '@wendellhu/redi/react-bindings';
 import type { Workbook } from '@univerjs/core';
 import { IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
-import { SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
 import { IDialogService } from '@univerjs/ui';
-import { UNIVER_SHEET_PERMISSION_DIALOG_ID } from '../../const';
+import { WorksheetPermissionService } from '@univerjs/sheets';
+import { sheetPermissionList, UNIVER_SHEET_PERMISSION_DIALOG_ID } from '../../const';
 import styles from './index.module.less';
 
 
 export const SheetPermissionDialog = () => {
-    const [permissionTypeList, setPermissionTypeList] = useState<string[]>([]);
     const localeService = useDependency(LocaleService);
     const univerInstanceService = useDependency(IUniverInstanceService);
-    const selectionProtectionRuleModel = useDependency(SelectionProtectionRuleModel);
+    const worksheetPermissionService = useDependency(WorksheetPermissionService);
     const dialogService = useDependency(IDialogService);
 
-    const permissionList = [
-        `${localeService.t('permission.dialog.setCellValue')}`,
-        `${localeService.t('permission.dialog.setCellStyle')}`,
-        `${localeService.t('permission.dialog.copy')}`,
-    ];
-
-    useEffect(() => {
+    const [permissionMap, setPermissionMap] = useState(() => {
         const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
         const worksheet = workbook?.getActiveSheet();
         const unitId = workbook.getUnitId();
         const subUnitId = worksheet.getSheetId();
-        const ruleList = selectionProtectionRuleModel.getSubunitRuleList(unitId, subUnitId);
-        if (ruleList.length) {
-            // const firstRule = ruleList[0];
-            // console.log('debugger', ruleList);
-        }
-    }, []);
+        const permissionMap: Record<string, boolean> = {};
+        sheetPermissionList.forEach((item) => {
+            const permissionName = `get${item}Permission`;
+            const permissionValue = worksheetPermissionService[permissionName](unitId, subUnitId) ?? false;
+            permissionMap[item] = permissionValue;
+        });
+
+
+        return permissionMap;
+    });
 
     return (
         <div className={styles.sheetPermissionDialogWrapper}>
             <div className={styles.sheetPermissionDialogSplit} />
-            {permissionList.map((item) => {
-                const defaultChecked = permissionTypeList.includes(item);
+            {Object.keys(permissionMap).map((name) => {
+                const checked = permissionMap[name];
                 return (
-                    <div key={item} className={styles.sheetPermissionDialogItem}>
-                        <div>{item}</div>
-                        <Switch onChange={() => {
-                            if (defaultChecked) {
-                                setPermissionTypeList(permissionTypeList.filter((i) => i !== item));
-                            } else {
-                                setPermissionTypeList([...permissionTypeList, item]);
-                            }
-                        }}
+                    <div key={name} className={styles.sheetPermissionDialogItem}>
+                        <div>{name}</div>
+                        <Switch
+                            defaultChecked={checked}
+                            onChange={() => {
+                                setPermissionMap({
+                                    ...permissionMap,
+                                    [name]: !checked,
+                                });
+                            }}
                         />
                     </div>
                 );
@@ -85,6 +83,7 @@ export const SheetPermissionDialog = () => {
                 <Button
                     type="primary"
                     onClick={() => {
+                        // change action permissionMap
                         dialogService.close(UNIVER_SHEET_PERMISSION_DIALOG_ID);
                     }}
                     className={clsx(styles.sheetPermissionUserDialogFooterConfirm, styles.sheetPermissionUserDialogButton)}
