@@ -15,6 +15,7 @@
  */
 
 import type { IPermissionPoint, IUnitPermissionId } from '@univerjs/core';
+import { SubUnitPermissionType } from '@univerjs/core'
 import { PermissionStatus, PermissionType, UnitPermissionType } from '@univerjs/core';
 
 
@@ -22,7 +23,9 @@ export class WorkbookCopySheetPermission implements IPermissionPoint {
     id: IUnitPermissionId;
     value = true;
     type = PermissionType.WORK_BOOK;
+    subType = SubUnitPermissionType.Copy
     status = PermissionStatus.INIT;
+
 
 
     constructor(public unitId: string) {

@@ -16,7 +16,7 @@
 
 import type { ILogContext } from '@univerjs/core';
 import { RangeUnitPermissionType, Tools } from '@univerjs/core';
-import { type ICollaborator, type IUnitRoleKV, type UnitAction, UnitRole } from '@univerjs/protocol';
+import { type ICollaborator, type IUnitRoleKV, type UnitAction, UnitRole, UnitObject } from '@univerjs/protocol';
 
 import type { IAllowedRequest, ISelectionPermissionIoService } from './type';
 
@@ -81,7 +81,7 @@ export class SelectionPermissionIoService implements ISelectionPermissionIoServi
         return Promise.resolve(result);
     }
 
-    async listRoles(type: string, context?: ILogContext | undefined): Promise<{ roles: IUnitRoleKV[]; actions: UnitAction[] }> {
+    async listRoles(type: UnitObject, context?: ILogContext | undefined): Promise<{ roles: IUnitRoleKV[]; actions: UnitAction[] }> {
         return {
             roles: [],
             actions: [],
