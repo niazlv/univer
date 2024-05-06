@@ -29,6 +29,7 @@ export interface IAddSelectionProtectionParams {
     name: string;
     description?: string;
 };
+
 export const FactoryAddSelectionProtection = (param: IAddSelectionProtectionParams) => {
     const deleteParams: IDeleteSelectionProtectionParams = { ...param, ruleIds: param.rules.map((rule) => rule.id) };
     return { id: DeleteSelectionProtection.id, params: deleteParams } as IMutationInfo<IDeleteSelectionProtectionParams>;

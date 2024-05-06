@@ -15,5 +15,4 @@
  */
 
 export { UniverSheetsPermissionUIPlugin } from './plugin';
-export type { IProtectRule } from './service';
 export { UNIVER_SHEET_PERMISSION_ALERT_DIALOG_ID, UNIVER_SHEET_PERMISSION_ALERT_DIALOG } from './const';

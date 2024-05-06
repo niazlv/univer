@@ -31,7 +31,7 @@ export interface IDeleteSelectionProtectionParams {
 export const FactoryDeleteSelectionProtection = (accessor: IAccessor, param: IDeleteSelectionProtectionParams) => {
     const selectionProtectionRuleModel = accessor.get(SelectionProtectionRuleModel);
     const rules = param.ruleIds.map((id) => selectionProtectionRuleModel.getRule(param.unitId, param.subUnitId, id)).filter((rule) => !!rule) as ISelectionProtectionRule[];
-    const result: IMutationInfo<IAddSelectionProtectionParams> = { id: AddSelectionProtection.id, params: { subUnitId: param.subUnitId, unitId: param.unitId, rules } };
+    const result: IMutationInfo<Omit<IAddSelectionProtectionParams, 'name'>> = { id: AddSelectionProtection.id, params: { subUnitId: param.subUnitId, unitId: param.unitId, rules } };
     return result;
 };
 export const DeleteSelectionProtection: IMutation<IDeleteSelectionProtectionParams> = {

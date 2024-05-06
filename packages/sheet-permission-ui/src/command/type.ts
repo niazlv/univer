@@ -39,6 +39,7 @@ export interface IAddWorksheetProtectionParams {
 export interface IDeleteWorksheetProtectionParams {
     unitId: string;
     subUnitId: string;
+    rule: IWorksheetProtectionRule;
 }
 
 export interface ISetWorksheetProtectionParams {

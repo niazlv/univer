@@ -58,9 +58,9 @@ import { WorksheetPermissionIoService } from './worksheet-permission-io.service'
 import { defaultSheetActions } from './type';
 import { getAllPermissionPoint } from './utils';
 
-type getWorksheetPermission$ = (permissionParma: IPermissionParam) => Observable<boolean>;
-type getWorksheetPermission = (permissionParma: IPermissionParam) => boolean;
-type setWorksheetPermission = (value: boolean, unitId?: string, subUnitId?: string) => void;
+export type getWorksheetPermission$ = (permissionParma: IPermissionParam) => Observable<boolean>;
+export type getWorksheetPermission = (permissionParma: IPermissionParam) => boolean;
+export type setWorksheetPermission = (value: boolean, unitId?: string, subUnitId?: string) => void;
 
 export const PLUGIN_NAME = 'SHEET_WORKSHEET_PROTECTION_PLUGIN';
 

@@ -37,7 +37,7 @@ export const DEFAULT_RULE = {
 };
 
 export interface ISelectionProtectionRuleWithViewStatus extends ISelectionProtectionRule {
-    viewStatus: viewState;
+    viewStatus?: viewState;
 }
 
 export class SheetPermissionPanelService extends Disposable {

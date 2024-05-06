@@ -25,6 +25,7 @@ import { IDialogService } from '@univerjs/ui';
 import { WorksheetPermissionService } from '@univerjs/sheets';
 import { sheetPermissionList, UNIVER_SHEET_PERMISSION_DIALOG_ID } from '../../const';
 import styles from './index.module.less';
+import { getWorksheetPermission } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.service.js';
 
 
 export const SheetPermissionDialog = () => {
@@ -40,8 +41,9 @@ export const SheetPermissionDialog = () => {
         const subUnitId = worksheet.getSheetId();
         const permissionMap: Record<string, boolean> = {};
         sheetPermissionList.forEach((item) => {
-            const permissionName = `get${item}Permission`;
-            const permissionValue = worksheetPermissionService[permissionName](unitId, subUnitId) ?? false;
+            const permissionName = `get${item}Permission` as keyof WorksheetPermissionService;
+            const fn = worksheetPermissionService[permissionName] as getWorksheetPermission;
+            const permissionValue = fn?.({ unitId, subUnitId }) ?? false;
             permissionMap[item] = permissionValue;
         });
 
