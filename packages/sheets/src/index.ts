@@ -46,7 +46,10 @@ export { getSheetCommandTarget, getSheetCommandTargetWorkbook, getSheetMutationT
 export { alignToMergedCellsBorders, getCellAtRowCol, setEndForRange, isSingleCellSelection } from './commands/commands/utils/selection-utils';
 export { MAX_CELL_PER_SHEET_KEY } from './controllers/config/config';
 export { BorderStyleManagerService, type IBorderInfo } from './services/border-style-manager.service';
-export { getCurrentSheetDisabled$, SheetEditablePermission, SheetPermissionService } from './services/permission';
+export { WorkbookEditablePermission, WorksheetEditablePermission } from './services/permission/permission-point';
+export { WorksheetPermissionService } from './services/permission/worksheet-permission.service';
+export { WorkbookPermissionService } from './services/permission/workbook-permission.service';
+export { getCurrentSheetDisabled$ } from './services/permission/tool';
 export {
     NORMAL_SELECTION_PLUGIN_NAME,
     SelectionManagerService,

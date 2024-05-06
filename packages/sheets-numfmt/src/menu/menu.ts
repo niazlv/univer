@@ -17,7 +17,6 @@
 import { ICommandService, IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
 import { AddDigitsSingle, MoreDownSingle, PercentSingle, ReduceDigitsSingle, RmbSingle } from '@univerjs/icons';
 import {
-    getCurrentSheetDisabled$,
     INumfmtService,
     RemoveNumfmtMutation,
     SelectionManagerService,
@@ -29,6 +28,7 @@ import type { IAccessor } from '@wendellhu/redi';
 import { merge, Observable } from 'rxjs';
 
 import { deriveStateFromActiveSheet$ } from '@univerjs/sheets-ui';
+import { getCurrentRangeDisable$ } from '@univerjs/sheets-ui/controllers/menu/menu-util.js';
 import { MENU_OPTIONS } from '../base/const/MENU-OPTIONS';
 import { AddDecimalCommand } from '../commands/commands/add-decimal.command';
 import { SetCurrencyCommand } from '../commands/commands/set-currency.command';
@@ -53,7 +53,7 @@ export const CurrencyMenuItem = (componentManager: ComponentManager) => {
             group: MenuGroup.TOOLBAR_FORMULAS_INSERT,
             positions: [MenuPosition.TOOLBAR_START],
             hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-            disabled$: getCurrentSheetDisabled$(accessor),
+            disabled$: getCurrentRangeDisable$(accessor),
         };
     };
 };
@@ -70,7 +70,7 @@ export const AddDecimalMenuItem = (componentManager: ComponentManager) => {
         positions: [MenuPosition.TOOLBAR_START],
         group: MenuGroup.TOOLBAR_FORMULAS_INSERT,
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentSheetDisabled$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor),
     });
 };
 export const SubtractDecimalMenuItem = (componentManager: ComponentManager) => {
@@ -85,7 +85,7 @@ export const SubtractDecimalMenuItem = (componentManager: ComponentManager) => {
         group: MenuGroup.TOOLBAR_FORMULAS_INSERT,
         positions: [MenuPosition.TOOLBAR_START],
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentSheetDisabled$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor),
     });
 };
 
@@ -101,7 +101,7 @@ export const PercentMenuItem = (componentManager: ComponentManager) => {
         group: MenuGroup.TOOLBAR_FORMULAS_INSERT,
         positions: [MenuPosition.TOOLBAR_START],
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentSheetDisabled$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor),
     });
 };
 
@@ -176,7 +176,7 @@ export const FactoryOtherMenuItem = (componentManager: ComponentManager) => {
             ],
             value$,
             hidden$: getMenuHiddenObservable(_accessor, UniverInstanceType.UNIVER_SHEET),
-            disabled$: getCurrentSheetDisabled$(_accessor),
+            disabled$: getCurrentRangeDisable$(_accessor),
         } as IMenuSelectorItem;
     };
 };

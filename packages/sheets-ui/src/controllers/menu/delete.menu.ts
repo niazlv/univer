@@ -17,6 +17,7 @@
 import type { IMenuButtonItem, IMenuSelectorItem } from '@univerjs/ui';
 import { MenuGroup, MenuItemType, MenuPosition } from '@univerjs/ui';
 
+import type { IAccessor } from '@wendellhu/redi';
 import { DeleteRangeMoveLeftConfirmCommand } from '../../commands/commands/delete-range-move-left-confirm.command ';
 import { DeleteRangeMoveUpConfirmCommand } from '../../commands/commands/delete-range-move-up-confirm.command';
 import {
@@ -24,6 +25,7 @@ import {
     RemoveRowConfirmCommand,
 } from '../../commands/commands/remove-row-col-confirm.command';
 import { SheetMenuPosition } from './menu';
+import { getCurrentRangeDisable$ } from './menu-util';
 
 const DELETE_RANGE_MENU_ID = 'sheet.menu.delete';
 export function DeleteRangeMenuItemFactory(): IMenuSelectorItem<string> {
@@ -37,7 +39,7 @@ export function DeleteRangeMenuItemFactory(): IMenuSelectorItem<string> {
     };
 }
 
-export function RemoveColMenuItemFactory(): IMenuButtonItem {
+export function RemoveColMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
     return {
         id: RemoveColConfirmCommand.id,
         group: MenuGroup.CONTEXT_MENU_LAYOUT,
@@ -45,10 +47,11 @@ export function RemoveColMenuItemFactory(): IMenuButtonItem {
         icon: 'DeleteColumn',
         positions: [DELETE_RANGE_MENU_ID, SheetMenuPosition.COL_HEADER_CONTEXT_MENU],
         title: 'rightClick.deleteSelectedColumn',
+        disabled$: getCurrentRangeDisable$(accessor),
     };
 }
 
-export function RemoveRowMenuItemFactory(): IMenuButtonItem {
+export function RemoveRowMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
     return {
         id: RemoveRowConfirmCommand.id,
         group: MenuGroup.CONTEXT_MENU_LAYOUT,
@@ -56,10 +59,11 @@ export function RemoveRowMenuItemFactory(): IMenuButtonItem {
         icon: 'DeleteRow',
         positions: [DELETE_RANGE_MENU_ID, SheetMenuPosition.ROW_HEADER_CONTEXT_MENU],
         title: 'rightClick.deleteSelectedRow',
+        disabled$: getCurrentRangeDisable$(accessor),
     };
 }
 
-export function DeleteRangeMoveLeftMenuItemFactory(): IMenuButtonItem {
+export function DeleteRangeMoveLeftMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
     return {
         id: DeleteRangeMoveLeftConfirmCommand.id,
         group: MenuGroup.CONTEXT_MENU_LAYOUT,
@@ -67,10 +71,11 @@ export function DeleteRangeMoveLeftMenuItemFactory(): IMenuButtonItem {
         title: 'rightClick.moveLeft',
         icon: 'DeleteCellShiftLeft',
         positions: [DELETE_RANGE_MENU_ID],
+        disabled$: getCurrentRangeDisable$(accessor),
     };
 }
 
-export function DeleteRangeMoveUpMenuItemFactory(): IMenuButtonItem {
+export function DeleteRangeMoveUpMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
     return {
         id: DeleteRangeMoveUpConfirmCommand.id,
         group: MenuGroup.CONTEXT_MENU_LAYOUT,
@@ -78,5 +83,6 @@ export function DeleteRangeMoveUpMenuItemFactory(): IMenuButtonItem {
         title: 'rightClick.moveUp',
         icon: 'DeleteCellShiftUp',
         positions: [DELETE_RANGE_MENU_ID],
+        disabled$: getCurrentRangeDisable$(accessor),
     };
 }

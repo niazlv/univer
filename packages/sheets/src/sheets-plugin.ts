@@ -26,7 +26,9 @@ import { zhCN } from './locale';
 import { BorderStyleManagerService } from './services/border-style-manager.service';
 import { NumfmtService } from './services/numfmt/numfmt.service';
 import { INumfmtService } from './services/numfmt/type';
-import { SheetPermissionService } from './services/permission';
+import { WorkbookPermissionService } from './services/permission/workbook-permission.service';
+import { WorksheetPermissionService } from './services/permission/worksheet-permission.service';
+
 import { RefRangeService } from './services/ref-range/ref-range.service';
 import { SelectionManagerService } from './services/selection-manager.service';
 import { SheetInterceptorService } from './services/sheet-interceptor/sheet-interceptor.service';
@@ -68,7 +70,8 @@ export class UniverSheetsPlugin extends Plugin {
             [BorderStyleManagerService],
             [SelectionManagerService],
             [RefRangeService],
-            [SheetPermissionService],
+            [WorksheetPermissionService],
+            [WorkbookPermissionService],
             [INumfmtService, { useClass: NumfmtService }],
             [SheetInterceptorService],
 

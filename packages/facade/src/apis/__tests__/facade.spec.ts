@@ -16,7 +16,7 @@
 
 import type { ICellData, IStyleData, Nullable } from '@univerjs/core';
 import { ICommandService, IUniverInstanceService } from '@univerjs/core';
-import { SetRangeValuesCommand, SetRangeValuesMutation, SetStyleCommand } from '@univerjs/sheets';
+import { SetRangeValuesCommand, SetRangeValuesMutation, SetStyleCommand, WorkbookPermissionService, WorksheetPermissionService } from '@univerjs/sheets';
 import type { Injector } from '@wendellhu/redi';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 

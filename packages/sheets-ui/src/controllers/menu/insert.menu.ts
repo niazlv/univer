@@ -29,6 +29,7 @@ import { Observable } from 'rxjs';
 import { InsertRangeMoveDownConfirmCommand } from '../../commands/commands/insert-range-move-down-confirm.command';
 import { InsertRangeMoveRightConfirmCommand } from '../../commands/commands/insert-range-move-right-confirm.command';
 import { SheetMenuPosition } from './menu';
+import { getCurrentRangeDisable$ } from './menu-util';
 
 const COL_INSERT_MENU_ID = 'sheet.menu.col-insert';
 export function ColInsertMenuItemFactory(): IMenuSelectorItem<string> {
@@ -78,6 +79,7 @@ export function InsertRowBeforeMenuItemFactory(accessor: IAccessor): IMenuButton
             const selections = selectionManager.getSelections();
             observer.next(selections?.length !== 1);
         }),
+        disabled$: getCurrentRangeDisable$(accessor),
     };
 }
 
@@ -94,6 +96,7 @@ export function InsertRowAfterMenuItemFactory(accessor: IAccessor): IMenuButtonI
             const selections = selectionManager.getSelections();
             observer.next(selections?.length !== 1);
         }),
+        disabled$: getCurrentRangeDisable$(accessor),
     };
 }
 
@@ -110,6 +113,7 @@ export function InsertColBeforeMenuItemFactory(accessor: IAccessor): IMenuButton
             const selections = selectionManager.getSelections();
             observer.next(selections?.length !== 1);
         }),
+        disabled$: getCurrentRangeDisable$(accessor),
     };
 }
 
@@ -126,25 +130,28 @@ export function InsertColAfterMenuItemFactory(accessor: IAccessor): IMenuButtonI
             const selections = selectionManager.getSelections();
             observer.next(selections?.length !== 1);
         }),
+        disabled$: getCurrentRangeDisable$(accessor),
     };
 }
 
-export function InsertRangeMoveRightMenuItemFactory(): IMenuButtonItem {
+export function InsertRangeMoveRightMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
     return {
         id: InsertRangeMoveRightConfirmCommand.id,
         type: MenuItemType.BUTTON,
         title: 'rightClick.moveRight',
         icon: 'InsertCellShiftRight',
         positions: [CELL_INSERT_MENU_ID],
+        disabled$: getCurrentRangeDisable$(accessor),
     };
 }
 
-export function InsertRangeMoveDownMenuItemFactory(): IMenuButtonItem {
+export function InsertRangeMoveDownMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
     return {
         id: InsertRangeMoveDownConfirmCommand.id,
         type: MenuItemType.BUTTON,
         title: 'rightClick.moveDown',
         icon: 'InsertCellDown',
         positions: [CELL_INSERT_MENU_ID],
+        disabled$: getCurrentRangeDisable$(accessor),
     };
 }

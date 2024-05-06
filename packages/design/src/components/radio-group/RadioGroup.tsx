@@ -16,6 +16,7 @@
 
 import React from 'react';
 
+import clsx from 'clsx';
 import type { IRadioProps } from '../radio/Radio';
 import styles from './index.module.less';
 
@@ -37,20 +38,22 @@ export interface IRadioGroupProps {
      * The callback function triggered when switching options
      */
     onChange: (value: string | number | boolean) => void;
+
+    className?: string;
 }
 
 /**
  * RadioGroup Component
  */
 export function RadioGroup(props: IRadioGroupProps) {
-    const { children, value, disabled = false, onChange } = props;
+    const { children, value, disabled = false, onChange, className } = props;
 
     const handleChange = (value: string | number | boolean) => {
         onChange(value);
     };
 
     return (
-        <div className={styles.radioGroup}>
+        <div className={clsx(styles.radioGroup, className)}>
             {React.Children.map(children, (child, index) => {
                 if (React.isValidElement<IRadioProps>(child)) {
                     return React.cloneElement(child, {

@@ -16,9 +16,11 @@
 
 import type { IWorkbookData } from '@univerjs/core';
 import { LocaleType, Plugin, Univer, UniverInstanceType } from '@univerjs/core';
-import { SelectionManagerService, SheetInterceptorService, SheetPermissionService } from '@univerjs/sheets';
+import { SelectionManagerService, SheetInterceptorService, WorkbookPermissionService, WorksheetPermissionService } from '@univerjs/sheets';
 import { DesktopMenuService, DesktopShortcutService, IMenuService, IShortcutService } from '@univerjs/ui';
 import { Inject, Injector } from '@wendellhu/redi';
+import { UniverSheetsSelectionProtectionPlugin } from '@univerjs/sheets-selection-protection';
+import { IRenderManagerService, RenderManagerService } from '@univerjs/engine-render';
 
 const TEST_WORKBOOK_DATA_DEMO: IWorkbookData = {
     id: 'test',
@@ -63,8 +65,15 @@ export function createMenuTestBed() {
             injector.add([SelectionManagerService]);
             injector.add([IShortcutService, { useClass: DesktopShortcutService }]);
             injector.add([IMenuService, { useClass: DesktopMenuService }]);
-            injector.add([SheetPermissionService]);
+            injector.add([WorkbookPermissionService]);
+            injector.add([WorksheetPermissionService]);
             injector.add([SheetInterceptorService]);
+            injector.add([IRenderManagerService, { useClass: RenderManagerService }]);
+
+
+            UniverSheetsSelectionProtectionPlugin.dependencyList.forEach((d) => {
+                injector.add(d);
+            });
         }
     }
 

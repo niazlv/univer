@@ -33,7 +33,9 @@ import { UniverSheetsZenEditorPlugin } from '@univerjs/sheets-zen-editor';
 import { UniverUIPlugin } from '@univerjs/ui';
 import { UniverDataValidationPlugin } from '@univerjs/data-validation';
 import { UniverSheetsDataValidationPlugin } from '@univerjs/sheets-data-validation';
+import { UniverSheetsPermissionUIPlugin } from '@univerjs/sheets-permission-ui';
 import { UniverSheetsConditionalFormattingUIPlugin } from '@univerjs/sheets-conditional-formatting-ui';
+import { UniverSheetsSelectionProtectionPlugin } from '@univerjs/sheets-selection-protection';
 
 import { FUniver } from '@univerjs/facade';
 import { DebuggerPlugin } from '../plugins/debugger';
@@ -94,6 +96,11 @@ univer.registerPlugin(UniverSheetsFilterPlugin);
 
 // sheet condition formatting
 univer.registerPlugin(UniverSheetsConditionalFormattingUIPlugin);
+
+univer.registerPlugin(UniverSheetsSelectionProtectionPlugin);
+// sheet permission
+univer.registerPlugin(UniverSheetsPermissionUIPlugin);
+
 
 // create univer sheet instance
 if (!IS_E2E) {

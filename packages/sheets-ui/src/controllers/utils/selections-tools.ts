@@ -17,15 +17,15 @@
 import { Rectangle } from '@univerjs/core';
 import { SelectionManagerService } from '@univerjs/sheets';
 import type { IAccessor } from '@wendellhu/redi';
-import { filter, map } from 'rxjs';
+import { map } from 'rxjs';
 
 export function getSheetSelectionsDisabled$(accessor: IAccessor) {
     const selectionManagerService = accessor.get(SelectionManagerService);
 
     return selectionManagerService.selectionMoveEnd$.pipe(
-        filter((param) => param != null && param.length >= 2),
         map((param) => {
             if (!param) return false;
+            if (param.length < 2) return false;
             for (let i = 0; i < param.length; i++) {
                 for (let j = i + 1; j < param.length; j++) {
                     if (Rectangle.intersects(param[i].range, param[j].range)) {

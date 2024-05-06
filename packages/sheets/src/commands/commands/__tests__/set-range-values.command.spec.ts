@@ -34,6 +34,8 @@ import { NORMAL_SELECTION_PLUGIN_NAME, SelectionManagerService } from '../../../
 import { SetRangeValuesMutation } from '../../mutations/set-range-values.mutation';
 import type { ISetRangeValuesCommandParams } from '../set-range-values.command';
 import { SetRangeValuesCommand } from '../set-range-values.command';
+import { WorkbookPermissionService } from '../../../services/permission/workbook-permission.service';
+import { WorksheetPermissionService } from '../../../services/permission/worksheet-permission.service';
 import { createCommandTestBed } from './create-command-test-bed';
 
 const getTestWorkbookDataDemo = (): IWorkbookData => ({

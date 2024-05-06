@@ -20,7 +20,7 @@ import { Subject } from 'rxjs';
 
 export class UserManagerService {
     private _model = new Map<string, IUser>();
-    private _userChange$ = new Subject<{ type: 'add' | 'delete'; user: IUser } | { type: 'clear' }>();
+    private _userChange$ = new Subject<{ type: 'add' | 'delete' ;user: IUser } | { type: 'clear' }>();
     public userChange$ = this._userChange$.asObservable();
 
     addUser(user: IUser) {

@@ -31,8 +31,9 @@ import { LifecycleStages } from './services/lifecycle/lifecycle';
 import { LifecycleInitializerService, LifecycleService } from './services/lifecycle/lifecycle.service';
 import { LocaleService } from './services/locale/locale.service';
 import { DesktopLogService, ILogService } from './services/log/log.service';
-import { IPermissionService, PermissionService } from './services/permission/permission.service';
-import { UniverPermissionService } from './services/permission/univer.permission.service';
+import { PermissionService } from './services/permission/permission.service';
+import { IPermissionService } from './services/permission/type';
+
 import { ResourceManagerService } from './services/resource-manager/resource-manager.service';
 import { IResourceManagerService } from './services/resource-manager/type';
 import { ResourceLoaderService } from './services/resource-loader/resource-loader.service';
@@ -169,7 +170,6 @@ function createUniverInjector(parentInjector?: Injector, override?: DependencyOv
         [ThemeService],
         [LifecycleService],
         [LifecycleInitializerService],
-        [UniverPermissionService],
         [PluginService],
         [UserManagerService],
 

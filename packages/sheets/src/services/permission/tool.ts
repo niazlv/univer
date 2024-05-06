@@ -14,19 +14,24 @@
  * limitations under the License.
  */
 
-import type { Workbook } from '@univerjs/core';
+import type { IRange, Workbook } from '@univerjs/core';
 import { IUniverInstanceService, UniverInstanceType } from '@univerjs/core';
 import type { IAccessor } from '@wendellhu/redi';
 import { map } from 'rxjs';
 
-import { SheetPermissionService } from './sheet-permission.service';
+import { WorksheetPermissionService } from './worksheet-permission.service';
 
 export function getCurrentSheetDisabled$(accessor: IAccessor) {
     const univerInstanceService = accessor.get(IUniverInstanceService);
-    const sheetPermissionService = accessor.get(SheetPermissionService);
+    const worksheetPermissionService = accessor.get(WorksheetPermissionService);
 
-    const unitId = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)?.getUnitId();
-    const sheetId = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)?.getActiveSheet().getSheetId();
+    const unitId = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)?.getUnitId() ?? '';
+    const sheetId = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)?.getActiveSheet().getSheetId() ?? '';
 
-    return sheetPermissionService.getEditable$(unitId, sheetId)?.pipe(map((e) => !e.value));
+    return worksheetPermissionService.getEditPermission$({ unitId, subUnitId: sheetId })?.pipe(map((e) => !e));
+}
+
+export function getIdByRange(range: IRange) {
+    const { startRow, startColumn, endRow, endColumn } = range;
+    return `${startRow}-${startColumn}-${endRow}-${endColumn}`;
 }

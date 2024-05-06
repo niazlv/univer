@@ -14,9 +14,15 @@
  * limitations under the License.
  */
 
-import { type IUniverInstanceService, type Nullable, UniverInstanceType, type Workbook, type Worksheet } from '@univerjs/core';
+
+import { IUniverInstanceService, UniverInstanceType } from '@univerjs/core';
+import type { ICellDataForSheetInterceptor, Nullable, Workbook, Worksheet } from '@univerjs/core';
+import { getCurrentSheetDisabled$, SelectionManagerService } from '@univerjs/sheets';
+import type { ICellPermission } from '@univerjs/sheets-selection-protection';
+import { SelectionProtectionRuleModel, UniverSheetsSelectionProtectionPlugin } from '@univerjs/sheets-selection-protection';
+import type { IAccessor } from '@wendellhu/redi';
 import type { Observable } from 'rxjs';
-import { map, of, switchMap } from 'rxjs';
+import { combineLatestWith, map, merge, of, switchMap } from 'rxjs';
 
 interface IActive {
     workbook: Workbook;
@@ -38,4 +44,48 @@ export function deriveStateFromActiveSheet$<T>(univerInstanceService: IUniverIns
         if (!active) return of(defaultValue);
         return callback(active);
     }));
+}
+
+export function getCurrentRangeDisable$(accessor: IAccessor) {
+    const sheetDisable$ = getCurrentSheetDisabled$(accessor);
+    const univerInstanceService = accessor.get(IUniverInstanceService);
+    const selectionManagerService = accessor.get(SelectionManagerService);
+    const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
+    const worksheet = workbook.getActiveSheet();
+    const unitId = workbook.getUnitId();
+    const subUnitId = worksheet.getSheetId();
+    const selectionRuleModal = accessor.get(SelectionProtectionRuleModel);
+    const subUnitRuleList = selectionRuleModal.getSubunitRuleList(unitId, subUnitId);
+
+    const rangeDisable$ = merge(
+        selectionManagerService.selectionMoveEnd$,
+        selectionRuleModal.ruleChange$
+    ).pipe(
+        map(() => {
+            const selections = selectionManagerService.getSelections();
+            const selectionRanges = selections?.map((selection) => selection.range);
+            const ruleRanges = subUnitRuleList.map((rule) => rule.ranges).flat();
+            if (!selectionRanges?.length || !ruleRanges?.length) {
+                return false;
+            }
+            const disable = selectionRanges?.some((range) => {
+                for (let row = range.startRow; row <= range.endRow; row++) {
+                    for (let col = range.startColumn; col <= range.endColumn; col++) {
+                        const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
+                        if (permission?.Edit === false) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            });
+            return disable;
+        })
+    );
+
+
+    return sheetDisable$.pipe(
+        combineLatestWith(rangeDisable$),
+        map(([sheetDisable, rangeDisable]) => sheetDisable || rangeDisable)
+    );
 }

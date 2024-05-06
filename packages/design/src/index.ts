@@ -57,6 +57,7 @@ export { type ISegmentedProps, Segmented } from './components/segmented';
 export { type ISliderProps, Slider } from './components/slider';
 export { type ITooltipProps, Tooltip } from './components/tooltip';
 export { type ITreeNodeProps, type ITreeProps, Tree, TreeSelectionMode } from './components/tree';
+export { Switch } from './components/switch';
 export { enUS, zhCN } from './locale';
 export { type ILocale } from './locale/interface';
 export { defaultTheme, greenTheme, themeInstance } from './themes';

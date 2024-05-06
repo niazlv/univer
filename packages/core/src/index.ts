@@ -90,11 +90,14 @@ export { LocaleService } from './services/locale/locale.service';
 export { DesktopLogService, ILogService, LogLevel } from './services/log/log.service';
 export {
     IPermissionService,
-    PermissionService,
-    UniverEditablePermission,
-    UniverEditablePermissionPoint,
-    UniverPermissionService,
-} from './services/permission';
+    PermissionType,
+    PermissionStatus,
+    UnitPermissionType,
+    SubUnitPermissionType,
+    RangeUnitPermissionType,
+} from './services/permission/type';
+export type { IPermissionParam } from './services/permission/type';
+export type { IPermissionPoint, IUnitPermissionId, ISubUnitPermissionId, IRangePermissionId } from './services/permission/type';
 export { IResourceLoaderService } from './services/resource-loader/type';
 export { ResourceManagerService } from './services/resource-manager/resource-manager.service';
 export type { IResourceHook } from './services/resource-manager/type';
@@ -169,6 +172,7 @@ export { type ILogContext } from './services/log/context';
 export { b64DecodeUnicode, b64EncodeUnicode } from './shared/coder';
 export { ClientSnapshotServerService } from './services/snapshot/snapshot-server.service';
 export { getSheetBlocksFromSnapshot } from './services/snapshot/snapshot-transform';
+export { UserManagerService } from './services/user-manager/user-manager.service';
 
 export { isBlackColor, isWhiteColor } from './shared/color/color-kit';
 export { cellToRange } from './shared/common';

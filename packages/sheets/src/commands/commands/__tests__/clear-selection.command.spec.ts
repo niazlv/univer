@@ -38,7 +38,10 @@ import { ClearSelectionContentCommand } from '../clear-selection-content.command
 import { ClearSelectionFormatCommand } from '../clear-selection-format.command';
 import type { ISetRangeValuesCommandParams } from '../set-range-values.command';
 import { SetRangeValuesCommand } from '../set-range-values.command';
+import { WorkbookPermissionService } from '../../../services/permission/workbook-permission.service';
+import { WorksheetPermissionService } from '../../../services/permission/worksheet-permission.service';
 import { createCommandTestBed } from './create-command-test-bed';
+
 
 describe('Test clear selection content commands', () => {
     let univer: Univer;
@@ -46,7 +49,7 @@ describe('Test clear selection content commands', () => {
     let commandService: ICommandService;
 
     beforeEach(() => {
-        const testBed = createCommandTestBed(undefined, [[MergeCellController], [RefRangeService]]);
+        const testBed = createCommandTestBed(undefined, [[MergeCellController], [RefRangeService], [WorkbookPermissionService], [WorksheetPermissionService]]);
         univer = testBed.univer;
         get = testBed.get;
         get(MergeCellController);

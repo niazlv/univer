@@ -261,6 +261,12 @@ importers:
       '@univerjs/sheets-numfmt':
         specifier: workspace:*
         version: link:../packages/sheets-numfmt
+      '@univerjs/sheets-permission-ui':
+        specifier: workspace:*
+        version: link:../packages/sheet-permission-ui
+      '@univerjs/sheets-selection-protection':
+        specifier: workspace:*
+        version: link:../packages/sheets-selection-protection
       '@univerjs/sheets-ui':
         specifier: workspace:*
         version: link:../packages/sheets-ui
@@ -341,8 +347,17 @@ importers:
   packages/core:
     dependencies:
       '@univerjs/protocol':
+<<<<<<< HEAD
         specifier: ^0.1.20
+<<<<<<< HEAD
         version: 0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+=======
+        version: 0.1.23(@grpc/grpc-js@1.10.4)(rxjs@7.8.1)
+=======
+        specifier: ^0.1.23
+        version: 0.1.23(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
       nanoid:
         specifier: 5.0.7
         version: 5.0.7
@@ -376,6 +391,10 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 
   packages/data-validation:
+    dependencies:
+      '@univerjs/protocol':
+        specifier: ^0.1.23
+        version: 0.1.23(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
     devDependencies:
       '@univerjs/core':
         specifier: workspace:*
@@ -861,7 +880,69 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 
+  packages/sheet-permission-ui:
+    dependencies:
+      '@univerjs/icons':
+        specifier: ^0.1.44
+        version: 0.1.44(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
+    devDependencies:
+      '@univerjs/core':
+        specifier: workspace:*
+        version: link:../core
+      '@univerjs/design':
+        specifier: workspace:*
+        version: link:../design
+      '@univerjs/engine-formula':
+        specifier: workspace:*
+        version: link:../engine-formula
+      '@univerjs/engine-render':
+        specifier: workspace:*
+        version: link:../engine-render
+      '@univerjs/shared':
+        specifier: workspace:*
+        version: link:../../common/shared
+      '@univerjs/sheets':
+        specifier: workspace:*
+        version: link:../sheets
+      '@univerjs/sheets-selection-protection':
+        specifier: workspace:*
+        version: link:../sheets-selection-protection
+      '@univerjs/ui':
+        specifier: workspace:*
+        version: link:../ui
+      '@wendellhu/redi':
+        specifier: ^0.13.3
+        version: 0.13.3
+      clsx:
+        specifier: ^2.1.0
+        version: 2.1.1
+      less:
+        specifier: ^4.2.0
+        version: 4.2.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      rxjs:
+        specifier: ^7.8.1
+        version: 7.8.1
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+      vite:
+        specifier: ^5.2.8
+        version: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+      vitest:
+        specifier: ^1.4.0
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+
   packages/sheets:
+    dependencies:
+      '@univerjs/protocol':
+        specifier: ^0.1.23
+        version: 0.1.23(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
     devDependencies:
       '@univerjs/core':
         specifier: workspace:*
@@ -895,6 +976,10 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 
   packages/sheets-conditional-formatting:
+    dependencies:
+      '@univerjs/protocol':
+        specifier: ^0.1.23
+        version: 0.1.23(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
     devDependencies:
       '@univerjs/core':
         specifier: workspace:*
@@ -1334,6 +1419,64 @@ importers:
         specifier: ^1.5.0
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 
+  packages/sheets-selection-protection:
+    dependencies:
+      '@univerjs/icons':
+        specifier: ^0.1.44
+        version: 0.1.44(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@univerjs/protocol':
+        specifier: ^0.1.23
+        version: 0.1.23(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.75
+        version: 18.2.75
+      '@univerjs/core':
+        specifier: workspace:*
+        version: link:../core
+      '@univerjs/design':
+        specifier: workspace:*
+        version: link:../design
+      '@univerjs/engine-formula':
+        specifier: workspace:*
+        version: link:../engine-formula
+      '@univerjs/engine-numfmt':
+        specifier: workspace:*
+        version: link:../engine-numfmt
+      '@univerjs/engine-render':
+        specifier: workspace:*
+        version: link:../engine-render
+      '@univerjs/shared':
+        specifier: workspace:*
+        version: link:../../common/shared
+      '@univerjs/sheets':
+        specifier: workspace:*
+        version: link:../sheets
+      '@univerjs/ui':
+        specifier: workspace:*
+        version: link:../ui
+      '@wendellhu/redi':
+        specifier: ^0.13.3
+        version: 0.13.3
+      less:
+        specifier: ^4.2.0
+        version: 4.2.0
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      rxjs:
+        specifier: ^7.8.1
+        version: 7.8.1
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+      vite:
+        specifier: ^5.2.8
+        version: 5.2.8(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+      vitest:
+        specifier: ^1.4.0
+        version: 1.4.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+
   packages/sheets-ui:
     dependencies:
       '@univerjs/docs-ui':
@@ -1370,6 +1513,12 @@ importers:
       '@univerjs/sheets':
         specifier: workspace:*
         version: link:../sheets
+      '@univerjs/sheets-permission-ui':
+        specifier: workspace:*
+        version: link:../sheet-permission-ui
+      '@univerjs/sheets-selection-protection':
+        specifier: workspace:*
+        version: link:../sheets-selection-protection
       '@univerjs/ui':
         specifier: workspace:*
         version: link:../ui
@@ -3232,14 +3381,28 @@ packages:
     os: [linux]
     libc: [glibc]
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  '@rollup/rollup-linux-arm64-gnu@4.13.2':
+    resolution: {integrity: sha512-L1+D8/wqGnKQIlh4Zre9i4R4b4noxzH5DDciyahX4oOz62CphY7WDWqJoQ66zNR4oScLNOqQJfNSIAe/6TPUmQ==}
+=======
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   '@rollup/rollup-linux-arm-musleabihf@4.16.4':
     resolution: {integrity: sha512-tJfJaXPiFAG+Jn3cutp7mCs1ePltuAgRqdDZrzb1aeE3TktWWJ+g7xK9SNlaSUFw6IU4QgOxAY4rA+wZUT5Wfg==}
     cpu: [arm]
     os: [linux]
+<<<<<<< HEAD
     libc: [musl]
 
   '@rollup/rollup-linux-arm64-gnu@4.16.4':
     resolution: {integrity: sha512-7dy1BzQkgYlUTapDTvK997cgi0Orh5Iu7JlZVBy1MBURk7/HSbHkzRnXZa19ozy+wwD8/SlpJnOOckuNZtJR9w==}
+=======
+
+  '@rollup/rollup-linux-arm64-gnu@4.16.4':
+    resolution: {integrity: sha512-7dy1BzQkgYlUTapDTvK997cgi0Orh5Iu7JlZVBy1MBURk7/HSbHkzRnXZa19ozy+wwD8/SlpJnOOckuNZtJR9w==}
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
@@ -3775,9 +3938,6 @@ packages:
   '@types/eslint@8.56.10':
     resolution: {integrity: sha512-Shavhk87gCtY2fhXDctcfS3e6FdxWkCx1iUZ9eEUbh7rTqlZT0/IzOkCOVt0fCjcFuZ9FPYfuezTBImfHCDBGQ==}
 
-  '@types/eslint@8.56.7':
-    resolution: {integrity: sha512-SjDvI/x3zsZnOkYZ3lCt9lOZWZLB2jIlNKz+LBgCtDurK0JZcwucxYHn1w2BJkD34dgX9Tjnak0txtq4WTggEA==}
-
   '@types/estree@0.0.51':
     resolution: {integrity: sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==}
 
@@ -3873,8 +4033,21 @@ packages:
   '@types/react-transition-group@4.4.10':
     resolution: {integrity: sha512-hT/+s0VQs2ojCX823m60m5f0sL5idt9SO6Tj6Dg+rdphGPIeJbJ6CxvBYkgkGKrYeDjvIpKTR38UzmtHJOGW3Q==}
 
+<<<<<<< HEAD
   '@types/react@18.2.79':
     resolution: {integrity: sha512-RwGAGXPl9kSXwdNTafkOEuFrTBD5SA2B3iEB96xi8+xu5ddUa/cpvyVCSNn+asgLCTHkb5ZxN8gbuibYJi4s1w==}
+=======
+<<<<<<< HEAD
+  '@types/react@18.3.1':
+    resolution: {integrity: sha512-V0kuGBX3+prX+DQ/7r2qsv1NsdfnCLnTgnRJ1pYnxykBhGMz+qj+box5lq7XsO5mtZsBqpjwwTu/7wszPfMBcw==}
+=======
+  '@types/react@18.2.75':
+    resolution: {integrity: sha512-+DNnF7yc5y0bHkBTiLKqXFe+L4B3nvOphiMY3tuA5X10esmjqk7smyBZzbGTy2vsiy/Bnzj8yFIBL8xhRacoOg==}
+
+  '@types/react@18.2.79':
+    resolution: {integrity: sha512-RwGAGXPl9kSXwdNTafkOEuFrTBD5SA2B3iEB96xi8+xu5ddUa/cpvyVCSNn+asgLCTHkb5ZxN8gbuibYJi4s1w==}
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
 
   '@types/resolve@1.20.6':
     resolution: {integrity: sha512-A4STmOXPhMUtHH+S6ymgE2GiBSMqf4oTvcQZMcHzokuTLVYzXTB8ttjcgxOVaAp2lGwEdzZ0J+cRbbeevQj1UQ==}
@@ -3932,10 +4105,6 @@ packages:
     resolution: {integrity: sha512-OwLUIWZJry80O99zvqXVEioyniJMa+d2GrqpUTqi5/v5D5rOrppJVBPa0yKCblcigC0/aYAzxxqQ1B+DS2RYsg==}
     engines: {node: ^16.0.0 || >=18.0.0}
 
-  '@typescript-eslint/scope-manager@7.6.0':
-    resolution: {integrity: sha512-ngttyfExA5PsHSx0rdFgnADMYQi+Zkeiv4/ZxGYUWd0nLs63Ha0ksmp8VMxAIC0wtCFxMos7Lt3PszJssG/E6w==}
-    engines: {node: ^18.18.0 || >=20.0.0}
-
   '@typescript-eslint/scope-manager@7.7.0':
     resolution: {integrity: sha512-/8INDn0YLInbe9Wt7dK4cXLDYp0fNHP5xKLHvZl3mOT5X17rK/YShXaiNmorl+/U4VKCVIjJnx4Ri5b0y+HClw==}
     engines: {node: ^18.18.0 || >=20.0.0}
@@ -3968,10 +4137,6 @@ packages:
     resolution: {integrity: sha512-1kFmZ1rOm5epu9NZEZm1kckCDGj5UJEf7P1kliH4LKu/RkwpsfqqGmY2OOcUs18lSlQBKLDYBOGxRVtrMN5lpg==}
     engines: {node: ^16.0.0 || >=18.0.0}
 
-  '@typescript-eslint/types@7.6.0':
-    resolution: {integrity: sha512-h02rYQn8J+MureCvHVVzhl69/GAfQGPQZmOMjG1KfCl7o3HtMSlPaPUAPu6lLctXI5ySRGIYk94clD/AUMCUgQ==}
-    engines: {node: ^18.18.0 || >=20.0.0}
-
   '@typescript-eslint/types@7.7.0':
     resolution: {integrity: sha512-G01YPZ1Bd2hn+KPpIbrAhEWOn5lQBrjxkzHkWvP6NucMXFtfXoevK82hzQdpfuQYuhkvFDeQYbzXCjR1z9Z03w==}
     engines: {node: ^18.18.0 || >=20.0.0}
@@ -3983,15 +4148,6 @@ packages:
   '@typescript-eslint/typescript-estree@6.21.0':
     resolution: {integrity: sha512-6npJTkZcO+y2/kr+z0hc4HwNfrrP4kNYh57ek7yCNlrBjWQ1Y0OS7jiZTkgumrvkX5HkEKXFZkkdFNkaW2wmUQ==}
     engines: {node: ^16.0.0 || >=18.0.0}
-    peerDependencies:
-      typescript: '*'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-
-  '@typescript-eslint/typescript-estree@7.6.0':
-    resolution: {integrity: sha512-+7Y/GP9VuYibecrCQWSKgl3GvUM5cILRttpWtnAu8GNL9j11e4tbuGZmZjJ8ejnKYyBRb2ddGQ3rEFCq3QjMJw==}
-    engines: {node: ^18.18.0 || >=20.0.0}
     peerDependencies:
       typescript: '*'
     peerDependenciesMeta:
@@ -4022,12 +4178,6 @@ packages:
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
 
-  '@typescript-eslint/utils@7.6.0':
-    resolution: {integrity: sha512-x54gaSsRRI+Nwz59TXpCsr6harB98qjXYzsRxGqvA5Ue3kQH+FxS7FYU81g/omn22ML2pZJkisy6Q+ElK8pBCA==}
-    engines: {node: ^18.18.0 || >=20.0.0}
-    peerDependencies:
-      eslint: ^8.56.0
-
   '@typescript-eslint/utils@7.7.0':
     resolution: {integrity: sha512-LKGAXMPQs8U/zMRFXDZOzmMKgFv3COlxUQ+2NMPhbqgVm6R1w+nU1i4836Pmxu9jZAuIeyySNrN/6Rc657ggig==}
     engines: {node: ^18.18.0 || >=20.0.0}
@@ -4043,10 +4193,6 @@ packages:
   '@typescript-eslint/visitor-keys@6.21.0':
     resolution: {integrity: sha512-JJtkDduxLi9bivAB+cYOVMtbkqdPOhZ+ZI5LC47MIRrDV4Yn2o+ZnW10Nkmr28xRpSpdJ6Sm42Hjf2+REYXm0A==}
     engines: {node: ^16.0.0 || >=18.0.0}
-
-  '@typescript-eslint/visitor-keys@7.6.0':
-    resolution: {integrity: sha512-4eLB7t+LlNUmXzfOu1VAIAdkjbu5xNSerURS9X/S5TUKWFRpXRQZbmtPqgKmYx8bj3J0irtQXSiWAOY82v+cgw==}
-    engines: {node: ^18.18.0 || >=20.0.0}
 
   '@typescript-eslint/visitor-keys@7.7.0':
     resolution: {integrity: sha512-h0WHOj8MhdhY8YWkzIF30R379y0NqyOHExI9N9KCzvmu05EgG4FumeYa3ccfKUSphyWkWQE1ybVrgz/Pbam6YA==}
@@ -4075,6 +4221,13 @@ packages:
       '@grpc/grpc-js': ^1.9.14
       rxjs: '>=7.0.0'
 
+  '@univerjs/protocol@0.1.23':
+    resolution: {integrity: sha512-xOilOZjr+qA3RtKsgcVhRXp5Bo45JryPutrcVNeM06PoGmljWBfbQZhHZ0HjHxN1iYZNl9AO4LPuouLEeB4IZQ==}
+    engines: {node: '>=16.0.0', npm: '>=8.0.0'}
+    peerDependencies:
+      '@grpc/grpc-js': ^1.9.14
+      rxjs: '>=7.0.0'
+
   '@vitejs/plugin-react@4.2.1':
     resolution: {integrity: sha512-oojO9IDc4nCUUi8qIR11KoQm0XFFLIwsRBwHRR4d/88IWghn1y6ckz/bJ8GHDCsYEJee8mDzqtJxh15/cisJNQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -4089,9 +4242,13 @@ packages:
   '@vitest/expect@1.3.1':
     resolution: {integrity: sha512-xofQFwIzfdmLLlHa6ag0dPV8YsnKOCP1KdAeVVh34vSjN2dcUiXYCD9htu/9eM7t8Xln4v03U9HLxLpPlsXdZw==}
 
+<<<<<<< HEAD
   '@vitest/expect@1.5.0':
     resolution: {integrity: sha512-0pzuCI6KYi2SIC3LQezmxujU9RK/vwC1U9R0rLuGlNGcOuDWxqWKu6nUdFsX9tH1WU0SXtAxToOsEjeUn1s3hA==}
 
+=======
+<<<<<<< HEAD
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   '@vitest/expect@1.5.2':
     resolution: {integrity: sha512-rf7MTD1WCoDlN3FfYJ9Llfp0PbdtOMZ3FIF0AVkDnKbp3oiMW1c8AmvRZBcqbAhDUAvF52e9zx4WQM1r3oraVA==}
 
@@ -4101,17 +4258,57 @@ packages:
   '@vitest/runner@1.5.2':
     resolution: {integrity: sha512-7IJ7sJhMZrqx7HIEpv3WrMYcq8ZNz9L6alo81Y6f8hV5mIE6yVZsFoivLZmr0D777klm1ReqonE9LyChdcmw6g==}
 
+<<<<<<< HEAD
   '@vitest/snapshot@1.5.0':
     resolution: {integrity: sha512-qpv3fSEuNrhAO3FpH6YYRdaECnnRjg9VxbhdtPwPRnzSfHVXnNzzrpX4cJxqiwgRMo7uRMWDFBlsBq4Cr+rO3A==}
 
+=======
+=======
+  '@vitest/expect@1.4.0':
+    resolution: {integrity: sha512-Jths0sWCJZ8BxjKe+p+eKsoqev1/T8lYcrjavEaz8auEJ4jAVY0GwW3JKmdVU4mmNPLPHixh4GNXP7GFtAiDHA==}
+
+  '@vitest/expect@1.5.0':
+    resolution: {integrity: sha512-0pzuCI6KYi2SIC3LQezmxujU9RK/vwC1U9R0rLuGlNGcOuDWxqWKu6nUdFsX9tH1WU0SXtAxToOsEjeUn1s3hA==}
+
+  '@vitest/expect@1.5.2':
+    resolution: {integrity: sha512-rf7MTD1WCoDlN3FfYJ9Llfp0PbdtOMZ3FIF0AVkDnKbp3oiMW1c8AmvRZBcqbAhDUAvF52e9zx4WQM1r3oraVA==}
+
+  '@vitest/runner@1.4.0':
+    resolution: {integrity: sha512-EDYVSmesqlQ4RD2VvWo3hQgTJ7ZrFQ2VSJdfiJiArkCerDAGeyF1i6dHkmySqk573jLp6d/cfqCN+7wUB5tLgg==}
+
+  '@vitest/runner@1.5.0':
+    resolution: {integrity: sha512-7HWwdxXP5yDoe7DTpbif9l6ZmDwCzcSIK38kTSIt6CFEpMjX4EpCgT6wUmS0xTXqMI6E/ONmfgRKmaujpabjZQ==}
+
+  '@vitest/runner@1.5.2':
+    resolution: {integrity: sha512-7IJ7sJhMZrqx7HIEpv3WrMYcq8ZNz9L6alo81Y6f8hV5mIE6yVZsFoivLZmr0D777klm1ReqonE9LyChdcmw6g==}
+
+  '@vitest/snapshot@1.4.0':
+    resolution: {integrity: sha512-saAFnt5pPIA5qDGxOHxJ/XxhMFKkUSBJmVt5VgDsAqPTX6JP326r5C/c9UuCMPoXNzuudTPsYDZCoJ5ilpqG2A==}
+
+  '@vitest/snapshot@1.5.0':
+    resolution: {integrity: sha512-qpv3fSEuNrhAO3FpH6YYRdaECnnRjg9VxbhdtPwPRnzSfHVXnNzzrpX4cJxqiwgRMo7uRMWDFBlsBq4Cr+rO3A==}
+
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   '@vitest/snapshot@1.5.2':
     resolution: {integrity: sha512-CTEp/lTYos8fuCc9+Z55Ga5NVPKUgExritjF5VY7heRFUfheoAqBneUlvXSUJHUZPjnPmyZA96yLRJDP1QATFQ==}
 
   '@vitest/spy@1.3.1':
     resolution: {integrity: sha512-xAcW+S099ylC9VLU7eZfdT9myV67Nor9w9zhf0mGCYJSO+zM2839tOeROTdikOi/8Qeusffvxb/MyBSOja1Uig==}
 
+<<<<<<< HEAD
   '@vitest/spy@1.5.0':
     resolution: {integrity: sha512-vu6vi6ew5N5MMHJjD5PoakMRKYdmIrNJmyfkhRpQt5d9Ewhw9nZ5Aqynbi3N61bvk9UvZ5UysMT6ayIrZ8GA9w==}
+=======
+  '@vitest/spy@1.4.0':
+    resolution: {integrity: sha512-Ywau/Qs1DzM/8Uc+yA77CwSegizMlcgTJuYGAi0jujOteJOUf1ujunHThYo243KG9nAyWT3L9ifPYZ5+As/+6Q==}
+<<<<<<< HEAD
+=======
+
+  '@vitest/spy@1.5.0':
+    resolution: {integrity: sha512-vu6vi6ew5N5MMHJjD5PoakMRKYdmIrNJmyfkhRpQt5d9Ewhw9nZ5Aqynbi3N61bvk9UvZ5UysMT6ayIrZ8GA9w==}
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
 
   '@vitest/spy@1.5.2':
     resolution: {integrity: sha512-xCcPvI8JpCtgikT9nLpHPL1/81AYqZy1GCy4+MCHBE7xi8jgsYkULpW5hrx5PGLgOQjUpb6fd15lqcriJ40tfQ==}
@@ -4119,8 +4316,19 @@ packages:
   '@vitest/utils@1.3.1':
     resolution: {integrity: sha512-d3Waie/299qqRyHTm2DjADeTaNdNSVsnwHPWrs20JMpjh6eiVq7ggggweO8rc4arhf6rRkWuHKwvxGvejUXZZQ==}
 
+<<<<<<< HEAD
   '@vitest/utils@1.5.0':
     resolution: {integrity: sha512-BDU0GNL8MWkRkSRdNFvCUCAVOeHaUlVJ9Tx0TYBZyXaaOTmGtUFObzchCivIBrIwKzvZA7A9sCejVhXM2aY98A==}
+=======
+  '@vitest/utils@1.4.0':
+    resolution: {integrity: sha512-mx3Yd1/6e2Vt/PUC98DcqTirtfxUyAZ32uK82r8rZzbtBeBo+nqgnjx/LvqQdWsrvNtm14VmurNgcf4nqY5gJg==}
+<<<<<<< HEAD
+=======
+
+  '@vitest/utils@1.5.0':
+    resolution: {integrity: sha512-BDU0GNL8MWkRkSRdNFvCUCAVOeHaUlVJ9Tx0TYBZyXaaOTmGtUFObzchCivIBrIwKzvZA7A9sCejVhXM2aY98A==}
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
 
   '@vitest/utils@1.5.2':
     resolution: {integrity: sha512-sWOmyofuXLJ85VvXNsroZur7mOJGiQeM0JN3/0D1uU8U9bGFM69X1iqHaRXl6R8BwaLY6yPCogP257zxTzkUdA==}
@@ -10023,16 +10231,33 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   vary@https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==, tarball: https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz}
     version: 1.1.2
     engines: {node: '>= 0.8'}
 
+<<<<<<< HEAD
+=======
+  vite-node@1.4.0:
+    resolution: {integrity: sha512-VZDAseqjrHgNd4Kh8icYHWzTKSCZMhia7GyHfhtzLW33fZlG9SwsB6CEhgyVOWkJfJ2pFLrp/Gj1FSfAiqH9Lw==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   vite-node@1.5.0:
     resolution: {integrity: sha512-tV8h6gMj6vPzVCa7l+VGq9lwoJjW8Y79vst8QZZGiuRAfijU+EEWuc0kFpmndQrWhMMhet1jdSF+40KSZUqIIw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
 
+<<<<<<< HEAD
+=======
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   vite-node@1.5.2:
     resolution: {integrity: sha512-Y8p91kz9zU+bWtF7HGt6DVw2JbhyuB2RlZix3FPYAYmUyZ3n7iTp8eSyLyY6sxtPegvxQtmlTMhfPhUfCUF93A==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -10076,11 +10301,69 @@ packages:
       terser:
         optional: true
 
+  vite@5.2.8:
+    resolution: {integrity: sha512-OyZR+c1CE8yeHw5V5t59aXsUPPVTHMDjEZz8MgguLL/Q7NblxhZUlTu9xSPqlsUO/y+X7dlU05jdhvyycD55DA==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^18.0.0 || >=20.0.0
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+
   vitest-canvas-mock@0.3.3:
     resolution: {integrity: sha512-3P968tYBpqYyzzOaVtqnmYjqbe13576/fkjbDEJSfQAkHtC5/UjuRHOhFEN/ZV5HVZIkaROBUWgazDKJ+Ibw+Q==}
     peerDependencies:
       vitest: '*'
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+  vitest@1.4.0:
+    resolution: {integrity: sha512-gujzn0g7fmwf83/WzrDTnncZt2UiXP41mHuFYFrdwaLRVQ6JYQEiME2IfEjU3vcFL3VKa75XhI3lFgn+hfVsQw==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    peerDependencies:
+      '@edge-runtime/vm': '*'
+      '@types/node': ^18.0.0 || >=20.0.0
+      '@vitest/browser': 1.4.0
+      '@vitest/ui': 1.4.0
+      happy-dom: '*'
+      jsdom: '*'
+    peerDependenciesMeta:
+      '@edge-runtime/vm':
+        optional: true
+      '@types/node':
+        optional: true
+      '@vitest/browser':
+        optional: true
+      '@vitest/ui':
+        optional: true
+      happy-dom:
+        optional: true
+      jsdom:
+        optional: true
+
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   vitest@1.5.0:
     resolution: {integrity: sha512-d8UKgR0m2kjdxDWX6911uwxout6GHS0XaGH1cksSIVVG8kRlE7G7aBw7myKQCvDI5dT4j7ZMa+l706BIORMDLw==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -10106,6 +10389,10 @@ packages:
       jsdom:
         optional: true
 
+<<<<<<< HEAD
+=======
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   vitest@1.5.2:
     resolution: {integrity: sha512-l9gwIkq16ug3xY7BxHwcBQovLZG75zZL0PlsiYQbf76Rz6QGs54416UWMtC0jXeihvHvcHrf2ROEjkQRVpoZYw==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -10660,8 +10947,17 @@ snapshots:
     dependencies:
       '@babel/helper-validator-identifier': 7.22.20
       chalk: 2.4.2
+<<<<<<< HEAD
       js-tokens: https://r2.cnpmjs.org/js-tokens/-/js-tokens-4.0.0.tgz
       picocolors: https://r2.cnpmjs.org/picocolors/-/picocolors-1.0.0.tgz
+=======
+      js-tokens: 4.0.0
+<<<<<<< HEAD
+      picocolors: 1.0.0
+=======
+      picocolors: https://r2.cnpmjs.org/picocolors/-/picocolors-1.0.0.tgz
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
 
   '@babel/parser@7.24.1':
     dependencies:
@@ -13023,15 +13319,10 @@ snapshots:
 
   '@types/eslint-scope@3.7.7':
     dependencies:
-      '@types/eslint': 8.56.7
+      '@types/eslint': 8.56.10
       '@types/estree': 1.0.5
 
   '@types/eslint@8.56.10':
-    dependencies:
-      '@types/estree': 1.0.5
-      '@types/json-schema': 7.0.15
-
-  '@types/eslint@8.56.7':
     dependencies:
       '@types/estree': 1.0.5
       '@types/json-schema': 7.0.15
@@ -13128,7 +13419,20 @@ snapshots:
     dependencies:
       '@types/react': 18.2.79
 
+<<<<<<< HEAD
   '@types/react@18.2.79':
+=======
+<<<<<<< HEAD
+  '@types/react@18.3.1':
+=======
+  '@types/react@18.2.75':
+    dependencies:
+      '@types/prop-types': 15.7.12
+      csstype: 3.1.3
+
+  '@types/react@18.2.79':
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
@@ -13202,11 +13506,6 @@ snapshots:
       '@typescript-eslint/types': 6.21.0
       '@typescript-eslint/visitor-keys': 6.21.0
 
-  '@typescript-eslint/scope-manager@7.6.0':
-    dependencies:
-      '@typescript-eslint/types': 7.6.0
-      '@typescript-eslint/visitor-keys': 7.6.0
-
   '@typescript-eslint/scope-manager@7.7.0':
     dependencies:
       '@typescript-eslint/types': 7.7.0
@@ -13243,8 +13542,6 @@ snapshots:
 
   '@typescript-eslint/types@6.21.0': {}
 
-  '@typescript-eslint/types@7.6.0': {}
-
   '@typescript-eslint/types@7.7.0': {}
 
   '@typescript-eslint/types@7.7.1': {}
@@ -13264,6 +13561,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
   '@typescript-eslint/typescript-estree@7.6.0(typescript@5.4.5)':
     dependencies:
       '@typescript-eslint/types': 7.6.0
@@ -13279,6 +13577,8 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+=======
+>>>>>>> 99f228957 (feat(selection-protection): init)
   '@typescript-eslint/typescript-estree@7.7.0(typescript@5.4.5)':
     dependencies:
       '@typescript-eslint/types': 7.7.0
@@ -13323,20 +13623,6 @@ snapshots:
       - supports-color
       - typescript
 
-  '@typescript-eslint/utils@7.6.0(eslint@8.57.0)(typescript@5.4.5)':
-    dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
-      '@types/json-schema': 7.0.15
-      '@types/semver': 7.5.8
-      '@typescript-eslint/scope-manager': 7.6.0
-      '@typescript-eslint/types': 7.6.0
-      '@typescript-eslint/typescript-estree': 7.6.0(typescript@5.4.5)
-      eslint: 8.57.0
-      semver: 7.6.0
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-
   '@typescript-eslint/utils@7.7.0(eslint@8.57.0)(typescript@5.4.5)':
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@8.57.0)
@@ -13370,11 +13656,6 @@ snapshots:
       '@typescript-eslint/types': 6.21.0
       eslint-visitor-keys: 3.4.3
 
-  '@typescript-eslint/visitor-keys@7.6.0':
-    dependencies:
-      '@typescript-eslint/types': 7.6.0
-      eslint-visitor-keys: 3.4.3
-
   '@typescript-eslint/visitor-keys@7.7.0':
     dependencies:
       '@typescript-eslint/types': 7.7.0
@@ -13399,7 +13680,20 @@ snapshots:
       '@grpc/grpc-js': 1.10.6
       rxjs: 7.8.1
 
+<<<<<<< HEAD
   '@vitejs/plugin-react@4.2.1(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))':
+=======
+<<<<<<< HEAD
+  '@vitejs/plugin-react@4.2.1(vite@5.2.10)':
+=======
+  '@univerjs/protocol@0.1.23(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
+    dependencies:
+      '@grpc/grpc-js': 1.10.6
+      rxjs: 7.8.1
+
+  '@vitejs/plugin-react@4.2.1(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))':
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 2815385ea (feat(selection-protection): init)
     dependencies:
       '@babel/core': 7.24.3
       '@babel/plugin-transform-react-jsx-self': 7.24.1(@babel/core@7.24.3)
@@ -13431,36 +13725,81 @@ snapshots:
       '@vitest/utils': 1.3.1
       chai: 4.4.1
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+  '@vitest/expect@1.4.0':
+    dependencies:
+      '@vitest/spy': 1.4.0
+      '@vitest/utils': 1.4.0
+      chai: 4.4.1
+
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   '@vitest/expect@1.5.0':
     dependencies:
       '@vitest/spy': 1.5.0
       '@vitest/utils': 1.5.0
       chai: 4.4.1
 
+<<<<<<< HEAD
+=======
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   '@vitest/expect@1.5.2':
     dependencies:
       '@vitest/spy': 1.5.2
       '@vitest/utils': 1.5.2
       chai: 4.4.1
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+  '@vitest/runner@1.4.0':
+    dependencies:
+      '@vitest/utils': 1.4.0
+      p-limit: 5.0.0
+      pathe: 1.1.2
+
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   '@vitest/runner@1.5.0':
     dependencies:
       '@vitest/utils': 1.5.0
       p-limit: 5.0.0
       pathe: 1.1.2
 
+<<<<<<< HEAD
+=======
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   '@vitest/runner@1.5.2':
     dependencies:
       '@vitest/utils': 1.5.2
       p-limit: 5.0.0
       pathe: 1.1.2
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+  '@vitest/snapshot@1.4.0':
+    dependencies:
+      magic-string: 0.30.8
+      pathe: 1.1.2
+      pretty-format: 29.7.0
+
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   '@vitest/snapshot@1.5.0':
     dependencies:
       magic-string: 0.30.10
       pathe: 1.1.2
       pretty-format: 29.7.0
 
+<<<<<<< HEAD
+=======
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   '@vitest/snapshot@1.5.2':
     dependencies:
       magic-string: 0.30.10
@@ -13471,7 +13810,18 @@ snapshots:
     dependencies:
       tinyspy: 2.2.1
 
+<<<<<<< HEAD
   '@vitest/spy@1.5.0':
+=======
+  '@vitest/spy@1.4.0':
+<<<<<<< HEAD
+=======
+    dependencies:
+      tinyspy: 2.2.1
+
+  '@vitest/spy@1.5.0':
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
     dependencies:
       tinyspy: 2.2.1
 
@@ -13486,7 +13836,21 @@ snapshots:
       loupe: 2.3.7
       pretty-format: 29.7.0
 
+<<<<<<< HEAD
   '@vitest/utils@1.5.0':
+=======
+  '@vitest/utils@1.4.0':
+<<<<<<< HEAD
+=======
+    dependencies:
+      diff-sequences: 29.6.3
+      estree-walker: 3.0.3
+      loupe: 2.3.7
+      pretty-format: 29.7.0
+
+  '@vitest/utils@1.5.0':
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
     dependencies:
       diff-sequences: 29.6.3
       estree-walker: 3.0.3
@@ -15306,7 +15670,7 @@ snapshots:
 
   eslint-plugin-import-x@0.5.0(eslint@8.57.0)(typescript@5.4.5):
     dependencies:
-      '@typescript-eslint/utils': 7.6.0(eslint@8.57.0)(typescript@5.4.5)
+      '@typescript-eslint/utils': 7.7.0(eslint@8.57.0)(typescript@5.4.5)
       debug: 4.3.4
       doctrine: https://r2.cnpmjs.org/doctrine/-/doctrine-3.0.0.tgz
       eslint: 8.57.0
@@ -19582,6 +19946,7 @@ snapshots:
 
   vary@1.1.2: {}
 
+<<<<<<< HEAD
   vary@https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz: {}
 
   vite-node@1.5.0(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
@@ -19601,7 +19966,53 @@ snapshots:
       - supports-color
       - terser
 
+=======
+<<<<<<< HEAD
+>>>>>>> 5c195a17c (feat(selection-protection): init)
   vite-node@1.5.2(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
+=======
+<<<<<<< HEAD
+  vite-node@1.5.2(@types/node@20.12.7)(less@4.2.0):
+=======
+  vary@https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz: {}
+
+  vite-node@1.4.0(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
+    dependencies:
+      cac: 6.7.14
+      debug: 4.3.4
+      pathe: 1.1.2
+      picocolors: 1.0.0
+      vite: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
+  vite-node@1.5.0(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
+    dependencies:
+      cac: 6.7.14
+      debug: 4.3.4
+      pathe: 1.1.2
+      picocolors: https://r2.cnpmjs.org/picocolors/-/picocolors-1.0.0.tgz
+      vite: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
+  vite-node@1.5.2(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 2815385ea (feat(selection-protection): init)
     dependencies:
       cac: 6.7.14
       debug: 4.3.4
@@ -19647,7 +20058,31 @@ snapshots:
       sass: 1.72.0
       terser: 5.30.0
 
+<<<<<<< HEAD
   vitest-canvas-mock@0.3.3(vitest@1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)):
+=======
+<<<<<<< HEAD
+  vitest-canvas-mock@0.3.3(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)):
+=======
+<<<<<<< HEAD
+  vitest-canvas-mock@0.3.3(vitest@1.5.2):
+=======
+  vite@5.2.8(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
+    dependencies:
+      esbuild: 0.20.2
+      postcss: 8.4.38
+      rollup: 4.16.4
+    optionalDependencies:
+      '@types/node': 20.12.7
+      fsevents: 2.3.3
+      less: 4.2.0
+      sass: 1.72.0
+      terser: 5.30.0
+
+  vitest-canvas-mock@0.3.3(vitest@1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)):
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 2815385ea (feat(selection-protection): init)
+>>>>>>> 5c195a17c (feat(selection-protection): init)
     dependencies:
       jest-canvas-mock: 2.5.2
       vitest: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
@@ -19687,7 +20122,50 @@ snapshots:
       - supports-color
       - terser
 
+<<<<<<< HEAD
   vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
+=======
+<<<<<<< HEAD
+  vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8):
+=======
+  vitest@1.4.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
+    dependencies:
+      '@vitest/expect': 1.4.0
+      '@vitest/runner': 1.4.0
+      '@vitest/snapshot': 1.4.0
+      '@vitest/spy': 1.4.0
+      '@vitest/utils': 1.4.0
+      acorn-walk: 8.3.2
+      chai: 4.4.1
+      debug: 4.3.4
+      execa: 8.0.1
+      local-pkg: 0.5.0
+      magic-string: 0.30.8
+      pathe: 1.1.2
+      picocolors: 1.0.0
+      std-env: 3.7.0
+      strip-literal: 2.1.0
+      tinybench: 2.8.0
+      tinypool: 0.8.4
+      vite: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+      vite-node: 1.4.0(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+      why-is-node-running: 2.2.2
+    optionalDependencies:
+      '@types/node': 20.12.7
+      happy-dom: 13.3.8
+      jsdom: 24.0.0
+    transitivePeerDependencies:
+      - less
+      - lightningcss
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
+  vitest@1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
+>>>>>>> 99f228957 (feat(selection-protection): init)
+>>>>>>> 2815385ea (feat(selection-protection): init)
     dependencies:
       '@vitest/expect': 1.5.2
       '@vitest/runner': 1.5.2

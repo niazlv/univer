@@ -15,13 +15,13 @@
  */
 
 import { UniverInstanceType } from '@univerjs/core';
-import { getCurrentSheetDisabled$ } from '@univerjs/sheets';
 import { PASTE_SPECIAL_MENU_ID } from '@univerjs/sheets-ui';
 import type { IMenuItem } from '@univerjs/ui';
 import { getMenuHiddenObservable, IClipboardInterfaceService, MenuGroup, MenuItemType, MenuPosition } from '@univerjs/ui';
 import type { IAccessor } from '@wendellhu/redi';
-import { Observable } from 'rxjs';
+import { combineLatestWith, map, Observable } from 'rxjs';
 
+import { getCurrentRangeDisable$ } from '@univerjs/sheets-ui/controllers/menu/menu-util.js';
 import { SheetOnlyPasteFormulaCommand } from '../commands/commands/formula-clipboard.command';
 import { InsertFunctionOperation } from '../commands/operations/insert-function.operation';
 import { MoreFunctionsOperation } from '../commands/operations/more-functions.operation';
@@ -62,7 +62,7 @@ export function InsertFunctionMenuItemFactory(accessor: IAccessor): IMenuItem {
             },
         ],
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentSheetDisabled$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor),
     };
 }
 
@@ -76,7 +76,11 @@ export function MoreFunctionsMenuItemFactory(): IMenuItem {
 }
 
 function menuClipboardDisabledObservable(injector: IAccessor): Observable<boolean> {
-    return new Observable((subscriber) => subscriber.next(!injector.get(IClipboardInterfaceService).supportClipboard));
+    const clipboardDisabled$: Observable<boolean> = new Observable((subscriber) => subscriber.next(!injector.get(IClipboardInterfaceService).supportClipboard));
+    return clipboardDisabled$.pipe(
+        combineLatestWith(getCurrentRangeDisable$(injector)),
+        map(([clipboardDisabled, rangeDisabled]) => clipboardDisabled || rangeDisabled)
+    );
 }
 
 export function PasteFormulaMenuItemFactory(accessor: IAccessor): IMenuItem {

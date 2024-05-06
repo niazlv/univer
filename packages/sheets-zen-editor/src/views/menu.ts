@@ -16,9 +16,11 @@
 
 import { type IMenuButtonItem, MenuGroup, MenuItemType, MenuPosition } from '@univerjs/ui';
 
+import { getCurrentRangeDisable$ } from '@univerjs/sheets-ui/controllers/menu/menu-util.js';
+import type { IAccessor } from '@wendellhu/redi';
 import { OpenZenEditorOperation } from '../commands/operations/zen-editor.operation';
 
-export function ZenEditorMenuItemFactory(): IMenuButtonItem {
+export function ZenEditorMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
     return {
         id: OpenZenEditorOperation.id,
         group: MenuGroup.CONTEXT_MENU_OTHERS,
@@ -26,5 +28,6 @@ export function ZenEditorMenuItemFactory(): IMenuButtonItem {
         title: 'rightClick.zenEditor',
         icon: 'AmplifySingle',
         positions: [MenuPosition.CONTEXT_MENU],
+        disabled$: getCurrentRangeDisable$(accessor),
     };
 }
