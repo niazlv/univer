@@ -142,6 +142,10 @@ export class WorksheetPermissionService extends RxDisposable {
     getManageCollaboratorPermission: getWorksheetPermission;
     setManageCollaboratorPermission: setWorksheetPermission;
 
+    getUnRecognizedPermission$: getWorksheetPermission$;
+    getUnRecognizedPermission: getWorksheetPermission;
+    setUnRecognizedPermission: setWorksheetPermission;
+
 
     constructor(
         @Inject(IPermissionService) private _permissionService: IPermissionService,
