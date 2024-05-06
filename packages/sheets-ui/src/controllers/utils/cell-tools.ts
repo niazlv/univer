@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-import type { ICellDataForSheetInterceptor, IRange, type RangeUnitPermissionType, Workbook } from '@univerjs/core';
+import type { ICellDataForSheetInterceptor, IRange, Workbook } from '@univerjs/core';
+import {RangeUnitPermissionType} from '@univerjs/core';
 import { IUniverInstanceService, UniverInstanceType } from '@univerjs/core';
 import { getCurrentSheetDisabled$, SelectionManagerService } from '@univerjs/sheets';
 import type { IAccessor } from '@wendellhu/redi';
