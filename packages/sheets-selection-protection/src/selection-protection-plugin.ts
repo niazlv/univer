@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-import { ICommandService, Plugin, UniverInstanceType } from '@univerjs/core';
+import type { DependencyOverride } from '@univerjs/core';
+import { ICommandService, mergeOverrideWithDependencies, Plugin, UniverInstanceType } from '@univerjs/core';
 import type { Dependency } from '@wendellhu/redi';
 import { Inject, Injector } from '@wendellhu/redi';
 import { SelectionProtectionRenderModel } from './model/selection-protection-render.model';
@@ -36,7 +37,9 @@ export class UniverSheetsSelectionProtectionPlugin extends Plugin {
     static readonly mutationList = [AddSelectionProtection, DeleteSelectionProtection, SetSelectionProtection];
 
     constructor(
-        _config: unknown,
+        private _config: {
+            override?: DependencyOverride;
+        },
         @Inject(Injector) override readonly _injector: Injector,
         @Inject(ICommandService) private _commandService: ICommandService
 
@@ -46,7 +49,8 @@ export class UniverSheetsSelectionProtectionPlugin extends Plugin {
     }
 
     override onStarting(): void {
-        UniverSheetsSelectionProtectionPlugin.dependencyList.forEach((d) => {
+        const dependency = mergeOverrideWithDependencies(UniverSheetsSelectionProtectionPlugin.dependencyList, this._config.override);
+        dependency.forEach((d) => {
             this._injector.add(d);
         });
     }

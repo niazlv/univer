@@ -172,7 +172,6 @@ export { type ILogContext } from './services/log/context';
 export { b64DecodeUnicode, b64EncodeUnicode } from './shared/coder';
 export { ClientSnapshotServerService } from './services/snapshot/snapshot-server.service';
 export { getSheetBlocksFromSnapshot } from './services/snapshot/snapshot-transform';
-export { UserManagerService } from './services/user-manager/user-manager.service';
 
 export { isBlackColor, isWhiteColor } from './shared/color/color-kit';
 export { cellToRange } from './shared/common';

@@ -49,7 +49,7 @@ export class SelectionProtectionRenderExtension extends SheetExtension {
         _diffRanges?: IRange[]
     ) {
         const { rowHeightAccumulation, columnWidthAccumulation, worksheet, dataMergeCache } =
-        spreadsheetSkeleton;
+            spreadsheetSkeleton;
         if (!worksheet) {
             return false;
         }
@@ -63,7 +63,7 @@ export class SelectionProtectionRenderExtension extends SheetExtension {
             if (!worksheet.getColVisible(col) || !worksheet.getRowVisible(row)) {
                 return;
             }
-            const { selectionProtection = [] } = worksheet.getCell(row, col) as ISelectionProtectionRenderCellData;
+            const { selectionProtection = [] } = worksheet.getCell(row, col) as ISelectionProtectionRenderCellData || {};
             if (!this._pattern) {
                 return;
             }

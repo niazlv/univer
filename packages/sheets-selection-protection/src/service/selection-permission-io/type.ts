@@ -15,7 +15,6 @@
  */
 
 import type { ILogContext } from '@univerjs/core';
-import { LifecycleStages, runOnLifecycle } from '@univerjs/core';
 import { createIdentifier } from '@wendellhu/redi';
 import { type ICollaborator, type ICreateRequest_SelectRangeObject, type IPermissionPoint, type IUnitRoleKV, UnitAction, type UnitObject } from '@univerjs/protocol';
 
@@ -41,7 +40,6 @@ export interface ISelectionPermissionIoService {
 }
 
 export const ISelectionPermissionIoService = createIdentifier<ISelectionPermissionIoService>('ISelectionPermissionIoService');
-runOnLifecycle(LifecycleStages.Starting, ISelectionPermissionIoService);
 
 export const defaultRangeActions = [
     UnitAction.Edit,
