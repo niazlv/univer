@@ -22,6 +22,9 @@ export class WorksheetCommentPermission implements IPermissionPoint {
     type = PermissionType.WORK_SHEET;
     status = PermissionStatus.INIT;
     id: ISubUnitPermissionId;
+    subType = SubUnitPermissionType.Comment;
+
+
     constructor(public unitId: string, public subUnitId: string) {
         this.id = `${this.type}.${SubUnitPermissionType.Comment}_${unitId}_${subUnitId}` as ISubUnitPermissionId;
     }

@@ -23,6 +23,7 @@ export class WorkbookEditablePermission implements IPermissionPoint {
     value = true;
     type = PermissionType.WORK_BOOK;
     status = PermissionStatus.INIT;
+    subType = UnitPermissionType.Edit;
 
     constructor(public unitId: string) {
         this.unitId = unitId;

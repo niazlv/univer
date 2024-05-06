@@ -61,6 +61,7 @@ export const SheetPermissionPanelFooter = () => {
                         const permissionId = await selectionPermissionIoService.create({
                             collaborators,
                             unitID: activeRule.unitId,
+                            name: activeRule.name,
                         });
                         if (activeRule.unitType === UnitObject.Worksheet) {
                             // result = await commandService.executeCommand()
@@ -74,6 +75,7 @@ export const SheetPermissionPanelFooter = () => {
                         const permissionId = await selectionPermissionIoService.create({
                             collaborators,
                             unitID: activeRule.unitId,
+                            name: activeRule.name
                         });
                         if (activeRule.unitType === UnitObject.Worksheet) {
                             const { ranges, ...sheetRule } = activeRule;

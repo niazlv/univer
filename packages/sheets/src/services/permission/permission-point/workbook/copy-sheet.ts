@@ -24,6 +24,7 @@ export class WorkbookCopySheetPermission implements IPermissionPoint {
     type = PermissionType.WORK_BOOK;
     status = PermissionStatus.INIT;
 
+
     constructor(public unitId: string) {
         this.unitId = unitId;
         this.id = `${this.type}.${UnitPermissionType.CopySheet}_${unitId}` as IUnitPermissionId;

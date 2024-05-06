@@ -22,6 +22,7 @@ export class WorksheetFilterReadonlyPermission implements IPermissionPoint {
     type = PermissionType.WORK_SHEET;
     status = PermissionStatus.INIT;
     id: ISubUnitPermissionId;
+    subType = SubUnitPermissionType.FilterReadonly;
     constructor(public unitId: string, public subUnitId: string) {
         this.id = `${this.type}.${SubUnitPermissionType.FilterReadonly}_${unitId}_${subUnitId}` as ISubUnitPermissionId;
     }

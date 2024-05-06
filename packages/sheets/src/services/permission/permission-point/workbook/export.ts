@@ -23,6 +23,8 @@ export class WorkbookExportPermission implements IPermissionPoint {
     value = true;
     type = PermissionType.WORK_BOOK;
     status = PermissionStatus.INIT;
+    subType = UnitPermissionType.Export;
+
     constructor(public unitId: string) {
         this.unitId = unitId;
         this.id = `${this.type}.${UnitPermissionType.Export}_${unitId}` as IUnitPermissionId;

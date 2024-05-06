@@ -22,6 +22,7 @@ export class WorksheetSetHyperLinkPermission implements IPermissionPoint {
     type = PermissionType.WORK_SHEET;
     status = PermissionStatus.INIT;
     id: ISubUnitPermissionId;
+    subType = SubUnitPermissionType.SetHyperLink;
     constructor(public unitId: string, public subUnitId: string) {
         this.id = `${this.type}.${SubUnitPermissionType.SetHyperLink}_${unitId}_${subUnitId}` as ISubUnitPermissionId;
     }

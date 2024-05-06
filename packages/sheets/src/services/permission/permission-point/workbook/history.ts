@@ -23,6 +23,7 @@ export class WorkbookHistoryPermission implements IPermissionPoint {
     value = true;
     type = PermissionType.WORK_BOOK;
     status = PermissionStatus.INIT;
+    subType = UnitPermissionType.History
 
     constructor(public unitId: string) {
         this.unitId = unitId;

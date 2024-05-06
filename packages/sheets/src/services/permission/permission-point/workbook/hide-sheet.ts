@@ -23,6 +23,7 @@ export class WorkbookHideSheetPermission implements IPermissionPoint {
     value = true;
     type = PermissionType.WORK_BOOK;
     status = PermissionStatus.INIT;
+    subType = UnitPermissionType.HideSheet;
 
     constructor(public unitId: string) {
         this.unitId = unitId;

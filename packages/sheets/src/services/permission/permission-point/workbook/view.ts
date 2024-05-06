@@ -23,6 +23,7 @@ export class WorkbookViewPermission implements IPermissionPoint {
     value = true;
     type = PermissionType.WORK_BOOK;
     status = PermissionStatus.INIT;
+    subType = UnitPermissionType.View;
 
     constructor(public unitId: string) {
         this.unitId = unitId;

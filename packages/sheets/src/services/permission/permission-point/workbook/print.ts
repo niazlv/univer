@@ -23,6 +23,9 @@ export class WorkbookPrintPermission implements IPermissionPoint {
     value = true;
     type = PermissionType.WORK_BOOK;
     status = PermissionStatus.INIT;
+    subType = UnitPermissionType.Print
+
+
     constructor(public unitId: string) {
         this.unitId = unitId;
         this.id = `${this.type}.${UnitPermissionType.Print}_${unitId}` as IUnitPermissionId;

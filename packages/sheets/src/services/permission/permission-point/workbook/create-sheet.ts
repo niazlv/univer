@@ -23,6 +23,7 @@ export class WorkbookCreateSheetPermission implements IPermissionPoint {
     value = true;
     type = PermissionType.WORK_BOOK;
     status = PermissionStatus.INIT;
+    subType = UnitPermissionType.CreateSheet;
 
     constructor(public unitId: string) {
         this.unitId = unitId;

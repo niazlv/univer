@@ -22,6 +22,7 @@ export class WorksheetManageCollaboratorPermission implements IPermissionPoint {
     type = PermissionType.WORK_SHEET;
     status = PermissionStatus.INIT;
     id: ISubUnitPermissionId;
+    subType = SubUnitPermissionType.ManageCollaborator;
     constructor(public unitId: string, public subUnitId: string) {
         this.unitId = unitId;
         this.subUnitId = subUnitId;

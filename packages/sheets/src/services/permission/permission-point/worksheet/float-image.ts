@@ -22,6 +22,7 @@ export class WorksheetFloatImagePermission implements IPermissionPoint {
     type = PermissionType.WORK_SHEET;
     status = PermissionStatus.INIT;
     id: ISubUnitPermissionId;
+    subType = SubUnitPermissionType.FloatImage;
     constructor(public unitId: string, public subUnitId: string) {
         this.id = `${this.type}.${SubUnitPermissionType.FloatImage}_${unitId}_${subUnitId}` as ISubUnitPermissionId;
     }

@@ -23,6 +23,7 @@ export class WorkbookDeleteSheetPermission implements IPermissionPoint {
     value = true;
     type = PermissionType.WORK_BOOK;
     status = PermissionStatus.INIT;
+    subType = UnitPermissionType.DeleteSheet;
 
     constructor(public unitId: string) {
         this.unitId = unitId;

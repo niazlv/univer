@@ -22,6 +22,9 @@ export class WorksheetDuplicatePermission implements IPermissionPoint {
     type = PermissionType.WORK_SHEET;
     status = PermissionStatus.INIT;
     id: ISubUnitPermissionId;
+    subType = SubUnitPermissionType.Duplicate;
+
+
     constructor(public unitId: string, public subUnitId: string) {
         this.id = `${this.type}.${SubUnitPermissionType.Duplicate}_${unitId}_${subUnitId}` as ISubUnitPermissionId;
     }

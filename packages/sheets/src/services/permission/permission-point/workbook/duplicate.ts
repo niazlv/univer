@@ -23,6 +23,7 @@ export class WorkbookDuplicatePermission implements IPermissionPoint {
     value = true;
     type = PermissionType.WORK_BOOK;
     status = PermissionStatus.INIT;
+    subType = UnitPermissionType.Duplicate;
 
     constructor(public unitId: string) {
         this.unitId = unitId;

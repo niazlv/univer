@@ -23,9 +23,10 @@ export class WorkbookProtectSheetPermission implements IPermissionPoint {
     value = true;
     type = PermissionType.WORK_BOOK;
     status = PermissionStatus.INIT;
+    subType = UnitPermissionType.ProtectSheet
+
 
     constructor(public unitId: string) {
-        this.unitId = unitId;
         this.id = `${this.type}.${UnitPermissionType.ProtectSheet}_${unitId}` as IUnitPermissionId;
     }
 }

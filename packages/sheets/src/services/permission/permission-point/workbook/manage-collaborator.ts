@@ -23,6 +23,7 @@ export class WorkbookManageCollaboratorPermission implements IPermissionPoint {
     value = true;
     type = PermissionType.WORK_BOOK;
     status = PermissionStatus.INIT;
+    subType = UnitPermissionType.ManageCollaborator;
 
     constructor(public unitId: string) {
         this.unitId = unitId;

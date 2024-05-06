@@ -22,6 +22,7 @@ export class WorksheetSortPermission implements IPermissionPoint {
     type = PermissionType.WORK_SHEET;
     status = PermissionStatus.INIT;
     id: ISubUnitPermissionId;
+    subType = SubUnitPermissionType.Sort;
     constructor(public unitId: string, public subUnitId: string) {
         this.id = `${this.type}.${SubUnitPermissionType.Sort}_${unitId}_${subUnitId}` as ISubUnitPermissionId;
     }

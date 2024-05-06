@@ -22,6 +22,7 @@ export class WorksheetPivotTablePermission implements IPermissionPoint {
     type = PermissionType.WORK_SHEET;
     status = PermissionStatus.INIT;
     id: ISubUnitPermissionId;
+    subType = SubUnitPermissionType.PivotTable;
     constructor(public unitId: string, public subUnitId: string) {
         this.id = `${this.type}.${SubUnitPermissionType.PivotTable}_${unitId}_${subUnitId}` as ISubUnitPermissionId;
     }

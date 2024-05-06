@@ -22,6 +22,7 @@ export class WorksheetSetCellStylePermission implements IPermissionPoint {
     type = PermissionType.WORK_SHEET;
     status = PermissionStatus.INIT;
     id: ISubUnitPermissionId;
+    subType = SubUnitPermissionType.SetCellStyle;
     constructor(public unitId: string, public subUnitId: string) {
         this.id = `${this.type}.${SubUnitPermissionType.SetCellStyle}_${unitId}_${subUnitId}` as ISubUnitPermissionId;
     }

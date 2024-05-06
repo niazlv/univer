@@ -22,6 +22,7 @@ export class WorksheetFilterPermission implements IPermissionPoint {
     type = PermissionType.WORK_SHEET;
     status = PermissionStatus.INIT;
     id: ISubUnitPermissionId;
+    subType = SubUnitPermissionType.Filter;
     constructor(public unitId: string, public subUnitId: string) {
         this.id = `${this.type}.${SubUnitPermissionType.Filter}_${unitId}_${subUnitId}` as ISubUnitPermissionId;
     }

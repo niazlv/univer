@@ -121,7 +121,7 @@ export interface IPermissionPoint<V = boolean> {
      */
     id: IUnitPermissionId | ISubUnitPermissionId | IRangePermissionId;
     status: PermissionStatus;
-    subType: UnitPermissionType | SubUnitPermissionType;
+    subType: UnitPermissionType | Omit<SubUnitPermissionType, 'UnRecognized'>;
     value: V;
 }
 

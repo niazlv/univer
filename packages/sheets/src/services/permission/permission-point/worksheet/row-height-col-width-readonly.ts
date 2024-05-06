@@ -22,6 +22,7 @@ export class WorksheetRowHeightColWidthReadonlyPermission implements IPermission
     type = PermissionType.WORK_SHEET;
     status = PermissionStatus.INIT;
     id: ISubUnitPermissionId;
+    subType = SubUnitPermissionType.RowHeightColWidthReadonly;
     constructor(public unitId: string, public subUnitId: string) {
         this.id = `${this.type}.${SubUnitPermissionType.RowHeightColWidthReadonly}_${unitId}_${subUnitId}` as ISubUnitPermissionId;
     }
