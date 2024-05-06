@@ -324,6 +324,7 @@ export function updateBlockIndex(pages: IDocumentSkeletonPage[], start: number =
                     let preDivideStartIndex = lineStartIndex;
                     let actualWidth = 0;
                     let maxLineAsc = 0;
+                    let macLineDsc = 0;
                     columnHeight += lineHeight;
                     const divideLength = divides.length;
 
@@ -340,9 +341,10 @@ export function updateBlockIndex(pages: IDocumentSkeletonPage[], start: number =
                             divEndIndex += increaseValue;
 
                             const bBox = glyph.bBox;
-                            const { ba } = bBox;
+                            const { ba, bd } = bBox;
 
                             maxLineAsc = Math.max(maxLineAsc, ba);
+                            macLineDsc = Math.max(macLineDsc, bd);
 
                             if (i === divideLength - 1) {
                                 actualWidth += glyph.width;
@@ -380,6 +382,7 @@ export function updateBlockIndex(pages: IDocumentSkeletonPage[], start: number =
                     line.ed = preDivideStartIndex >= line.st ? preDivideStartIndex : line.st;
                     line.width = actualWidth;
                     line.asc = maxLineAsc;
+                    line.dsc = macLineDsc;
                     maxColumnWidth = Math.max(maxColumnWidth, actualWidth);
                     line.top = (preLine?.top || 0) + (preLine?.lineHeight || 0);
                     preLine = line;
