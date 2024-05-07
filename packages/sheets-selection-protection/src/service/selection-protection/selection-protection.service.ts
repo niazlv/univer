@@ -18,12 +18,11 @@ import type { Workbook } from '@univerjs/core';
 import { Disposable, IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, OnLifecycle } from '@univerjs/core';
 import { INTERCEPTOR_POINT, SheetInterceptorService } from '@univerjs/sheets';
 import { Inject } from '@wendellhu/redi';
-import { UnitObject, UniverType } from '@univerjs/protocol';
+import { UniverType } from '@univerjs/protocol';
 import { SelectionProtectionRuleModel } from '../../model/selection-protection-rule.model';
 import type { IObjectModel, ISelectionProtectionRule } from '../../model/type';
 import { PLUGIN_NAME } from '../../base/const';
-import type { IAllowedRequest } from '../selection-permission-io/type';
-import { defaultRangeActions, defaultSheetActions, ISelectionPermissionIoService } from '../selection-permission-io/type';
+import { ISelectionPermissionIoService } from '../selection-permission-io/type';
 import { SelectionProtectionRenderModel } from '../../model/selection-protection-render.model';
 import type { ISelectionProtectionRenderCellData } from '../../render/type';
 import { getAllPermissionPoint } from './permission-point';
@@ -74,9 +73,7 @@ export class SelectionProtectionService extends Disposable {
             this._selectionProtectionRuleModel.ruleChange$.subscribe((info) => {
                 this._selectionPermissionIoService.allowed({
                     permissionId: info.rule.permissionId,
-                    permissionType: info.rule.unitType,
                     unitId: info.unitId,
-                    actions: info.rule.unitType === UnitObject.SelectRange ? defaultRangeActions : defaultSheetActions,
                 }).then((permissionMap) => {
                     Object.keys(permissionMap).forEach((permissionId) => {
                         getAllPermissionPoint().forEach((F) => {

@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import type { ILogContext } from '@univerjs/core';
 import { RangeUnitPermissionType, SubUnitPermissionType, Tools } from '@univerjs/core';
-import { IAllowedRequest, type ICollaborator, type IUnitRoleKV, type UnitAction, UnitRole, UnitObject } from '@univerjs/protocol';
+import type { ICollaborator, IUnitRoleKV, UnitAction, UnitObject } from '@univerjs/protocol';
+import { UnitRole } from '@univerjs/protocol';
 import type { IWorksheetPermissionIoService } from './type';
 
 
@@ -28,7 +28,7 @@ export class WorksheetPermissionIoService implements IWorksheetPermissionIoServi
     /**
      * Record<permissionId, Record<IPermissionSubType, boolean>
      */
-    async allowed(config: { permissionId: string; objectType: UnitObject; unitId: string; actions: UnitAction[]; }): Promise<Partial<Record<SubUnitPermissionType, boolean>>> {
+    async allowed(): Promise<Partial<Record<SubUnitPermissionType, boolean>>> {
         return Promise.resolve({
             [SubUnitPermissionType.Edit]: true,
             [SubUnitPermissionType.View]: true,
@@ -36,7 +36,7 @@ export class WorksheetPermissionIoService implements IWorksheetPermissionIoServi
         });
     }
 
-    async listCollaborators(config: { permissionId: string; unitId: string }): Promise<ICollaborator[]> {
+    async listCollaborators(): Promise<ICollaborator[]> {
         return Promise.resolve(
             [
                 {
@@ -69,7 +69,7 @@ export class WorksheetPermissionIoService implements IWorksheetPermissionIoServi
             ]);
     }
 
-    async batchAllowed(config: { permissionId: string; objectType: UnitObject; unitId: string; actions: UnitAction[]; }[]): Promise<Record<string, Record<string, boolean>>> {
+    async batchAllowed(config: { permissionId: string; objectType: UnitObject; unitId: string; actions: UnitAction[] }[]): Promise<Record<string, Record<string, boolean>>> {
         const result: Record<string, Record<string, boolean>> = {};
         config.forEach((cur) => {
             result.permissionId = result[cur.permissionId] || {};
@@ -81,14 +81,14 @@ export class WorksheetPermissionIoService implements IWorksheetPermissionIoServi
         return Promise.resolve(result);
     }
 
-    async listRoles(type: string, context?: ILogContext | undefined): Promise<{ roles: IUnitRoleKV[]; actions: UnitAction[] }> {
+    async listRoles(): Promise<{ roles: IUnitRoleKV[]; actions: UnitAction[] }> {
         return {
             roles: [],
             actions: [],
         };
     }
 
-    async list(config: {}) {
+    async list() {
         return Promise.resolve([]);
     }
 }
