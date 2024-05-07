@@ -20,7 +20,7 @@ import clsx from 'clsx';
 import { useDependency } from '@wendellhu/redi/react-bindings';
 import { LocaleService } from '@univerjs/core';
 import { IDialogService } from '@univerjs/ui';
-import type { ICollaborator } from '@univerjs/protocol';
+import { UnitRole, type ICollaborator } from '@univerjs/protocol';
 import { SheetPermissionUserManagerService } from '../../service';
 import { UNIVER_SHEET_PERMISSION_USER_DIALOG_ID } from '../../const';
 import styles from './index.module.less';
@@ -32,7 +32,7 @@ export const SheetPermissionUserDialog = () => {
     const sheetPermissionUserManagerService = useDependency(SheetPermissionUserManagerService);
     const userList = sheetPermissionUserManagerService.userList;
     const searchUserList = userList.filter((item) => {
-        return item.subject?.name.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase());
+        return item.subject?.name.toLocaleLowerCase().includes(inputValue.toLocaleLowerCase()) && item.role !== UnitRole.Owner;
     });
     const [selectUserInfo, setSelectUserInfo] = useState<ICollaborator[]>(sheetPermissionUserManagerService.selectUserList);
 

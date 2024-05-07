@@ -14,10 +14,27 @@
  * limitations under the License.
  */
 
-import { WorksheetCopyPermission, WorksheetEditablePermission } from '../permission-point';
+import { WorksheetCommentPermission, WorksheetCopyPermission, WorksheetDuplicatePermission, WorksheetEditablePermission, WorksheetExportPermission, WorksheetFilterPermission, WorksheetFilterReadonlyPermission, WorksheetFloatImagePermission, WorksheetManageCollaboratorPermission, WorksheetPivotTablePermission, WorksheetPrintPermission, WorksheetRowHeightColWidthPermission, WorksheetRowHeightColWidthReadonlyPermission, WorksheetSetCellStylePermission, WorksheetSetCellValuePermission, WorksheetSetHyperLinkPermission, WorksheetSharePermission, WorksheetSortPermission, WorksheetViewPermission } from '../permission-point';
 
 export const getAllPermissionPoint = () => [
     WorksheetEditablePermission,
+    WorksheetDuplicatePermission,
+    WorksheetPrintPermission,
+    WorksheetExportPermission,
+    WorksheetSetCellStylePermission,
+    WorksheetSetCellValuePermission,
+    WorksheetSetHyperLinkPermission,
+    WorksheetSortPermission,
+    WorksheetFilterPermission,
+    WorksheetPivotTablePermission,
+    WorksheetFloatImagePermission,
+    WorksheetRowHeightColWidthPermission,
+    WorksheetViewPermission,
+    WorksheetSharePermission,
+    WorksheetCommentPermission,
     WorksheetCopyPermission,
+    WorksheetRowHeightColWidthReadonlyPermission,
+    WorksheetFilterReadonlyPermission,
+    WorksheetManageCollaboratorPermission,
 ];
 

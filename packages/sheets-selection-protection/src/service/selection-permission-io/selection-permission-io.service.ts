@@ -69,7 +69,10 @@ export class SelectionPermissionIoService implements ISelectionPermissionIoServi
             ]);
     }
 
-    async batchAllowed(config: IAllowedRequest[]): Promise<Record<string, Record<string, boolean>>> {
+    async batchAllowed(config: {
+        permissionId: string;
+        unitId: string;
+    }[]): Promise<Record<string, Record<string, boolean>>> {
         const result: Record<string, Record<string, boolean>> = {};
         config.forEach((cur) => {
             result[cur.permissionId] = result[cur.permissionId] || {};

@@ -143,16 +143,14 @@ export class SelectionProtectionService extends Disposable {
                     const result = this._selectionProtectionRuleModel.toObject();
                     result[unitId] = resources;
                     this._selectionProtectionRuleModel.fromObject(result);
-                    const allAllowedParams: IAllowedRequest[] = [];
+                    const allAllowedParams: { unitId: string; permissionId: string }[] = [];
                     Object.keys(resources).forEach((subUnitId) => {
                         const list = resources[subUnitId];
 
                         this._selectionProtectionRuleModel.getSubunitRuleList(unitId, subUnitId).forEach((rule) => {
                             allAllowedParams.push({
                                 permissionId: rule.permissionId,
-                                permissionType: rule.unitType,
                                 unitId,
-                                actions: rule.unitType === UnitObject.SelectRange ? defaultRangeActions : defaultSheetActions,
                             });
                         });
 

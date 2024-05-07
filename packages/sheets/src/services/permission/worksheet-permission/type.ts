@@ -28,7 +28,7 @@ export interface IWorksheetPermissionIoService {
         config: {
             unitId: string; permissionIdList: string[];
         }, context?: ILogContext): Promise<IPermissionPoint[]>;
-    listRoles(type: string, context?: ILogContext): Promise<{ roles: IUnitRoleKV[]; actions: UnitAction[] }>;
+    listRoles(type: UnitObject, context?: ILogContext): Promise<{ roles: IUnitRoleKV[]; actions: UnitAction[] }>;
     listCollaborators(config: {
         permissionId: string;
         unitId: string;

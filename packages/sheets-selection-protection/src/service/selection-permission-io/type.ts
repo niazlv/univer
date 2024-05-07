@@ -26,8 +26,14 @@ export interface IAllowedRequest {
 }
 export interface ISelectionPermissionIoService {
     create(config: ICreateRequest_SelectRangeObject, context?: ILogContext): Promise<string>;
-    allowed(config: IAllowedRequest, context?: ILogContext): Promise<Record<string, boolean>>;
-    batchAllowed(config: IAllowedRequest[], context?: ILogContext): Promise<Record<string, Record<string, boolean>>>;
+    allowed(config: {
+        permissionId: string;
+        unitId: string;
+    }, context?: ILogContext): Promise<Record<string, boolean>>;
+    batchAllowed(config: {
+        permissionId: string;
+        unitId: string;
+    }[], context?: ILogContext): Promise<Record<string, Record<string, boolean>>>;
     list(
         config: {
             unitId: string; permissionIdList: string[];

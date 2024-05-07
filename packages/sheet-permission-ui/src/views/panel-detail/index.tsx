@@ -55,7 +55,7 @@ export const SheetPermissionPanelDetail = () => {
 
     const handleAddPerson = async () => {
         const userList = await selectionPermissionIoService.listCollaborators({
-            permissionId: unitId, //@ybzky todo 要先取worksheet的permissionId，没有的话再去取workbook的permissionId
+            permissionId: unitId,
             unitId,
         });
         userList.forEach((user) => {
