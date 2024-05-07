@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-import type { UnitObject } from '@univerjs/protocol/lib/types/ts/univer/permission.js';
+import { UnitObject } from "@univerjs/protocol";
+
+
 
 export interface IWorksheetProtectionRule {
     permissionId: string;

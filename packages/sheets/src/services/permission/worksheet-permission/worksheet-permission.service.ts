@@ -383,7 +383,7 @@ export class WorksheetPermissionService extends RxDisposable {
                 if (info.type !== 'delete') {
                     this._worksheetProtectionIoService.allowed({
                         permissionId: info.rule.permissionId,
-                        permissionType: info.rule.unitType,
+                        objectType: info.rule.unitType,
                         unitId: info.unitId,
                         actions: defaultSheetActions,
                     }).then((permissionMap) => {
