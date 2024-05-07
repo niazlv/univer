@@ -27,13 +27,12 @@ import { AddSelectionProtection } from './commands/mutation/add-selection-protec
 import { DeleteSelectionProtection } from './commands/mutation/delete-selection-protection.mutation';
 import { SetSelectionProtection } from './commands/mutation/set-selection-protection';
 import { PLUGIN_NAME } from './base/const';
-import { SelectionProtectionRenderService } from './service/selection-protection-render.service';
 
 export class UniverSheetsSelectionProtectionPlugin extends Plugin {
     static override type = UniverInstanceType.UNIVER_SHEET;
     static override pluginName = PLUGIN_NAME;
 
-    static readonly dependencyList: Dependency[] = [[SelectionProtectionRenderModel], [SelectionProtectionRuleModel], [SelectionProtectionRenderService], [SelectionProtectionService], [ISelectionPermissionIoService, { useClass: SelectionPermissionIoService }]];
+    static readonly dependencyList: Dependency[] = [[SelectionProtectionRenderModel], [SelectionProtectionRuleModel], [SelectionProtectionService], [ISelectionPermissionIoService, { useClass: SelectionPermissionIoService }]];
     static readonly mutationList = [AddSelectionProtection, DeleteSelectionProtection, SetSelectionProtection];
 
     constructor(
@@ -59,6 +58,5 @@ export class UniverSheetsSelectionProtectionPlugin extends Plugin {
         UniverSheetsSelectionProtectionPlugin.mutationList.forEach((m) => {
             this._commandService.registerCommand(m);
         });
-        (window as any).commandService = this._commandService;
     }
 }
