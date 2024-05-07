@@ -19,16 +19,11 @@ import { LifecycleStages, runOnLifecycle } from '@univerjs/core';
 import { createIdentifier } from '@wendellhu/redi';
 import { type ICollaborator, type ICreateRequest_SelectRangeObject, type IPermissionPoint, type IUnitRoleKV, UnitAction, type UnitObject } from '@univerjs/protocol';
 
-export interface IAllowedRequest {
-    permissionId: string;
-    permissionType: UnitObject;
-    unitId: string;
-    actions: UnitAction[];
-}
+
 export interface IWorksheetPermissionIoService {
     create(config: ICreateRequest_SelectRangeObject, context?: ILogContext): Promise<string>;
-    allowed(config: IAllowedRequest, context?: ILogContext): Promise<Record<string, boolean>>;
-    batchAllowed(config: IAllowedRequest[], context?: ILogContext): Promise<Record<string, Record<string, boolean>>>;
+    allowed(config: { permissionId: string; objectType: UnitObject; unitId: string; actions: UnitAction[]; }, context?: ILogContext): Promise<Record<string, boolean>>;
+    batchAllowed(config: { permissionId: string; objectType: UnitObject; unitId: string; actions: UnitAction[]; }[], context?: ILogContext): Promise<Record<string, Record<string, boolean>>>;
     list(
         config: {
             unitId: string; permissionIdList: string[];

@@ -20,8 +20,8 @@ import { Inject, Injector } from '@wendellhu/redi';
 import { map, takeUntil } from 'rxjs/operators';
 
 import type { Observable } from 'rxjs';
-import type { IAllowedRequest } from '@univerjs/protocol';
-import { UniverType } from '@univerjs/protocol';
+
+import { UnitAction, UnitObject, UniverType } from '@univerjs/protocol';
 import {
     WorkbookCommentPermission,
     WorkbookCopyPermission,
@@ -446,11 +446,11 @@ export class WorksheetPermissionService extends RxDisposable {
                 pluginName: PLUGIN_NAME,
                 businesses: [UniverType.UNIVER_SHEET],
                 onLoad: (unitId, resources) => {
-                    const allAllowedParams: IAllowedRequest[] = [];
+                    const allAllowedParams: { permissionId: string; objectType: UnitObject; unitId: string; actions: UnitAction[]; }[] = [];
                     Object.keys(resources).forEach((subUnitId) => {
                         const rule = resources[subUnitId];
                         allAllowedParams.push({
-                            objectId: rule.permissionId,
+                            permissionId: rule.permissionId,
                             objectType: rule.unitType,
                             unitId: rule.unitId,
                             actions: defaultSheetActions,

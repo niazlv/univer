@@ -16,7 +16,7 @@
 
 import type { ILogContext } from '@univerjs/core';
 import { RangeUnitPermissionType, SubUnitPermissionType, Tools } from '@univerjs/core';
-import { IAllowedRequest, type ICollaborator, type IUnitRoleKV, type UnitAction, UnitRole } from '@univerjs/protocol';
+import { IAllowedRequest, type ICollaborator, type IUnitRoleKV, type UnitAction, UnitRole, UnitObject } from '@univerjs/protocol';
 import type { IWorksheetPermissionIoService } from './type';
 
 
@@ -28,7 +28,7 @@ export class WorksheetPermissionIoService implements IWorksheetPermissionIoServi
     /**
      * Record<permissionId, Record<IPermissionSubType, boolean>
      */
-    async allowed(config: IAllowedRequest): Promise<Partial<Record<SubUnitPermissionType, boolean>>> {
+    async allowed(config: { permissionId: string; objectType: UnitObject; unitId: string; actions: UnitAction[]; }): Promise<Partial<Record<SubUnitPermissionType, boolean>>> {
         return Promise.resolve({
             [SubUnitPermissionType.Edit]: true,
             [SubUnitPermissionType.View]: true,
@@ -69,11 +69,11 @@ export class WorksheetPermissionIoService implements IWorksheetPermissionIoServi
             ]);
     }
 
-    async batchAllowed(config: IAllowedRequest[]): Promise<Record<string, Record<string, boolean>>> {
+    async batchAllowed(config: { permissionId: string; objectType: UnitObject; unitId: string; actions: UnitAction[]; }[]): Promise<Record<string, Record<string, boolean>>> {
         const result: Record<string, Record<string, boolean>> = {};
         config.forEach((cur) => {
-            result[cur.permissionId] = result[cur.permissionId] || {};
-            result[cur.permissionId] = {
+            result.permissionId = result[cur.permissionId] || {};
+            result.permissionId = {
                 [RangeUnitPermissionType.Edit]: false,
                 [RangeUnitPermissionType.View]: true,
             };
