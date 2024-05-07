@@ -22,8 +22,8 @@ import { type ICollaborator, type ICreateRequest_SelectRangeObject, type IPermis
 
 export interface IWorksheetPermissionIoService {
     create(config: ICreateRequest_SelectRangeObject, context?: ILogContext): Promise<string>;
-    allowed(config: { permissionId: string; objectType: UnitObject; unitId: string; actions: UnitAction[]; }, context?: ILogContext): Promise<Record<string, boolean>>;
-    batchAllowed(config: { permissionId: string; objectType: UnitObject; unitId: string; actions: UnitAction[]; }[], context?: ILogContext): Promise<Record<string, Record<string, boolean>>>;
+    allowed(config: { permissionId: string; unitId: string }, context?: ILogContext): Promise<Record<string, boolean>>;
+    batchAllowed(config: { permissionId: string; unitId: string }[], context?: ILogContext): Promise<Record<string, Record<string, boolean>>>;
     list(
         config: {
             unitId: string; permissionIdList: string[];
