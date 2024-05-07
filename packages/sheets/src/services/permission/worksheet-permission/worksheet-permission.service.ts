@@ -21,7 +21,8 @@ import { map, takeUntil } from 'rxjs/operators';
 
 import type { Observable } from 'rxjs';
 
-import { UnitAction, UnitObject, UniverType } from '@univerjs/protocol';
+// import type { UnitAction, UnitObject } from '@univerjs/protocol';
+import { UniverType } from '@univerjs/protocol';
 import {
     WorkbookCommentPermission,
     WorkbookCopyPermission,
@@ -55,7 +56,6 @@ import {
 import type { IObjectModel } from '../type';
 import { WorksheetProtectionRuleModel } from './worksheet-permission.model';
 import { WorksheetPermissionIoService } from './worksheet-permission-io.service';
-import { defaultSheetActions } from './type';
 import { getAllPermissionPoint } from './utils';
 
 export type getWorksheetPermission$ = (permissionParma: IPermissionParam) => Observable<boolean>;
@@ -383,9 +383,7 @@ export class WorksheetPermissionService extends RxDisposable {
                 if (info.type !== 'delete') {
                     this._worksheetProtectionIoService.allowed({
                         permissionId: info.rule.permissionId,
-                        objectType: info.rule.unitType,
                         unitId: info.unitId,
-                        actions: defaultSheetActions,
                     }).then((permissionMap) => {
                         Object.keys(permissionMap).forEach(() => {
                             getAllPermissionPoint().forEach((F) => {
@@ -446,14 +444,12 @@ export class WorksheetPermissionService extends RxDisposable {
                 pluginName: PLUGIN_NAME,
                 businesses: [UniverType.UNIVER_SHEET],
                 onLoad: (unitId, resources) => {
-                    const allAllowedParams: { permissionId: string; objectType: UnitObject; unitId: string; actions: UnitAction[]; }[] = [];
+                    const allAllowedParams: { permissionId: string; unitId: string }[] = [];
                     Object.keys(resources).forEach((subUnitId) => {
                         const rule = resources[subUnitId];
                         allAllowedParams.push({
                             permissionId: rule.permissionId,
-                            objectType: rule.unitType,
                             unitId: rule.unitId,
-                            actions: defaultSheetActions,
                         });
                     });
 
