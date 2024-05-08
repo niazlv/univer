@@ -190,5 +190,6 @@ export type { IPermissionTypes } from './services/permission/type';
 
 export { AuthzIoMockService } from './services/authz-io/authz-io';
 export { IAuthzIoService } from './services/authz-io/type';
+export { mapSubEnumToPermissionPoint, mapPermissionPointToSubEnum } from './services/permission/util';
 
 installShims();

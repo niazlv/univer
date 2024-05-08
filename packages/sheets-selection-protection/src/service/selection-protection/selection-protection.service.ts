@@ -15,7 +15,7 @@
  */
 
 import type { SubUnitPermissionType, Workbook } from '@univerjs/core';
-import { Disposable, IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, OnLifecycle } from '@univerjs/core';
+import { Disposable, IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, mapPermissionPointToSubEnum, OnLifecycle } from '@univerjs/core';
 import { INTERCEPTOR_POINT, SheetInterceptorService } from '@univerjs/sheets';
 import { Inject } from '@wendellhu/redi';
 import { UniverType } from '@univerjs/protocol';
@@ -26,7 +26,6 @@ import { ISelectionPermissionIoService } from '../selection-permission-io/type';
 import { SelectionProtectionRenderModel } from '../../model/selection-protection-render.model';
 import type { ISelectionProtectionRenderCellData } from '../../render/type';
 import { getAllPermissionPoint } from './permission-point';
-import { mapPermissionPointToSubEnum, mapSubEnumToPermissionPoint } from '@univerjs/core/services/permission/util.js';
 
 @OnLifecycle(LifecycleStages.Starting, SelectionProtectionService)
 export class SelectionProtectionService extends Disposable {
