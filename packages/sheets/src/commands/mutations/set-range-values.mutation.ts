@@ -168,9 +168,6 @@ export const SetRangeValuesMutation: IMutation<ISetRangeValuesMutationParams, bo
             return false;
         }
 
-        window.workbook = workbook;
-        window.worksheet = worksheet;
-
         const cellMatrix = worksheet.getCellMatrix();
         const styles = workbook.getStyles();
         const newValues = new ObjectMatrix(cellValue);

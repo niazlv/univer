@@ -15,7 +15,7 @@
  */
 
 import { RangeUnitPermissionType, SubUnitPermissionType, Tools } from '@univerjs/core';
-import type { ICollaborator, IUnitRoleKV, UnitAction } from '@univerjs/protocol';
+import { ICollaborator, IUnitRoleKV, UnitAction } from '@univerjs/protocol';
 import { UnitRole } from '@univerjs/protocol';
 import type { IWorksheetPermissionIoService } from './type';
 
@@ -28,11 +28,11 @@ export class WorksheetPermissionIoService implements IWorksheetPermissionIoServi
     /**
      * Record<permissionId, Record<IPermissionSubType, boolean>
      */
-    async allowed(config: { permissionId: string; unitId: string }): Promise<Partial<Record<SubUnitPermissionType, boolean>>> {
+    async allowed(config: { permissionId: string; unitId: string }): Promise<Record<string, boolean>> {
         return Promise.resolve({
-            [SubUnitPermissionType.Edit]: true,
-            [SubUnitPermissionType.View]: true,
-            [SubUnitPermissionType.ManageCollaborator]: true,
+            [UnitAction.Edit]: true,
+            [UnitAction.View]: true,
+            [UnitAction.ManageCollaborator]: true,
         });
     }
 

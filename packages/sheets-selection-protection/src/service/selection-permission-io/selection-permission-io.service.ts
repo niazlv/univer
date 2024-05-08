@@ -16,7 +16,7 @@
 
 import type { ILogContext } from '@univerjs/core';
 import { RangeUnitPermissionType, Tools } from '@univerjs/core';
-import { type ICollaborator, type IUnitRoleKV, type UnitAction, UnitRole, UnitObject } from '@univerjs/protocol';
+import { type ICollaborator, type IUnitRoleKV, UnitAction, UnitRole, UnitObject } from '@univerjs/protocol';
 
 import type { IAllowedRequest, ISelectionPermissionIoService } from './type';
 
@@ -28,11 +28,10 @@ export class SelectionPermissionIoService implements ISelectionPermissionIoServi
     /**
      * Record<permissionId, Record<IPermissionSubType, boolean>
      */
-    async allowed(): Promise<Record<RangeUnitPermissionType, boolean>> {
+    async allowed(): Promise<Partial<Record<UnitAction, boolean>>> {
         return Promise.resolve({
-            [RangeUnitPermissionType.Edit]: true,
-            [RangeUnitPermissionType.View]: true,
-            [RangeUnitPermissionType.ManageCollaborator]: true,
+            [UnitAction.Edit]: true,
+            [UnitAction.View]: true,
         });
     }
 

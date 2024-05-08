@@ -23,11 +23,27 @@ import { SheetPermissionPanelService } from '../service';
 import { SheetPermissionOpenPanelOperation } from '../operation/sheet-permission-open-panel.operation';
 import type { IAddRangeProtectionParams, IDeleteRangeProtectionParams, ISetRangeProtectionParams } from './type';
 
+
+export const AddRangeProtectionFromToolbarCommand: ICommand = {
+    type: CommandType.COMMAND,
+    id: 'sheets.command.add-range-protection-from-toolbar',
+    async handler(accessor) {
+        const commandService = accessor.get(ICommandService);
+        const sheetPermissionPanelService = accessor.get(SheetPermissionPanelService);
+        sheetPermissionPanelService.setShowDetail(true);
+        await commandService.executeCommand(SheetPermissionOpenPanelOperation.id);
+        return true;
+    },
+};
+
+
 export const AddRangeProtectionFromContextMenuCommand: ICommand = {
     type: CommandType.COMMAND,
     id: 'sheets.command.add-range-protection-from-context-menu',
     async handler(accessor) {
         const commandService = accessor.get(ICommandService);
+        const sheetPermissionPanelService = accessor.get(SheetPermissionPanelService);
+        sheetPermissionPanelService.setShowDetail(true);
         await commandService.executeCommand(SheetPermissionOpenPanelOperation.id);
         return true;
     },
@@ -50,6 +66,8 @@ export const AddRangeProtectionFromSheetBarCommand: ICommand = {
     id: 'sheets.command.add-range-protection-from-sheet-bar',
     async handler(accessor) {
         const commandService = accessor.get(ICommandService);
+        const sheetPermissionPanelService = accessor.get(SheetPermissionPanelService);
+        sheetPermissionPanelService.setShowDetail(true);
         await commandService.executeCommand(SheetPermissionOpenPanelOperation.id, { fromSheetBar: true });
         return true;
     },

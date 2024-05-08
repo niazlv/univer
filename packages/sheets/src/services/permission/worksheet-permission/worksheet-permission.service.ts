@@ -55,6 +55,7 @@ import type { GetWorksheetPermission, GetWorksheetPermission$, IObjectModel, Set
 import { WorksheetProtectionRuleModel } from './worksheet-permission.model';
 import { WorksheetPermissionIoService } from './worksheet-permission-io.service';
 import { getAllPermissionPoint } from './utils';
+import { mapPermissionPointToSubEnum } from '@univerjs/core/services/permission/util.js';
 
 
 export const PLUGIN_NAME = 'SHEET_WORKSHEET_PROTECTION_PLUGIN';
@@ -380,14 +381,13 @@ export class WorksheetPermissionService extends RxDisposable {
                         permissionId: info.rule.permissionId,
                         unitId: info.unitId,
                     }).then((permissionMap) => {
-                        Object.keys(permissionMap).forEach(() => {
-                            getAllPermissionPoint().forEach((F) => {
-                                const rule = info.rule;
-                                const instance = new F(rule.unitId, rule.subUnitId);
-                                if (permissionMap[instance.subType] !== undefined) {
-                                    this._permissionService.updatePermissionPoint(instance.id, permissionMap[instance.subType]);
-                                }
-                            });
+                        getAllPermissionPoint().forEach((F) => {
+                            const rule = info.rule;
+                            const instance = new F(rule.unitId, rule.subUnitId,);
+                            const unitActionName = mapPermissionPointToSubEnum(instance.subType);
+                            if (permissionMap.hasOwnProperty(unitActionName)) {
+                                this._permissionService.updatePermissionPoint(instance.id, permissionMap[unitActionName]);
+                            }
                         });
                     });
                 }
@@ -439,7 +439,7 @@ export class WorksheetPermissionService extends RxDisposable {
                 pluginName: PLUGIN_NAME,
                 businesses: [UniverType.UNIVER_SHEET],
                 onLoad: (unitId, resources) => {
-                    const allAllowedParams: { permissionId: string; unitId: string }[] = [];
+                    const allAllowedParams: { permissionId: string; unitId: string; }[] = [];
                     Object.keys(resources).forEach((subUnitId) => {
                         const rule = resources[subUnitId];
                         allAllowedParams.push({
@@ -450,17 +450,18 @@ export class WorksheetPermissionService extends RxDisposable {
 
                     this._worksheetProtectionIoService.batchAllowed(allAllowedParams).then((permissionMap) => {
                         Object.keys(permissionMap).forEach((permissionId) => {
-                            const result = permissionMap[permissionId]; // Record<IPermissionSubType, boolean>
-                            getAllPermissionPoint().forEach((F) => {
-                                const rule = resources[permissionId];
-                                if (rule) {
-                                    const instance = new F(unitId, rule.subUnitId);
-                                    if (result[instance.subType] !== undefined) {
-                                        //  todo 这里统一使用setPermission吗 还是说现在这样就可以
-                                        this._permissionService.updatePermissionPoint(instance.id, result[instance.subType]);
+                            // 这里要根据permissionId去worksheetRuleModel中拿到对应的rule
+                            const rule = resources[permissionId];
+                            if (rule) {
+                                getAllPermissionPoint().forEach((F) => {
+                                    const instance = new F(rule.unitId, rule.subUnitId);
+                                    const unitActionName = mapPermissionPointToSubEnum(instance.subType);
+                                    if (permissionMap.hasOwnProperty(unitActionName)) {
+                                        this._permissionService.updatePermissionPoint(instance.id, permissionMap[unitActionName]);
                                     }
-                                }
-                            });
+                                });
+                            }
+
                         });
                     });
                 },

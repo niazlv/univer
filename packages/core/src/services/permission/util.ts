@@ -17,7 +17,7 @@
 import { UnitAction } from '@univerjs/protocol';
 import { SubUnitPermissionType } from './type';
 
-function mapSubEnumToPermissionPoint(permissionEnum: UnitAction): SubUnitPermissionType {
+export function mapSubEnumToPermissionPoint(permissionEnum: UnitAction): SubUnitPermissionType {
     switch (permissionEnum) {
         case UnitAction.View:
             return SubUnitPermissionType.View;
@@ -58,7 +58,7 @@ function mapSubEnumToPermissionPoint(permissionEnum: UnitAction): SubUnitPermiss
     }
 }
 
-function mapPermissionPointToSubEnum(permissionPoint: SubUnitPermissionType): UnitAction {
+export function mapPermissionPointToSubEnum(permissionPoint: SubUnitPermissionType): UnitAction {
     switch (permissionPoint) {
         case SubUnitPermissionType.View:
             return UnitAction.View;

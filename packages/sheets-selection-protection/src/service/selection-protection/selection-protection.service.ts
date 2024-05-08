@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { Workbook } from '@univerjs/core';
+import type { SubUnitPermissionType, Workbook } from '@univerjs/core';
 import { Disposable, IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, OnLifecycle } from '@univerjs/core';
 import { INTERCEPTOR_POINT, SheetInterceptorService } from '@univerjs/sheets';
 import { Inject } from '@wendellhu/redi';
@@ -26,6 +26,7 @@ import { ISelectionPermissionIoService } from '../selection-permission-io/type';
 import { SelectionProtectionRenderModel } from '../../model/selection-protection-render.model';
 import type { ISelectionProtectionRenderCellData } from '../../render/type';
 import { getAllPermissionPoint } from './permission-point';
+import { mapPermissionPointToSubEnum, mapSubEnumToPermissionPoint } from '@univerjs/core/services/permission/util.js';
 
 @OnLifecycle(LifecycleStages.Starting, SelectionProtectionService)
 export class SelectionProtectionService extends Disposable {
@@ -75,14 +76,13 @@ export class SelectionProtectionService extends Disposable {
                     permissionId: info.rule.permissionId,
                     unitId: info.unitId,
                 }).then((permissionMap) => {
-                    Object.keys(permissionMap).forEach((permissionId) => {
-                        getAllPermissionPoint().forEach((F) => {
-                            const rule = info.rule;
-                            const instance = new F(rule.unitId, rule.subUnitId, permissionId);
-                            if (permissionMap[instance.subType] !== undefined) {
-                                this._permissionService.updatePermissionPoint(instance.id, permissionMap[instance.subType]);
-                            }
-                        });
+                    getAllPermissionPoint().forEach((F) => {
+                        const rule = info.rule;
+                        const instance = new F(rule.unitId, rule.subUnitId, rule.permissionId);
+                        const unitActionName = mapPermissionPointToSubEnum(instance.subType as unknown as SubUnitPermissionType);
+                        if (permissionMap.hasOwnProperty(unitActionName)) {
+                            this._permissionService.updatePermissionPoint(instance.id, permissionMap[unitActionName]);
+                        }
                     });
                 });
 
@@ -176,8 +176,9 @@ export class SelectionProtectionService extends Disposable {
                                 const rule = permissionIdWithRuleInstanceMap.get(permissionId);
                                 if (rule) {
                                     const instance = new F(unitId, rule.subUnitId, permissionId);
-                                    if (result[instance.subType] !== undefined) {
-                                        this._permissionService.updatePermissionPoint(instance.id, result[instance.subType]);
+                                    const unitActionName = mapPermissionPointToSubEnum(instance.subType as unknown as SubUnitPermissionType);
+                                    if (permissionMap.hasOwnProperty(unitActionName)) {
+                                        this._permissionService.updatePermissionPoint(instance.id, result[unitActionName]);
                                     }
                                 }
                             });

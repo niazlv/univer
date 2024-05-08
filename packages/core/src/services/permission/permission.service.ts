@@ -29,11 +29,6 @@ export class PermissionService extends Disposable implements IPermissionService 
 
     public permissionPointUpdate$ = this._permissionPointUpdate$.asObservable();
 
-    constructor() {
-        super();
-        window.permission = this;
-    }
-
 
     deletePermissionPoint = (permissionId: string) => {
         const permissionPoint = this._permissionPointMap.get(permissionId);

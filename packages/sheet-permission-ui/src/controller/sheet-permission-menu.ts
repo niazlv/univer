@@ -19,7 +19,7 @@ import { MenuGroup, MenuItemType, MenuPosition } from '@univerjs/ui';
 import type { IAccessor } from '@wendellhu/redi';
 import { combineLatestWith, map } from 'rxjs';
 import { SheetPermissionOpenPanelOperation } from '../operation/sheet-permission-open-panel.operation';
-import { AddRangeProtectionFromContextMenuCommand, AddRangeProtectionFromSheetBarCommand, DeleteRangeProtectionFromContextMenuCommand, SetRangeProtectionFromContextMenuCommand, ViewSheetPermissionFromContextMenuCommand, ViewSheetPermissionFromSheetBarCommand } from '../command/range-protection.command';
+import { AddRangeProtectionFromContextMenuCommand, AddRangeProtectionFromSheetBarCommand, AddRangeProtectionFromToolbarCommand, DeleteRangeProtectionFromContextMenuCommand, SetRangeProtectionFromContextMenuCommand, ViewSheetPermissionFromContextMenuCommand, ViewSheetPermissionFromSheetBarCommand } from '../command/range-protection.command';
 import { ChangeSheetProtectionFromSheetBarCommand, DeleteWOrksheetProtectionFormSheetBarCommand } from '../command/worksheet-protection.command';
 import { getAddPermissionDisable$, getAddPermissionHidden$, getEditPermissionHiddenOrDelete$, getPermissionDisableBase$ } from './utils';
 
@@ -36,7 +36,7 @@ enum SheetMenuPosition {
 
 export function sheetPermissionToolbarMenuFactory(accessor: IAccessor): IMenuItem {
     return {
-        id: SheetPermissionOpenPanelOperation.id,
+        id: AddRangeProtectionFromToolbarCommand.id,
         type: MenuItemType.BUTTON,
         positions: [
             MenuPosition.TOOLBAR_START,

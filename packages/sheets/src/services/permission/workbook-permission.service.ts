@@ -148,8 +148,7 @@ export class WorkbookPermissionService extends Disposable {
 
     private _createPermissionMethods<T extends IPermissionPoint>(PermissionClass: new (unitId: string) => T) {
         return {
-            get$: (permissionParams: IPermissionParam) => {
-                const { unitId } = permissionParams;
+            get$: (unitId: string) => {
                 const permissionInstance = new PermissionClass(unitId);
                 const permission = this._permissionService.getPermissionPoint(permissionInstance.id);
                 if (!permission) {
@@ -159,8 +158,7 @@ export class WorkbookPermissionService extends Disposable {
                     return list.every((item) => item.value === true);
                 }));
             },
-            get: (permissionParams: IPermissionParam) => {
-                const { unitId = this._univerInstanceService.getCurrentUnitForType(UniverInstanceType.UNIVER_SHEET)?.getUnitId() } = permissionParams;
+            get: (unitId: string) => {
                 if (!unitId) return false;
                 const permissionInstance = new PermissionClass(unitId);
                 const permission = this._permissionService.getPermissionPoint(permissionInstance.id);
