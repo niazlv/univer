@@ -16,9 +16,11 @@
 
 import type { ILogContext } from '@univerjs/core';
 import { RangeUnitPermissionType, Tools } from '@univerjs/core';
-import { type ICollaborator, type IUnitRoleKV, UnitAction, UnitRole, UnitObject } from '@univerjs/protocol';
+import type { ICollaborator, IUnitRoleKV, UnitObject } from '@univerjs/protocol';
+import { UnitAction, UnitRole } from '@univerjs/protocol';
 
-import type { IAllowedRequest, ISelectionPermissionIoService } from './type';
+
+import type { ISelectionPermissionIoService } from './type';
 
 export class SelectionPermissionIoService implements ISelectionPermissionIoService {
     async create(): Promise<string> {

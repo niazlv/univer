@@ -188,4 +188,7 @@ export { DataValidationType } from './types/enum/data-validation-type';
 export { DataValidationStatus } from './types/enum/data-validation-status';
 export type { IPermissionTypes } from './services/permission/type';
 
+export { AuthzIoMockService } from './services/authz-io/authz-io';
+export { IAuthzIoService } from './services/authz-io/type';
+
 installShims();
