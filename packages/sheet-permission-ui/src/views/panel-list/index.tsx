@@ -18,13 +18,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { Avatar, Tooltip } from '@univerjs/design';
 import { useDependency } from '@wendellhu/redi/react-bindings';
-import type { ICellPermission, ISelectionProtectionRule } from '@univerjs/sheets-selection-protection';
+import type { ISelectionProtectionRule } from '@univerjs/sheets-selection-protection';
 import { ISelectionPermissionIoService, SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
-import type { ICellDataForSheetInterceptor, Workbook } from '@univerjs/core';
+import type { Workbook } from '@univerjs/core';
 import { ICommandService, IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
 import { ISidebarService } from '@univerjs/ui';
 import { merge } from 'rxjs';
-import type { IPermissionPoint } from '@univerjs/protocol';
+import { type IPermissionPoint, UnitAction } from '@univerjs/protocol';
 import { WorksheetProtectionRuleModel } from '@univerjs/sheets';
 import { SheetPermissionPanelService } from '../../service';
 import { DeleteRangeSelectionCommand } from '../../command/range-protection.command';
@@ -184,29 +184,14 @@ export const SheetPermissionPanelList = () => {
                         return null;
                     }
 
-                    let hasEditPermission = true;
-                    let hasViewPermission = true;
-                    let hasManageCollaboratorPermission = true;
+                    const editAction = item.actions.find((action) => action.action === UnitAction.Edit);
+                    const editPermission = editAction?.allowed;
 
-                    const ranges = rule?.ranges || [];
+                    const viewAction = item.actions.find((action) => action.action === UnitAction.View);
+                    const viewPermission = viewAction?.allowed;
 
-                    for (let i = 0; i < ranges.length; i++) {
-                        const range = ranges[i];
-                        for (let j = range?.startRow; j <= range?.endRow; j++) {
-                            for (let k = range?.startColumn; k <= range?.endColumn; k++) {
-                                const permission = (worksheet.getCell(j, k) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
-                                if (permission.Edit === false) {
-                                    hasEditPermission = false;
-                                }
-                                if (permission.View === false) {
-                                    hasViewPermission = false;
-                                }
-                                if (permission.ManageCollaborator === false) {
-                                    hasManageCollaboratorPermission = false;
-                                }
-                            }
-                        }
-                    }
+                    const manageCollaboratorAction = item.actions.find((action) => action.action === UnitAction.ManageCollaborator);
+                    const managePermission = manageCollaboratorAction?.allowed;
 
 
                     return (
@@ -215,7 +200,7 @@ export const SheetPermissionPanelList = () => {
                                 <Tooltip title={rule.name}>
                                     <div className={styles.sheetPermissionListItemHeaderName}>{rule.name}</div>
                                 </Tooltip>
-                                {hasManageCollaboratorPermission && (
+                                {managePermission && (
                                     <div className={styles.sheetPermissionListItemHeaderOperator}>
                                         <Tooltip title={localeService.t('permission.panel.edit')}>
                                             <div onClick={() => handleEdit(rule)}>edit</div>
@@ -231,12 +216,12 @@ export const SheetPermissionPanelList = () => {
                                 <div className={styles.sheetPermissionListItemContentEdit}>
                                     <Avatar src={item.creator?.avatar} style={{ marginRight: 6 }} size={24} />
                                     <span className={styles.sheetPermissionListItemContentTitle}>created</span>
-                                    <span className={styles.sheetPermissionListItemContentSub}>{hasEditPermission ? 'i can edit' : 'i can not edit'}</span>
+                                    <span className={styles.sheetPermissionListItemContentSub}>{editPermission ? 'i can edit' : 'i can not edit'}</span>
 
                                 </div>
                                 <div className={styles.sheetPermissionListItemContentView}>
                                     <span className={styles.sheetPermissionListItemContentTitle}>view permissions</span>
-                                    <span className={styles.sheetPermissionListItemContentSub}>{hasViewPermission ? 'i can view' : 'i can not view'}</span>
+                                    <span className={styles.sheetPermissionListItemContentSub}>{viewPermission ? 'i can view' : 'i can not view'}</span>
                                 </div>
                                 {rule.description && (
                                     <Tooltip title={rule.description}>
