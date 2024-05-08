@@ -245,8 +245,6 @@ export class Viewport {
             this._resizeHandler();
         });
         this._resizeHandler();
-
-        this._testDisplayCache();
     }
 
     initCacheCanvas(props?: IViewProps) {
@@ -260,7 +258,6 @@ export class Viewport {
 
     /**
      * test
-     * TODO:raku delete
      */
     _testDisplayCache() {
         const globalThis = window as any;
@@ -270,7 +267,7 @@ export class Viewport {
         const showCache = (cacheCanvas: UniverCanvas) => {
             cacheCanvas.getCanvasEle().style.zIndex = '100';
             cacheCanvas.getCanvasEle().style.position = 'fixed';
-            cacheCanvas.getCanvasEle().style.background = 'pink';
+            cacheCanvas.getCanvasEle().style.background = 'red';
             cacheCanvas.getCanvasEle().style.pointerEvents = 'none'; // 禁用事件响应
             cacheCanvas.getCanvasEle().style.border = '1px solid black'; // 设置边框样式
             cacheCanvas.getCanvasEle().style.transformOrigin = '100% 100%';
@@ -1021,7 +1018,7 @@ export class Viewport {
         this.onScrollBeforeObserver.clear();
         this.onScrollStopObserver.clear();
         this._scrollBar?.dispose();
-
+        this._cacheCanvas?.dispose();
         this._scene.removeViewport(this._viewportKey);
     }
 

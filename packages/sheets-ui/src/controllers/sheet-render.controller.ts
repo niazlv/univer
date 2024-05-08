@@ -279,7 +279,7 @@ export class SheetRenderController extends RxDisposable {
     }
 
     private markViewportDirty(viewports: Viewport[], dirtyBounds: IViewportInfos[]) {
-        const activeViewports = viewports.filter((vp) => vp.isActive);
+        const activeViewports = viewports.filter((vp) => vp.isActive && vp.cacheBound);
         for (const vp of activeViewports) {
             for (const b of dirtyBounds) {
                 if (Tools.hasIntersectionBetweenTwoBounds(vp.cacheBound!, b)) {

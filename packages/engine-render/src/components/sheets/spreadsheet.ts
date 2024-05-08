@@ -309,12 +309,16 @@ export class Spreadsheet extends SheetComponent {
                 const w = diffRight - diffLeft + onePixelFix;
                 const h = diffBottom - diffTop + onePixelFix;
                 cacheCtx.rect(x, y, w, h);
+
+
                 // 使用 clearRect 后, 很浅很细的白色线(even not zoom has blank line)
-                cacheCtx.save();
-                const m = cacheCtx.getTransform();
-                cacheCtx.setTransform(1, 0, 0, 1, m.e, m.f);
-                cacheCtx.clearRect(Math.ceil(x * m.a), y * m.a, Math.floor(w * m.a), h * m.a);
-                cacheCtx.restore();
+                const onePixelFix2 = FIX_ONE_PIXEL_BLUR_OFFSET;
+                cacheCtx.clearRect(x + onePixelFix2, y + onePixelFix2, w - onePixelFix2 * 2, h - onePixelFix2 * 2);
+                // cacheCtx.save();
+                // const m = cacheCtx.getTransform();
+                // cacheCtx.setTransform(1, 0, 0, 1, m.e, m.f);
+                // cacheCtx.clearRect(Math.ceil(x * m.a), y * m.a, Math.floor(w * m.a), h * m.a);
+                // cacheCtx.restore();
 
                 // 这里需要 clip 的原因是避免重复绘制 (否则文字有毛刺)
                 cacheCtx.clip();
