@@ -407,6 +407,7 @@ importers:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         specifier: ^0.1.20
 <<<<<<< HEAD
         version: 0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
@@ -447,6 +448,10 @@ importers:
         version: 0.1.26-permission-8.5(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
 >>>>>>> 69f188406 (feat(authz): add authz io service)
 >>>>>>> 1ff6dd24b (feat(authz): add authz io service)
+=======
+        specifier: ^0.1.26-permission-8.5
+        version: 0.1.26-permission-8.5(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+>>>>>>> 0bd7c7a1a (mend)
       nanoid:
         specifier: 5.0.7
         version: 5.0.7
@@ -490,13 +495,8 @@ importers:
   packages/data-validation:
     dependencies:
       '@univerjs/protocol':
-<<<<<<< HEAD
-        specifier: ^0.1.26-permission-8.2
-        version: 0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
-=======
         specifier: ^0.1.26-permission-8.5
         version: 0.1.26-permission-8.5(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
->>>>>>> 69f188406 (feat(authz): add authz io service)
     devDependencies:
       '@univerjs/core':
         specifier: workspace:*
@@ -1090,13 +1090,8 @@ importers:
         specifier: ^0.1.44
         version: 0.1.44(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@univerjs/protocol':
-<<<<<<< HEAD
-        specifier: ^0.1.26-permission-8.2
-        version: 0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
-=======
         specifier: ^0.1.26-permission-8.5
         version: 0.1.26-permission-8.5(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
->>>>>>> 69f188406 (feat(authz): add authz io service)
       dayjs:
         specifier: ^1.11.10
         version: 1.11.10
@@ -1153,13 +1148,8 @@ importers:
   packages/sheets:
     dependencies:
       '@univerjs/protocol':
-<<<<<<< HEAD
-        specifier: ^0.1.26-permission-8.2
-        version: 0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
-=======
         specifier: ^0.1.26-permission-8.5
         version: 0.1.26-permission-8.5(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
->>>>>>> 69f188406 (feat(authz): add authz io service)
     devDependencies:
       '@univerjs/core':
         specifier: workspace:*
@@ -1203,13 +1193,8 @@ importers:
   packages/sheets-conditional-formatting:
     dependencies:
       '@univerjs/protocol':
-<<<<<<< HEAD
-        specifier: ^0.1.26-permission-8.2
-        version: 0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
-=======
         specifier: ^0.1.26-permission-8.5
         version: 0.1.26-permission-8.5(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
->>>>>>> 69f188406 (feat(authz): add authz io service)
     devDependencies:
       '@univerjs/core':
         specifier: workspace:*
@@ -1703,13 +1688,8 @@ importers:
         specifier: ^0.1.44
         version: 0.1.44(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@univerjs/protocol':
-<<<<<<< HEAD
-        specifier: ^0.1.26-permission-8.2
-        version: 0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
-=======
         specifier: ^0.1.26-permission-8.5
         version: 0.1.26-permission-8.5(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
->>>>>>> 69f188406 (feat(authz): add authz io service)
     devDependencies:
       '@types/react':
         specifier: ^18.2.75
@@ -2126,6 +2106,7 @@ importers:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         specifier: ^0.1.20
 <<<<<<< HEAD
         version: 0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
@@ -2159,6 +2140,10 @@ importers:
         version: 0.1.26-permission-8.5(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
 >>>>>>> 69f188406 (feat(authz): add authz io service)
 >>>>>>> 1ff6dd24b (feat(authz): add authz io service)
+=======
+        specifier: ^0.1.26-permission-8.5
+        version: 0.1.26-permission-8.5(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+>>>>>>> 0bd7c7a1a (mend)
       '@univerjs/rpc':
         specifier: workspace:*
         version: link:../rpc
@@ -4606,6 +4591,7 @@ packages:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@univerjs/protocol@0.1.20':
     resolution: {integrity: sha512-obplLf02e+x+E/Hezh3ES9H/JsFtHgYla7C1G1ffTVbbrqmRssebQ5birqgMcVx1Sj3WG5vsCJ0forISNRjkLg==}
 =======
@@ -4643,6 +4629,10 @@ packages:
     resolution: {integrity: sha512-diw5lgzG1PzAMMGur3TOsCkhGSwqEVPGiaKm8uTkSzLpbhtOw1i3hsMBnyp/XCqudcBm7GRKomo+XnkOQCpIOw==}
 >>>>>>> 69f188406 (feat(authz): add authz io service)
 >>>>>>> 1ff6dd24b (feat(authz): add authz io service)
+=======
+  '@univerjs/protocol@0.1.26-permission-8.5':
+    resolution: {integrity: sha512-diw5lgzG1PzAMMGur3TOsCkhGSwqEVPGiaKm8uTkSzLpbhtOw1i3hsMBnyp/XCqudcBm7GRKomo+XnkOQCpIOw==}
+>>>>>>> 0bd7c7a1a (mend)
     engines: {node: '>=16.0.0', npm: '>=8.0.0'}
     peerDependencies:
       '@grpc/grpc-js': ^1.9.14
@@ -14472,6 +14462,7 @@ snapshots:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@univerjs/protocol@0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
 =======
 =======
@@ -14482,6 +14473,8 @@ snapshots:
 >>>>>>> 87b778f0f (chore: update protocol version)
 =======
 >>>>>>> 1ff6dd24b (feat(authz): add authz io service)
+=======
+>>>>>>> 0bd7c7a1a (mend)
 <<<<<<< HEAD
   '@univerjs/protocol@0.1.23(@grpc/grpc-js@1.10.4)(rxjs@7.8.1)':
 >>>>>>> 2d3cde24b (chore(protocol): update version)
@@ -14512,6 +14505,9 @@ snapshots:
   '@univerjs/protocol@0.1.26-permission-8.5(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
 >>>>>>> 69f188406 (feat(authz): add authz io service)
 >>>>>>> bd3b6ee54 (feat(authz): add authz io service)
+=======
+  '@univerjs/protocol@0.1.26-permission-8.5(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
+>>>>>>> 6462b6d72 (mend)
     dependencies:
       '@grpc/grpc-js': 1.10.6
       rxjs: 7.8.1
