@@ -405,6 +405,7 @@ importers:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         specifier: ^0.1.20
 <<<<<<< HEAD
         version: 0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
@@ -433,6 +434,10 @@ importers:
         specifier: ^0.1.26-permission-7
         version: 0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        specifier: ^0.1.26-permission-8.2
+        version: 0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+>>>>>>> 87b778f0f (chore: update protocol version)
       nanoid:
         specifier: 5.0.7
         version: 5.0.7
@@ -476,8 +481,8 @@ importers:
   packages/data-validation:
     dependencies:
       '@univerjs/protocol':
-        specifier: ^0.1.26-permission-7
-        version: 0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+        specifier: ^0.1.26-permission-8.2
+        version: 0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
     devDependencies:
       '@univerjs/core':
         specifier: workspace:*
@@ -1071,8 +1076,8 @@ importers:
         specifier: ^0.1.44
         version: 0.1.44(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@univerjs/protocol':
-        specifier: ^0.1.26-permission-7
-        version: 0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+        specifier: ^0.1.26-permission-8.2
+        version: 0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
       dayjs:
         specifier: ^1.11.10
         version: 1.11.10
@@ -1129,8 +1134,8 @@ importers:
   packages/sheets:
     dependencies:
       '@univerjs/protocol':
-        specifier: ^0.1.26-permission-7
-        version: 0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+        specifier: ^0.1.26-permission-8.2
+        version: 0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
     devDependencies:
       '@univerjs/core':
         specifier: workspace:*
@@ -1174,8 +1179,8 @@ importers:
   packages/sheets-conditional-formatting:
     dependencies:
       '@univerjs/protocol':
-        specifier: ^0.1.26-permission-7
-        version: 0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+        specifier: ^0.1.26-permission-8.2
+        version: 0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
     devDependencies:
       '@univerjs/core':
         specifier: workspace:*
@@ -1669,8 +1674,8 @@ importers:
         specifier: ^0.1.44
         version: 0.1.44(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@univerjs/protocol':
-        specifier: ^0.1.26-permission-7
-        version: 0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+        specifier: ^0.1.26-permission-8.2
+        version: 0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
     devDependencies:
       '@types/react':
         specifier: ^18.2.75
@@ -2085,6 +2090,7 @@ importers:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         specifier: ^0.1.20
 <<<<<<< HEAD
         version: 0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
@@ -2106,6 +2112,10 @@ importers:
         specifier: ^0.1.26-permission-7
         version: 0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        specifier: ^0.1.26-permission-8.2
+        version: 0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)
+>>>>>>> 87b778f0f (chore: update protocol version)
       '@univerjs/rpc':
         specifier: workspace:*
         version: link:../rpc
@@ -4551,6 +4561,7 @@ packages:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@univerjs/protocol@0.1.20':
     resolution: {integrity: sha512-obplLf02e+x+E/Hezh3ES9H/JsFtHgYla7C1G1ffTVbbrqmRssebQ5birqgMcVx1Sj3WG5vsCJ0forISNRjkLg==}
 =======
@@ -4576,6 +4587,10 @@ packages:
 >>>>>>> b43a2a569 (fix: test)
   '@univerjs/protocol@0.1.26-permission-7':
     resolution: {integrity: sha512-cD2Uv2JoAyJJly0ZTF0vwdz9OYRzktN1ooMVXTEzkMBPEBU//FnlRj1KQiOJHiIdFBeRt8SVNPFqvmnOW9bJFQ==}
+=======
+  '@univerjs/protocol@0.1.26-permission-8.2':
+    resolution: {integrity: sha512-JRB7v14aDNmXnKQUXAWYRxQXA6SceMP0KfuDt0j7I06qcB+kuAbKx5sjv5jXWI922EDZgUFDfhi4dCCDbODzBg==}
+>>>>>>> 87b778f0f (chore: update protocol version)
     engines: {node: '>=16.0.0', npm: '>=8.0.0'}
     peerDependencies:
       '@grpc/grpc-js': ^1.9.14
@@ -14403,12 +14418,15 @@ snapshots:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@univerjs/protocol@0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
 =======
 =======
 >>>>>>> 86df6b4b5 (chore(protocol): update version)
 =======
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> 87b778f0f (chore: update protocol version)
 <<<<<<< HEAD
   '@univerjs/protocol@0.1.23(@grpc/grpc-js@1.10.4)(rxjs@7.8.1)':
 >>>>>>> 2d3cde24b (chore(protocol): update version)
@@ -14430,6 +14448,9 @@ snapshots:
 =======
 >>>>>>> adde9bdbd (fix: test)
   '@univerjs/protocol@0.1.26-permission-7(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
+=======
+  '@univerjs/protocol@0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
+>>>>>>> b4e6fae18 (chore: update protocol version)
     dependencies:
       '@grpc/grpc-js': 1.10.6
       rxjs: 7.8.1
