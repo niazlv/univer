@@ -71,7 +71,7 @@
         "@univerjs/engine-formula": "workspace:*",
         "@univerjs/engine-numfmt": "workspace:*",
         "@univerjs/engine-render": "workspace:*",
-        "@univerjs/protocol": "^0.1.26-permission-7",
+        "@univerjs/protocol": "^0.1.26-permission-8.1",
         "@univerjs/sheets": "workspace:*",
         "@univerjs/ui": "workspace:*",
         "@wendellhu/redi": "0.13.1",

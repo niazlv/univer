@@ -68,7 +68,7 @@
         "rxjs": ">=7.0.0"
     },
     "dependencies": {
-        "@univerjs/protocol": "^0.1.26-permission-7"
+        "@univerjs/protocol": "^0.1.26-permission-8.1"
     },
     "devDependencies": {
         "@univerjs/core": "workspace:*",
