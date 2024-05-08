@@ -15,7 +15,7 @@
  */
 
 import type { IPermissionParam, IPermissionPoint, Workbook } from '@univerjs/core';
-import { IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, OnLifecycle, RxDisposable, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
+import { IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, mapPermissionPointToSubEnum, OnLifecycle, RxDisposable, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
 import { Inject, Injector } from '@wendellhu/redi';
 import { map, takeUntil } from 'rxjs/operators';
 
@@ -55,7 +55,6 @@ import type { GetWorksheetPermission, GetWorksheetPermission$, IObjectModel, Set
 import { WorksheetProtectionRuleModel } from './worksheet-permission.model';
 import { WorksheetPermissionIoService } from './worksheet-permission-io.service';
 import { getAllPermissionPoint } from './utils';
-import { mapPermissionPointToSubEnum } from '@univerjs/core/services/permission/util.js';
 
 
 export const PLUGIN_NAME = 'SHEET_WORKSHEET_PROTECTION_PLUGIN';
@@ -383,7 +382,7 @@ export class WorksheetPermissionService extends RxDisposable {
                     }).then((permissionMap) => {
                         getAllPermissionPoint().forEach((F) => {
                             const rule = info.rule;
-                            const instance = new F(rule.unitId, rule.subUnitId,);
+                            const instance = new F(rule.unitId, rule.subUnitId);
                             const unitActionName = mapPermissionPointToSubEnum(instance.subType);
                             if (permissionMap.hasOwnProperty(unitActionName)) {
                                 this._permissionService.updatePermissionPoint(instance.id, permissionMap[unitActionName]);
@@ -439,7 +438,7 @@ export class WorksheetPermissionService extends RxDisposable {
                 pluginName: PLUGIN_NAME,
                 businesses: [UniverType.UNIVER_SHEET],
                 onLoad: (unitId, resources) => {
-                    const allAllowedParams: { permissionId: string; unitId: string; }[] = [];
+                    const allAllowedParams: { permissionId: string; unitId: string }[] = [];
                     Object.keys(resources).forEach((subUnitId) => {
                         const rule = resources[subUnitId];
                         allAllowedParams.push({
@@ -461,7 +460,6 @@ export class WorksheetPermissionService extends RxDisposable {
                                     }
                                 });
                             }
-
                         });
                     });
                 },

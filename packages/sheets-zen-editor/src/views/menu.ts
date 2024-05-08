@@ -16,7 +16,7 @@
 
 import { type IMenuButtonItem, MenuGroup, MenuItemType, MenuPosition } from '@univerjs/ui';
 
-import { getCurrentRangeDisable$ } from '@univerjs/sheets-ui/controllers/menu/menu-util.js';
+import { getCurrentRangeDisable$ } from '@univerjs/sheets-ui';
 import type { IAccessor } from '@wendellhu/redi';
 import { OpenZenEditorOperation } from '../commands/operations/zen-editor.operation';
 
