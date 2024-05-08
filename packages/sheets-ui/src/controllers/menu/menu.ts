@@ -26,6 +26,8 @@ import {
     IContextService,
     IUniverInstanceService,
     RANGE_TYPE,
+    RangeUnitPermissionType,
+    SubUnitPermissionType,
     ThemeService,
     UniverInstanceType,
     VerticalAlign,
@@ -158,7 +160,7 @@ export function BoldMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
         title: 'Set bold',
         tooltip: 'toolbar.bold',
         positions: [MenuPosition.TOOLBAR_START],
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
         activated$: deriveStateFromActiveSheet$(univerInstanceService, false, ({ worksheet }) => new Observable<boolean>((subscriber) => {
             const disposable = commandService.onCommandExecuted((c) => {
                 const id = c.id;
@@ -222,7 +224,7 @@ export function ItalicMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
         title: 'Set italic',
         tooltip: 'toolbar.italic',
         positions: [MenuPosition.TOOLBAR_START],
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
         activated$: deriveStateFromActiveSheet$(univerInstanceService, false, ({ worksheet }) => new Observable<boolean>((subscriber) => {
             const disposable = commandService.onCommandExecuted((c) => {
                 const id = c.id;
@@ -278,7 +280,7 @@ export function UnderlineMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
         title: 'Set underline',
         tooltip: 'toolbar.underline',
         positions: [MenuPosition.TOOLBAR_START],
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
         activated$: deriveStateFromActiveSheet$(univerInstanceService, false, ({ worksheet }) => new Observable<boolean>((subscriber) => {
             const disposable = commandService.onCommandExecuted((c) => {
                 const id = c.id;
@@ -335,7 +337,7 @@ export function StrikeThroughMenuItemFactory(accessor: IAccessor): IMenuButtonIt
         title: 'Set strike through',
         tooltip: 'toolbar.strikethrough',
         positions: [MenuPosition.TOOLBAR_START],
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
         activated$: deriveStateFromActiveSheet$(univerInstanceService, false, ({ worksheet }) => new Observable<boolean>((subscriber) => {
             const disposable = commandService.onCommandExecuted((c) => {
                 const id = c.id;
@@ -401,7 +403,7 @@ export function FontFamilySelectorMenuItemFactory(accessor: IAccessor): IMenuSel
             },
             value: item.value,
         })),
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
         value$: deriveStateFromActiveSheet$(univerInstanceService, defaultValue, ({ worksheet }) => new Observable((subscriber) => {
             const disposable = commandService.onCommandExecuted((c) => {
                 const id = c.id;
@@ -438,7 +440,7 @@ export function FontSizeSelectorMenuItemFactory(accessor: IAccessor): IMenuSelec
     const univerInstanceService = accessor.get(IUniverInstanceService);
     const selectionManagerService = accessor.get(SelectionManagerService);
     const contextService = accessor.get(IContextService);
-    const disabled$ = getCurrentRangeDisable$(accessor);
+    const disabled$ = getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit });
     const DEFAULT_SIZE = 11;
 
     return {
@@ -507,7 +509,7 @@ export function ResetTextColorMenuItemFactory(accessor: IAccessor): IMenuButtonI
         title: 'toolbar.resetColor',
         icon: 'NoColor',
         positions: SetRangeTextColorCommand.id,
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
     };
 }
 
@@ -544,7 +546,7 @@ export function TextColorSelectorMenuItemFactory(accessor: IAccessor): IMenuSele
             return disposable.dispose;
         }),
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
     };
 }
 
@@ -555,7 +557,7 @@ export function ResetBackgroundColorMenuItemFactory(accessor: IAccessor): IMenuB
         title: 'toolbar.resetColor',
         icon: 'NoColor',
         positions: SetBackgroundColorCommand.id,
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
     };
 }
 
@@ -591,7 +593,7 @@ export function BackgroundColorSelectorMenuItemFactory(accessor: IAccessor): IMe
             return disposable.dispose;
         }),
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
     };
 }
 
@@ -654,7 +656,7 @@ export function HorizontalAlignMenuItemFactory(accessor: IAccessor): IMenuSelect
             return disposable.dispose;
         })),
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
     };
 }
 
@@ -717,7 +719,7 @@ export function VerticalAlignMenuItemFactory(accessor: IAccessor): IMenuSelector
             return disposable.dispose;
         })),
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
     };
 }
 
@@ -780,7 +782,7 @@ export function WrapTextMenuItemFactory(accessor: IAccessor): IMenuSelectorItem<
             return disposable.dispose;
         })),
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
     };
 }
 
@@ -866,7 +868,7 @@ export function TextRotateMenuItemFactory(accessor: IAccessor): IMenuSelectorIte
             return disposable.dispose;
         })),
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
     };
 }
 

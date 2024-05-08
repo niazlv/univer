@@ -21,7 +21,7 @@ import type { GetWorkbookPermissionFunc, GetWorksheetPermission } from '@univerj
 import { SelectionManagerService, WorkbookPermissionService, WorksheetPermissionService } from '@univerjs/sheets';
 import type { ICellPermission } from '@univerjs/sheets-selection-protection';
 import { SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
-import { WorksheetProtectionRuleModel } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.model.js';
+import { WorksheetProtectionRuleModel } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.model.ts';
 import type { IAccessor } from '@wendellhu/redi';
 import type { Observable } from 'rxjs';
 import { map, merge, of, switchMap } from 'rxjs';

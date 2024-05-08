@@ -54,18 +54,6 @@ export const SheetPermissionPanelDetail = () => {
     const [viewGroupValue, setViewGroupValue] = React.useState(viewState.othersCanView);
 
     const handleAddPerson = async () => {
-        const userList = await selectionPermissionIoService.listCollaborators({
-            permissionId: unitId,
-            unitId,
-        });
-        userList.forEach((user) => {
-            if (user?.subject) {
-                userManagerService.addUser(user.subject);
-            }
-        });
-
-        sheetPermissionUserManagerService.setUserList(userList.filter((user) => user.role === UnitRole.Editor));
-
         dialogService.open({
             id: UNIVER_SHEET_PERMISSION_USER_DIALOG_ID,
             title: { title: '' },
@@ -139,6 +127,23 @@ export const SheetPermissionPanelDetail = () => {
         if (activeRule?.permissionId) {
             getSelectUserList();
         }
+    }, []);
+
+    useEffect(() => {
+        const getListCollaborators = async () => {
+            const userList = await selectionPermissionIoService.listCollaborators({
+                permissionId: unitId,
+                unitId,
+            });
+            userList.forEach((user) => {
+                if (user?.subject) {
+                    userManagerService.addUser(user.subject);
+                }
+            });
+
+            sheetPermissionUserManagerService.setUserList(userList.filter((user) => user.role === UnitRole.Editor));
+        };
+        getListCollaborators();
     }, []);
 
     useEffect(() => {
