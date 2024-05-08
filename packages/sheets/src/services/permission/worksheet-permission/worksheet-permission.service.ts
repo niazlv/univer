@@ -53,8 +53,8 @@ import {
 } from '../permission-point';
 import type { GetWorksheetPermission, GetWorksheetPermission$, IObjectModel, SetWorksheetPermission } from '../type';
 import { WorksheetProtectionRuleModel } from './worksheet-permission.model';
-import { WorksheetPermissionIoService } from './worksheet-permission-io.service';
 import { getAllPermissionPoint } from './utils';
+import { IWorksheetPermissionIoService } from './type';
 
 
 export const PLUGIN_NAME = 'SHEET_WORKSHEET_PROTECTION_PLUGIN';
@@ -147,7 +147,7 @@ export class WorksheetPermissionService extends RxDisposable {
         @Inject(IUniverInstanceService) private _univerInstanceService: IUniverInstanceService,
         @Inject(Injector) readonly _injector: Injector,
         @Inject(WorksheetProtectionRuleModel) private _worksheetProtectionRuleModel: WorksheetProtectionRuleModel,
-        @Inject(WorksheetPermissionIoService) private _worksheetProtectionIoService: WorksheetPermissionIoService,
+        @Inject(IWorksheetPermissionIoService) private _worksheetProtectionIoService: IWorksheetPermissionIoService,
         @Inject(IResourceManagerService) private _resourceManagerService: IResourceManagerService
     ) {
         super();

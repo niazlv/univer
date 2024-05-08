@@ -64,7 +64,7 @@ export const SheetPermissionPanelDetail = () => {
             }
         });
 
-        sheetPermissionUserManagerService.setUserList(userList);
+        sheetPermissionUserManagerService.setUserList(userList.filter((user) => user.role === UnitRole.Editor));
 
         dialogService.open({
             id: UNIVER_SHEET_PERMISSION_USER_DIALOG_ID,
@@ -128,11 +128,11 @@ export const SheetPermissionPanelDetail = () => {
             if (selectUserList?.length > 0) {
                 setEditorGroupValue('designedUserCanEdit');
             }
-            const viewGroupValue = collaborators.find((user) => {
-                return user.role === UnitRole.UNRECOGNIZED;
+            const hasReader = collaborators.some((user) => {
+                return user.role === UnitRole.Reader;
             });
 
-            if (viewGroupValue) {
+            if (!hasReader) {
                 setViewGroupValue(viewState.noOneElseCanView);
             }
         };
@@ -229,30 +229,14 @@ export const SheetPermissionPanelDetail = () => {
                                         <span className={styles.sheetPermissionDesignPersonPanelContentItemName}>{item.subject?.name}</span>
                                         <Select
                                             className={styles.sheetPermissionDesignPersonPanelContentItemSelect}
-                                            value={item.role === UnitRole.Editor ? 'edit' : 'view'}
+                                            value="edit"
                                             onChange={(v) => {
                                                 if (v === 'delete') {
                                                     sheetPermissionUserManagerService.setSelectUserList(selectUserList.filter((i) => i.subject?.userID !== item.subject?.userID));
-                                                } else {
-                                                    const index = selectUserList.findIndex((i) => i.subject?.userID === item.subject?.userID);
-                                                    if (index !== -1) {
-                                                        const newSelectUserList = selectUserList.map((userItem) => {
-                                                            if (userItem.subject?.userID !== item.subject?.userID) {
-                                                                return userItem;
-                                                            } else {
-                                                                return {
-                                                                    ...userItem,
-                                                                    role: v === 'edit' ? UnitRole.Editor : UnitRole.Reader,
-                                                                };
-                                                            }
-                                                        });
-                                                        sheetPermissionUserManagerService.setSelectUserList(newSelectUserList);
-                                                    }
                                                 }
                                             }}
                                             options={[
                                                 { label: `${localeService.t('permission.panel.canEdit')}`, value: 'edit' },
-                                                { label: `${localeService.t('permission.panel.canView')}`, value: 'view' },
                                                 { label: `${localeService.t('permission.panel.delete')}`, value: 'delete' },
                                             ]}
                                         />

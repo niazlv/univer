@@ -64,7 +64,9 @@ export const SheetPermissionPanelFooter = () => {
                             name: activeRule.name,
                         });
                         if (activeRule.unitType === UnitObject.Worksheet) {
-                            // result = await commandService.executeCommand()
+                            // result = await commandService.executeCommand(SetWorksheetProtectionCommand.id, {
+
+                            // })
                         } else if (activeRule.unitType === UnitObject.SelectRange) {
                             result = await commandService.executeCommand(SetRangeProtectionCommand.id, {
                                 rule: activeRule,
@@ -75,10 +77,11 @@ export const SheetPermissionPanelFooter = () => {
                         const permissionId = await selectionPermissionIoService.create({
                             collaborators,
                             unitID: activeRule.unitId,
-                            name: activeRule.name
+                            name: activeRule.name,
                         });
                         if (activeRule.unitType === UnitObject.Worksheet) {
                             const { ranges, ...sheetRule } = activeRule;
+                            sheetRule.permissionId = permissionId;
                             result = await commandService.executeCommand(AddWorksheetProtectionCommand.id, {
                                 rule: sheetRule,
                                 unitId: activeRule.unitId,

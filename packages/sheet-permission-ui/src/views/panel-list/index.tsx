@@ -25,7 +25,7 @@ import { ICommandService, IUniverInstanceService, LocaleService, UniverInstanceT
 import { ISidebarService } from '@univerjs/ui';
 import { merge } from 'rxjs';
 import type { IPermissionPoint } from '@univerjs/protocol';
-import { WorksheetProtectionRuleModel } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.model.js';
+import { WorksheetProtectionRuleModel } from '@univerjs/sheets';
 import { SheetPermissionPanelService } from '../../service';
 import { DeleteRangeSelectionCommand } from '../../command/range-protection.command';
 import { UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER } from '../../const';

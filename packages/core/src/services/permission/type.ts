@@ -77,8 +77,8 @@ export enum SubUnitPermissionType {
 
 export interface IPermissionTypes {
     rangeType?: RangeUnitPermissionType;
-    worksheetType?: SubUnitPermissionType;
-    workbookType?: UnitPermissionType;
+    worksheetType?: SubUnitPermissionType[];
+    workbookType?: UnitPermissionType[];
 }
 
 

@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
+import type { IWorksheetProtectionRule } from '@univerjs/sheets';
 import type { ISelectionProtectionRule } from '@univerjs/sheets-selection-protection';
-import type { IWorksheetProtectionRule } from '@univerjs/sheets/services/permission/type.js';
 
 
 export interface IAddRangeProtectionParams {

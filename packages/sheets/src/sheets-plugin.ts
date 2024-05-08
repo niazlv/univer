@@ -34,6 +34,7 @@ import { SelectionManagerService } from './services/selection-manager.service';
 import { SheetInterceptorService } from './services/sheet-interceptor/sheet-interceptor.service';
 import { DefinedNameDataController } from './controllers/defined-name-data.controller';
 import { WorksheetPermissionIoService, WorksheetPermissionService, WorksheetProtectionRuleModel } from './services/permission/worksheet-permission';
+import { IWorksheetPermissionIoService } from './services/permission/worksheet-permission/type';
 
 const PLUGIN_NAME = 'sheets';
 
@@ -83,7 +84,7 @@ export class UniverSheetsPlugin extends Plugin {
 
             // permission
             [WorksheetPermissionService],
-            [WorksheetPermissionIoService],
+            [IWorksheetPermissionIoService, { useClass: WorksheetPermissionIoService }],
             [WorksheetProtectionRuleModel],
         ];
 

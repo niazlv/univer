@@ -16,8 +16,7 @@
 
 import type { ICommand, Workbook } from '@univerjs/core';
 import { CommandType, ICommandService, IUndoRedoService, IUniverInstanceService, Rectangle, UniverInstanceType } from '@univerjs/core';
-import { AddSelectionProtection, DeleteSelectionProtection, SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
-import { SetSelectionProtection } from '@univerjs/sheets-selection-protection/commands/index.js';
+import { AddSelectionProtection, DeleteSelectionProtection, SelectionProtectionRuleModel, SetSelectionProtection } from '@univerjs/sheets-selection-protection';
 import { SelectionManagerService } from '@univerjs/sheets';
 import { SheetPermissionPanelService } from '../service';
 import { SheetPermissionOpenPanelOperation } from '../operation/sheet-permission-open-panel.operation';

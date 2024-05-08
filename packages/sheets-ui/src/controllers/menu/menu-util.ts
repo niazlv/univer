@@ -48,7 +48,7 @@ export function deriveStateFromActiveSheet$<T>(univerInstanceService: IUniverIns
     }));
 }
 
-export function getCurrentRangeDisable$(accessor: IAccessor, permissionTypes: IPermissionTypes = { worksheetType: SubUnitPermissionType.Edit, rangeType: RangeUnitPermissionType.Edit }) {
+export function getCurrentRangeDisable$(accessor: IAccessor, permissionTypes: IPermissionTypes = { worksheetType: [SubUnitPermissionType.Edit], rangeType: RangeUnitPermissionType.Edit }) {
     const univerInstanceService = accessor.get(IUniverInstanceService);
     const selectionManagerService = accessor.get(SelectionManagerService);
     const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
@@ -75,21 +75,35 @@ export function getCurrentRangeDisable$(accessor: IAccessor, permissionTypes: IP
             }
             const { workbookType, worksheetType, rangeType } = permissionTypes;
             if (workbookType) {
-                const workbookPermissionCheckFnName = `get${workbookType}Permission` as keyof WorkbookPermissionService;
-                const workbookPermissionCheckFn = workbookPermissionService[workbookPermissionCheckFnName] as GetWorkbookPermissionFunc;
-                const workbookPermission = workbookPermissionCheckFn(workbook.getUnitId());
-                if (workbookPermission === false) {
+                const workbookDisable = workbookType.some((type) => {
+                    const workbookPermissionCheckFnName = `get${type}Permission` as keyof WorkbookPermissionService;
+                    const workbookPermissionCheckFn = workbookPermissionService[workbookPermissionCheckFnName] as GetWorkbookPermissionFunc;
+                    const workbookPermission = workbookPermissionCheckFn(workbook.getUnitId());
+                    if (workbookPermission === false) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+                if (workbookDisable === true) {
                     return true;
                 }
             }
             if (worksheetType) {
-                const worksheetPermissionCheckFnName = `get${worksheetType}Permission` as keyof WorksheetPermissionService;
-                const worksheetPermissionCheckFn = worksheetPermissionService[worksheetPermissionCheckFnName] as GetWorksheetPermission;
-                const worksheetPermission = worksheetPermissionCheckFn({
-                    unitId: workbook.getUnitId(),
-                    subUnitId: worksheet.getSheetId(),
+                const worksheetDisable = worksheetType.some((type) => {
+                    const worksheetPermissionCheckFnName = `get${worksheetType}Permission` as keyof WorksheetPermissionService;
+                    const worksheetPermissionCheckFn = worksheetPermissionService[worksheetPermissionCheckFnName] as GetWorksheetPermission;
+                    const worksheetPermission = worksheetPermissionCheckFn({
+                        unitId: workbook.getUnitId(),
+                        subUnitId: worksheet.getSheetId(),
+                    });
+                    if (worksheetPermission === false) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 });
-                if (worksheetPermission === false) {
+                if (worksheetDisable === true) {
                     return true;
                 }
             }

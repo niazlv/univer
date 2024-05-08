@@ -15,7 +15,7 @@
  */
 
 import type { ICellDataForSheetInterceptor, ICommandInfo, IPermissionTypes, IRange, Workbook } from '@univerjs/core';
-import { Disposable, ICommandService, IUniverInstanceService, LifecycleStages, OnLifecycle, RangeUnitPermissionType, SubUnitPermissionType, UnitPermissionType, UniverInstanceType } from '@univerjs/core';
+import { Disposable, ICommandService, IUniverInstanceService, LifecycleStages, OnLifecycle, RangeUnitPermissionType, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
 import { InsertCommand } from '@univerjs/docs';
 import type { GetWorkbookPermissionFunc, GetWorksheetPermission } from '@univerjs/sheets';
 import { SelectionManagerService, SetBackgroundColorCommand, WorkbookPermissionService, WorksheetPermissionService } from '@univerjs/sheets';
@@ -62,8 +62,7 @@ export class SheetPermissionController extends Disposable {
             case SetCellEditVisibleOperation.id:
                 permission = this._permissionCheckWithoutRange({
                     rangeType: RangeUnitPermissionType.Edit,
-                    worksheetType: SubUnitPermissionType.Edit,
-                    workbookType: UnitPermissionType.Edit,
+                    worksheetType: [SubUnitPermissionType.Edit],
                 });
                 break;
 
@@ -72,7 +71,9 @@ export class SheetPermissionController extends Disposable {
             case SetRangeItalicCommand.id:
             case SetRangeUnderlineCommand.id:
             case SetRangeStrickThroughCommand.id:
-                permission = this._permissionCheckWithRanges({ rangeType: RangeUnitPermissionType.Edit });
+                permission = this._permissionCheckWithRanges({
+                    rangeType: RangeUnitPermissionType.Edit,
+                });
                 break;
             default:
                 break;
@@ -103,28 +104,42 @@ export class SheetPermissionController extends Disposable {
         const col = selection?.primary?.actualColumn ?? 0;
         const { workbookType, worksheetType, rangeType } = permissionTypes;
         if (workbookType) {
-            const workbookPermissionCheckFnName = `get${workbookType}Permission` as keyof WorkbookPermissionService;
-            const workbookPermissionCheckFn = this._workbookPermissionService[workbookPermissionCheckFnName] as GetWorkbookPermissionFunc;
-            const workbookPermission = workbookPermissionCheckFn(workbook.getUnitId());
-            if (workbookPermission === false) {
+            const workbookDisable = workbookType.some((type) => {
+                const workbookPermissionCheckFnName = `get${workbookType}Permission` as keyof WorkbookPermissionService;
+                const workbookPermissionCheckFn = this._workbookPermissionService[workbookPermissionCheckFnName] as GetWorkbookPermissionFunc;
+                const workbookPermission = workbookPermissionCheckFn(workbook.getUnitId());
+                if (workbookPermission === false) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            if (workbookDisable === true) {
                 return false;
             }
         }
         if (worksheetType) {
-            const worksheetPermissionCheckFnName = `get${worksheetType}Permission` as keyof WorksheetPermissionService;
-            const worksheetPermissionCheckFn = this._worksheetPermissionService[worksheetPermissionCheckFnName] as GetWorksheetPermission;
-            const worksheetPermission = worksheetPermissionCheckFn({
-                unitId: workbook.getUnitId(),
-                subUnitId: worksheet.getSheetId(),
+            const worksheetDisable = worksheetType.some((type) => {
+                const worksheetPermissionCheckFnName = `get${worksheetType}Permission` as keyof WorksheetPermissionService;
+                const worksheetPermissionCheckFn = this._worksheetPermissionService[worksheetPermissionCheckFnName] as GetWorksheetPermission;
+                const worksheetPermission = worksheetPermissionCheckFn({
+                    unitId: workbook.getUnitId(),
+                    subUnitId: worksheet.getSheetId(),
+                });
+                if (worksheetPermission === false) {
+                    return true;
+                } else {
+                    return false;
+                }
             });
-            if (worksheetPermission === false) {
+            if (worksheetDisable === true) {
                 return false;
             }
         }
         if (rangeType) {
             const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
-            if (permission) {
-                return permission[rangeType];
+            if (permission?.[rangeType] === false) {
+                return false;
             }
         }
         return true;
@@ -143,21 +158,35 @@ export class SheetPermissionController extends Disposable {
 
         const { workbookType, worksheetType, rangeType } = permissionTypes;
         if (workbookType) {
-            const workbookPermissionCheckFnName = `get${workbookType}Permission` as keyof WorkbookPermissionService;
-            const workbookPermissionCheckFn = this._workbookPermissionService[workbookPermissionCheckFnName] as GetWorkbookPermissionFunc;
-            const workbookPermission = workbookPermissionCheckFn(workbook.getUnitId());
-            if (workbookPermission === false) {
+            const workbookDisable = workbookType.some((type) => {
+                const workbookPermissionCheckFnName = `get${workbookType}Permission` as keyof WorkbookPermissionService;
+                const workbookPermissionCheckFn = this._workbookPermissionService[workbookPermissionCheckFnName] as GetWorkbookPermissionFunc;
+                const workbookPermission = workbookPermissionCheckFn(workbook.getUnitId());
+                if (workbookPermission === false) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            if (workbookDisable === true) {
                 return false;
             }
         }
         if (worksheetType) {
-            const worksheetPermissionCheckFnName = `get${worksheetType}Permission` as keyof WorksheetPermissionService;
-            const worksheetPermissionCheckFn = this._worksheetPermissionService[worksheetPermissionCheckFnName] as GetWorksheetPermission;
-            const worksheetPermission = worksheetPermissionCheckFn({
-                unitId: workbook.getUnitId(),
-                subUnitId: worksheet.getSheetId(),
+            const worksheetDisable = worksheetType.some((type) => {
+                const worksheetPermissionCheckFnName = `get${worksheetType}Permission` as keyof WorksheetPermissionService;
+                const worksheetPermissionCheckFn = this._worksheetPermissionService[worksheetPermissionCheckFnName] as GetWorksheetPermission;
+                const worksheetPermission = worksheetPermissionCheckFn({
+                    unitId: workbook.getUnitId(),
+                    subUnitId: worksheet.getSheetId(),
+                });
+                if (worksheetPermission === false) {
+                    return true;
+                } else {
+                    return false;
+                }
             });
-            if (worksheetPermission === false) {
+            if (worksheetDisable === true) {
                 return false;
             }
         }

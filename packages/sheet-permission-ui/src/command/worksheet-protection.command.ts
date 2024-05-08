@@ -17,9 +17,9 @@
 import type { ICommand, Workbook } from '@univerjs/core';
 import { CommandType, ICommandService, IUndoRedoService, IUniverInstanceService } from '@univerjs/core';
 
-import { AddWorksheetProtectionMutation } from '@univerjs/sheets/commands/mutations/add-worksheet-protection.mutation.js';
-import { DeleteWorksheetProtectionMutation } from '@univerjs/sheets/commands/mutations/delete-worksheet-protection.mutation.js';
-import { WorksheetProtectionRuleModel } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.model.js';
+import { AddWorksheetProtectionMutation } from '@univerjs/sheets/commands/mutations/add-worksheet-protection.mutation.ts';
+import { DeleteWorksheetProtectionMutation } from '@univerjs/sheets/commands/mutations/delete-worksheet-protection.mutation.ts';
+import { WorksheetProtectionRuleModel } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.model.ts';
 import { UniverType } from '@univerjs/protocol';
 import type { IAddWorksheetProtectionParams, IDeleteWorksheetProtectionParams, ISetWorksheetProtectionParams } from './type';
 
