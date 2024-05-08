@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-import { UnitObject } from "@univerjs/protocol";
-
+import type { IPermissionParam } from '@univerjs/core';
+import type { UnitObject } from '@univerjs/protocol';
+import type { Observable } from 'rxjs';
 
 
 export interface IWorksheetProtectionRule {
@@ -30,3 +31,11 @@ export interface IWorksheetProtectionRule {
 export type IObjectModel = Record<string, IWorksheetProtectionRule>;
 
 export type IModel = Map<string, IWorksheetProtectionRule>;
+
+export type GetWorkbookPermissionFunc$ = (unitId: string) => Observable<boolean>;
+export type GetWorkbookPermissionFunc = (unitId: string) => boolean;
+export type SetWorkbookPermissionFunc = (unitId: string, value: boolean) => void;
+
+export type GetWorksheetPermission$ = (permissionParma: IPermissionParam) => Observable<boolean>;
+export type GetWorksheetPermission = (permissionParma: IPermissionParam) => boolean;
+export type SetWorksheetPermission = (value: boolean, unitId?: string, subUnitId?: string) => void;

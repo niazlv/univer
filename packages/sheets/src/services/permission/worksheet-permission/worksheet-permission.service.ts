@@ -19,8 +19,6 @@ import { IPermissionService, IResourceManagerService, IUniverInstanceService, Li
 import { Inject, Injector } from '@wendellhu/redi';
 import { map, takeUntil } from 'rxjs/operators';
 
-import type { Observable } from 'rxjs';
-
 // import type { UnitAction, UnitObject } from '@univerjs/protocol';
 import { UniverType } from '@univerjs/protocol';
 import {
@@ -53,98 +51,95 @@ import {
     WorksheetSortPermission,
     WorksheetViewPermission,
 } from '../permission-point';
-import type { IObjectModel } from '../type';
+import type { GetWorksheetPermission, GetWorksheetPermission$, IObjectModel, SetWorksheetPermission } from '../type';
 import { WorksheetProtectionRuleModel } from './worksheet-permission.model';
 import { WorksheetPermissionIoService } from './worksheet-permission-io.service';
 import { getAllPermissionPoint } from './utils';
 
-export type getWorksheetPermission$ = (permissionParma: IPermissionParam) => Observable<boolean>;
-export type getWorksheetPermission = (permissionParma: IPermissionParam) => boolean;
-export type setWorksheetPermission = (value: boolean, unitId?: string, subUnitId?: string) => void;
 
 export const PLUGIN_NAME = 'SHEET_WORKSHEET_PROTECTION_PLUGIN';
 
 @OnLifecycle(LifecycleStages.Starting, WorksheetPermissionService)
 export class WorksheetPermissionService extends RxDisposable {
-    getEditPermission$: getWorksheetPermission$;
-    getEditPermission: getWorksheetPermission;
-    setEditPermission: setWorksheetPermission;
+    getEditPermission$: GetWorksheetPermission$;
+    getEditPermission: GetWorksheetPermission;
+    setEditPermission: SetWorksheetPermission;
 
-    getPrintPermission$: getWorksheetPermission$;
-    getPrintPermission: getWorksheetPermission;
-    setPrintPermission: setWorksheetPermission;
+    getPrintPermission$: GetWorksheetPermission$;
+    getPrintPermission: GetWorksheetPermission;
+    setPrintPermission: SetWorksheetPermission;
 
-    getDuplicatePermission$: getWorksheetPermission$;
-    getDuplicatePermission: getWorksheetPermission;
-    setDuplicatePermission: setWorksheetPermission;
+    getDuplicatePermission$: GetWorksheetPermission$;
+    getDuplicatePermission: GetWorksheetPermission;
+    setDuplicatePermission: SetWorksheetPermission;
 
-    getExportPermission$: getWorksheetPermission$;
-    getExportPermission: getWorksheetPermission;
-    setExportPermission: setWorksheetPermission;
+    getExportPermission$: GetWorksheetPermission$;
+    getExportPermission: GetWorksheetPermission;
+    setExportPermission: SetWorksheetPermission;
 
-    getSetCellStylePermission$: getWorksheetPermission$;
-    getSetCellStylePermission: getWorksheetPermission;
-    setSetCellStylePermission: setWorksheetPermission;
+    getSetCellStylePermission$: GetWorksheetPermission$;
+    getSetCellStylePermission: GetWorksheetPermission;
+    setSetCellStylePermission: SetWorksheetPermission;
 
-    getSetCellValuePermission$: getWorksheetPermission$;
-    getSetCellValuePermission: getWorksheetPermission;
-    setSetCellValuePermission: setWorksheetPermission;
+    getSetCellValuePermission$: GetWorksheetPermission$;
+    getSetCellValuePermission: GetWorksheetPermission;
+    setSetCellValuePermission: SetWorksheetPermission;
 
-    getSetHyperLinkPermission$: getWorksheetPermission$;
-    getSetHyperLinkPermission: getWorksheetPermission;
-    setSetHyperLinkPermission: setWorksheetPermission;
+    getSetHyperLinkPermission$: GetWorksheetPermission$;
+    getSetHyperLinkPermission: GetWorksheetPermission;
+    setSetHyperLinkPermission: SetWorksheetPermission;
 
-    getSortPermission$: getWorksheetPermission$;
-    getSortPermission: getWorksheetPermission;
-    setSortPermission: setWorksheetPermission;
+    getSortPermission$: GetWorksheetPermission$;
+    getSortPermission: GetWorksheetPermission;
+    setSortPermission: SetWorksheetPermission;
 
-    getFilterPermission$: getWorksheetPermission$;
-    getFilterPermission: getWorksheetPermission;
-    setFilterPermission: setWorksheetPermission;
+    getFilterPermission$: GetWorksheetPermission$;
+    getFilterPermission: GetWorksheetPermission;
+    setFilterPermission: SetWorksheetPermission;
 
-    getPivotTablePermission$: getWorksheetPermission$;
-    getPivotTablePermission: getWorksheetPermission;
-    setPivotTablePermission: setWorksheetPermission;
+    getPivotTablePermission$: GetWorksheetPermission$;
+    getPivotTablePermission: GetWorksheetPermission;
+    setPivotTablePermission: SetWorksheetPermission;
 
-    getFloatImagePermission$: getWorksheetPermission$;
-    getFloatImagePermission: getWorksheetPermission;
-    setFloatImagePermission: setWorksheetPermission;
+    getFloatImagePermission$: GetWorksheetPermission$;
+    getFloatImagePermission: GetWorksheetPermission;
+    setFloatImagePermission: SetWorksheetPermission;
 
-    getRowHeightColWidthPermission$: getWorksheetPermission$;
-    getRowHeightColWidthPermission: getWorksheetPermission;
-    setRowHeightColWidthPermission: setWorksheetPermission;
+    getRowHeightColWidthPermission$: GetWorksheetPermission$;
+    getRowHeightColWidthPermission: GetWorksheetPermission;
+    setRowHeightColWidthPermission: SetWorksheetPermission;
 
-    getViewPermission$: getWorksheetPermission$;
-    getViewPermission: getWorksheetPermission;
-    setViewPermission: setWorksheetPermission;
+    getViewPermission$: GetWorksheetPermission$;
+    getViewPermission: GetWorksheetPermission;
+    setViewPermission: SetWorksheetPermission;
 
-    getSharePermission$: getWorksheetPermission$;
-    getSharePermission: getWorksheetPermission;
-    setSharePermission: setWorksheetPermission;
+    getSharePermission$: GetWorksheetPermission$;
+    getSharePermission: GetWorksheetPermission;
+    setSharePermission: SetWorksheetPermission;
 
-    getCommentPermission$: getWorksheetPermission$;
-    getCommentPermission: getWorksheetPermission;
-    setCommentPermission: setWorksheetPermission;
+    getCommentPermission$: GetWorksheetPermission$;
+    getCommentPermission: GetWorksheetPermission;
+    setCommentPermission: SetWorksheetPermission;
 
-    getCopyPermission$: getWorksheetPermission$;
-    getCopyPermission: getWorksheetPermission;
-    setCopyPermission: setWorksheetPermission;
+    getCopyPermission$: GetWorksheetPermission$;
+    getCopyPermission: GetWorksheetPermission;
+    setCopyPermission: SetWorksheetPermission;
 
-    getRowHeightColWidthReadonlyPermission$: getWorksheetPermission$;
-    getRowHeightColWidthReadonlyPermission: getWorksheetPermission;
-    setRowHeightColWidthReadonlyPermission: setWorksheetPermission;
+    getRowHeightColWidthReadonlyPermission$: GetWorksheetPermission$;
+    getRowHeightColWidthReadonlyPermission: GetWorksheetPermission;
+    setRowHeightColWidthReadonlyPermission: SetWorksheetPermission;
 
-    getFilterReadonlyPermission$: getWorksheetPermission$;
-    getFilterReadonlyPermission: getWorksheetPermission;
-    setFilterReadonlyPermission: setWorksheetPermission;
+    getFilterReadonlyPermission$: GetWorksheetPermission$;
+    getFilterReadonlyPermission: GetWorksheetPermission;
+    setFilterReadonlyPermission: SetWorksheetPermission;
 
-    getManageCollaboratorPermission$: getWorksheetPermission$;
-    getManageCollaboratorPermission: getWorksheetPermission;
-    setManageCollaboratorPermission: setWorksheetPermission;
+    getManageCollaboratorPermission$: GetWorksheetPermission$;
+    getManageCollaboratorPermission: GetWorksheetPermission;
+    setManageCollaboratorPermission: SetWorksheetPermission;
 
-    getUnRecognizedPermission$: getWorksheetPermission$;
-    getUnRecognizedPermission: getWorksheetPermission;
-    setUnRecognizedPermission: setWorksheetPermission;
+    getUnRecognizedPermission$: GetWorksheetPermission$;
+    getUnRecognizedPermission: GetWorksheetPermission;
+    setUnRecognizedPermission: SetWorksheetPermission;
 
 
     constructor(

@@ -17,88 +17,101 @@
 import { Inject } from '@wendellhu/redi';
 import type { IPermissionParam, IPermissionPoint, Workbook } from '@univerjs/core';
 import { Disposable, IPermissionService, IUniverInstanceService, LifecycleStages, OnLifecycle, UnitPermissionType, UniverInstanceType } from '@univerjs/core';
-import type { Observable } from 'rxjs';
 import { map } from 'rxjs';
-import { WorkbookCommentPermission, WorkbookCopyPermission, WorkbookCreateSheetPermission, WorkbookDeleteSheetPermission, WorkbookDuplicatePermission, WorkbookEditablePermission, WorkbookExportPermission, WorkbookHideSheetPermission, WorkbookHistoryPermission, WorkbookManageCollaboratorPermission, WorkbookMoveSheetPermission, WorkbookPrintPermission, WorkbookProtectSheetPermission, WorkbookRenameSheetPermission, WorkbookSharePermission, WorkbookViewPermission } from './permission-point';
-
-type getWorkbookPermissionFunc$ = (permissionParma: IPermissionParam) => Observable<boolean>;
-type getWorkbookPermissionFunc = (permissionParma: IPermissionParam) => boolean;
-type setWorkbookPermissionFunc = (unitId: string, value: boolean) => void;
+import {
+    WorkbookCommentPermission,
+    WorkbookCopyPermission,
+    WorkbookCreateSheetPermission,
+    WorkbookDeleteSheetPermission,
+    WorkbookDuplicatePermission,
+    WorkbookEditablePermission,
+    WorkbookExportPermission,
+    WorkbookHideSheetPermission,
+    WorkbookHistoryPermission,
+    WorkbookManageCollaboratorPermission,
+    WorkbookMoveSheetPermission,
+    WorkbookPrintPermission,
+    WorkbookProtectSheetPermission,
+    WorkbookRenameSheetPermission,
+    WorkbookSharePermission,
+    WorkbookViewPermission,
+} from './permission-point';
+import type { GetWorkbookPermissionFunc, GetWorkbookPermissionFunc$, SetWorkbookPermissionFunc } from './type';
 
 
 @OnLifecycle(LifecycleStages.Starting, WorkbookPermissionService)
 export class WorkbookPermissionService extends Disposable {
-    getEditPermission$: getWorkbookPermissionFunc$;
-    getEditPermission: getWorkbookPermissionFunc;
-    setEditPermission: setWorkbookPermissionFunc;
+    getEditPermission$: GetWorkbookPermissionFunc$;
+    getEditPermission: GetWorkbookPermissionFunc;
+    setEditPermission: SetWorkbookPermissionFunc;
 
-    getPrintPermission$: getWorkbookPermissionFunc$;
-    getPrintPermission: getWorkbookPermissionFunc;
-    setPrintPermission: setWorkbookPermissionFunc;
+    getPrintPermission$: GetWorkbookPermissionFunc$;
+    getPrintPermission: GetWorkbookPermissionFunc;
+    setPrintPermission: SetWorkbookPermissionFunc;
 
-    getDuplicatePermission$: getWorkbookPermissionFunc$;
-    getDuplicatePermission: getWorkbookPermissionFunc;
-    setDuplicatePermission: setWorkbookPermissionFunc;
+    getDuplicatePermission$: GetWorkbookPermissionFunc$;
+    getDuplicatePermission: GetWorkbookPermissionFunc;
+    setDuplicatePermission: SetWorkbookPermissionFunc;
 
-    getExportPermission$: getWorkbookPermissionFunc$;
-    getExportPermission: getWorkbookPermissionFunc;
-    setExportPermission: setWorkbookPermissionFunc;
+    getExportPermission$: GetWorkbookPermissionFunc$;
+    getExportPermission: GetWorkbookPermissionFunc;
+    setExportPermission: SetWorkbookPermissionFunc;
 
-    getMoveSheetPermission$: getWorkbookPermissionFunc$;
-    getMoveSheetPermission: getWorkbookPermissionFunc;
-    setMoveSheetPermission: setWorkbookPermissionFunc;
+    getMoveSheetPermission$: GetWorkbookPermissionFunc$;
+    getMoveSheetPermission: GetWorkbookPermissionFunc;
+    setMoveSheetPermission: SetWorkbookPermissionFunc;
 
-    getDeleteSheetPermission$: getWorkbookPermissionFunc$;
-    getDeleteSheetPermission: getWorkbookPermissionFunc;
-    setDeleteSheetPermission: setWorkbookPermissionFunc;
+    getDeleteSheetPermission$: GetWorkbookPermissionFunc$;
+    getDeleteSheetPermission: GetWorkbookPermissionFunc;
+    setDeleteSheetPermission: SetWorkbookPermissionFunc;
 
-    getHideSheetPermission$: getWorkbookPermissionFunc$;
-    getHideSheetPermission: getWorkbookPermissionFunc;
-    setHideSheetPermission: setWorkbookPermissionFunc;
+    getHideSheetPermission$: GetWorkbookPermissionFunc$;
+    getHideSheetPermission: GetWorkbookPermissionFunc;
+    setHideSheetPermission: SetWorkbookPermissionFunc;
 
-    getRenameSheetPermission$: getWorkbookPermissionFunc$;
-    getRenameSheetPermission: getWorkbookPermissionFunc;
-    setRenameSheetPermission: setWorkbookPermissionFunc;
+    getRenameSheetPermission$: GetWorkbookPermissionFunc$;
+    getRenameSheetPermission: GetWorkbookPermissionFunc;
+    setRenameSheetPermission: SetWorkbookPermissionFunc;
 
-    getCreateSheetPermission$: getWorkbookPermissionFunc$;
-    getCreateSheetPermission: getWorkbookPermissionFunc;
-    setCreateSheetPermission: setWorkbookPermissionFunc;
+    getCreateSheetPermission$: GetWorkbookPermissionFunc$;
+    getCreateSheetPermission: GetWorkbookPermissionFunc;
+    setCreateSheetPermission: SetWorkbookPermissionFunc;
 
-    getHistoryPermission$: getWorkbookPermissionFunc$;
-    getHistoryPermission: getWorkbookPermissionFunc;
-    setHistoryPermission: setWorkbookPermissionFunc;
+    getHistoryPermission$: GetWorkbookPermissionFunc$;
+    getHistoryPermission: GetWorkbookPermissionFunc;
+    setHistoryPermission: SetWorkbookPermissionFunc;
 
-    getViewPermission$: getWorkbookPermissionFunc$;
-    getViewPermission: getWorkbookPermissionFunc;
-    setViewPermission: setWorkbookPermissionFunc;
+    getViewPermission$: GetWorkbookPermissionFunc$;
+    getViewPermission: GetWorkbookPermissionFunc;
+    setViewPermission: SetWorkbookPermissionFunc;
 
-    getSharePermission$: getWorkbookPermissionFunc$;
-    getSharePermission: getWorkbookPermissionFunc;
-    setSharePermission: setWorkbookPermissionFunc;
+    getSharePermission$: GetWorkbookPermissionFunc$;
+    getSharePermission: GetWorkbookPermissionFunc;
+    setSharePermission: SetWorkbookPermissionFunc;
 
-    getCommentPermission$: getWorkbookPermissionFunc$;
-    getCommentPermission: getWorkbookPermissionFunc;
-    setCommentPermission: setWorkbookPermissionFunc;
+    getCommentPermission$: GetWorkbookPermissionFunc$;
+    getCommentPermission: GetWorkbookPermissionFunc;
+    setCommentPermission: SetWorkbookPermissionFunc;
 
-    getCopyPermission$: getWorkbookPermissionFunc$;
-    getCopyPermission: getWorkbookPermissionFunc;
-    setCopyPermission: setWorkbookPermissionFunc;
+    getCopyPermission$: GetWorkbookPermissionFunc$;
+    getCopyPermission: GetWorkbookPermissionFunc;
+    setCopyPermission: SetWorkbookPermissionFunc;
 
-    getProtectSheetPermission$: getWorkbookPermissionFunc$;
-    getProtectSheetPermission: getWorkbookPermissionFunc;
-    setProtectSheetPermission: setWorkbookPermissionFunc;
+    getProtectSheetPermission$: GetWorkbookPermissionFunc$;
+    getProtectSheetPermission: GetWorkbookPermissionFunc;
+    setProtectSheetPermission: SetWorkbookPermissionFunc;
 
-    getCopySheetPermission$: getWorkbookPermissionFunc$;
-    getCopySheetPermission: getWorkbookPermissionFunc;
-    setCopySheetPermission: setWorkbookPermissionFunc;
+    getCopySheetPermission$: GetWorkbookPermissionFunc$;
+    getCopySheetPermission: GetWorkbookPermissionFunc;
+    setCopySheetPermission: SetWorkbookPermissionFunc;
 
-    getCollaboratorPermission$: getWorkbookPermissionFunc$;
-    getCollaboratorPermission: getWorkbookPermissionFunc;
-    setCollaboratorPermission: setWorkbookPermissionFunc;
+    getCollaboratorPermission$: GetWorkbookPermissionFunc$;
+    getCollaboratorPermission: GetWorkbookPermissionFunc;
+    setCollaboratorPermission: SetWorkbookPermissionFunc;
 
-    getManageCollaboratorPermission$: getWorkbookPermissionFunc$;
-    getManageCollaboratorPermission: getWorkbookPermissionFunc;
-    setManageCollaboratorPermission: setWorkbookPermissionFunc;
+    getManageCollaboratorPermission$: GetWorkbookPermissionFunc$;
+    getManageCollaboratorPermission: GetWorkbookPermissionFunc;
+    setManageCollaboratorPermission: SetWorkbookPermissionFunc;
 
     constructor(
         @Inject(IPermissionService) private _permissionService: IPermissionService,

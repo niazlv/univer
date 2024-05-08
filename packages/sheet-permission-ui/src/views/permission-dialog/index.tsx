@@ -22,10 +22,10 @@ import { useDependency } from '@wendellhu/redi/react-bindings';
 import type { Workbook } from '@univerjs/core';
 import { IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
 import { IDialogService } from '@univerjs/ui';
+import type { GetWorksheetPermission } from '@univerjs/sheets';
 import { WorksheetPermissionService } from '@univerjs/sheets';
 import { sheetPermissionList, UNIVER_SHEET_PERMISSION_DIALOG_ID } from '../../const';
 import styles from './index.module.less';
-import { getWorksheetPermission } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.service.js';
 
 
 export const SheetPermissionDialog = () => {
@@ -42,7 +42,7 @@ export const SheetPermissionDialog = () => {
         const permissionMap: Record<string, boolean> = {};
         sheetPermissionList.forEach((item) => {
             const permissionName = `get${item}Permission` as keyof WorksheetPermissionService;
-            const fn = worksheetPermissionService[permissionName] as getWorksheetPermission;
+            const fn = worksheetPermissionService[permissionName] as GetWorksheetPermission;
             const permissionValue = fn?.({ unitId, subUnitId }) ?? false;
             permissionMap[item] = permissionValue;
         });

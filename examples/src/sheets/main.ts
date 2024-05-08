@@ -99,7 +99,7 @@ univer.registerPlugin(UniverSheetsConditionalFormattingUIPlugin);
 
 // sheet permission
 univer.registerPlugin(UniverSheetsPermissionUIPlugin);
-univer.registerPlugin(UniverSheetsSelectionProtectionPlugin);
+univer.registerPlugin(UniverSheetsSelectionProtectionPlugin, { override: [] });
 
 
 // create univer sheet instance

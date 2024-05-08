@@ -15,14 +15,17 @@
  */
 
 
-import { IUniverInstanceService, UniverInstanceType } from '@univerjs/core';
-import type { ICellDataForSheetInterceptor, Nullable, Workbook, Worksheet } from '@univerjs/core';
-import { getCurrentSheetDisabled$, SelectionManagerService } from '@univerjs/sheets';
+import type { ICellDataForSheetInterceptor, IPermissionTypes, Nullable, Workbook, Worksheet } from '@univerjs/core';
+import { IUniverInstanceService, RangeUnitPermissionType, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
+import type { GetWorkbookPermissionFunc } from '@univerjs/sheets';
+import { SelectionManagerService, WorkbookPermissionService, WorksheetPermissionService } from '@univerjs/sheets';
 import type { ICellPermission } from '@univerjs/sheets-selection-protection';
-import { SelectionProtectionRuleModel, UniverSheetsSelectionProtectionPlugin } from '@univerjs/sheets-selection-protection';
+import { SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
+import { WorksheetProtectionRuleModel } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.model.js';
+import type { GetWorksheetPermission } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.service.js';
 import type { IAccessor } from '@wendellhu/redi';
 import type { Observable } from 'rxjs';
-import { combineLatestWith, map, merge, of, switchMap } from 'rxjs';
+import { map, merge, of, switchMap } from 'rxjs';
 
 interface IActive {
     workbook: Workbook;
@@ -46,8 +49,7 @@ export function deriveStateFromActiveSheet$<T>(univerInstanceService: IUniverIns
     }));
 }
 
-export function getCurrentRangeDisable$(accessor: IAccessor) {
-    const sheetDisable$ = getCurrentSheetDisabled$(accessor);
+export function getCurrentRangeDisable$(accessor: IAccessor, permissionTypes: IPermissionTypes = { worksheetType: SubUnitPermissionType.Edit, rangeType: RangeUnitPermissionType.Edit }) {
     const univerInstanceService = accessor.get(IUniverInstanceService);
     const selectionManagerService = accessor.get(SelectionManagerService);
     const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
@@ -56,10 +58,14 @@ export function getCurrentRangeDisable$(accessor: IAccessor) {
     const subUnitId = worksheet.getSheetId();
     const selectionRuleModal = accessor.get(SelectionProtectionRuleModel);
     const subUnitRuleList = selectionRuleModal.getSubunitRuleList(unitId, subUnitId);
+    const workbookPermissionService = accessor.get(WorkbookPermissionService);
+    const worksheetRuleModel = accessor.get(WorksheetProtectionRuleModel);
+    const worksheetPermissionService = accessor.get(WorksheetPermissionService);
 
     const rangeDisable$ = merge(
         selectionManagerService.selectionMoveEnd$,
-        selectionRuleModal.ruleChange$
+        selectionRuleModal.ruleChange$,
+        worksheetRuleModel.ruleChange$
     ).pipe(
         map(() => {
             const selections = selectionManagerService.getSelections();
@@ -68,24 +74,45 @@ export function getCurrentRangeDisable$(accessor: IAccessor) {
             if (!selectionRanges?.length || !ruleRanges?.length) {
                 return false;
             }
-            const disable = selectionRanges?.some((range) => {
-                for (let row = range.startRow; row <= range.endRow; row++) {
-                    for (let col = range.startColumn; col <= range.endColumn; col++) {
-                        const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
-                        if (permission?.Edit === false) {
-                            return true;
+            const { workbookType, worksheetType, rangeType } = permissionTypes;
+            if (workbookType) {
+                const workbookPermissionCheckFnName = `get${workbookType}Permission` as keyof WorkbookPermissionService;
+                const workbookPermissionCheckFn = workbookPermissionService[workbookPermissionCheckFnName] as GetWorkbookPermissionFunc;
+                const workbookPermission = workbookPermissionCheckFn(workbook.getUnitId());
+                if (workbookPermission === false) {
+                    return true;
+                }
+            }
+            if (worksheetType) {
+                const worksheetPermissionCheckFnName = `get${worksheetType}Permission` as keyof WorksheetPermissionService;
+                const worksheetPermissionCheckFn = worksheetPermissionService[worksheetPermissionCheckFnName] as GetWorksheetPermission;
+                const worksheetPermission = worksheetPermissionCheckFn({
+                    unitId: workbook.getUnitId(),
+                    subUnitId: worksheet.getSheetId(),
+                });
+                if (worksheetPermission === false) {
+                    return true;
+                }
+            }
+            if (rangeType) {
+                const rangeDisable = selectionRanges?.some((range) => {
+                    for (let row = range.startRow; row <= range.endRow; row++) {
+                        for (let col = range.startColumn; col <= range.endColumn; col++) {
+                            const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
+                            if (permission?.Edit === false) {
+                                return true;
+                            }
                         }
                     }
+                    return false;
+                });
+                if (rangeDisable === true) {
+                    return true;
                 }
-                return false;
-            });
-            return disable;
+            }
+            return false;
         })
     );
 
-
-    return sheetDisable$.pipe(
-        combineLatestWith(rangeDisable$),
-        map(([sheetDisable, rangeDisable]) => sheetDisable || rangeDisable)
-    );
+    return rangeDisable$;
 }

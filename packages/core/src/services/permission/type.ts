@@ -75,6 +75,13 @@ export enum SubUnitPermissionType {
     UnRecognized = 'UnRecognized',
 }
 
+export interface IPermissionTypes {
+    rangeType?: RangeUnitPermissionType;
+    worksheetType?: SubUnitPermissionType;
+    workbookType?: UnitPermissionType;
+}
+
+
 export enum RangeUnitPermissionType {
     Edit = 'Edit',
     View = 'View',

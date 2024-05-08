@@ -14,7 +14,4 @@
  * limitations under the License.
  */
 
-export { WorksheetPermissionService } from './worksheet-permission.service';
-export { WorksheetPermissionIoService } from './worksheet-permission-io.service';
-export { WorksheetProtectionRuleModel } from './worksheet-permission.model';
-
+export type { GetWorkbookPermissionFunc, GetWorksheetPermission } from './type';
