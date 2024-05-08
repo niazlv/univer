@@ -94,7 +94,7 @@ export class UniverSheetsPlugin extends Plugin {
             );
         }
 
-        mergeOverrideWithDependencies(dependencies, this._config.override).forEach((d) => {
+        mergeOverrideWithDependencies(dependencies, this._config?.override).forEach((d) => {
             sheetInjector.add(d);
         });
     }
