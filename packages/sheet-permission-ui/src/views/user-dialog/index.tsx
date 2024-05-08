@@ -20,7 +20,7 @@ import clsx from 'clsx';
 import { useDependency } from '@wendellhu/redi/react-bindings';
 import { LocaleService } from '@univerjs/core';
 import { IDialogService } from '@univerjs/ui';
-import { UnitRole, type ICollaborator } from '@univerjs/protocol';
+import { type ICollaborator, UnitRole } from '@univerjs/protocol';
 import { SheetPermissionUserManagerService } from '../../service';
 import { UNIVER_SHEET_PERMISSION_USER_DIALOG_ID } from '../../const';
 import styles from './index.module.less';
@@ -39,7 +39,7 @@ export const SheetPermissionUserDialog = () => {
     const handleChangeUser = (item: ICollaborator) => {
         const index = selectUserInfo?.findIndex((v) => v.subject?.userID === item.subject?.userID);
         if (index === -1) {
-            const select: ICollaborator = { ...item, selectValue: 'edit' };
+            const select: ICollaborator = { ...item };
             setSelectUserInfo([...selectUserInfo, select]);
         } else {
             const newSelectUserInfo = selectUserInfo.filter((v) => v.subject?.userID !== item.subject?.userID);

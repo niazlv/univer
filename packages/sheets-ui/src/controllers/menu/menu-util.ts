@@ -17,12 +17,11 @@
 
 import type { ICellDataForSheetInterceptor, IPermissionTypes, Nullable, Workbook, Worksheet } from '@univerjs/core';
 import { IUniverInstanceService, RangeUnitPermissionType, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
-import type { GetWorkbookPermissionFunc } from '@univerjs/sheets';
+import type { GetWorkbookPermissionFunc, GetWorksheetPermission } from '@univerjs/sheets';
 import { SelectionManagerService, WorkbookPermissionService, WorksheetPermissionService } from '@univerjs/sheets';
 import type { ICellPermission } from '@univerjs/sheets-selection-protection';
 import { SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
 import { WorksheetProtectionRuleModel } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.model.js';
-import type { GetWorksheetPermission } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.service.js';
 import type { IAccessor } from '@wendellhu/redi';
 import type { Observable } from 'rxjs';
 import { map, merge, of, switchMap } from 'rxjs';

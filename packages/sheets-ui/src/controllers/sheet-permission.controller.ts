@@ -72,7 +72,7 @@ export class SheetPermissionController extends Disposable {
             case SetRangeItalicCommand.id:
             case SetRangeUnderlineCommand.id:
             case SetRangeStrickThroughCommand.id:
-                permission = this._permissionCheckWithRanges(RangeUnitPermissionType.Edit);
+                permission = this._permissionCheckWithRanges({ rangeType: RangeUnitPermissionType.Edit });
                 break;
             default:
                 break;
