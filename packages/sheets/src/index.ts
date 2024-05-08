@@ -299,3 +299,4 @@ export { ScrollToCellOperation } from './commands/operations/scroll-to-cell.oper
 export type { FormatType } from './services/numfmt/type';
 export { getMoveRangeUndoRedoMutations } from './commands/commands/move-range.command';
 export type { GetWorkbookPermissionFunc, GetWorksheetPermission } from './services/permission';
+export { IWorksheetPermissionIoService } from './services/permission/worksheet-permission/type';

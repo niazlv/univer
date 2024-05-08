@@ -14,7 +14,8 @@
  * limitations under the License.
  */
 
-import { ICommandService, LocaleService, Plugin, UniverInstanceType } from '@univerjs/core';
+import type { DependencyOverride } from '@univerjs/core';
+import { ICommandService, LocaleService, mergeOverrideWithDependencies, Plugin, UniverInstanceType } from '@univerjs/core';
 import type { Dependency } from '@wendellhu/redi';
 import { Inject, Injector } from '@wendellhu/redi';
 
@@ -38,6 +39,7 @@ const PLUGIN_NAME = 'sheets';
 
 export interface IUniverSheetsConfig {
     notExecuteFormula?: boolean;
+    override?: DependencyOverride;
 }
 
 /**
@@ -92,7 +94,7 @@ export class UniverSheetsPlugin extends Plugin {
             );
         }
 
-        dependencies.forEach((d) => {
+        mergeOverrideWithDependencies(dependencies, this._config.override).forEach((d) => {
             sheetInjector.add(d);
         });
     }
