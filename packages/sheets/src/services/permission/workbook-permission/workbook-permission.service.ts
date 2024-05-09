@@ -15,7 +15,7 @@
  */
 
 import { Inject } from '@wendellhu/redi';
-import type { IPermissionParam, IPermissionPoint, Workbook } from '@univerjs/core';
+import type { IPermissionPoint, Workbook } from '@univerjs/core';
 import { Disposable, IPermissionService, IUniverInstanceService, LifecycleStages, OnLifecycle, UnitPermissionType, UniverInstanceType } from '@univerjs/core';
 import { map } from 'rxjs';
 import {
@@ -35,8 +35,9 @@ import {
     WorkbookRenameSheetPermission,
     WorkbookSharePermission,
     WorkbookViewPermission,
-} from './permission-point';
-import type { GetWorkbookPermissionFunc, GetWorkbookPermissionFunc$, SetWorkbookPermissionFunc } from './type';
+} from '../permission-point';
+import type { GetWorkbookPermissionFunc, GetWorkbookPermissionFunc$, SetWorkbookPermissionFunc } from '../type';
+import { getAllPermissionPoint } from './utils';
 
 
 @OnLifecycle(LifecycleStages.Starting, WorkbookPermissionService)
@@ -124,10 +125,11 @@ export class WorkbookPermissionService extends Disposable {
 
     private _init() {
         const handleWorkbook = (workbook: Workbook) => {
-            const univerEditablePermission = new WorkbookEditablePermission(workbook.getUnitId());
-            this._permissionService.addPermissionPoint(univerEditablePermission);
-            const univerManageCollaboratorPermission = new WorkbookManageCollaboratorPermission(workbook.getUnitId());
-            this._permissionService.addPermissionPoint(univerManageCollaboratorPermission);
+            const unitId = workbook.getUnitId();
+            getAllPermissionPoint().forEach((F) => {
+                const instance = new F(unitId);
+                this._permissionService.addPermissionPoint(instance);
+            });
         };
 
         this._univerInstanceService.getAllUnitsForType<Workbook>(UniverInstanceType.UNIVER_SHEET).forEach((workbook) => {
@@ -139,10 +141,11 @@ export class WorkbookPermissionService extends Disposable {
         }));
 
         this.disposeWithMe(this._univerInstanceService.getTypeOfUnitDisposed$<Workbook>(UniverInstanceType.UNIVER_SHEET).subscribe((workbook) => {
-            const univerEditablePermission = new WorkbookEditablePermission(workbook.getUnitId());
-            this._permissionService.deletePermissionPoint(univerEditablePermission.id);
-            const univerManageCollaboratorPermission = new WorkbookManageCollaboratorPermission(workbook.getUnitId());
-            this._permissionService.deletePermissionPoint(univerManageCollaboratorPermission.id);
+            const unitId = workbook.getUnitId();
+            getAllPermissionPoint().forEach((F) => {
+                const instance = new F(unitId);
+                this._permissionService.deletePermissionPoint(instance.id);
+            });
         }));
     }
 

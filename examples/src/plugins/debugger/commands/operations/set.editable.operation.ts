@@ -35,8 +35,11 @@ export const SetEditable: ICommand = {
         }
         if (params.value === 'sheet') {
             const workSheetPermissionService = accessor.get(WorksheetPermissionService);
-            const editable = workSheetPermissionService.getEditPermission(workbook.getUnitId(), worksheet.getSheetId());
-            workSheetPermissionService.setEditPermission(!editable);
+            const editable = workSheetPermissionService.getSetCellValuePermission({
+                unitId: workbook.getUnitId(),
+                subUnitId: worksheet.getSheetId(),
+            });
+            workSheetPermissionService.setSetCellValuePermission(!editable);
         } else {
             const workbookPermissionService = accessor.get(WorkbookPermissionService);
             const unitId = workbook!.getUnitId();

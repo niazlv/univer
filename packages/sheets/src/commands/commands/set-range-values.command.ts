@@ -77,7 +77,7 @@ export const SetRangeValuesCommand: ICommand = {
             return false;
         }
 
-        if (!worksheetPermissionService.getEditPermission({ unitId, subUnitId })) {
+        if (!worksheetPermissionService.getSetCellValuePermission({ unitId, subUnitId })) {
             return false;
         }
 

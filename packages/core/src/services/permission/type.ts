@@ -53,11 +53,9 @@ export enum UnitPermissionType {
 }
 
 export enum SubUnitPermissionType {
-    Edit = 'Edit',
     View = 'View',
     Share = 'Share',
     Comment = 'Comment',
-    Duplicate = 'Duplicate',
     Export = 'Export',
     Print = 'Print',
     Copy = 'Copy',
@@ -72,7 +70,6 @@ export enum SubUnitPermissionType {
     RowHeightColWidthReadonly = 'RowHeightColWidthReadonly',
     FilterReadonly = 'FilterReadonly',
     ManageCollaborator = 'ManageCollaborator',
-    UnRecognized = 'UnRecognized',
 }
 
 export interface IPermissionTypes {

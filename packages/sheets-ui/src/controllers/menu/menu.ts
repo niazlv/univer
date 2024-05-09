@@ -35,7 +35,6 @@ import {
 } from '@univerjs/core';
 import { SetInlineFormatCommand, SetTextSelectionsOperation, TextSelectionManagerService } from '@univerjs/docs';
 import {
-    getCurrentSheetDisabled$,
     ResetBackgroundColorCommand,
     ResetTextColorCommand,
     SelectionManagerService,
@@ -107,7 +106,7 @@ import { FONT_FAMILY_COMPONENT, FONT_FAMILY_ITEM_COMPONENT } from '../../compone
 import { FONT_SIZE_COMPONENT } from '../../components/font-size';
 import { MENU_ITEM_INPUT_COMPONENT } from '../../components/menu-item-input';
 import { FormatPainterStatus, IFormatPainterService } from '../../services/format-painter/format-painter.service';
-import { deriveStateFromActiveSheet$, getCurrentRangeDisable$ } from './menu-util';
+import { deriveStateFromActiveSheet$, getCurrentRangeDisable$, getCurrentRangeDisable2$ } from './menu-util';
 
 export enum SheetMenuPosition {
     ROW_HEADER_CONTEXT_MENU = 'rowHeaderContextMenu',
@@ -142,7 +141,7 @@ export function FormatPainterMenuItemFactory(accessor: IAccessor): IMenuButtonIt
             };
         }),
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentSheetDisabled$(accessor),
+        disabled$: getCurrentRangeDisable2$(accessor, { worksheetType: [SubUnitPermissionType.Copy], rangeType: RangeUnitPermissionType.View }),
     };
 }
 

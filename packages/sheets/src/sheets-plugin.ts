@@ -27,7 +27,7 @@ import { zhCN } from './locale';
 import { BorderStyleManagerService } from './services/border-style-manager.service';
 import { NumfmtService } from './services/numfmt/numfmt.service';
 import { INumfmtService } from './services/numfmt/type';
-import { WorkbookPermissionService } from './services/permission/workbook-permission.service';
+import { WorkbookPermissionService } from './services/permission/workbook-permission/workbook-permission.service';
 
 import { RefRangeService } from './services/ref-range/ref-range.service';
 import { SelectionManagerService } from './services/selection-manager.service';

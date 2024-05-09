@@ -16,7 +16,7 @@
 
 
 import type { ICellDataForSheetInterceptor, IPermissionTypes, Nullable, Workbook, Worksheet } from '@univerjs/core';
-import { IUniverInstanceService, RangeUnitPermissionType, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
+import { IUniverInstanceService, UniverInstanceType } from '@univerjs/core';
 import type { GetWorkbookPermissionFunc, GetWorksheetPermission } from '@univerjs/sheets';
 import { SelectionManagerService, WorkbookPermissionService, WorksheetPermissionService } from '@univerjs/sheets';
 import type { ICellPermission } from '@univerjs/sheets-selection-protection';
@@ -48,15 +48,13 @@ export function deriveStateFromActiveSheet$<T>(univerInstanceService: IUniverIns
     }));
 }
 
-export function getCurrentRangeDisable$(accessor: IAccessor, permissionTypes: IPermissionTypes = { worksheetType: [SubUnitPermissionType.Edit], rangeType: RangeUnitPermissionType.Edit }) {
+
+export function getCurrentRangeDisable$(accessor: IAccessor, permissionTypes: IPermissionTypes = {}) {
     const univerInstanceService = accessor.get(IUniverInstanceService);
     const selectionManagerService = accessor.get(SelectionManagerService);
     const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
     const worksheet = workbook.getActiveSheet();
-    const unitId = workbook.getUnitId();
-    const subUnitId = worksheet.getSheetId();
     const selectionRuleModal = accessor.get(SelectionProtectionRuleModel);
-    const subUnitRuleList = selectionRuleModal.getSubunitRuleList(unitId, subUnitId);
     const workbookPermissionService = accessor.get(WorkbookPermissionService);
     const worksheetRuleModel = accessor.get(WorksheetProtectionRuleModel);
     const worksheetPermissionService = accessor.get(WorksheetPermissionService);
@@ -69,10 +67,6 @@ export function getCurrentRangeDisable$(accessor: IAccessor, permissionTypes: IP
         map(() => {
             const selections = selectionManagerService.getSelections();
             const selectionRanges = selections?.map((selection) => selection.range);
-            const ruleRanges = subUnitRuleList.map((rule) => rule.ranges).flat();
-            if (!selectionRanges?.length || !ruleRanges?.length) {
-                return false;
-            }
             const { workbookType, worksheetType, rangeType } = permissionTypes;
             if (workbookType) {
                 const workbookDisable = workbookType.some((type) => {
@@ -91,7 +85,7 @@ export function getCurrentRangeDisable$(accessor: IAccessor, permissionTypes: IP
             }
             if (worksheetType) {
                 const worksheetDisable = worksheetType.some((type) => {
-                    const worksheetPermissionCheckFnName = `get${worksheetType}Permission` as keyof WorksheetPermissionService;
+                    const worksheetPermissionCheckFnName = `get${type}Permission` as keyof WorksheetPermissionService;
                     const worksheetPermissionCheckFn = worksheetPermissionService[worksheetPermissionCheckFnName] as GetWorksheetPermission;
                     const worksheetPermission = worksheetPermissionCheckFn({
                         unitId: workbook.getUnitId(),
@@ -112,7 +106,82 @@ export function getCurrentRangeDisable$(accessor: IAccessor, permissionTypes: IP
                     for (let row = range.startRow; row <= range.endRow; row++) {
                         for (let col = range.startColumn; col <= range.endColumn; col++) {
                             const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
-                            if (permission?.Edit === false) {
+                            if (permission?.[rangeType] === false) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                });
+                if (rangeDisable === true) {
+                    return true;
+                }
+            }
+            return false;
+        })
+    );
+
+    return rangeDisable$;
+}
+
+export function getCurrentRangeDisable2$(accessor: IAccessor, permissionTypes: IPermissionTypes = {}) {
+    const univerInstanceService = accessor.get(IUniverInstanceService);
+    const selectionManagerService = accessor.get(SelectionManagerService);
+    const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
+    const worksheet = workbook.getActiveSheet();
+    const selectionRuleModal = accessor.get(SelectionProtectionRuleModel);
+    const workbookPermissionService = accessor.get(WorkbookPermissionService);
+    const worksheetRuleModel = accessor.get(WorksheetProtectionRuleModel);
+    const worksheetPermissionService = accessor.get(WorksheetPermissionService);
+
+    const rangeDisable$ = merge(
+        selectionManagerService.selectionMoveEnd$,
+        selectionRuleModal.ruleChange$,
+        worksheetRuleModel.ruleChange$
+    ).pipe(
+        map(() => {
+            const selections = selectionManagerService.getSelections();
+            const selectionRanges = selections?.map((selection) => selection.range);
+            const { workbookType, worksheetType, rangeType } = permissionTypes;
+            if (workbookType) {
+                const workbookDisable = workbookType.some((type) => {
+                    const workbookPermissionCheckFnName = `get${type}Permission` as keyof WorkbookPermissionService;
+                    const workbookPermissionCheckFn = workbookPermissionService[workbookPermissionCheckFnName] as GetWorkbookPermissionFunc;
+                    const workbookPermission = workbookPermissionCheckFn(workbook.getUnitId());
+                    if (workbookPermission === false) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+                if (workbookDisable === true) {
+                    return true;
+                }
+            }
+            if (worksheetType) {
+                const worksheetDisable = worksheetType.some((type) => {
+                    const worksheetPermissionCheckFnName = `get${type}Permission` as keyof WorksheetPermissionService;
+                    const worksheetPermissionCheckFn = worksheetPermissionService[worksheetPermissionCheckFnName] as GetWorksheetPermission;
+                    const worksheetPermission = worksheetPermissionCheckFn({
+                        unitId: workbook.getUnitId(),
+                        subUnitId: worksheet.getSheetId(),
+                    });
+                    if (worksheetPermission === false) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+                if (worksheetDisable === true) {
+                    return true;
+                }
+            }
+            if (rangeType) {
+                const rangeDisable = selectionRanges?.some((range) => {
+                    for (let row = range.startRow; row <= range.endRow; row++) {
+                        for (let col = range.startColumn; col <= range.endColumn; col++) {
+                            const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
+                            if (permission?.[rangeType] === false) {
                                 return true;
                             }
                         }

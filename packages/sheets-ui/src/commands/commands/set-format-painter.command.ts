@@ -120,10 +120,6 @@ export const ApplyFormatPainterCommand: ICommand = {
             mergeRanges,
         } = params;
 
-        if (!worksheetPermissionService.getEditPermission({ unitId, subUnitId })) {
-            return false;
-        }
-
         const currentSelections = range ? [range] : selectionManagerService.getSelectionRanges();
         if (!currentSelections || !currentSelections.length) {
             return false;

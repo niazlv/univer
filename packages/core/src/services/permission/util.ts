@@ -21,14 +21,10 @@ export function mapSubEnumToPermissionPoint(permissionEnum: UnitAction): SubUnit
     switch (permissionEnum) {
         case UnitAction.View:
             return SubUnitPermissionType.View;
-        case UnitAction.Edit:
-            return SubUnitPermissionType.Edit;
         case UnitAction.ManageCollaborator:
             return SubUnitPermissionType.ManageCollaborator;
         case UnitAction.Print:
             return SubUnitPermissionType.Print;
-        case UnitAction.Duplicate:
-            return SubUnitPermissionType.Duplicate;
         case UnitAction.Comment:
             return SubUnitPermissionType.Comment;
         case UnitAction.Copy:
@@ -62,14 +58,10 @@ export function mapPermissionPointToSubEnum(permissionPoint: SubUnitPermissionTy
     switch (permissionPoint) {
         case SubUnitPermissionType.View:
             return UnitAction.View;
-        case SubUnitPermissionType.Edit:
-            return UnitAction.Edit;
         case SubUnitPermissionType.ManageCollaborator:
             return UnitAction.ManageCollaborator;
         case SubUnitPermissionType.Print:
             return UnitAction.Print;
-        case SubUnitPermissionType.Duplicate:
-            return UnitAction.Duplicate;
         case SubUnitPermissionType.Comment:
             return UnitAction.Comment;
         case SubUnitPermissionType.Copy:

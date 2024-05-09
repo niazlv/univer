@@ -18,13 +18,15 @@ import type { ICellDataForSheetInterceptor, ICommandInfo, IPermissionTypes, IRan
 import { Disposable, ICommandService, IUniverInstanceService, LifecycleStages, OnLifecycle, RangeUnitPermissionType, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
 import { InsertCommand } from '@univerjs/docs';
 import type { GetWorkbookPermissionFunc, GetWorksheetPermission } from '@univerjs/sheets';
-import { SelectionManagerService, SetBackgroundColorCommand, WorkbookPermissionService, WorksheetPermissionService } from '@univerjs/sheets';
+import { DeltaColumnWidthCommand, DeltaRowHeightCommand, SelectionManagerService, SetBackgroundColorCommand, SetRangeValuesMutation, WorkbookPermissionService, WorksheetPermissionService } from '@univerjs/sheets';
 import { Inject } from '@wendellhu/redi';
 import { IDialogService } from '@univerjs/ui';
 import { UNIVER_SHEET_PERMISSION_ALERT_DIALOG, UNIVER_SHEET_PERMISSION_ALERT_DIALOG_ID } from '@univerjs/sheets-permission-ui';
 
 import { SetCellEditVisibleOperation } from '../commands/operations/cell-edit.operation';
 import { SetRangeBoldCommand, SetRangeItalicCommand, SetRangeStrickThroughCommand, SetRangeUnderlineCommand } from '../commands/commands/inline-format.command';
+import { SheetCopyCommand } from '../commands/commands/clipboard.command';
+import { ApplyFormatPainterCommand } from '../commands/commands/set-format-painter.command';
 
 type ICellPermission = Record<RangeUnitPermissionType, boolean> & { ruleId?: string; ranges?: IRange[] };
 
@@ -62,10 +64,16 @@ export class SheetPermissionController extends Disposable {
             case SetCellEditVisibleOperation.id:
                 permission = this._permissionCheckWithoutRange({
                     rangeType: RangeUnitPermissionType.Edit,
-                    worksheetType: [SubUnitPermissionType.Edit],
+                    worksheetType: [SubUnitPermissionType.SetCellValue],
                 });
                 break;
-
+            case SetRangeValuesMutation.id:
+            case ApplyFormatPainterCommand.id:
+                permission = this._permissionCheckWithRanges({
+                    rangeType: RangeUnitPermissionType.Edit,
+                    worksheetType: [SubUnitPermissionType.SetCellValue, SubUnitPermissionType.SetCellStyle],
+                });
+                break;
             case SetBackgroundColorCommand.id:
             case SetRangeBoldCommand.id:
             case SetRangeItalicCommand.id:
@@ -73,8 +81,24 @@ export class SheetPermissionController extends Disposable {
             case SetRangeStrickThroughCommand.id:
                 permission = this._permissionCheckWithRanges({
                     rangeType: RangeUnitPermissionType.Edit,
+                    worksheetType: [SubUnitPermissionType.SetCellStyle],
                 });
                 break;
+            case SheetCopyCommand.id:
+                permission = this._permissionCheckWithRanges({
+                    rangeType: RangeUnitPermissionType.View,
+                    worksheetType: [SubUnitPermissionType.Copy],
+                });
+                break;
+            case DeltaColumnWidthCommand.id:
+            case DeltaRowHeightCommand.id:
+                permission = this._permissionCheckWithoutRange({
+                    worksheetType: [SubUnitPermissionType.RowHeightColWidth],
+                });
+                break;
+
+            // move range; move row col 需要对两个选区进行判断
+
             default:
                 break;
         }
@@ -105,7 +129,7 @@ export class SheetPermissionController extends Disposable {
         const { workbookType, worksheetType, rangeType } = permissionTypes;
         if (workbookType) {
             const workbookDisable = workbookType.some((type) => {
-                const workbookPermissionCheckFnName = `get${workbookType}Permission` as keyof WorkbookPermissionService;
+                const workbookPermissionCheckFnName = `get${type}Permission` as keyof WorkbookPermissionService;
                 const workbookPermissionCheckFn = this._workbookPermissionService[workbookPermissionCheckFnName] as GetWorkbookPermissionFunc;
                 const workbookPermission = workbookPermissionCheckFn(workbook.getUnitId());
                 if (workbookPermission === false) {
@@ -120,7 +144,7 @@ export class SheetPermissionController extends Disposable {
         }
         if (worksheetType) {
             const worksheetDisable = worksheetType.some((type) => {
-                const worksheetPermissionCheckFnName = `get${worksheetType}Permission` as keyof WorksheetPermissionService;
+                const worksheetPermissionCheckFnName = `get${type}Permission` as keyof WorksheetPermissionService;
                 const worksheetPermissionCheckFn = this._worksheetPermissionService[worksheetPermissionCheckFnName] as GetWorksheetPermission;
                 const worksheetPermission = worksheetPermissionCheckFn({
                     unitId: workbook.getUnitId(),
@@ -159,7 +183,7 @@ export class SheetPermissionController extends Disposable {
         const { workbookType, worksheetType, rangeType } = permissionTypes;
         if (workbookType) {
             const workbookDisable = workbookType.some((type) => {
-                const workbookPermissionCheckFnName = `get${workbookType}Permission` as keyof WorkbookPermissionService;
+                const workbookPermissionCheckFnName = `get${type}Permission` as keyof WorkbookPermissionService;
                 const workbookPermissionCheckFn = this._workbookPermissionService[workbookPermissionCheckFnName] as GetWorkbookPermissionFunc;
                 const workbookPermission = workbookPermissionCheckFn(workbook.getUnitId());
                 if (workbookPermission === false) {
@@ -174,7 +198,7 @@ export class SheetPermissionController extends Disposable {
         }
         if (worksheetType) {
             const worksheetDisable = worksheetType.some((type) => {
-                const worksheetPermissionCheckFnName = `get${worksheetType}Permission` as keyof WorksheetPermissionService;
+                const worksheetPermissionCheckFnName = `get${type}Permission` as keyof WorksheetPermissionService;
                 const worksheetPermissionCheckFn = this._worksheetPermissionService[worksheetPermissionCheckFnName] as GetWorksheetPermission;
                 const worksheetPermission = worksheetPermissionCheckFn({
                     unitId: workbook.getUnitId(),

@@ -61,7 +61,7 @@ export function InsertFunctionMenuItemFactory(accessor: IAccessor): IMenuItem {
             },
         ],
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.Edit], rangeType: RangeUnitPermissionType.Edit }),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
     };
 }
 

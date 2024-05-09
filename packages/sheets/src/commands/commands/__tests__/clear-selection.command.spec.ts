@@ -38,7 +38,7 @@ import { ClearSelectionContentCommand } from '../clear-selection-content.command
 import { ClearSelectionFormatCommand } from '../clear-selection-format.command';
 import type { ISetRangeValuesCommandParams } from '../set-range-values.command';
 import { SetRangeValuesCommand } from '../set-range-values.command';
-import { WorkbookPermissionService } from '../../../services/permission/workbook-permission.service';
+import { WorkbookPermissionService } from '../../../services/permission/workbook-permission/workbook-permission.service';
 import { WorksheetPermissionService } from '../../../services/permission/worksheet-permission/worksheet-permission.service';
 import { WorksheetProtectionRuleModel } from '../../../services/permission/worksheet-permission';
 import { createCommandTestBed } from './create-command-test-bed';

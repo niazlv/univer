@@ -22,7 +22,7 @@ import { SelectionManagerService, SetWorksheetActiveOperation } from '@univerjs/
 
 import { debounceTime } from 'rxjs/operators';
 import type { Workbook } from '@univerjs/core';
-import { ICommandService, IUniverInstanceService, LocaleService, Rectangle, UniverInstanceType } from '@univerjs/core';
+import { ICommandService, IUniverInstanceService, LocaleService, RangeUnitPermissionType, Rectangle, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
 import { Conditions } from '@univerjs/icons';
 import { AddConditionalRuleMutation, ConditionalFormattingRuleModel, DeleteConditionalRuleMutation, MoveConditionalRuleMutation, SetConditionalRuleMutation } from '@univerjs/sheets-conditional-formatting';
 
@@ -107,7 +107,7 @@ export const FactoryManageConditionalFormattingRule = (componentManager: Compone
             tooltip: localeService.t('sheet.cf.title'),
             selections: selections$,
             hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-            disabled$: getCurrentRangeDisable$(accessor),
+            disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle, SubUnitPermissionType.SetCellValue], rangeType: RangeUnitPermissionType.Edit }),
         } as IMenuSelectorItem;
     };
 };

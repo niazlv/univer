@@ -173,7 +173,7 @@ const dataValidation = [
 ];
 
 export const DEFAULT_WORKBOOK_DATA_DEMO: IWorkbookData = {
-    id: 'workbook-01',
+    id: 'book-1',
     sheetOrder: [
         'sheet-1',
         'sheet-2',
@@ -294,10 +294,6 @@ export const DEFAULT_WORKBOOK_DATA_DEMO: IWorkbookData = {
         },
     },
     resources: [
-        {
-            name: 'SHEET_SELECTION_PROTECTION_PLUGIN',
-            data: '{"sheet-1":[{"ranges":[{"startRow":5,"startColumn":2,"endRow":14,"endColumn":5,"startAbsoluteRefType":0,"endAbsoluteRefType":0,"rangeType":0}],"permissionId":"-bx3","id":"QfXF","name":"工作表1(C6:F15)","description":""},{"ranges":[{"startRow":18,"startColumn":10,"endRow":27,"endColumn":13,"startAbsoluteRefType":0,"endAbsoluteRefType":0,"rangeType":0}],"permissionId":"WltI","id":"lkJI","name":"工作表1(K19:N28)"}],"sheet-3":[{"ranges":[{"startRow":1,"startColumn":6,"endRow":4,"endColumn":11,"startAbsoluteRefType":0,"endAbsoluteRefType":0,"rangeType":0}],"permissionId":"71wO","id":"8qWz","name":"工作表3(G2:L5)"}]}',
-        },
         {
             name: 'SHEET_CONDITIONAL_FORMATTING_PLUGIN',
             data: '',

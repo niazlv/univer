@@ -31,7 +31,7 @@ import { getSheetSelectionsDisabled$ } from '../utils/selections-tools';
 import { getCurrentRangeDisable$ } from './menu-util';
 
 export function CellMergeMenuItemFactory(accessor: IAccessor): IMenuSelectorItem<string> {
-    const editDisabled$ = getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle, SubUnitPermissionType.Edit], rangeType: RangeUnitPermissionType.Edit });
+    const editDisabled$ = getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle, SubUnitPermissionType.SetCellValue], rangeType: RangeUnitPermissionType.Edit });
     const selectionsHasCross$ = getSheetSelectionsDisabled$(accessor);
 
     return {

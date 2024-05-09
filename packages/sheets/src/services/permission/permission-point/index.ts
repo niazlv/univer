@@ -31,8 +31,6 @@ export { WorkbookSharePermission } from './workbook/share';
 export { WorkbookCopyPermission } from './workbook/copy';
 export { WorkbookManageCollaboratorPermission } from './workbook/manage-collaborator';
 
-export { WorksheetEditablePermission } from './worksheet/editable';
-export { WorksheetDuplicatePermission } from './worksheet/duplicate';
 export { WorksheetPrintPermission } from './worksheet/print';
 export { WorksheetExportPermission } from './worksheet/export';
 export { WorksheetSetCellStylePermission } from './worksheet/set-cell-style';

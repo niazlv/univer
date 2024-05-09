@@ -24,7 +24,6 @@ import { UniverType } from '@univerjs/protocol';
 import {
     WorkbookCommentPermission,
     WorkbookCopyPermission,
-    WorkbookDuplicatePermission,
     WorkbookEditablePermission,
     WorkbookExportPermission,
     WorkbookManageCollaboratorPermission,
@@ -33,8 +32,6 @@ import {
     WorkbookViewPermission,
     WorksheetCommentPermission,
     WorksheetCopyPermission,
-    WorksheetDuplicatePermission,
-    WorksheetEditablePermission,
     WorksheetExportPermission,
     WorksheetFilterPermission,
     WorksheetFilterReadonlyPermission,
@@ -60,17 +57,9 @@ export const PLUGIN_NAME = 'SHEET_WORKSHEET_PROTECTION_PLUGIN';
 
 @OnLifecycle(LifecycleStages.Starting, WorksheetPermissionService)
 export class WorksheetPermissionService extends RxDisposable {
-    getEditPermission$: GetWorksheetPermission$;
-    getEditPermission: GetWorksheetPermission;
-    setEditPermission: SetWorksheetPermission;
-
     getPrintPermission$: GetWorksheetPermission$;
     getPrintPermission: GetWorksheetPermission;
     setPrintPermission: SetWorksheetPermission;
-
-    getDuplicatePermission$: GetWorksheetPermission$;
-    getDuplicatePermission: GetWorksheetPermission;
-    setDuplicatePermission: SetWorksheetPermission;
 
     getExportPermission$: GetWorksheetPermission$;
     getExportPermission: GetWorksheetPermission;
@@ -136,10 +125,6 @@ export class WorksheetPermissionService extends RxDisposable {
     getManageCollaboratorPermission: GetWorksheetPermission;
     setManageCollaboratorPermission: SetWorksheetPermission;
 
-    getUnRecognizedPermission$: GetWorksheetPermission$;
-    getUnRecognizedPermission: GetWorksheetPermission;
-    setUnRecognizedPermission: SetWorksheetPermission;
-
 
     constructor(
         @Inject(IPermissionService) private _permissionService: IPermissionService,
@@ -159,10 +144,12 @@ export class WorksheetPermissionService extends RxDisposable {
     private _init() {
         const handleWorkbook = (workbook: Workbook) => {
             workbook.getSheets().forEach((worksheet) => {
-                const workSheetEditPermission = new WorksheetEditablePermission(workbook.getUnitId(), worksheet.getSheetId());
-                this._permissionService.addPermissionPoint(workSheetEditPermission);
-                const worksheetManageCollaboratorPermission = new WorksheetManageCollaboratorPermission(workbook.getUnitId(), worksheet.getSheetId());
-                this._permissionService.addPermissionPoint(worksheetManageCollaboratorPermission);
+                const unitId = workbook.getUnitId();
+                const subUnitId = worksheet.getSheetId();
+                getAllPermissionPoint().forEach((F) => {
+                    const instance = new F(unitId, subUnitId);
+                    this._permissionService.addPermissionPoint(instance);
+                });
             });
         };
 
@@ -174,10 +161,12 @@ export class WorksheetPermissionService extends RxDisposable {
 
         this._univerInstanceService.getTypeOfUnitDisposed$<Workbook>(UniverInstanceType.UNIVER_SHEET).pipe(takeUntil(this.dispose$)).subscribe((workbook) => {
             workbook.getSheets().forEach((worksheet) => {
-                const workSheetPermission = new WorksheetEditablePermission(workbook.getUnitId(), worksheet.getSheetId());
-                this._permissionService.deletePermissionPoint(workSheetPermission.id);
-                const worksheetManageCollaboratorPermission = new WorksheetManageCollaboratorPermission(workbook.getUnitId(), worksheet.getSheetId());
-                this._permissionService.deletePermissionPoint(worksheetManageCollaboratorPermission.id);
+                const unitId = workbook.getUnitId();
+                const subUnitId = worksheet.getSheetId();
+                getAllPermissionPoint().forEach((F) => {
+                    const instance = new F(unitId, subUnitId);
+                    this._permissionService.deletePermissionPoint(instance.id);
+                });
             });
         });
     }
@@ -207,7 +196,7 @@ export class WorksheetPermissionService extends RxDisposable {
                 const workbookPermission = this._permissionService.getPermissionPoint(workbookPermissionInstance.id);
                 const sheetPermission = this._permissionService.getPermissionPoint(worksheetPermissionInstance.id);
                 if (!sheetPermission || !workbookPermission) {
-                    throw (new Error('Permission initialization error.'));
+                    return false;
                 }
                 return workbookPermission.value && sheetPermission.value;
             },
@@ -228,24 +217,10 @@ export class WorksheetPermissionService extends RxDisposable {
     private _initializePermissions() {
         const permissions = [
             {
-                type: SubUnitPermissionType.Edit,
-                classGroup: {
-                    WorkbookPermissionClass: WorkbookEditablePermission,
-                    WorksheetPermissionClass: WorksheetEditablePermission,
-                },
-            },
-            {
                 type: SubUnitPermissionType.Print,
                 classGroup: {
                     WorkbookPermissionClass: WorkbookPrintPermission,
                     WorksheetPermissionClass: WorksheetPrintPermission,
-                },
-            },
-            {
-                type: SubUnitPermissionType.Duplicate,
-                classGroup: {
-                    WorkbookPermissionClass: WorkbookDuplicatePermission,
-                    WorksheetPermissionClass: WorksheetDuplicatePermission,
                 },
             },
             {
