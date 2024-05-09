@@ -21,8 +21,6 @@ import { Inject, Injector } from '@wendellhu/redi';
 import { SelectionProtectionRenderModel } from './model/selection-protection-render.model';
 import { SelectionProtectionRuleModel } from './model/selection-protection-rule.model';
 import { SelectionProtectionService } from './service/selection-protection/selection-protection.service';
-import { ISelectionPermissionIoService } from './service/selection-permission-io/type';
-import { SelectionPermissionIoService } from './service/selection-permission-io/selection-permission-io.service';
 import { AddSelectionProtection } from './commands/mutation/add-selection-protection.mutation';
 import { DeleteSelectionProtection } from './commands/mutation/delete-selection-protection.mutation';
 import { SetSelectionProtection } from './commands/mutation/set-selection-protection';
@@ -32,7 +30,7 @@ export class UniverSheetsSelectionProtectionPlugin extends Plugin {
     static override type = UniverInstanceType.UNIVER_SHEET;
     static override pluginName = PLUGIN_NAME;
 
-    static readonly dependencyList: Dependency[] = [[SelectionProtectionRenderModel], [SelectionProtectionRuleModel], [SelectionProtectionService], [ISelectionPermissionIoService, { useClass: SelectionPermissionIoService }]];
+    static readonly dependencyList: Dependency[] = [[SelectionProtectionRenderModel], [SelectionProtectionRuleModel], [SelectionProtectionService]];
     static readonly mutationList = [AddSelectionProtection, DeleteSelectionProtection, SetSelectionProtection];
 
     constructor(

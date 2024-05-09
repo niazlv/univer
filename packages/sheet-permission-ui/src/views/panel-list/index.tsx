@@ -19,24 +19,21 @@ import clsx from 'clsx';
 import { Avatar, Tooltip } from '@univerjs/design';
 import { useDependency } from '@wendellhu/redi/react-bindings';
 import type { ISelectionProtectionRule } from '@univerjs/sheets-selection-protection';
-import { ISelectionPermissionIoService, SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
+import { SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
 import type { Workbook } from '@univerjs/core';
-import { ICommandService, IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
-import { ISidebarService } from '@univerjs/ui';
-import { merge } from 'rxjs';
-import { type IPermissionPoint, UnitAction } from '@univerjs/protocol';
+import { IAuthzIoService, ICommandService, IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
 import type { IWorksheetProtectionRule } from '@univerjs/sheets';
 import { WorksheetProtectionRuleModel } from '@univerjs/sheets';
+import { ISidebarService } from '@univerjs/ui';
+import { merge } from 'rxjs';
+import type { IPermissionPoint } from '@univerjs/protocol';
+import { UnitAction } from '@univerjs/protocol';
 import { SheetPermissionPanelService } from '../../service';
 import { DeleteRangeSelectionCommand } from '../../command/range-protection.command';
 import { UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER } from '../../const';
 import styles from './index.module.less';
 
-interface IRuleItem extends ISelectionProtectionRule {
-    unitId: string;
-    subUnitId: string;
-}
-
+type IRuleItem = ISelectionProtectionRule | IWorksheetProtectionRule;
 export const SheetPermissionPanelList = () => {
     const [isCurrentSheet, setIsCurrentSheet] = useState(true);
     const [forceUpdateFlag, setForceUpdateFlag] = useState(false);
@@ -46,11 +43,10 @@ export const SheetPermissionPanelList = () => {
     const worksheetProtectionModel = useDependency(WorksheetProtectionRuleModel);
     const univerInstanceService = useDependency(IUniverInstanceService);
     const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
-    const worksheet = workbook.getActiveSheet()!;
     const unitId = workbook.getUnitId();
     const commandService = useDependency(ICommandService);
     const sidebarService = useDependency(ISidebarService);
-    const selectionPermissionIoService = useDependency(ISelectionPermissionIoService);
+    const authzIoService = useDependency(IAuthzIoService);
 
     const getRuleList = useCallback(async (isCurrentSheet: boolean) => {
         const worksheet = workbook.getActiveSheet()!;
@@ -74,10 +70,12 @@ export const SheetPermissionPanelList = () => {
 
         const allPermissionId = [...allRangePermissionId, ...allSheetPermissionId];
 
-        const allPermissionRule = await selectionPermissionIoService.list({
-            unitId,
-            permissionIdList: allPermissionId,
+        const allPermissionRule = await authzIoService.list({
+            objectIDs: allPermissionId,
+            unitID: unitId,
+            actions: [UnitAction.View, UnitAction.Edit],
         });
+
 
         const subUnitPermissionIds = selectionProtectionModel.getSubunitRuleList(unitId, subUnitId).map((item) => item.permissionId);
         const sheetPermissionId = worksheetProtectionModel.getRule(unitId, subUnitId)?.permissionId;
@@ -89,7 +87,7 @@ export const SheetPermissionPanelList = () => {
         });
 
         return isCurrentSheet ? subUnitRuleList : allPermissionRule;
-    }, [selectionPermissionIoService, selectionProtectionModel, workbook, worksheetProtectionModel]);
+    }, [authzIoService, selectionProtectionModel, workbook, worksheetProtectionModel]);
 
 
     const [ruleList, setRuleList] = useState<IPermissionPoint[]>([]);
@@ -123,9 +121,9 @@ export const SheetPermissionPanelList = () => {
         }
     };
 
-    const handleEdit = (rule: IRuleItem) => {
+    const handleEdit = (rule: any) => {
         const activeRule = sheetPermissionPanelService.rule;
-        const oldRule = {
+        const oldRule: any = {
             ...activeRule,
             name: rule.name,
             description: rule.description,

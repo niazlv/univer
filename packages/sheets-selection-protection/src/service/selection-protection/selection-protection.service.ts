@@ -15,14 +15,13 @@
  */
 
 import type { SubUnitPermissionType, Workbook } from '@univerjs/core';
-import { Disposable, IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, mapPermissionPointToSubEnum, OnLifecycle } from '@univerjs/core';
+import { Disposable, IAuthzIoService, IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, mapPermissionPointToSubEnum, OnLifecycle } from '@univerjs/core';
 import { INTERCEPTOR_POINT, SheetInterceptorService } from '@univerjs/sheets';
 import { Inject } from '@wendellhu/redi';
-import { UniverType } from '@univerjs/protocol';
+import { UnitAction, UnitObject, UniverType } from '@univerjs/protocol';
 import { SelectionProtectionRuleModel } from '../../model/selection-protection-rule.model';
 import type { IObjectModel, ISelectionProtectionRule } from '../../model/type';
 import { PLUGIN_NAME } from '../../base/const';
-import { ISelectionPermissionIoService } from '../selection-permission-io/type';
 import { SelectionProtectionRenderModel } from '../../model/selection-protection-render.model';
 import type { ISelectionProtectionRenderCellData } from '../../render/type';
 import { getAllPermissionPoint } from './permission-point';
@@ -33,7 +32,7 @@ export class SelectionProtectionService extends Disposable {
         @Inject(SelectionProtectionRuleModel) private _selectionProtectionRuleModel: SelectionProtectionRuleModel,
         @Inject(IPermissionService) private _permissionService: IPermissionService,
         @Inject(IResourceManagerService) private _resourceManagerService: IResourceManagerService,
-        @Inject(ISelectionPermissionIoService) private _selectionPermissionIoService: ISelectionPermissionIoService,
+        @Inject(IAuthzIoService) private authzIoService: IAuthzIoService,
         @Inject(SheetInterceptorService) private _sheetInterceptorService: SheetInterceptorService,
         @Inject(SelectionProtectionRenderModel) private _selectionProtectionRenderModel: SelectionProtectionRenderModel,
         @Inject(IUniverInstanceService) private _univerInstanceService: IUniverInstanceService
@@ -71,9 +70,11 @@ export class SelectionProtectionService extends Disposable {
     private _initRuleChange() {
         this.disposeWithMe(
             this._selectionProtectionRuleModel.ruleChange$.subscribe((info) => {
-                this._selectionPermissionIoService.allowed({
-                    permissionId: info.rule.permissionId,
-                    unitId: info.unitId,
+                this.authzIoService.allowed({
+                    objectID: info.rule.permissionId,
+                    unitID: info.unitId,
+                    objectType: UnitObject.SelectRange,
+                    actions: [UnitAction.Edit, UnitAction.View],
                 }).then((permissionMap) => {
                     getAllPermissionPoint().forEach((F) => {
                         const rule = info.rule;
@@ -139,17 +140,22 @@ export class SelectionProtectionService extends Disposable {
                     const result = this._selectionProtectionRuleModel.toObject();
                     result[unitId] = resources;
                     this._selectionProtectionRuleModel.fromObject(result);
-                    const allAllowedParams: { unitId: string; permissionId: string }[] = [];
+                    const allAllowedParams: {
+                        objectID: string;
+                        unitID: string;
+                        objectType: UnitObject;
+                        actions: UnitAction[];
+                    }[] = [];
                     Object.keys(resources).forEach((subUnitId) => {
                         const list = resources[subUnitId];
-
                         this._selectionProtectionRuleModel.getSubunitRuleList(unitId, subUnitId).forEach((rule) => {
                             allAllowedParams.push({
-                                permissionId: rule.permissionId,
-                                unitId,
+                                objectID: rule.permissionId,
+                                unitID: unitId,
+                                objectType: UnitObject.SelectRange,
+                                actions: [UnitAction.View, UnitAction.Edit],
                             });
                         });
-
 
                         list.forEach((rule) => {
                             getAllPermissionPoint().forEach((Factor) => {
@@ -159,7 +165,7 @@ export class SelectionProtectionService extends Disposable {
                         });
                     });
 
-                    this._selectionPermissionIoService.batchAllowed(allAllowedParams).then((permissionMap) => {
+                    this.authzIoService.batchAllowed(allAllowedParams).then((permissionMap) => {
                         const workbook = this._univerInstanceService.getCurrentUnitForType<Workbook>(UniverType.UNIVER_SHEET)!;
                         const allSheets = workbook.getSheets();
                         const permissionIdWithRuleInstanceMap = new Map();
@@ -169,12 +175,11 @@ export class SelectionProtectionService extends Disposable {
                                 permissionIdWithRuleInstanceMap.set(rule.permissionId, rule);
                             });
                         });
-                        Object.keys(permissionMap).forEach((permissionId) => {
-                            const result = permissionMap[permissionId]; // Record<IPermissionSubType, boolean>
+                        permissionMap.forEach((item) => {
                             getAllPermissionPoint().forEach((F) => {
-                                const rule = permissionIdWithRuleInstanceMap.get(permissionId);
+                                const rule = permissionIdWithRuleInstanceMap.get(item.objectID);
                                 if (rule) {
-                                    const instance = new F(unitId, rule.subUnitId, permissionId);
+                                    const instance = new F(unitId, rule.subUnitId, item.objectID);
                                     const unitActionName = mapPermissionPointToSubEnum(instance.subType as unknown as SubUnitPermissionType);
                                     if (permissionMap.hasOwnProperty(unitActionName)) {
                                         this._permissionService.updatePermissionPoint(instance.id, result[unitActionName]);

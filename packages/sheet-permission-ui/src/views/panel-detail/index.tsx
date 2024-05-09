@@ -18,11 +18,10 @@ import React, { useEffect } from 'react';
 import { Avatar, FormLayout, Input, Radio, RadioGroup, Select } from '@univerjs/design';
 import { useDependency } from '@wendellhu/redi/react-bindings';
 import type { Workbook } from '@univerjs/core';
-import { createInternalEditorID, isValidRange, IUniverInstanceService, LocaleService, UniverInstanceType, UserManagerService } from '@univerjs/core';
+import { createInternalEditorID, IAuthzIoService, isValidRange, IUniverInstanceService, LocaleService, UniverInstanceType, UserManagerService } from '@univerjs/core';
 import { IDialogService, RangeSelector, useObservable } from '@univerjs/ui';
 import { SelectionManagerService } from '@univerjs/sheets';
 import { serializeRange } from '@univerjs/engine-formula';
-import { ISelectionPermissionIoService } from '@univerjs/sheets-selection-protection';
 import { UnitObject } from '@univerjs/protocol';
 import { type ICollaborator, UnitRole } from '@univerjs/protocol';
 import { SheetPermissionPanelService, SheetPermissionUserManagerService } from '../../service';
@@ -39,7 +38,7 @@ export const SheetPermissionPanelDetail = () => {
     const activeRule = useObservable(sheetPermissionPanelService.rule$, sheetPermissionPanelService.rule);
     const userManagerService = useDependency(UserManagerService);
     const sheetPermissionUserManagerService = useDependency(SheetPermissionUserManagerService);
-    const selectionPermissionIoService = useDependency(ISelectionPermissionIoService);
+    const authzIoService = useDependency(IAuthzIoService);
 
 
     const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
@@ -54,6 +53,18 @@ export const SheetPermissionPanelDetail = () => {
     const [viewGroupValue, setViewGroupValue] = React.useState(viewState.othersCanView);
 
     const handleAddPerson = async () => {
+        const userList = await authzIoService.listCollaborators({
+            objectID: unitId,
+            unitID: unitId,
+        });
+        userList.forEach((user) => {
+            if (user?.subject) {
+                userManagerService.addUser(user.subject);
+            }
+        });
+
+        sheetPermissionUserManagerService.setUserList(userList);
+
         dialogService.open({
             id: UNIVER_SHEET_PERMISSION_USER_DIALOG_ID,
             title: { title: '' },
@@ -105,9 +116,9 @@ export const SheetPermissionPanelDetail = () => {
     useEffect(() => {
         const getSelectUserList = async () => {
             const permissionId = activeRule?.permissionId;
-            const collaborators = await selectionPermissionIoService.listCollaborators({
-                permissionId,
-                unitId,
+            const collaborators = await authzIoService.listCollaborators({
+                objectID: permissionId,
+                unitID: unitId,
             });
             const selectUserList: ICollaborator[] = collaborators.filter((user) => {
                 return user.role === UnitRole.Editor;
@@ -131,9 +142,9 @@ export const SheetPermissionPanelDetail = () => {
 
     useEffect(() => {
         const getListCollaborators = async () => {
-            const userList = await selectionPermissionIoService.listCollaborators({
-                permissionId: unitId,
-                unitId,
+            const userList = await authzIoService.listCollaborators({
+                objectID: unitId,
+                unitID: unitId,
             });
             userList.forEach((user) => {
                 if (user?.subject) {
