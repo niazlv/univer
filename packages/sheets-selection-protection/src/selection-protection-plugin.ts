@@ -46,7 +46,7 @@ export class UniverSheetsSelectionProtectionPlugin extends Plugin {
     }
 
     override onStarting(): void {
-        const dependency = mergeOverrideWithDependencies(UniverSheetsSelectionProtectionPlugin.dependencyList, this._config.override);
+        const dependency = mergeOverrideWithDependencies(UniverSheetsSelectionProtectionPlugin.dependencyList, this._config?.override);
         dependency.forEach((d) => {
             this._injector.add(d);
         });

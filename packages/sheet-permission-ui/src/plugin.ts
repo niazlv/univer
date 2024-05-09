@@ -56,7 +56,6 @@ export class UniverSheetsPermissionUIPlugin extends Plugin {
         [
             SheetPermissionOpenPanelOperation,
             SheetPermissionOpenDialogOperation,
-
             AddRangeProtectionFromToolbarCommand,
             AddRangeProtectionFromContextMenuCommand,
             ViewSheetPermissionFromContextMenuCommand,
@@ -68,7 +67,6 @@ export class UniverSheetsPermissionUIPlugin extends Plugin {
             AddRangeProtectionCommand,
             DeleteRangeSelectionCommand,
             SetRangeProtectionCommand,
-
             AddWorksheetProtectionCommand,
             DeleteWorksheetProtectionCommand,
             SetWorksheetProtectionCommand,
