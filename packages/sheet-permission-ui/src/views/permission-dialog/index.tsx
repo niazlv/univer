@@ -20,10 +20,10 @@ import { Button, Switch } from '@univerjs/design';
 import clsx from 'clsx';
 import { useDependency } from '@wendellhu/redi/react-bindings';
 import type { Workbook } from '@univerjs/core';
-import { IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
+import { IAuthzIoService, IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
 import { IDialogService } from '@univerjs/ui';
-import { IWorksheetPermissionIoService, WorksheetPermissionService, WorksheetProtectionRuleModel } from '@univerjs/sheets';
-import type { UnitAction } from '@univerjs/protocol';
+import { WorksheetProtectionRuleModel } from '@univerjs/sheets';
+import { UnitAction, UnitObject } from '@univerjs/protocol';
 import { subUnitPermissionTypeMap, UNIVER_SHEET_PERMISSION_DIALOG_ID } from '../../const';
 import styles from './index.module.less';
 
@@ -38,8 +38,7 @@ interface IPermissionMap {
 export const SheetPermissionDialog = () => {
     const localeService = useDependency(LocaleService);
     const univerInstanceService = useDependency(IUniverInstanceService);
-    const worksheetPermissionService = useDependency(WorksheetPermissionService);
-    const worksheetPermissionIoService = useDependency(IWorksheetPermissionIoService);
+    const authzIoService = useDependency(IAuthzIoService);
     const worksheetProtectionRuleModel = useDependency(WorksheetProtectionRuleModel);
     const dialogService = useDependency(IDialogService);
 
@@ -62,15 +61,20 @@ export const SheetPermissionDialog = () => {
         if (!rule) {
             return;
         }
-        worksheetPermissionIoService.allowed({ permissionId: rule?.permissionId, unitId }).then((res) => {
-            const newPermissionMap = Object.keys(res).reduce((acc, action) => {
+        rule.permissionId && authzIoService.allowed({
+            objectID: rule.permissionId,
+            objectType: UnitObject.Worksheet,
+            unitID: unitId,
+            actions: [UnitAction.Edit, UnitAction.View],
+        }).then((res) => {
+            const newPermissionMap = res.reduce((acc, item) => {
+                const action = item.action;
                 if (action in subUnitPermissionTypeMap) {
                     acc[action] = {
                         text: localeService.t(`permission.panel.${subUnitPermissionTypeMap[action as unknown as UnitAction]}`),
-                        allowed: res[action],
+                        allowed: item.allowed,
                     };
                 }
-
                 return acc;
             }, {} as IPermissionMap);
             setPermissionMap({
