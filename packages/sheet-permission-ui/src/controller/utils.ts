@@ -16,7 +16,7 @@
 
 import type { Workbook } from '@univerjs/core';
 import { IUniverInstanceService, Rectangle, UniverInstanceType } from '@univerjs/core';
-import { SelectionManagerService, WorksheetPermissionService } from '@univerjs/sheets';
+import { SelectionManagerService, WorkbookPermissionService, WorksheetProtectionRuleModel } from '@univerjs/sheets';
 import { SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
 import type { IAccessor } from '@wendellhu/redi';
 import { combineLatestWith, map, merge } from 'rxjs';
@@ -28,12 +28,14 @@ export function getAddPermissionHidden$(accessor: IAccessor) {
     const worksheet = workbook.getActiveSheet();
     const unitId = workbook.getUnitId();
     const subUnitId = worksheet.getSheetId();
-    const selectionRuleModal = accessor.get(SelectionProtectionRuleModel);
-    const subUnitRuleList = selectionRuleModal.getSubunitRuleList(unitId, subUnitId);
+    const selectionRuleModel = accessor.get(SelectionProtectionRuleModel);
+    const worksheetRuleModel = accessor.get(WorksheetProtectionRuleModel);
+    const subUnitRuleList = selectionRuleModel.getSubunitRuleList(unitId, subUnitId);
 
     return merge(
         selectionManagerService.selectionMoveEnd$,
-        selectionRuleModal.ruleChange$
+        selectionRuleModel.ruleChange$,
+        worksheetRuleModel.ruleChange$
     ).pipe(
         map(() => {
             const selections = selectionManagerService.getSelections();
@@ -58,12 +60,14 @@ export function getEditPermissionHiddenOrDelete$(accessor: IAccessor) {
     const worksheet = workbook.getActiveSheet();
     const unitId = workbook.getUnitId();
     const subUnitId = worksheet.getSheetId();
-    const selectionRuleModal = accessor.get(SelectionProtectionRuleModel);
-    const subUnitRuleList = selectionRuleModal.getSubunitRuleList(unitId, subUnitId);
+    const selectionRuleModel = accessor.get(SelectionProtectionRuleModel);
+    const subUnitRuleList = selectionRuleModel.getSubunitRuleList(unitId, subUnitId);
+    const worksheetRuleModel = accessor.get(WorksheetProtectionRuleModel);
 
     return merge(
         selectionManagerService.selectionMoveEnd$,
-        selectionRuleModal.ruleChange$
+        selectionRuleModel.ruleChange$,
+        worksheetRuleModel.ruleChange$
     ).pipe(
         map(() => {
             const selection = selectionManagerService.getLast();
@@ -80,14 +84,48 @@ export function getEditPermissionHiddenOrDelete$(accessor: IAccessor) {
 }
 
 export function getPermissionDisableBase$(accessor: IAccessor) {
-    const worksheetPermissionService = accessor.get(WorksheetPermissionService);
     const univerInstanceService = accessor.get(IUniverInstanceService);
     const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
-    const worksheet = workbook.getActiveSheet();
+    const selectionProtectionRuleModel = accessor.get(SelectionProtectionRuleModel);
+    const worksheetProtectionRuleModel = accessor.get(WorksheetProtectionRuleModel);
+    const workbookPermissionService = accessor.get(WorkbookPermissionService);
     const unitId = workbook.getUnitId();
-    const subUnitId = worksheet.getSheetId();
-    return worksheetPermissionService.getManageCollaboratorPermission$({ unitId, subUnitId }).pipe(
-        map((permission) => !permission)
+    const selectionRuleModel = accessor.get(SelectionProtectionRuleModel);
+    const worksheetRuleModel = accessor.get(WorksheetProtectionRuleModel);
+
+
+    const selectionManagerService = accessor.get(SelectionManagerService);
+    return merge(
+        selectionManagerService.selectionMoveEnd$,
+        selectionRuleModel.ruleChange$,
+        worksheetRuleModel.ruleChange$
+    ).pipe(
+        map(() => {
+            const selections = selectionManagerService.getSelections();
+            const selectionRanges = selections?.map((selection) => selection.range);
+            if (!selectionRanges?.length) {
+                return false;
+            }
+            const worksheet = workbook.getActiveSheet();
+            const subUnitId = worksheet.getSheetId();
+            const univerManageCollaboratorPermission = workbookPermissionService.getManageCollaboratorPermission(unitId);
+            if (!univerManageCollaboratorPermission) {
+                return true;
+            }
+            const worksheetRule = worksheetProtectionRuleModel.getRule(unitId, subUnitId);
+            if (worksheetRule) {
+                return true;
+            }
+
+            const subunitRuleList = selectionProtectionRuleModel.getSubunitRuleList(unitId, subUnitId);
+            return selectionRanges?.some((selectionRange) => {
+                return subunitRuleList.some((rule) => {
+                    return rule.ranges.some((ruleRange) => {
+                        return Rectangle.intersects(selectionRange, ruleRange);
+                    });
+                });
+            });
+        })
     );
 }
 
@@ -98,12 +136,20 @@ export function getAddPermissionDisable$(accessor: IAccessor) {
     const worksheet = workbook.getActiveSheet();
     const unitId = workbook.getUnitId();
     const subUnitId = worksheet.getSheetId();
-    const areaHasProtect$ = selectionManagerService.selectionMoveEnd$.pipe(
+
+    const selectionRuleModel = accessor.get(SelectionProtectionRuleModel);
+    const worksheetRuleModel = accessor.get(WorksheetProtectionRuleModel);
+
+    const areaHasProtect$ = merge(
+        selectionManagerService.selectionMoveEnd$,
+        selectionRuleModel.ruleChange$,
+        worksheetRuleModel.ruleChange$
+    ).pipe(
         map(() => {
             const selections = selectionManagerService.getSelections();
             const selectionsRanges = selections?.map((selection) => selection.range);
-            const selectionRuleModal = accessor.get(SelectionProtectionRuleModel);
-            const subUnitRuleList = selectionRuleModal.getSubunitRuleList(unitId, subUnitId);
+            const selectionRuleModel = accessor.get(SelectionProtectionRuleModel);
+            const subUnitRuleList = selectionRuleModel.getSubunitRuleList(unitId, subUnitId);
             if (!selectionsRanges?.length || !subUnitRuleList.length) {
                 return false;
             }
@@ -119,5 +165,80 @@ export function getAddPermissionDisable$(accessor: IAccessor) {
     return getPermissionDisableBase$(accessor).pipe(
         combineLatestWith(areaHasProtect$),
         map(([permissionDisable, areaHasProtect]) => permissionDisable || areaHasProtect)
+    );
+}
+
+export function getRemovePermissionDisable$(accessor: IAccessor) {
+    const univerInstanceService = accessor.get(IUniverInstanceService);
+    const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
+    const selectionProtectionRuleModel = accessor.get(SelectionProtectionRuleModel);
+    const worksheetProtectionRuleModel = accessor.get(WorksheetProtectionRuleModel);
+    const workbookPermissionService = accessor.get(WorkbookPermissionService);
+    const unitId = workbook.getUnitId();
+
+
+    const worksheetRuleModel = accessor.get(WorksheetProtectionRuleModel);
+    const selectionRuleModel = accessor.get(SelectionProtectionRuleModel);
+    const selectionManagerService = accessor.get(SelectionManagerService);
+    return merge(
+        selectionManagerService.selectionMoveEnd$,
+        selectionRuleModel.ruleChange$,
+        worksheetRuleModel.ruleChange$
+    ).pipe(
+        map(() => {
+            const selections = selectionManagerService.getSelections();
+            const selectionRanges = selections?.map((selection) => selection.range);
+            if (!selectionRanges?.length) {
+                return true;
+            }
+            const worksheet = workbook.getActiveSheet();
+            const subUnitId = worksheet.getSheetId();
+            const univerManageCollaboratorPermission = workbookPermissionService.getManageCollaboratorPermission(unitId);
+            if (!univerManageCollaboratorPermission) {
+                return true;
+            }
+            const worksheetRule = worksheetProtectionRuleModel.getRule(unitId, subUnitId);
+            if (worksheetRule) {
+                return false;
+            }
+
+            const subunitRuleList = selectionProtectionRuleModel.getSubunitRuleList(unitId, subUnitId);
+            const hasIntersect = selectionRanges?.some((selectionRange) => {
+                return subunitRuleList.some((rule) => {
+                    return rule.ranges.some((ruleRange) => {
+                        return Rectangle.intersects(selectionRange, ruleRange);
+                    });
+                });
+            });
+
+            return !hasIntersect;
+        })
+    );
+}
+
+
+export function getSetPermissionDisable$(accessor: IAccessor) {
+    const univerInstanceService = accessor.get(IUniverInstanceService);
+    const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
+    const worksheetProtectionRuleModel = accessor.get(WorksheetProtectionRuleModel);
+    const workbookPermissionService = accessor.get(WorkbookPermissionService);
+    const unitId = workbook.getUnitId();
+
+
+    return worksheetProtectionRuleModel.ruleChange$.pipe(
+        map(() => {
+            const worksheet = workbook.getActiveSheet();
+            const subUnitId = worksheet.getSheetId();
+            const univerManageCollaboratorPermission = workbookPermissionService.getManageCollaboratorPermission(unitId);
+            if (!univerManageCollaboratorPermission) {
+                return true;
+            }
+            const worksheetRule = worksheetProtectionRuleModel.getRule(unitId, subUnitId);
+            if (worksheetRule) {
+                return false;
+            } else {
+                return true;
+            }
+        })
     );
 }

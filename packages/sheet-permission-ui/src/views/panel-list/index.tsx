@@ -23,7 +23,7 @@ import { SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protect
 import type { Workbook } from '@univerjs/core';
 import { IAuthzIoService, ICommandService, IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
 import type { IWorksheetProtectionRule } from '@univerjs/sheets';
-import { WorksheetProtectionRuleModel } from '@univerjs/sheets';
+import { WorkbookPermissionService, WorksheetProtectionRuleModel } from '@univerjs/sheets';
 import { ISidebarService } from '@univerjs/ui';
 import { merge } from 'rxjs';
 import type { IPermissionPoint } from '@univerjs/protocol';
@@ -47,6 +47,7 @@ export const SheetPermissionPanelList = () => {
     const commandService = useDependency(ICommandService);
     const sidebarService = useDependency(ISidebarService);
     const authzIoService = useDependency(IAuthzIoService);
+    const workbookPermissionService = useDependency(WorkbookPermissionService);
 
     const getRuleList = useCallback(async (isCurrentSheet: boolean) => {
         const worksheet = workbook.getActiveSheet()!;
@@ -167,6 +168,8 @@ export const SheetPermissionPanelList = () => {
         }
     });
 
+    const manageCollaboratorAction = workbookPermissionService.getManageCollaboratorPermission(unitId);
+
 
     return (
         <div className={styles.sheetPermissionListPanelWrapper}>
@@ -195,17 +198,13 @@ export const SheetPermissionPanelList = () => {
                     const viewAction = item.actions.find((action) => action.action === UnitAction.View);
                     const viewPermission = viewAction?.allowed;
 
-                    const manageCollaboratorAction = item.actions.find((action) => action.action === UnitAction.ManageCollaborator);
-                    const managePermission = manageCollaboratorAction?.allowed;
-
-
                     return (
                         <div key={item.objectID} className={styles.sheetPermissionListItem}>
                             <div className={styles.sheetPermissionListItemHeader}>
                                 <Tooltip title={rule.name}>
                                     <div className={styles.sheetPermissionListItemHeaderName}>{rule.name}</div>
                                 </Tooltip>
-                                {managePermission && (
+                                {manageCollaboratorAction && (
                                     <div className={styles.sheetPermissionListItemHeaderOperator}>
                                         <Tooltip title={localeService.t('permission.panel.edit')}>
                                             <div onClick={() => handleEdit(rule)}>edit</div>

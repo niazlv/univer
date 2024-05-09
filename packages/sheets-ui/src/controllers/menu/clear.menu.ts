@@ -19,6 +19,7 @@ import type { IMenuButtonItem, IMenuSelectorItem } from '@univerjs/ui';
 import { MenuGroup, MenuItemType, MenuPosition } from '@univerjs/ui';
 
 import type { IAccessor } from '@wendellhu/redi';
+import { RangeUnitPermissionType, SubUnitPermissionType } from '@univerjs/core';
 import { SheetMenuPosition } from './menu';
 import { getCurrentRangeDisable$ } from './menu-util';
 
@@ -45,7 +46,7 @@ export function ClearSelectionContentMenuItemFactory(accessor: IAccessor): IMenu
         type: MenuItemType.BUTTON,
         title: 'rightClick.clearContent',
         positions: [CLEAR_SELECTION_MENU_ID],
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellValue], rangeType: RangeUnitPermissionType.Edit }),
     };
 }
 export function ClearSelectionFormatMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
@@ -54,7 +55,7 @@ export function ClearSelectionFormatMenuItemFactory(accessor: IAccessor): IMenuB
         type: MenuItemType.BUTTON,
         title: 'rightClick.clearFormat',
         positions: [CLEAR_SELECTION_MENU_ID],
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
     };
 }
 export function ClearSelectionAllMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
@@ -63,6 +64,6 @@ export function ClearSelectionAllMenuItemFactory(accessor: IAccessor): IMenuButt
         type: MenuItemType.BUTTON,
         title: 'rightClick.clearAll',
         positions: [CLEAR_SELECTION_MENU_ID],
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellValue, SubUnitPermissionType.SetCellStyle], rangeType: RangeUnitPermissionType.Edit }),
     };
 }

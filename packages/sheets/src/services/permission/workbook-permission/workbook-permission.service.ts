@@ -17,7 +17,7 @@
 import { Inject } from '@wendellhu/redi';
 import type { IPermissionPoint, Workbook } from '@univerjs/core';
 import { Disposable, IPermissionService, IUniverInstanceService, LifecycleStages, OnLifecycle, UnitPermissionType, UniverInstanceType } from '@univerjs/core';
-import { map } from 'rxjs';
+import { map, of } from 'rxjs';
 import {
     WorkbookCommentPermission,
     WorkbookCopyPermission,
@@ -155,7 +155,7 @@ export class WorkbookPermissionService extends Disposable {
                 const permissionInstance = new PermissionClass(unitId);
                 const permission = this._permissionService.getPermissionPoint(permissionInstance.id);
                 if (!permission) {
-                    throw (new Error('Permission initialization error.'));
+                    return of(false);
                 }
                 return this._permissionService.composePermission$([permissionInstance.id]).pipe(map((list) => {
                     return list.every((item) => item.value === true);

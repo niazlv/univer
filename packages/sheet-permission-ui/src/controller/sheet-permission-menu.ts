@@ -17,11 +17,9 @@
 import type { IMenuButtonItem, IMenuItem, IMenuSelectorItem } from '@univerjs/ui';
 import { MenuGroup, MenuItemType, MenuPosition } from '@univerjs/ui';
 import type { IAccessor } from '@wendellhu/redi';
-import { combineLatestWith, map } from 'rxjs';
-import { SheetPermissionOpenPanelOperation } from '../operation/sheet-permission-open-panel.operation';
 import { AddRangeProtectionFromContextMenuCommand, AddRangeProtectionFromSheetBarCommand, AddRangeProtectionFromToolbarCommand, DeleteRangeProtectionFromContextMenuCommand, SetRangeProtectionFromContextMenuCommand, ViewSheetPermissionFromContextMenuCommand, ViewSheetPermissionFromSheetBarCommand } from '../command/range-protection.command';
 import { ChangeSheetProtectionFromSheetBarCommand, DeleteWOrksheetProtectionFormSheetBarCommand } from '../command/worksheet-protection.command';
-import { getAddPermissionDisable$, getAddPermissionHidden$, getEditPermissionHiddenOrDelete$, getPermissionDisableBase$ } from './utils';
+import { getAddPermissionDisable$, getAddPermissionHidden$, getEditPermissionHiddenOrDelete$, getPermissionDisableBase$, getRemovePermissionDisable$, getSetPermissionDisable$ } from './utils';
 
 export const tmpIcon = 'data-validation-single';
 const SHEET_PERMISSION_MENU_ID = 'sheet.menu.permission';
@@ -84,17 +82,13 @@ export function sheetPermissionEditProtectContextMenuFactory(accessor: IAccessor
 }
 
 export function sheetPermissionRemoveProtectContextMenuFactory(accessor: IAccessor): IMenuButtonItem {
-    const baseDisable$ = getPermissionDisableBase$(accessor);
     return {
         id: DeleteRangeProtectionFromContextMenuCommand.id,
         type: MenuItemType.BUTTON,
         title: 'rightClick.removeProtectRange',
         icon: tmpIcon,
         positions: [SHEET_PERMISSION_CONTEXT_MENU_ID],
-        disabled$: baseDisable$.pipe(
-            combineLatestWith(getEditPermissionHiddenOrDelete$(accessor)),
-            map((([d1, d2]) => d1 || d2))
-        ),
+        disabled$: getRemovePermissionDisable$(accessor),
     };
 }
 
@@ -108,30 +102,33 @@ export function sheetPermissionViewAllProtectRuleContextMenuFactory(): IMenuButt
     };
 }
 
-export function sheetPermissionProtectSheetInSheetBarMenuFactory(): IMenuButtonItem {
+export function sheetPermissionProtectSheetInSheetBarMenuFactory(accessor: IAccessor): IMenuButtonItem {
     return {
         id: AddRangeProtectionFromSheetBarCommand.id,
         type: MenuItemType.BUTTON,
         positions: [SheetMenuPosition.SHEET_BAR],
         title: 'sheetConfig.addProtectSheet',
+        disabled$: getAddPermissionDisable$(accessor),
     };
 }
 
-export function sheetPermissionRemoveProtectionSheetBarMenuFactory(): IMenuButtonItem {
+export function sheetPermissionRemoveProtectionSheetBarMenuFactory(accessor: IAccessor): IMenuButtonItem {
     return {
         id: DeleteWOrksheetProtectionFormSheetBarCommand.id,
         type: MenuItemType.BUTTON,
         positions: [SheetMenuPosition.SHEET_BAR],
         title: 'sheetConfig.removeProtectSheet',
+        disabled$: getRemovePermissionDisable$(accessor),
     };
 }
 
-export function sheetPermissionChangeSheetPermissionSheetBarMenuFactory(): IMenuButtonItem {
+export function sheetPermissionChangeSheetPermissionSheetBarMenuFactory(accessor: IAccessor): IMenuButtonItem {
     return {
         id: ChangeSheetProtectionFromSheetBarCommand.id,
         type: MenuItemType.BUTTON,
         positions: [SheetMenuPosition.SHEET_BAR],
         title: 'sheetConfig.changeSheetPermission',
+        disabled$: getSetPermissionDisable$(accessor),
     };
 }
 

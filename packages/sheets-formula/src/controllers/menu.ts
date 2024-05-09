@@ -88,6 +88,9 @@ export function PasteFormulaMenuItemFactory(accessor: IAccessor): IMenuItem {
         type: MenuItemType.BUTTON,
         title: 'formula.operation.pasteFormula',
         positions: [PASTE_SPECIAL_MENU_ID],
-        disabled$: menuClipboardDisabledObservable(accessor),
+        disabled$: menuClipboardDisabledObservable(accessor).pipe(
+            combineLatestWith(getCurrentRangeDisable$(accessor, { rangeType: RangeUnitPermissionType.Edit, worksheetType: [SubUnitPermissionType.SetCellValue] })),
+            map(([d1, d2]) => d1 || d2)
+        ),
     };
 }

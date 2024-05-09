@@ -882,7 +882,7 @@ function menuClipboardDisabledObservable(injector: IAccessor): Observable<boolea
     );
 }
 
-export function CopyMenuItemFactory(): IMenuButtonItem {
+export function CopyMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
     return {
         id: CopyCommand.id,
         group: MenuGroup.CONTEXT_MENU_FORMAT,
@@ -894,10 +894,11 @@ export function CopyMenuItemFactory(): IMenuButtonItem {
             SheetMenuPosition.COL_HEADER_CONTEXT_MENU,
             SheetMenuPosition.ROW_HEADER_CONTEXT_MENU,
         ],
+        disabled$: getCurrentRangeDisable$(accessor, { rangeType: RangeUnitPermissionType.View, worksheetType: [SubUnitPermissionType.Copy] }),
     };
 }
 
-export function CutMenuItemFactory(): IMenuButtonItem {
+export function CutMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
     return {
         id: CutCommand.id,
         group: MenuGroup.CONTEXT_MENU_FORMAT,
@@ -908,6 +909,7 @@ export function CutMenuItemFactory(): IMenuButtonItem {
             SheetMenuPosition.COL_HEADER_CONTEXT_MENU,
             SheetMenuPosition.ROW_HEADER_CONTEXT_MENU,
         ],
+        disabled$: getCurrentRangeDisable$(accessor, { rangeType: RangeUnitPermissionType.View, worksheetType: [SubUnitPermissionType.Copy] }),
     };
 }
 
@@ -918,7 +920,10 @@ export function PasteMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
         type: MenuItemType.BUTTON,
         title: 'rightClick.paste',
         icon: 'PasteSpecial',
-        disabled$: menuClipboardDisabledObservable(accessor),
+        disabled$: menuClipboardDisabledObservable(accessor).pipe(
+            combineLatestWith(getCurrentRangeDisable$(accessor, { rangeType: RangeUnitPermissionType.Edit, worksheetType: [SubUnitPermissionType.SetCellStyle, SubUnitPermissionType.SetCellValue] })),
+            map(([d1, d2]) => d1 || d2)
+        ),
         positions: [
             MenuPosition.CONTEXT_MENU,
             SheetMenuPosition.COL_HEADER_CONTEXT_MENU,
@@ -949,7 +954,10 @@ export function PasteValueMenuItemFactory(accessor: IAccessor): IMenuButtonItem<
         type: MenuItemType.BUTTON,
         title: 'rightClick.pasteValue',
         positions: [PASTE_SPECIAL_MENU_ID],
-        disabled$: menuClipboardDisabledObservable(accessor),
+        disabled$: menuClipboardDisabledObservable(accessor).pipe(
+            combineLatestWith(getCurrentRangeDisable$(accessor, { rangeType: RangeUnitPermissionType.Edit, worksheetType: [SubUnitPermissionType.SetCellValue] })),
+            map(([d1, d2]) => d1 || d2)
+        ),
     };
 }
 
@@ -959,7 +967,10 @@ export function PasteFormatMenuItemFactory(accessor: IAccessor): IMenuButtonItem
         type: MenuItemType.BUTTON,
         title: 'rightClick.pasteFormat',
         positions: [PASTE_SPECIAL_MENU_ID],
-        disabled$: menuClipboardDisabledObservable(accessor),
+        disabled$: menuClipboardDisabledObservable(accessor).pipe(
+            combineLatestWith(getCurrentRangeDisable$(accessor, { rangeType: RangeUnitPermissionType.Edit, worksheetType: [SubUnitPermissionType.SetCellStyle] })),
+            map(([d1, d2]) => d1 || d2)
+        ),
     };
 }
 
@@ -969,7 +980,10 @@ export function PasteColWidthMenuItemFactory(accessor: IAccessor): IMenuButtonIt
         type: MenuItemType.BUTTON,
         title: 'rightClick.pasteColWidth',
         positions: [PASTE_SPECIAL_MENU_ID],
-        disabled$: menuClipboardDisabledObservable(accessor),
+        disabled$: menuClipboardDisabledObservable(accessor).pipe(
+            combineLatestWith(getCurrentRangeDisable$(accessor, { rangeType: RangeUnitPermissionType.View, worksheetType: [SubUnitPermissionType.RowHeightColWidth] })),
+            map(([d1, d2]) => d1 || d2)
+        ),
     };
 }
 
@@ -979,7 +993,10 @@ export function PasteBesidesBorderMenuItemFactory(accessor: IAccessor): IMenuBut
         type: MenuItemType.BUTTON,
         title: 'rightClick.pasteBesidesBorder',
         positions: [PASTE_SPECIAL_MENU_ID],
-        disabled$: menuClipboardDisabledObservable(accessor),
+        disabled$: menuClipboardDisabledObservable(accessor).pipe(
+            combineLatestWith(getCurrentRangeDisable$(accessor, { rangeType: RangeUnitPermissionType.Edit, worksheetType: [SubUnitPermissionType.SetCellStyle, SubUnitPermissionType.SetCellValue, SubUnitPermissionType.RowHeightColWidth] })),
+            map(([d1, d2]) => d1 || d2)
+        ),
     };
 }
 
