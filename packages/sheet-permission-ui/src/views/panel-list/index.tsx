@@ -25,6 +25,7 @@ import { ICommandService, IUniverInstanceService, LocaleService, UniverInstanceT
 import { ISidebarService } from '@univerjs/ui';
 import { merge } from 'rxjs';
 import { type IPermissionPoint, UnitAction } from '@univerjs/protocol';
+import type { IWorksheetProtectionRule } from '@univerjs/sheets';
 import { WorksheetProtectionRuleModel } from '@univerjs/sheets';
 import { SheetPermissionPanelService } from '../../service';
 import { DeleteRangeSelectionCommand } from '../../command/range-protection.command';
@@ -154,14 +155,20 @@ export const SheetPermissionPanelList = () => {
         setRuleList(ruleList);
     };
 
-    const allRuleMap = new Map<string, ISelectionProtectionRule>();
+    const allRuleMap = new Map<string, ISelectionProtectionRule | IWorksheetProtectionRule>();
     workbook.getSheets().forEach((sheet) => {
         const sheetId = sheet.getSheetId();
-        const rules = selectionProtectionModel.getSubunitRuleList(unitId, sheetId);
-        rules.forEach((rule) => {
+        const rangeRules = selectionProtectionModel.getSubunitRuleList(unitId, sheetId);
+        rangeRules.forEach((rule) => {
             allRuleMap.set(rule.permissionId, rule);
         });
+
+        const sheetRule = worksheetProtectionModel.getRule(unitId, sheetId);
+        if (sheetRule) {
+            allRuleMap.set(sheetRule?.permissionId, sheetRule);
+        }
     });
+
 
     return (
         <div className={styles.sheetPermissionListPanelWrapper}>

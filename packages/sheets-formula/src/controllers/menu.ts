@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { UniverInstanceType } from '@univerjs/core';
+import { RangeUnitPermissionType, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
 import { getCurrentRangeDisable$, PASTE_SPECIAL_MENU_ID } from '@univerjs/sheets-ui';
 import type { IMenuItem } from '@univerjs/ui';
 import { getMenuHiddenObservable, IClipboardInterfaceService, MenuGroup, MenuItemType, MenuPosition } from '@univerjs/ui';
@@ -61,7 +61,7 @@ export function InsertFunctionMenuItemFactory(accessor: IAccessor): IMenuItem {
             },
         ],
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentRangeDisable$(accessor),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.Edit], rangeType: RangeUnitPermissionType.Edit }),
     };
 }
 

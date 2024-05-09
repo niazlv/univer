@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Button, Switch } from '@univerjs/design';
 import clsx from 'clsx';
@@ -22,49 +22,82 @@ import { useDependency } from '@wendellhu/redi/react-bindings';
 import type { Workbook } from '@univerjs/core';
 import { IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
 import { IDialogService } from '@univerjs/ui';
-import type { GetWorksheetPermission } from '@univerjs/sheets';
-import { WorksheetPermissionService } from '@univerjs/sheets';
-import { sheetPermissionList, UNIVER_SHEET_PERMISSION_DIALOG_ID } from '../../const';
+import { IWorksheetPermissionIoService, WorksheetPermissionService, WorksheetProtectionRuleModel } from '@univerjs/sheets';
+import type { UnitAction } from '@univerjs/protocol';
+import { subUnitPermissionTypeMap, UNIVER_SHEET_PERMISSION_DIALOG_ID } from '../../const';
 import styles from './index.module.less';
+
+interface IPermissionMap {
+    [key: string]: {
+        text: string;
+        allowed: boolean;
+    };
+}
 
 
 export const SheetPermissionDialog = () => {
     const localeService = useDependency(LocaleService);
     const univerInstanceService = useDependency(IUniverInstanceService);
     const worksheetPermissionService = useDependency(WorksheetPermissionService);
+    const worksheetPermissionIoService = useDependency(IWorksheetPermissionIoService);
+    const worksheetProtectionRuleModel = useDependency(WorksheetProtectionRuleModel);
     const dialogService = useDependency(IDialogService);
 
     const [permissionMap, setPermissionMap] = useState(() => {
+        return Object.keys(subUnitPermissionTypeMap).reduce((acc, action) => {
+            acc[action] = {
+                text: localeService.t(`permission.panel.${subUnitPermissionTypeMap[action]}`),
+                allowed: true,
+            };
+            return acc;
+        }, {} as IPermissionMap);
+    });
+
+    useEffect(() => {
         const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
         const worksheet = workbook?.getActiveSheet();
         const unitId = workbook.getUnitId();
         const subUnitId = worksheet.getSheetId();
-        const permissionMap: Record<string, boolean> = {};
-        sheetPermissionList.forEach((item) => {
-            const permissionName = `get${item}Permission` as keyof WorksheetPermissionService;
-            const fn = worksheetPermissionService[permissionName] as GetWorksheetPermission;
-            const permissionValue = fn?.({ unitId, subUnitId }) ?? false;
-            permissionMap[item] = permissionValue;
+        const rule = worksheetProtectionRuleModel.getRule(unitId, subUnitId);
+        if (!rule) {
+            return;
+        }
+        worksheetPermissionIoService.allowed({ permissionId: rule?.permissionId, unitId }).then((res) => {
+            const newPermissionMap = Object.keys(res).reduce((acc, action) => {
+                if (action in subUnitPermissionTypeMap) {
+                    acc[action] = {
+                        text: localeService.t(`permission.panel.${subUnitPermissionTypeMap[action as unknown as UnitAction]}`),
+                        allowed: res[action],
+                    };
+                }
+
+                return acc;
+            }, {} as IPermissionMap);
+            setPermissionMap({
+                ...permissionMap,
+                ...newPermissionMap,
+            });
         });
-
-
-        return permissionMap;
-    });
+    }, []);
 
     return (
         <div className={styles.sheetPermissionDialogWrapper}>
             <div className={styles.sheetPermissionDialogSplit} />
-            {Object.keys(permissionMap).map((name) => {
-                const checked = permissionMap[name];
+            {Object.keys(permissionMap).map((action) => {
+                const actionItem = permissionMap[action];
+                const { text, allowed } = actionItem;
                 return (
-                    <div key={name} className={styles.sheetPermissionDialogItem}>
-                        <div>{name}</div>
+                    <div key={text} className={styles.sheetPermissionDialogItem}>
+                        <div>{text}</div>
                         <Switch
-                            defaultChecked={checked}
+                            defaultChecked={allowed}
                             onChange={() => {
                                 setPermissionMap({
                                     ...permissionMap,
-                                    [name]: !checked,
+                                    [action]: {
+                                        ...actionItem,
+                                        allowed: !allowed,
+                                    },
                                 });
                             }}
                         />

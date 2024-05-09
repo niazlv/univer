@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { UniverInstanceType } from '@univerjs/core';
+import { RangeUnitPermissionType, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
 import { RemoveWorksheetMergeCommand } from '@univerjs/sheets';
 import type { IMenuButtonItem, IMenuSelectorItem } from '@univerjs/ui';
 import { getMenuHiddenObservable, MenuGroup, MenuItemType, MenuPosition } from '@univerjs/ui';
@@ -31,7 +31,7 @@ import { getSheetSelectionsDisabled$ } from '../utils/selections-tools';
 import { getCurrentRangeDisable$ } from './menu-util';
 
 export function CellMergeMenuItemFactory(accessor: IAccessor): IMenuSelectorItem<string> {
-    const editDisabled$ = getCurrentRangeDisable$(accessor);
+    const editDisabled$ = getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.SetCellStyle, SubUnitPermissionType.Edit], rangeType: RangeUnitPermissionType.Edit });
     const selectionsHasCross$ = getSheetSelectionsDisabled$(accessor);
 
     return {

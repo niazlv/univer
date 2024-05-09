@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+import { SubUnitPermissionType } from '@univerjs/core';
+import { UnitAction } from '@univerjs/protocol';
+
 export const UNIVER_SHEET_PERMISSION_PLUGIN_NAME = 'UNIVER_SHEET_PERMISSION_PLUGIN';
 
 export const UNIVER_SHEET_PERMISSION_PANEL = 'UNIVER_SHEET_PERMISSION_PANEL';
@@ -37,25 +40,18 @@ export const UNIVER_SHEET_PERMISSION_DIALOG_ID = 'UNIVER_SHEET_PERMISSION_DIALOG
 export const UNIVER_SHEET_PERMISSION_ALERT_DIALOG_ID = 'UNIVER_SHEET_PERMISSION_ALERT_DIALOG_ID';
 
 
-//
-export const sheetPermissionList = [
-    'Edit',
-    'View',
-    'Share',
-    'Comment',
-    'Duplicate',
-    'Export',
-    'Print',
-    'Copy',
-    'SetCellStyle',
-    'SetCellValue',
-    'SetHyperLink',
-    'Sort',
-    'Filter',
-    'PivotTable',
-    'FloatImage',
-    'RowHeightColWidth',
-    'RowHeightColWidthReadonly',
-    'FilterReadonly',
-    'ManageCollaborator',
-];
+export const subUnitPermissionTypeMap: Record<string, SubUnitPermissionType> = {
+    [UnitAction.Print]: SubUnitPermissionType.Print,
+    [UnitAction.Comment]: SubUnitPermissionType.Comment,
+    [UnitAction.Copy]: SubUnitPermissionType.Copy,
+    [UnitAction.SetWorksheetStyle]: SubUnitPermissionType.SetCellStyle,
+    [UnitAction.EditWorksheetCell]: SubUnitPermissionType.SetCellValue,
+    [UnitAction.InsertHyperlink]: SubUnitPermissionType.SetHyperLink,
+    [UnitAction.Sort]: SubUnitPermissionType.Sort,
+    [UnitAction.Filter]: SubUnitPermissionType.Filter,
+    [UnitAction.PivotTable]: SubUnitPermissionType.PivotTable,
+    [UnitAction.FloatImg]: SubUnitPermissionType.FloatImage,
+    [UnitAction.RwHgtClWdt]: SubUnitPermissionType.RowHeightColWidth,
+    [UnitAction.ViemRwHgtClWdt]: SubUnitPermissionType.RowHeightColWidthReadonly,
+    [UnitAction.ViewFilter]: SubUnitPermissionType.FilterReadonly,
+};
