@@ -26,7 +26,6 @@ import { SHEET_VIEW_KEY } from '@univerjs/sheets-ui';
 import { RegisterFunctionMutation, SetFormulaCalculationStartMutation, UnregisterFunctionMutation } from '@univerjs/engine-formula';
 import { IDescriptionService } from '@univerjs/sheets-formula';
 import { WorksheetProtectionRuleModel } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.model.js';
-import { WorksheetPermissionIoService } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission-io.service.js';
 import type { FUniver } from '../facade';
 import { createFacadeTestBed } from './create-test-bed';
 import { COLUMN_UNIQUE_KEY, ColumnHeaderCustomExtension, MAIN_UNIQUE_KEY, MainCustomExtension, ROW_UNIQUE_KEY, RowHeaderCustomExtension } from './utils/sheet-extension-util';
@@ -51,11 +50,7 @@ describe('Test FUniver', () => {
     let getSheetRenderComponent: (unitId: string, viewKey: SHEET_VIEW_KEY) => Nullable<RenderComponentType>;
 
     beforeEach(() => {
-<<<<<<< HEAD
         const testBed = createFacadeTestBed();
-=======
-        const testBed = createTestBed(undefined, [[WorkbookPermissionService], [WorksheetPermissionService], [WorksheetPermissionIoService], [WorksheetProtectionRuleModel]]);
->>>>>>> b43a2a569 (fix: test)
         get = testBed.get;
         univerAPI = testBed.univerAPI;
 

@@ -54,7 +54,6 @@ import {
 import type { GetWorksheetPermission, GetWorksheetPermission$, IObjectModel, SetWorksheetPermission } from '../type';
 import { WorksheetProtectionRuleModel } from './worksheet-permission.model';
 import { getAllPermissionPoint } from './utils';
-import { IWorksheetPermissionIoService } from './type';
 
 
 export const PLUGIN_NAME = 'SHEET_WORKSHEET_PROTECTION_PLUGIN';
@@ -147,7 +146,6 @@ export class WorksheetPermissionService extends RxDisposable {
         @Inject(IUniverInstanceService) private _univerInstanceService: IUniverInstanceService,
         @Inject(Injector) readonly _injector: Injector,
         @Inject(WorksheetProtectionRuleModel) private _worksheetProtectionRuleModel: WorksheetProtectionRuleModel,
-        @Inject(IWorksheetPermissionIoService) private _worksheetProtectionIoService: IWorksheetPermissionIoService,
         @Inject(IResourceManagerService) private _resourceManagerService: IResourceManagerService
     ) {
         super();
@@ -375,22 +373,6 @@ export class WorksheetPermissionService extends RxDisposable {
     private _initRuleChange() {
         this.disposeWithMe(
             this._worksheetProtectionRuleModel.ruleChange$.subscribe((info) => {
-                if (info.type !== 'delete') {
-                    this._worksheetProtectionIoService.allowed({
-                        permissionId: info.rule.permissionId,
-                        unitId: info.unitId,
-                    }).then((permissionMap) => {
-                        getAllPermissionPoint().forEach((F) => {
-                            const rule = info.rule;
-                            const instance = new F(rule.unitId, rule.subUnitId);
-                            const unitActionName = mapPermissionPointToSubEnum(instance.subType);
-                            if (permissionMap.hasOwnProperty(unitActionName)) {
-                                this._permissionService.updatePermissionPoint(instance.id, permissionMap[unitActionName]);
-                            }
-                        });
-                    });
-                }
-
                 switch (info.type) {
                     case 'add': {
                         getAllPermissionPoint().forEach((F) => {
@@ -444,22 +426,6 @@ export class WorksheetPermissionService extends RxDisposable {
                         allAllowedParams.push({
                             permissionId: rule.permissionId,
                             unitId: rule.unitId,
-                        });
-                    });
-
-                    this._worksheetProtectionIoService.batchAllowed(allAllowedParams).then((permissionMap) => {
-                        Object.keys(permissionMap).forEach((permissionId) => {
-                            // 这里要根据permissionId去worksheetRuleModel中拿到对应的rule
-                            const rule = resources[permissionId];
-                            if (rule) {
-                                getAllPermissionPoint().forEach((F) => {
-                                    const instance = new F(rule.unitId, rule.subUnitId);
-                                    const unitActionName = mapPermissionPointToSubEnum(instance.subType);
-                                    if (permissionMap.hasOwnProperty(unitActionName)) {
-                                        this._permissionService.updatePermissionPoint(instance.id, permissionMap[unitActionName]);
-                                    }
-                                });
-                            }
                         });
                     });
                 },

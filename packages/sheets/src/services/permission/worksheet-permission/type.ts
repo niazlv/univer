@@ -14,29 +14,8 @@
  * limitations under the License.
  */
 
-import type { ILogContext } from '@univerjs/core';
-import { LifecycleStages, runOnLifecycle } from '@univerjs/core';
-import { createIdentifier } from '@wendellhu/redi';
-import { type ICollaborator, type ICreateRequest_SelectRangeObject, type IPermissionPoint, type IUnitRoleKV, UnitAction, type UnitObject } from '@univerjs/protocol';
 
-
-export interface IWorksheetPermissionIoService {
-    create(config: ICreateRequest_SelectRangeObject, context?: ILogContext): Promise<string>;
-    allowed(config: { permissionId: string; unitId: string }, context?: ILogContext): Promise<Record<string, boolean>>;
-    batchAllowed(config: { permissionId: string; unitId: string }[], context?: ILogContext): Promise<Record<string, Record<string, boolean>>>;
-    list(
-        config: {
-            unitId: string; permissionIdList: string[];
-        }, context?: ILogContext): Promise<IPermissionPoint[]>;
-    listRoles(type: UnitObject, context?: ILogContext): Promise<{ roles: IUnitRoleKV[]; actions: UnitAction[] }>;
-    listCollaborators(config: {
-        permissionId: string;
-        unitId: string;
-    }, context?: ILogContext): Promise<ICollaborator[]>;
-}
-
-export const IWorksheetPermissionIoService = createIdentifier<IWorksheetPermissionIoService>('IWorksheetPermissionIoService');
-runOnLifecycle(LifecycleStages.Starting, IWorksheetPermissionIoService);
+import { UnitAction } from '@univerjs/protocol';
 
 
 export const defaultSheetActions = [

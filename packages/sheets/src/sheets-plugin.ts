@@ -33,8 +33,7 @@ import { RefRangeService } from './services/ref-range/ref-range.service';
 import { SelectionManagerService } from './services/selection-manager.service';
 import { SheetInterceptorService } from './services/sheet-interceptor/sheet-interceptor.service';
 import { DefinedNameDataController } from './controllers/defined-name-data.controller';
-import { WorksheetPermissionIoService, WorksheetPermissionService, WorksheetProtectionRuleModel } from './services/permission/worksheet-permission';
-import { IWorksheetPermissionIoService } from './services/permission/worksheet-permission/type';
+import { WorksheetPermissionService, WorksheetProtectionRuleModel } from './services/permission/worksheet-permission';
 
 const PLUGIN_NAME = 'sheets';
 
@@ -84,7 +83,6 @@ export class UniverSheetsPlugin extends Plugin {
 
             // permission
             [WorksheetPermissionService],
-            [IWorksheetPermissionIoService, { useClass: WorksheetPermissionIoService }],
             [WorksheetProtectionRuleModel],
         ];
 
