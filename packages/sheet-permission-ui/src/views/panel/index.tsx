@@ -16,16 +16,13 @@
 
 
 import React from 'react';
-import { useDependency } from '@wendellhu/redi/react-bindings';
-import { useObservable } from '@univerjs/ui';
 import { SheetPermissionPanelDetail } from '../panel-detail';
 import { SheetPermissionPanelList } from '../panel-list';
-import { SheetPermissionPanelService } from '../../service';
 
-export const SheetPermissionPanel = () => {
-    const sheetPermissionPanelService = useDependency(SheetPermissionPanelService);
-    const isShowDetail = useObservable(sheetPermissionPanelService.showDetail$, sheetPermissionPanelService.showDetail);
+interface ISheetPermissionPanelProps { showDetail: boolean; fromSheetBar: boolean };
+
+export const SheetPermissionPanel = ({ showDetail, fromSheetBar }: ISheetPermissionPanelProps) => {
     return (
-        isShowDetail ? <SheetPermissionPanelDetail /> : <SheetPermissionPanelList />
+        showDetail ? <SheetPermissionPanelDetail fromSheetBar={fromSheetBar} /> : <SheetPermissionPanelList />
     );
 };

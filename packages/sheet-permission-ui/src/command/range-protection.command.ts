@@ -18,8 +18,8 @@ import type { ICommand, Workbook } from '@univerjs/core';
 import { CommandType, ICommandService, IUndoRedoService, IUniverInstanceService, Rectangle, UniverInstanceType } from '@univerjs/core';
 import { AddSelectionProtection, DeleteSelectionProtection, SelectionProtectionRuleModel, SetSelectionProtection } from '@univerjs/sheets-selection-protection';
 import { SelectionManagerService } from '@univerjs/sheets';
-import { SheetPermissionPanelService } from '../service';
 import { SheetPermissionOpenPanelOperation } from '../operation/sheet-permission-open-panel.operation';
+import { SheetPermissionPanelModel } from '../service/sheet-permission-panel.model';
 import type { IAddRangeProtectionParams, IDeleteRangeProtectionParams, ISetRangeProtectionParams } from './type';
 
 
@@ -28,9 +28,7 @@ export const AddRangeProtectionFromToolbarCommand: ICommand = {
     id: 'sheets.command.add-range-protection-from-toolbar',
     async handler(accessor) {
         const commandService = accessor.get(ICommandService);
-        const sheetPermissionPanelService = accessor.get(SheetPermissionPanelService);
-        sheetPermissionPanelService.setShowDetail(true);
-        await commandService.executeCommand(SheetPermissionOpenPanelOperation.id);
+        await commandService.executeCommand(SheetPermissionOpenPanelOperation.id, { showDetail: true });
         return true;
     },
 };
@@ -41,9 +39,7 @@ export const AddRangeProtectionFromContextMenuCommand: ICommand = {
     id: 'sheets.command.add-range-protection-from-context-menu',
     async handler(accessor) {
         const commandService = accessor.get(ICommandService);
-        const sheetPermissionPanelService = accessor.get(SheetPermissionPanelService);
-        sheetPermissionPanelService.setShowDetail(true);
-        await commandService.executeCommand(SheetPermissionOpenPanelOperation.id);
+        await commandService.executeCommand(SheetPermissionOpenPanelOperation.id, { showDetail: true });
         return true;
     },
 };
@@ -53,9 +49,7 @@ export const ViewSheetPermissionFromContextMenuCommand: ICommand = {
     id: 'sheets.command.view-sheet-permission-from-context-menu',
     async handler(accessor) {
         const commandService = accessor.get(ICommandService);
-        const sheetPermissionPanelService = accessor.get(SheetPermissionPanelService);
-        sheetPermissionPanelService.setShowDetail(false);
-        await commandService.executeCommand(SheetPermissionOpenPanelOperation.id);
+        await commandService.executeCommand(SheetPermissionOpenPanelOperation.id, { showDetail: false });
         return true;
     },
 };
@@ -65,9 +59,7 @@ export const AddRangeProtectionFromSheetBarCommand: ICommand = {
     id: 'sheets.command.add-range-protection-from-sheet-bar',
     async handler(accessor) {
         const commandService = accessor.get(ICommandService);
-        const sheetPermissionPanelService = accessor.get(SheetPermissionPanelService);
-        sheetPermissionPanelService.setShowDetail(true);
-        await commandService.executeCommand(SheetPermissionOpenPanelOperation.id, { fromSheetBar: true });
+        await commandService.executeCommand(SheetPermissionOpenPanelOperation.id, { fromSheetBar: true, showDetail: true });
         return true;
     },
 };
@@ -77,9 +69,7 @@ export const ViewSheetPermissionFromSheetBarCommand: ICommand = {
     id: 'sheets.command.view-sheet-permission-from-sheet-bar',
     async handler(accessor) {
         const commandService = accessor.get(ICommandService);
-        const sheetPermissionPanelService = accessor.get(SheetPermissionPanelService);
-        sheetPermissionPanelService.setShowDetail(false);
-        await commandService.executeCommand(SheetPermissionOpenPanelOperation.id);
+        await commandService.executeCommand(SheetPermissionOpenPanelOperation.id, { showDetail: false });
         return true;
     },
 };
@@ -165,7 +155,7 @@ export const SetRangeProtectionCommand: ICommand<ISetRangeProtectionParams> = {
         }
         const commandService = accessor.get(ICommandService);
         const selectionProtectionModel = accessor.get(SelectionProtectionRuleModel);
-        const sheetPermissionPanelService = accessor.get(SheetPermissionPanelService);
+        const sheetPermissionPanelModel = accessor.get(SheetPermissionPanelModel);
         const undoRedoService = accessor.get(IUndoRedoService);
         const { rule, permissionId } = params;
 
@@ -195,7 +185,7 @@ export const SetRangeProtectionCommand: ICommand<ISetRangeProtectionParams> = {
                         unitId,
                         subUnitId,
                         ruleId: rule.id,
-                        rule: sheetPermissionPanelService.oldRule,
+                        rule: sheetPermissionPanelModel.oldRule,
                     },
                 }];
                 undoRedoService.pushUndoRedo({
@@ -266,7 +256,7 @@ export const SetRangeProtectionFromContextMenuCommand: ICommand = {
             return false;
         }
         const sheetPermissionRuleModal = accessor.get(SelectionProtectionRuleModel);
-        const sheetPermissionPanelService = accessor.get(SheetPermissionPanelService);
+        const sheetPermissionPanelModel = accessor.get(SheetPermissionPanelModel);
         const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
         const worksheet = workbook.getActiveSheet()!;
         const unitId = workbook.getUnitId();
@@ -277,15 +267,14 @@ export const SetRangeProtectionFromContextMenuCommand: ICommand = {
         });
 
         if (rule) {
-            sheetPermissionPanelService.setShowDetail(true);
             const oldRule = {
                 ...rule,
                 unitId,
                 subUnitId,
             };
-            sheetPermissionPanelService.setRule(oldRule);
-            sheetPermissionPanelService.setOldRule(oldRule);
-            await commandService.executeCommand(SheetPermissionOpenPanelOperation.id);
+            sheetPermissionPanelModel.setRule(oldRule);
+            sheetPermissionPanelModel.setOldRule(oldRule);
+            await commandService.executeCommand(SheetPermissionOpenPanelOperation.id, { showDetail: true });
             return true;
         } else {
             return false;

@@ -19,12 +19,10 @@ import { useDependency } from '@wendellhu/redi/react-bindings';
 import React from 'react';
 import { ISidebarService } from '@univerjs/ui';
 import { LocaleService } from '@univerjs/core';
-import { SheetPermissionPanelService } from '../../service';
 import { UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER } from '../../const';
 import styles from './index.module.less';
 
 export const SheetPermissionPanelAddFooter = () => {
-    const sheetPermissionPanelService = useDependency(SheetPermissionPanelService);
     const sidebarService = useDependency(ISidebarService);
     const localeService = useDependency(LocaleService);
     return (
@@ -33,13 +31,19 @@ export const SheetPermissionPanelAddFooter = () => {
                 className={styles.sheetPermissionPanelAddButton}
                 type="primary"
                 onClick={() => {
-                    sheetPermissionPanelService.setShowDetail(true);
-                    sidebarService.open({
+                    const sidebarProps = {
                         header: { title: '保护行列' },
-                        children: { label: UNIVER_SHEET_PERMISSION_PANEL },
+                        children: {
+                            label: UNIVER_SHEET_PERMISSION_PANEL,
+                            showDetail: true,
+                        },
                         width: 320,
-                        footer: { label: UNIVER_SHEET_PERMISSION_PANEL_FOOTER },
-                    });
+                        footer: {
+                            label: UNIVER_SHEET_PERMISSION_PANEL_FOOTER,
+                            showDetail: true,
+                        },
+                    };
+                    sidebarService.open(sidebarProps);
                 }}
             >
                 <div>+ </div>

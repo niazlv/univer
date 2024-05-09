@@ -17,32 +17,32 @@
 import type { ICommand } from '@univerjs/core';
 import { CommandType } from '@univerjs/core';
 import { ISidebarService } from '@univerjs/ui';
-import { UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_ADD_FOOTER, UNIVER_SHEET_PERMISSION_PANEL_FOOTER } from '../const';
-import { SheetPermissionPanelService } from '../service';
+import { UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER } from '../const';
 import type { IPermissionOpenPanelParam } from './type';
 
 export const SheetPermissionOpenPanelOperation: ICommand<IPermissionOpenPanelParam> = {
     type: CommandType.OPERATION,
     id: 'sheet-permission.operation.openPanel',
-    async handler(accessor, _params) {
+    async handler(accessor, _params = {}) {
         const sidebarService = accessor.get(ISidebarService);
-        const sheetPermissionPanelService = accessor.get(SheetPermissionPanelService);
-        if (_params?.fromSheetBar) {
-            sheetPermissionPanelService.setIsFromSheetBar(true);
-        } else {
-            sheetPermissionPanelService.setIsFromSheetBar(false);
-        }
 
-        sidebarService.open({
+        const { showDetail = true, fromSheetBar = false } = _params;
+
+        const sidebarProps = {
             header: { title: 'permission.panel.title' },
-            children: { label: UNIVER_SHEET_PERMISSION_PANEL },
-            width: 320,
-            footer: sheetPermissionPanelService.showDetail ? { label: UNIVER_SHEET_PERMISSION_PANEL_FOOTER } : { label: UNIVER_SHEET_PERMISSION_PANEL_ADD_FOOTER },
-            onClose: () => {
-                const sheetPermissionPanelService = accessor.get(SheetPermissionPanelService);
-                sheetPermissionPanelService.setShowDetail(true);
+            children: {
+                label: UNIVER_SHEET_PERMISSION_PANEL,
+                showDetail,
+                fromSheetBar,
             },
-        });
+            width: 320,
+            footer: {
+                label: UNIVER_SHEET_PERMISSION_PANEL_FOOTER,
+                showDetail,
+            },
+        };
+
+        sidebarService.open(sidebarProps);
 
         return true;
     },

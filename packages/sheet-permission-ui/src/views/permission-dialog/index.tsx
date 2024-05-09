@@ -122,7 +122,7 @@ export const SheetPermissionDialog = () => {
                 <Button
                     type="primary"
                     onClick={() => {
-                        // change action permissionMap
+                        // 生成新的permissionId 然后setRuleCommand
                         dialogService.close(UNIVER_SHEET_PERMISSION_DIALOG_ID);
                     }}
                     className={clsx(styles.sheetPermissionUserDialogFooterConfirm, styles.sheetPermissionUserDialogButton)}

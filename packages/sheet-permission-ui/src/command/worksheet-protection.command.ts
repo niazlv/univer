@@ -21,6 +21,8 @@ import { AddWorksheetProtectionMutation } from '@univerjs/sheets/commands/mutati
 import { DeleteWorksheetProtectionMutation } from '@univerjs/sheets/commands/mutations/delete-worksheet-protection.mutation.ts';
 import { WorksheetProtectionRuleModel } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.model.ts';
 import { UniverType } from '@univerjs/protocol';
+import { SetWorksheetProtectionMutation } from '@univerjs/sheets/commands/mutations/set-worksheet-protection.mutation.js';
+import { SheetPermissionPanelModel } from '../service/sheet-permission-panel.model';
 import type { IAddWorksheetProtectionParams, IDeleteWorksheetProtectionParams, ISetWorksheetProtectionParams } from './type';
 
 export const AddWorksheetProtectionCommand: ICommand<IAddWorksheetProtectionParams> = {
@@ -93,18 +95,24 @@ export const SetWorksheetProtectionCommand: ICommand<ISetWorksheetProtectionPara
             return false;
         }
         const commandService = accessor.get(ICommandService);
+        const sheetPermissionPanelModel = accessor.get(SheetPermissionPanelModel);
         const undoRedoService = accessor.get(IUndoRedoService);
-        const { rule, unitId } = params;
-        const subUnitId = rule.subUnitId;
 
-        const result = await commandService.executeCommand(DeleteWorksheetProtectionCommand.id, {
+        const { rule, permissionId } = params;
+        const { unitId, subUnitId } = rule;
+
+        const newRule = { ...rule, permissionId };
+        const oldRule = sheetPermissionPanelModel.oldRule;
+
+        const result = await commandService.executeCommand(SetWorksheetProtectionMutation.id, {
             unitId,
             subUnitId,
+            newRule,
         });
 
         if (result) {
-            const redoMutations = [{ id: DeleteWorksheetProtectionCommand.id, params: { unitId, subUnitId } }];
-            const undoMutations = [{ id: AddWorksheetProtectionCommand.id, params: { unitId, rule } }];
+            const redoMutations = [{ id: SetWorksheetProtectionMutation.id, params: { unitId, subUnitId, newRule } }];
+            const undoMutations = [{ id: SetWorksheetProtectionMutation.id, params: { unitId, subUnitId, rule: oldRule } }];
             undoRedoService.pushUndoRedo({
                 unitID: unitId,
                 redoMutations,

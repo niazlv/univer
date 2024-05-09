@@ -28,16 +28,17 @@ import { ISidebarService } from '@univerjs/ui';
 import { merge } from 'rxjs';
 import type { IPermissionPoint } from '@univerjs/protocol';
 import { UnitAction } from '@univerjs/protocol';
-import { SheetPermissionPanelService } from '../../service';
 import { DeleteRangeSelectionCommand } from '../../command/range-protection.command';
 import { UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER } from '../../const';
+import type { IPermissionPanelRule } from '../../service/sheet-permission-panel.model';
+import { SheetPermissionPanelModel } from '../../service/sheet-permission-panel.model';
 import styles from './index.module.less';
 
 type IRuleItem = ISelectionProtectionRule | IWorksheetProtectionRule;
 export const SheetPermissionPanelList = () => {
     const [isCurrentSheet, setIsCurrentSheet] = useState(true);
     const [forceUpdateFlag, setForceUpdateFlag] = useState(false);
-    const sheetPermissionPanelService = useDependency(SheetPermissionPanelService);
+    const sheetPermissionPanelModel = useDependency(SheetPermissionPanelModel);
     const localeService = useDependency(LocaleService);
     const selectionProtectionModel = useDependency(SelectionProtectionRuleModel);
     const worksheetProtectionModel = useDependency(WorksheetProtectionRuleModel);
@@ -107,51 +108,12 @@ export const SheetPermissionPanelList = () => {
     }, [getRuleList, isCurrentSheet, selectionProtectionModel, workbook]);
 
 
-    useEffect(() => {
-        return () => {
-            sheetPermissionPanelService.setShowDetail(true);
-        };
-    }, []);
-
-
     const handleDelete = async (rule: IRuleItem) => {
         const { unitId, subUnitId } = rule;
         const res = await commandService.executeCommand(DeleteRangeSelectionCommand.id, { unitId, subUnitId, rule });
         if (res) {
             setForceUpdateFlag(!forceUpdateFlag);
         }
-    };
-
-    const handleEdit = (rule: any) => {
-        const activeRule = sheetPermissionPanelService.rule;
-        const oldRule: any = {
-            ...activeRule,
-            name: rule.name,
-            description: rule.description,
-            ranges: rule.ranges,
-            ruleId: rule.id,
-            permissionId: rule.permissionId,
-        };
-        sheetPermissionPanelService.setRule(oldRule);
-        sheetPermissionPanelService.setShowDetail(true);
-        sheetPermissionPanelService.setOldRule(oldRule);
-
-
-        sidebarService.open({
-            header: { title: 'permission.panel.title' },
-            children: { label: UNIVER_SHEET_PERMISSION_PANEL },
-            width: 320,
-            footer: { label: UNIVER_SHEET_PERMISSION_PANEL_FOOTER },
-            onClose: () => {
-                sheetPermissionPanelService.setShowDetail(true);
-            },
-        });
-    };
-
-    const handleChangeHeaderType = async (isCurrentSheet: boolean) => {
-        setIsCurrentSheet(isCurrentSheet);
-        const ruleList = await getRuleList(isCurrentSheet);
-        setRuleList(ruleList);
     };
 
     const allRuleMap = new Map<string, ISelectionProtectionRule | IWorksheetProtectionRule>();
@@ -167,6 +129,32 @@ export const SheetPermissionPanelList = () => {
             allRuleMap.set(sheetRule?.permissionId, sheetRule);
         }
     });
+
+    const handleEdit = (rule: IPermissionPanelRule) => {
+        sheetPermissionPanelModel.setRule(rule);
+        sheetPermissionPanelModel.setOldRule(rule);
+
+        const sidebarProps = {
+            header: { title: 'permission.panel.title' },
+            children: {
+                label: UNIVER_SHEET_PERMISSION_PANEL,
+                showDetail: true,
+            },
+            width: 320,
+            footer: {
+                label: UNIVER_SHEET_PERMISSION_PANEL_FOOTER,
+                showDetail: true,
+            },
+        };
+
+        sidebarService.open(sidebarProps);
+    };
+
+    const handleChangeHeaderType = async (isCurrentSheet: boolean) => {
+        setIsCurrentSheet(isCurrentSheet);
+        const ruleList = await getRuleList(isCurrentSheet);
+        setRuleList(ruleList);
+    };
 
     const manageCollaboratorAction = workbookPermissionService.getManageCollaboratorPermission(unitId);
 

@@ -43,7 +43,6 @@ export interface IDeleteWorksheetProtectionParams {
 }
 
 export interface ISetWorksheetProtectionParams {
-    unitId: string;
+    permissionId: string;
     rule: IWorksheetProtectionRule;
-    oldRule: IWorksheetProtectionRule;
 }

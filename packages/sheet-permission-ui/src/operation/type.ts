@@ -16,4 +16,5 @@
 
 export interface IPermissionOpenPanelParam {
     fromSheetBar?: boolean;
+    showDetail?: boolean;
 }

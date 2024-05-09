@@ -24,18 +24,20 @@ import { SelectionManagerService } from '@univerjs/sheets';
 import { serializeRange } from '@univerjs/engine-formula';
 import { UnitObject } from '@univerjs/protocol';
 import { type ICollaborator, UnitRole } from '@univerjs/protocol';
-import { SheetPermissionPanelService, SheetPermissionUserManagerService } from '../../service';
+import type { ISelectionProtectionRule } from '@univerjs/sheets-selection-protection';
+import { SheetPermissionUserManagerService } from '../../service';
 import { UNIVER_SHEET_PERMISSION_USER_DIALOG, UNIVER_SHEET_PERMISSION_USER_DIALOG_ID } from '../../const';
 import { viewState } from '../../service/sheet-permission-side-panel.service';
+import { SheetPermissionPanelModel } from '../../service/sheet-permission-panel.model';
 import styles from './index.module.less';
 
-export const SheetPermissionPanelDetail = () => {
+export const SheetPermissionPanelDetail = ({ fromSheetBar }: { fromSheetBar: boolean }) => {
     const localeService = useDependency(LocaleService);
     const dialogService = useDependency(IDialogService);
     const univerInstanceService = useDependency(IUniverInstanceService);
     const selectionManagerService = useDependency(SelectionManagerService);
-    const sheetPermissionPanelService = useDependency(SheetPermissionPanelService);
-    const activeRule = useObservable(sheetPermissionPanelService.rule$, sheetPermissionPanelService.rule);
+    const sheetPermissionPanelModel = useDependency(SheetPermissionPanelModel);
+    const activeRule = useObservable(sheetPermissionPanelModel.rule$);
     const userManagerService = useDependency(UserManagerService);
     const sheetPermissionUserManagerService = useDependency(SheetPermissionUserManagerService);
     const authzIoService = useDependency(IAuthzIoService);
@@ -80,8 +82,7 @@ export const SheetPermissionPanelDetail = () => {
     useEffect(() => {
         const isEdit = activeRule?.permissionId;
         if (isEdit) return;
-        const isFromSheetBar = sheetPermissionPanelService.isFromSheetBar;
-        if (isFromSheetBar) {
+        if (fromSheetBar) {
             selectionManagerService.clear();
             selectionManagerService.add([
                 {
@@ -104,18 +105,19 @@ export const SheetPermissionPanelDetail = () => {
             }).filter((r) => !!r).join(',')
             : '';
         const sheetName = worksheet.getName();
-        sheetPermissionPanelService.setRule({
+        sheetPermissionPanelModel.setRule({
             ranges,
-            name: isFromSheetBar ? `${sheetName}` : `${sheetName}(${rangeStr})`,
+            name: fromSheetBar ? `${sheetName}` : `${sheetName}(${rangeStr})`,
             unitId,
             subUnitId,
 
         });
-    }, []);
+    }, [activeRule?.permissionId, fromSheetBar, selectionManagerService, sheetPermissionPanelModel, subUnitId, unitId, worksheet]);
 
     useEffect(() => {
         const getSelectUserList = async () => {
             const permissionId = activeRule?.permissionId;
+            if (!permissionId) return;
             const collaborators = await authzIoService.listCollaborators({
                 objectID: permissionId,
                 unitID: unitId,
@@ -158,22 +160,22 @@ export const SheetPermissionPanelDetail = () => {
     }, []);
 
     useEffect(() => {
-        sheetPermissionPanelService.setRule({
+        sheetPermissionPanelModel.setRule({
             viewStatus: viewGroupValue,
         });
-    }, [sheetPermissionPanelService, viewGroupValue]);
+    }, [sheetPermissionPanelModel, viewGroupValue]);
 
     return (
         <div className={styles.permissionPanelDetailWrapper}>
             <FormLayout label={localeService.t('permission.panel.name')}>
                 <Input
                     value={activeRule?.name ?? ''}
-                    onChange={(v) => sheetPermissionPanelService.setRule({ name: v })}
+                    onChange={(v) => sheetPermissionPanelModel.setRule({ name: v })}
                 />
             </FormLayout>
             <FormLayout label={localeService.t('permission.panel.protectedRange')}>
                 <RangeSelector
-                    value={activeRule?.ranges?.map((i) => serializeRange(i)).join(',')}
+                    value={(activeRule as ISelectionProtectionRule)?.ranges?.map((i) => serializeRange(i)).join(',')}
                     id={createInternalEditorID('sheet-permission-panel')}
                     openForSheetUnitId={unitId}
                     openForSheetSubUnitId={subUnitId}
@@ -198,7 +200,7 @@ export const SheetPermissionPanelDetail = () => {
                         if (ruleRangeHasWholeSheet) {
                             rule.unitType = UnitObject.Worksheet;
                         }
-                        sheetPermissionPanelService.setRule(rule);
+                        sheetPermissionPanelModel.setRule(rule);
                     }}
 
                 />
@@ -206,7 +208,7 @@ export const SheetPermissionPanelDetail = () => {
             <FormLayout label={localeService.t('permission.panel.permissionDirection')}>
                 <Input
                     value={activeRule?.description ?? ''}
-                    onChange={(v) => sheetPermissionPanelService.setRule({ description: v })}
+                    onChange={(v) => sheetPermissionPanelModel.setRule({ description: v })}
                     placeholder={localeService.t('permission.panel.permissionDirectionPlaceholder')}
                 />
             </FormLayout>

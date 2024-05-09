@@ -19,8 +19,8 @@ import { LifecycleStages, OnLifecycle, RxDisposable } from '@univerjs/core';
 import type { IMenuItemFactory } from '@univerjs/ui';
 import { ComponentManager, IMenuService } from '@univerjs/ui';
 import { Inject, Injector } from '@wendellhu/redi';
-import { UNIVER_SHEET_PERMISSION_ALERT_DIALOG, UNIVER_SHEET_PERMISSION_DIALOG, UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_ADD_FOOTER, UNIVER_SHEET_PERMISSION_PANEL_FOOTER, UNIVER_SHEET_PERMISSION_PANEL_LIST, UNIVER_SHEET_PERMISSION_USER_DIALOG } from '../const';
-import { SheetPermissionDialog, SheetPermissionPanel, SheetPermissionPanelAddFooter, SheetPermissionPanelFooter, SheetPermissionPanelList, SheetPermissionUserDialog } from '../views';
+import { UNIVER_SHEET_PERMISSION_ALERT_DIALOG, UNIVER_SHEET_PERMISSION_DIALOG, UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER, UNIVER_SHEET_PERMISSION_USER_DIALOG } from '../const';
+import { SheetPermissionDialog, SheetPermissionPanel, SheetPermissionPanelFooter, SheetPermissionUserDialog } from '../views';
 import { AlertDialog } from '../views/alert-dialog';
 import {
     sheetPermissionAddProtectContextMenuFactory,
@@ -86,14 +86,6 @@ export class SheetPermissionRenderController extends RxDisposable {
             [
                 UNIVER_SHEET_PERMISSION_PANEL_FOOTER,
                 SheetPermissionPanelFooter,
-            ],
-            [
-                UNIVER_SHEET_PERMISSION_PANEL_LIST,
-                SheetPermissionPanelList,
-            ],
-            [
-                UNIVER_SHEET_PERMISSION_PANEL_ADD_FOOTER,
-                SheetPermissionPanelAddFooter,
             ],
             [
                 UNIVER_SHEET_PERMISSION_USER_DIALOG,
