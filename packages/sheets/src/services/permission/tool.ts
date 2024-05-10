@@ -14,22 +14,8 @@
  * limitations under the License.
  */
 
-import type { IRange, Workbook } from '@univerjs/core';
-import { IUniverInstanceService, UniverInstanceType } from '@univerjs/core';
-import type { IAccessor } from '@wendellhu/redi';
-import { map } from 'rxjs';
+import type { IRange } from '@univerjs/core';
 
-import { WorksheetPermissionService } from './worksheet-permission/worksheet-permission.service';
-
-export function getCurrentSheetDisabled$(accessor: IAccessor) {
-    const univerInstanceService = accessor.get(IUniverInstanceService);
-    const worksheetPermissionService = accessor.get(WorksheetPermissionService);
-
-    const unitId = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)?.getUnitId() ?? '';
-    const sheetId = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)?.getActiveSheet().getSheetId() ?? '';
-
-    return worksheetPermissionService.getEditPermission$({ unitId, subUnitId: sheetId })?.pipe(map((e) => !e));
-}
 
 export function getIdByRange(range: IRange) {
     const { startRow, startColumn, endRow, endColumn } = range;
