@@ -17,7 +17,7 @@
 import { Inject } from '@wendellhu/redi';
 import { distinctUntilChanged, filter, map } from 'rxjs/operators';
 import { IPermissionService, LifecycleStages, LRUMap, OnLifecycle, PermissionType, Range } from '@univerjs/core';
-import { getAllPermissionPoint, getDefaultPermission } from '../service/selection-protection/permission-point';
+import { getAllRangePermissionPoint, getDefaultPermission } from '../service/selection-protection/permission-point';
 import type { ISelectionPermissionPoint } from '../service/selection-protection/permission-point';
 
 import { SelectionProtectionRuleModel } from './selection-protection-rule.model';
@@ -38,7 +38,7 @@ export class SelectionProtectionRenderModel {
     init() {
         this._permissionService.permissionPointUpdate$.pipe(
             filter((permission) => permission.type === PermissionType.SHEET_RANGE),
-            filter((permission) => getAllPermissionPoint().some((F) => permission instanceof F)),
+            filter((permission) => getAllRangePermissionPoint().some((F) => permission instanceof F)),
             map((permission) => permission as ISelectionPermissionPoint),
             distinctUntilChanged((pre, cur) => pre.permissionId === cur.permissionId)
         )
@@ -82,7 +82,7 @@ export class SelectionProtectionRenderModel {
         const result: ICellPermission[] = [];
         for (const rule of ruleMap) {
             if (rule.ranges.some((range) => range.startRow <= row && range.endRow >= row && range.startColumn <= col && range.endColumn >= col)) {
-                const permissionMap = getAllPermissionPoint().reduce((result, F) => {
+                const permissionMap = getAllRangePermissionPoint().reduce((result, F) => {
                     const instance = new F(unitId, subUnitId, rule.permissionId);
                     const permission = this._permissionService.getPermissionPoint(instance.id);
                     result[instance.subType] = permission?.value ?? instance.value;

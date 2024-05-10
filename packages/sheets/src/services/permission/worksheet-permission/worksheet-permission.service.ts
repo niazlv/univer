@@ -15,7 +15,7 @@
  */
 
 import type { IPermissionParam, IPermissionPoint, Workbook } from '@univerjs/core';
-import { IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, mapPermissionPointToSubEnum, OnLifecycle, RxDisposable, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
+import { IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, OnLifecycle, RxDisposable, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
 import { Inject, Injector } from '@wendellhu/redi';
 import { map, takeUntil } from 'rxjs/operators';
 
@@ -124,6 +124,10 @@ export class WorksheetPermissionService extends RxDisposable {
     getManageCollaboratorPermission$: GetWorksheetPermission$;
     getManageCollaboratorPermission: GetWorksheetPermission;
     setManageCollaboratorPermission: SetWorksheetPermission;
+
+    getUnRecognizedPermission$: GetWorksheetPermission$;
+    getUnRecognizedPermission: GetWorksheetPermission;
+    setUnRecognizedPermission: SetWorksheetPermission;
 
 
     constructor(

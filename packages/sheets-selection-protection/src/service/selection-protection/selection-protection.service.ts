@@ -24,7 +24,7 @@ import type { IObjectModel, ISelectionProtectionRule } from '../../model/type';
 import { PLUGIN_NAME } from '../../base/const';
 import { SelectionProtectionRenderModel } from '../../model/selection-protection-render.model';
 import type { ISelectionProtectionRenderCellData } from '../../render/type';
-import { getAllPermissionPoint } from './permission-point';
+import { getAllRangePermissionPoint } from './permission-point';
 
 @OnLifecycle(LifecycleStages.Starting, SelectionProtectionService)
 export class SelectionProtectionService extends Disposable {
@@ -76,7 +76,7 @@ export class SelectionProtectionService extends Disposable {
                     objectType: UnitObject.SelectRange,
                     actions: [UnitAction.Edit, UnitAction.View],
                 }).then((permissionMap) => {
-                    getAllPermissionPoint().forEach((F) => {
+                    getAllRangePermissionPoint().forEach((F) => {
                         const rule = info.rule;
                         const instance = new F(rule.unitId, rule.subUnitId, rule.permissionId);
                         const unitActionName = mapPermissionPointToSubEnum(instance.subType as unknown as SubUnitPermissionType);
@@ -88,21 +88,21 @@ export class SelectionProtectionService extends Disposable {
 
                 switch (info.type) {
                     case 'add': {
-                        getAllPermissionPoint().forEach((F) => {
+                        getAllRangePermissionPoint().forEach((F) => {
                             const instance = new F(info.unitId, info.subUnitId, info.rule.permissionId);
                             this._permissionService.addPermissionPoint(instance);
                         });
                         break;
                     }
                     case 'delete': {
-                        getAllPermissionPoint().forEach((F) => {
+                        getAllRangePermissionPoint().forEach((F) => {
                             const instance = new F(info.unitId, info.subUnitId, info.rule.permissionId);
                             this._permissionService.deletePermissionPoint(instance.id);
                         });
                         break;
                     }
                     case 'set': {
-                        getAllPermissionPoint().forEach((F) => {
+                        getAllRangePermissionPoint().forEach((F) => {
                             const oldPermissionPoint = new F(info.unitId, info.subUnitId, info.oldRule!.permissionId);
                             this._permissionService.deletePermissionPoint(oldPermissionPoint.id);
                             const newPermissionPoint = new F(info.unitId, info.subUnitId, info.rule.permissionId);
@@ -158,7 +158,7 @@ export class SelectionProtectionService extends Disposable {
                         });
 
                         list.forEach((rule) => {
-                            getAllPermissionPoint().forEach((Factor) => {
+                            getAllRangePermissionPoint().forEach((Factor) => {
                                 const instance = new Factor(unitId, subUnitId, rule.permissionId);
                                 this._permissionService.addPermissionPoint(instance);
                             });
@@ -176,7 +176,7 @@ export class SelectionProtectionService extends Disposable {
                             });
                         });
                         permissionMap.forEach((item) => {
-                            getAllPermissionPoint().forEach((F) => {
+                            getAllRangePermissionPoint().forEach((F) => {
                                 const rule = permissionIdWithRuleInstanceMap.get(item.objectID);
                                 if (rule) {
                                     const instance = new F(unitId, rule.subUnitId, item.objectID);

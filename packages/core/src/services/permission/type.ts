@@ -70,6 +70,7 @@ export enum SubUnitPermissionType {
     RowHeightColWidthReadonly = 'RowHeightColWidthReadonly',
     FilterReadonly = 'FilterReadonly',
     ManageCollaborator = 'ManageCollaborator',
+    UnRecognized = 'UnRecognized',
 }
 
 export interface IPermissionTypes {
