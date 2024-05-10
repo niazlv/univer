@@ -44,7 +44,6 @@ export class UniverSheetsPermissionUIPlugin extends Plugin {
         ([
             [SheetPermissionPanelModel],
 
-            [SheetPermissionPanelService],
             [SheetPermissionUserManagerService],
 
             [SheetPermissionRenderController],
