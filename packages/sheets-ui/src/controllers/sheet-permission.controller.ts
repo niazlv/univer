@@ -15,14 +15,16 @@
  */
 
 import type { ICellDataForSheetInterceptor, ICommandInfo, IPermissionTypes, IRange, Workbook } from '@univerjs/core';
-import { Disposable, ICommandService, IUniverInstanceService, LifecycleStages, OnLifecycle, RangeUnitPermissionType, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
+import { Disposable, IAuthzIoService, ICommandService, IPermissionService, IUniverInstanceService, LifecycleStages, mapPermissionPointToSubEnum, OnLifecycle, RangeUnitPermissionType, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
 import { InsertCommand } from '@univerjs/docs';
 import type { GetWorkbookPermissionFunc, GetWorksheetPermission } from '@univerjs/sheets';
-import { DeltaColumnWidthCommand, DeltaRowHeightCommand, SelectionManagerService, SetBackgroundColorCommand, SetRangeValuesMutation, WorkbookPermissionService, WorksheetPermissionService } from '@univerjs/sheets';
+import { defaultWorksheetPermissionPoint, DeltaColumnWidthCommand, DeltaRowHeightCommand, getAllWorksheetPermissionPoint, SelectionManagerService, SetBackgroundColorCommand, SetRangeValuesMutation, WorkbookPermissionService, WorksheetPermissionService, WorksheetProtectionRuleModel } from '@univerjs/sheets';
 import { Inject } from '@wendellhu/redi';
 import { IDialogService } from '@univerjs/ui';
 import { UNIVER_SHEET_PERMISSION_ALERT_DIALOG, UNIVER_SHEET_PERMISSION_ALERT_DIALOG_ID } from '@univerjs/sheets-permission-ui';
 
+import { getAllRangePermissionPoint, SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
+import { UnitAction, UnitObject, UniverType } from '@univerjs/protocol';
 import { SetCellEditVisibleOperation } from '../commands/operations/cell-edit.operation';
 import { SetRangeBoldCommand, SetRangeItalicCommand, SetRangeStrickThroughCommand, SetRangeUnderlineCommand } from '../commands/commands/inline-format.command';
 import { SheetCopyCommand } from '../commands/commands/clipboard.command';
@@ -38,10 +40,18 @@ export class SheetPermissionController extends Disposable {
         @Inject(WorkbookPermissionService) private readonly _workbookPermissionService: WorkbookPermissionService,
         @Inject(WorksheetPermissionService) private readonly _worksheetPermissionService: WorksheetPermissionService,
         @Inject(SelectionManagerService) private readonly _selectionManagerService: SelectionManagerService,
-        @Inject(IDialogService) private readonly _dialogService: IDialogService
+        @Inject(IDialogService) private readonly _dialogService: IDialogService,
+        @Inject(IPermissionService) private _permissionService: IPermissionService,
+        @Inject(IAuthzIoService) private authzIoService: IAuthzIoService,
+        @Inject(SelectionProtectionRuleModel) private _selectionProtectionRuleModel: SelectionProtectionRuleModel,
+        @Inject(WorksheetProtectionRuleModel) private _worksheetProtectionRuleModel: WorksheetProtectionRuleModel
     ) {
         super();
         this._initialize();
+        this._initRangePermissionFromSnapshot();
+        this._initRangePermissionChange();
+        this._initWorksheetPermissionFromSnapshot();
+        this._initWorksheetPermissionChange();
     }
 
     private _haveNotPermissionHandle() {
@@ -231,5 +241,145 @@ export class SheetPermissionController extends Disposable {
         }
 
         return true;
+    }
+
+
+    private _initRangePermissionFromSnapshot() {
+        this.disposeWithMe(
+            this._selectionProtectionRuleModel.rangeRuleInitStateChange$.subscribe((state) => {
+                if (state) {
+                    const allAllowedParams: {
+                        objectID: string;
+                        unitID: string;
+                        objectType: UnitObject;
+                        actions: UnitAction[];
+                    }[] = [];
+                    const workbook = this._univerInstanceService.getCurrentUnitForType<Workbook>(UniverType.UNIVER_SHEET)!;
+                    const unitId = workbook.getUnitId();
+                    const allSheets = workbook.getSheets();
+                    const permissionIdWithRuleInstanceMap = new Map();
+                    allSheets.forEach((sheet) => {
+                        const subunitId = sheet.getSheetId();
+                        this._selectionProtectionRuleModel.getSubunitRuleList(unitId, subunitId).forEach((rule) => {
+                            permissionIdWithRuleInstanceMap.set(rule.permissionId, rule);
+                            allAllowedParams.push({
+                                objectID: rule.permissionId,
+                                unitID: unitId,
+                                objectType: UnitObject.SelectRange,
+                                actions: [UnitAction.View, UnitAction.Edit],
+                            });
+                        });
+                    });
+                    this.authzIoService.batchAllowed(allAllowedParams).then((permissionMap) => {
+                        permissionMap.forEach((item) => {
+                            const rule = permissionIdWithRuleInstanceMap.get(item.objectID);
+                            if (rule) {
+                                getAllRangePermissionPoint().forEach((F) => {
+                                    const instance = new F(unitId, rule.subUnitId, item.objectID);
+                                    const unitActionName = mapPermissionPointToSubEnum(instance.subType as unknown as SubUnitPermissionType);
+                                    const result = item.actions.find((action) => action.action === unitActionName);
+                                    if (result?.allowed !== undefined) {
+                                        this._permissionService.updatePermissionPoint(instance.id, result.allowed);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                }
+            })
+        );
+    }
+
+    private _initRangePermissionChange() {
+        this.disposeWithMe(
+            this._selectionProtectionRuleModel.ruleChange$.subscribe((info) => {
+                this.authzIoService.allowed({
+                    objectID: info.rule.permissionId,
+                    unitID: info.unitId,
+                    objectType: UnitObject.SelectRange,
+                    actions: [UnitAction.Edit, UnitAction.View],
+                }).then((permissionMap) => {
+                    getAllRangePermissionPoint().forEach((F) => {
+                        const rule = info.rule;
+                        const instance = new F(rule.unitId, rule.subUnitId, rule.permissionId);
+                        const unitActionName = mapPermissionPointToSubEnum(instance.subType as unknown as SubUnitPermissionType);
+                        if (permissionMap.hasOwnProperty(unitActionName)) {
+                            this._permissionService.updatePermissionPoint(instance.id, permissionMap[unitActionName]);
+                        }
+                    });
+                });
+            })
+        );
+    }
+
+    private _initWorksheetPermissionFromSnapshot() {
+        this.disposeWithMe(
+            this._worksheetProtectionRuleModel.worksheetRuleInitStateChange$.subscribe((state) => {
+                if (state) {
+                    const allAllowedParams: {
+                        objectID: string;
+                        unitID: string;
+                        objectType: UnitObject;
+                        actions: UnitAction[];
+                    }[] = [];
+                    const workbook = this._univerInstanceService.getCurrentUnitForType<Workbook>(UniverType.UNIVER_SHEET)!;
+                    const unitId = workbook.getUnitId();
+                    const allSheets = workbook.getSheets();
+                    const permissionIdWithRuleInstanceMap = new Map();
+                    allSheets.forEach((sheet) => {
+                        const subunitId = sheet.getSheetId();
+                        const rule = this._worksheetProtectionRuleModel.getRule(unitId, subunitId);
+                        if (rule) {
+                            permissionIdWithRuleInstanceMap.set(rule.permissionId, rule);
+                            allAllowedParams.push({
+                                objectID: rule.permissionId,
+                                unitID: unitId,
+                                objectType: UnitObject.Worksheet,
+                                actions: defaultWorksheetPermissionPoint,
+                            });
+                        }
+                    });
+
+                    this.authzIoService.batchAllowed(allAllowedParams).then((permissionMap) => {
+                        permissionMap.forEach((item) => {
+                            const rule = permissionIdWithRuleInstanceMap.get(item.objectID);
+                            if (rule) {
+                                getAllWorksheetPermissionPoint().forEach((F) => {
+                                    const instance = new F(unitId, rule.subUnitId);
+                                    const unitActionName = mapPermissionPointToSubEnum(instance.subType);
+                                    const result = item.actions.find((action) => action.action === unitActionName);
+                                    if (result?.allowed !== undefined) {
+                                        this._permissionService.updatePermissionPoint(instance.id, result.allowed);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                }
+            })
+        );
+    }
+
+    private _initWorksheetPermissionChange() {
+        this.disposeWithMe(
+            this._worksheetProtectionRuleModel.ruleChange$.subscribe((info) => {
+                if (info.type !== 'delete') {
+                    this.authzIoService.allowed({
+                        objectID: info.rule.permissionId,
+                        unitID: info.unitId,
+                        objectType: UnitObject.Worksheet,
+                        actions: defaultWorksheetPermissionPoint,
+                    }).then((permissionMap) => {
+                        getAllWorksheetPermissionPoint().forEach((F) => {
+                            const instance = new F(info.unitId, info.subUnitId);
+                            const unitActionName = mapPermissionPointToSubEnum(instance.subType);
+                            if (permissionMap.hasOwnProperty(unitActionName)) {
+                                this._permissionService.updatePermissionPoint(instance.id, permissionMap[unitActionName]);
+                            }
+                        });
+                    });
+                }
+            })
+        );
     }
 }

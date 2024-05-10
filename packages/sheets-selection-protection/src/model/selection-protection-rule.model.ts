@@ -36,6 +36,13 @@ export class SelectionProtectionRuleModel {
 
     ruleChange$ = this._ruleChange.asObservable();
 
+    private _rangeRuleInitStateChange = new Subject<boolean>();
+    rangeRuleInitStateChange$ = this._rangeRuleInitStateChange.asObservable();
+
+    changeRuleInitState(state: boolean) {
+        this._rangeRuleInitStateChange.next(state);
+    }
+
     addRule(unitId: string, subUnitId: string, rule: ISelectionProtectionRule) {
         const ruleMap = this._ensureRuleMap(unitId, subUnitId);
         ruleMap.set(rule.id, rule);

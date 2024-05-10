@@ -50,7 +50,7 @@ import {
 } from '../permission-point';
 import type { GetWorksheetPermission, GetWorksheetPermission$, IObjectModel, SetWorksheetPermission } from '../type';
 import { WorksheetProtectionRuleModel } from './worksheet-permission.model';
-import { getAllPermissionPoint } from './utils';
+import { getAllWorksheetPermissionPoint } from './utils';
 
 
 export const PLUGIN_NAME = 'SHEET_WORKSHEET_PROTECTION_PLUGIN';
@@ -150,7 +150,7 @@ export class WorksheetPermissionService extends RxDisposable {
             workbook.getSheets().forEach((worksheet) => {
                 const unitId = workbook.getUnitId();
                 const subUnitId = worksheet.getSheetId();
-                getAllPermissionPoint().forEach((F) => {
+                getAllWorksheetPermissionPoint().forEach((F) => {
                     const instance = new F(unitId, subUnitId);
                     this._permissionService.addPermissionPoint(instance);
                 });
@@ -167,7 +167,7 @@ export class WorksheetPermissionService extends RxDisposable {
             workbook.getSheets().forEach((worksheet) => {
                 const unitId = workbook.getUnitId();
                 const subUnitId = worksheet.getSheetId();
-                getAllPermissionPoint().forEach((F) => {
+                getAllWorksheetPermissionPoint().forEach((F) => {
                     const instance = new F(unitId, subUnitId);
                     this._permissionService.deletePermissionPoint(instance.id);
                 });
@@ -354,21 +354,21 @@ export class WorksheetPermissionService extends RxDisposable {
             this._worksheetProtectionRuleModel.ruleChange$.subscribe((info) => {
                 switch (info.type) {
                     case 'add': {
-                        getAllPermissionPoint().forEach((F) => {
+                        getAllWorksheetPermissionPoint().forEach((F) => {
                             const instance = new F(info.unitId, info.subUnitId);
                             this._permissionService.addPermissionPoint(instance);
                         });
                         break;
                     }
                     case 'delete': {
-                        getAllPermissionPoint().forEach((F) => {
+                        getAllWorksheetPermissionPoint().forEach((F) => {
                             const instance = new F(info.unitId, info.subUnitId);
                             this._permissionService.deletePermissionPoint(instance.id);
                         });
                         break;
                     }
                     case 'set': {
-                        getAllPermissionPoint().forEach((F) => {
+                        getAllWorksheetPermissionPoint().forEach((F) => {
                             const instance = new F(info.unitId, info.subUnitId);
                             this._permissionService.updatePermissionPoint(instance.id, info.rule);
                         });
@@ -399,14 +399,13 @@ export class WorksheetPermissionService extends RxDisposable {
                 pluginName: PLUGIN_NAME,
                 businesses: [UniverType.UNIVER_SHEET],
                 onLoad: (unitId, resources) => {
-                    const allAllowedParams: { permissionId: string; unitId: string }[] = [];
                     Object.keys(resources).forEach((subUnitId) => {
-                        const rule = resources[subUnitId];
-                        allAllowedParams.push({
-                            permissionId: rule.permissionId,
-                            unitId: rule.unitId,
+                        getAllWorksheetPermissionPoint().forEach((F) => {
+                            const instance = new F(unitId, subUnitId);
+                            this._permissionService.addPermissionPoint(instance);
                         });
                     });
+                    this._worksheetProtectionRuleModel.changeRuleInitState(true);
                 },
                 onUnLoad: () => {
                     this._worksheetProtectionRuleModel.deleteUnitModel();

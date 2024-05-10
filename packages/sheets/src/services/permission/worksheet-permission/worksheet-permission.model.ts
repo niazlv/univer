@@ -38,6 +38,13 @@ export class WorksheetProtectionRuleModel {
 
     ruleChange$ = this._ruleChange.asObservable();
 
+    private _worksheetRuleInitStateChange = new Subject<boolean>();
+    worksheetRuleInitStateChange$ = this._worksheetRuleInitStateChange.asObservable();
+
+    changeRuleInitState(state: boolean) {
+        this._worksheetRuleInitStateChange.next(state);
+    }
+
     addRule(unitId: string, rule: IWorksheetProtectionRule) {
         this._model.set(rule.subUnitId, rule);
         this._ruleChange.next({ unitId, rule, type: 'add', subUnitId: rule.subUnitId });

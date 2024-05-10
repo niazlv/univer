@@ -298,5 +298,6 @@ export { ScrollToCellOperation } from './commands/operations/scroll-to-cell.oper
 export type { FormatType } from './services/numfmt/type';
 export { getMoveRangeUndoRedoMutations } from './commands/commands/move-range.command';
 export type { GetWorkbookPermissionFunc, GetWorksheetPermission } from './services/permission';
+export { defaultWorksheetPermissionPoint, getAllWorksheetPermissionPoint } from './services/permission';
 export type { IWorksheetProtectionRule } from './services/permission/type';
 export { WorksheetProtectionRuleModel } from './services/permission/worksheet-permission/worksheet-permission.model';

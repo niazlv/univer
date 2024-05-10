@@ -15,3 +15,4 @@
  */
 
 export type { GetWorkbookPermissionFunc, GetWorksheetPermission } from './type';
+export { defaultWorksheetPermissionPoint, getAllWorksheetPermissionPoint } from './worksheet-permission/utils';

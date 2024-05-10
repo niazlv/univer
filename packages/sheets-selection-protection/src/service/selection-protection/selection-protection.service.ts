@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-import type { SubUnitPermissionType, Workbook } from '@univerjs/core';
-import { Disposable, IAuthzIoService, IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, mapPermissionPointToSubEnum, OnLifecycle } from '@univerjs/core';
+import { Disposable, IAuthzIoService, IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, OnLifecycle } from '@univerjs/core';
 import { INTERCEPTOR_POINT, SheetInterceptorService } from '@univerjs/sheets';
 import { Inject } from '@wendellhu/redi';
 import { UnitAction, UnitObject, UniverType } from '@univerjs/protocol';
@@ -70,22 +69,6 @@ export class SelectionProtectionService extends Disposable {
     private _initRuleChange() {
         this.disposeWithMe(
             this._selectionProtectionRuleModel.ruleChange$.subscribe((info) => {
-                this.authzIoService.allowed({
-                    objectID: info.rule.permissionId,
-                    unitID: info.unitId,
-                    objectType: UnitObject.SelectRange,
-                    actions: [UnitAction.Edit, UnitAction.View],
-                }).then((permissionMap) => {
-                    getAllRangePermissionPoint().forEach((F) => {
-                        const rule = info.rule;
-                        const instance = new F(rule.unitId, rule.subUnitId, rule.permissionId);
-                        const unitActionName = mapPermissionPointToSubEnum(instance.subType as unknown as SubUnitPermissionType);
-                        if (permissionMap.hasOwnProperty(unitActionName)) {
-                            this._permissionService.updatePermissionPoint(instance.id, permissionMap[unitActionName]);
-                        }
-                    });
-                });
-
                 switch (info.type) {
                     case 'add': {
                         getAllRangePermissionPoint().forEach((F) => {
@@ -165,29 +148,7 @@ export class SelectionProtectionService extends Disposable {
                         });
                     });
 
-                    this.authzIoService.batchAllowed(allAllowedParams).then((permissionMap) => {
-                        const workbook = this._univerInstanceService.getCurrentUnitForType<Workbook>(UniverType.UNIVER_SHEET)!;
-                        const allSheets = workbook.getSheets();
-                        const permissionIdWithRuleInstanceMap = new Map();
-                        allSheets.forEach((sheet) => {
-                            const permissionList = this._selectionProtectionRuleModel.getSubunitRuleList(unitId, sheet.getSheetId());
-                            permissionList.forEach((rule) => {
-                                permissionIdWithRuleInstanceMap.set(rule.permissionId, rule);
-                            });
-                        });
-                        permissionMap.forEach((item) => {
-                            getAllRangePermissionPoint().forEach((F) => {
-                                const rule = permissionIdWithRuleInstanceMap.get(item.objectID);
-                                if (rule) {
-                                    const instance = new F(unitId, rule.subUnitId, item.objectID);
-                                    const unitActionName = mapPermissionPointToSubEnum(instance.subType as unknown as SubUnitPermissionType);
-                                    if (permissionMap.hasOwnProperty(unitActionName)) {
-                                        this._permissionService.updatePermissionPoint(instance.id, result[unitActionName]);
-                                    }
-                                }
-                            });
-                        });
-                    });
+                    this._selectionProtectionRuleModel.changeRuleInitState(true);
                 },
                 onUnLoad: (unitId) => {
                     this._selectionProtectionRuleModel.deleteUnitModel(unitId);

@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-import { WorksheetCommentPermission, WorksheetCopyPermission, WorksheetExportPermission, WorksheetFilterPermission, WorksheetFilterReadonlyPermission, WorksheetFloatImagePermission, WorksheetManageCollaboratorPermission, WorksheetPivotTablePermission, WorksheetPrintPermission, WorksheetRowHeightColWidthPermission, WorksheetRowHeightColWidthReadonlyPermission, WorksheetSetCellStylePermission, WorksheetSetCellValuePermission, WorksheetSetHyperLinkPermission, WorksheetSharePermission, WorksheetSortPermission, WorksheetViewPermission } from '../permission-point';
+import { UnitAction } from '@univerjs/protocol';
+import { WorksheetCommentPermission, WorksheetCopyPermission, WorksheetExportPermission, WorksheetFilterPermission, WorksheetFilterReadonlyPermission, WorksheetFloatImagePermission, WorksheetPivotTablePermission, WorksheetPrintPermission, WorksheetRowHeightColWidthPermission, WorksheetRowHeightColWidthReadonlyPermission, WorksheetSetCellStylePermission, WorksheetSetCellValuePermission, WorksheetSetHyperLinkPermission, WorksheetSharePermission, WorksheetSortPermission, WorksheetViewPermission } from '../permission-point';
 
-export const getAllPermissionPoint = () => [
+export const getAllWorksheetPermissionPoint = () => [
     WorksheetPrintPermission,
     WorksheetExportPermission,
     WorksheetSetCellStylePermission,
@@ -33,6 +34,24 @@ export const getAllPermissionPoint = () => [
     WorksheetCopyPermission,
     WorksheetRowHeightColWidthReadonlyPermission,
     WorksheetFilterReadonlyPermission,
-    WorksheetManageCollaboratorPermission,
+];
+
+export const defaultWorksheetPermissionPoint = [
+    UnitAction.Print,
+    UnitAction.Export,
+    UnitAction.SetWorksheetStyle,
+    UnitAction.EditWorksheetCell,
+    UnitAction.InsertHyperlink,
+    UnitAction.Sort,
+    UnitAction.Filter,
+    UnitAction.PivotTable,
+    UnitAction.FloatImg,
+    UnitAction.RwHgtClWdt,
+    UnitAction.View,
+    UnitAction.Share,
+    UnitAction.Comment,
+    UnitAction.Copy,
+    UnitAction.ViemRwHgtClWdt,
+    UnitAction.ViewFilter,
 ];
 
