@@ -73,7 +73,6 @@
         "@univerjs/engine-formula": "workspace:*",
         "@univerjs/engine-numfmt": "workspace:*",
         "@univerjs/engine-render": "workspace:*",
-        "@univerjs/protocol": "workspace: *",
         "@univerjs/sheets": "workspace:*",
         "@univerjs/sheets-permission-ui": "workspace:*",
         "@univerjs/sheets-selection-protection": "workspace:*",
@@ -84,7 +83,8 @@
         "rxjs": ">=7.0.0"
     },
     "dependencies": {
-        "@univerjs/icons": "^0.1.44"
+        "@univerjs/icons": "^0.1.44",
+        "@univerjs/protocol": "^0.1.26-permission-8.5"
     },
     "devDependencies": {
         "@types/react": "^18.2.79",
@@ -94,7 +94,6 @@
         "@univerjs/engine-formula": "workspace:*",
         "@univerjs/engine-numfmt": "workspace:*",
         "@univerjs/engine-render": "workspace:*",
-        "@univerjs/protocol": "workspace: *",
         "@univerjs/shared": "workspace:*",
         "@univerjs/sheets": "workspace:*",
         "@univerjs/sheets-permission-ui": "workspace:*",
