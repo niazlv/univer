@@ -11,6 +11,7 @@ importers:
       '@antfu/eslint-config':
         specifier: ^2.15.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 2.15.0(@eslint-react/eslint-plugin@1.5.9(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@vue/compiler-sfc@3.4.24)(eslint-plugin-format@0.1.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react-refresh@0.4.6(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.5)(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
 =======
 <<<<<<< HEAD
@@ -19,6 +20,9 @@ importers:
         version: 2.15.0(@eslint-react/eslint-plugin@1.5.9(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@vue/compiler-sfc@3.4.24)(eslint-plugin-format@0.1.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react-refresh@0.4.6(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.5)(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 2.15.0(@eslint-react/eslint-plugin@1.5.9(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@vue/compiler-sfc@3.4.24)(eslint-plugin-format@0.1.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react-refresh@0.4.6(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.5)(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       '@commitlint/cli':
         specifier: ^19.3.0
         version: 19.3.0(@types/node@20.12.7)(typescript@5.4.5)
@@ -34,6 +38,7 @@ importers:
       '@release-it-plugins/workspaces':
         specifier: ^4.2.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 4.2.0(release-it@17.2.0(typescript@5.4.5))
       '@release-it/conventional-changelog':
         specifier: ^8.0.1
@@ -45,12 +50,17 @@ importers:
         specifier: ^8.0.1
         version: 8.0.1(release-it@17.2.1(typescript@5.4.5))
 =======
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
         version: 4.2.0(release-it@17.2.0(typescript@5.4.5))
       '@release-it/conventional-changelog':
         specifier: ^8.0.1
         version: 8.0.1(release-it@17.2.0(typescript@5.4.5))
+<<<<<<< HEAD
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       '@storybook/react':
         specifier: 8.0.9
         version: 8.0.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.4.5)
@@ -141,6 +151,7 @@ importers:
       vite-plugin-dts:
         specifier: ^3.9.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 3.9.0(@types/node@20.12.7)(rollup@4.16.4)(typescript@5.4.5)(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
 =======
 <<<<<<< HEAD
@@ -149,6 +160,9 @@ importers:
         version: 3.9.0(@types/node@20.12.7)(rollup@4.16.4)(typescript@5.4.5)(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 3.9.0(@types/node@20.12.7)(rollup@4.16.4)(typescript@5.4.5)(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       vitest:
         specifier: ^1.5.2
         version: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
@@ -161,6 +175,7 @@ importers:
       '@storybook/addon-essentials':
         specifier: 8.0.9
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 =======
 <<<<<<< HEAD
@@ -169,6 +184,9 @@ importers:
         version: 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       '@storybook/addon-interactions':
         specifier: 8.0.9
         version: 8.0.9(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
@@ -184,6 +202,7 @@ importers:
       '@storybook/blocks':
         specifier: 8.0.9
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 =======
 <<<<<<< HEAD
@@ -192,6 +211,9 @@ importers:
         version: 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       '@storybook/icons':
         specifier: ^1.2.9
         version: 1.2.9(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -349,6 +371,7 @@ importers:
       react-mosaic-component:
         specifier: ^6.1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 6.1.0(@types/node@20.12.7)(@types/react@18.2.79)(dnd-core@16.0.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 =======
 <<<<<<< HEAD
@@ -357,6 +380,9 @@ importers:
         version: 6.1.0(@types/node@20.12.7)(@types/react@18.2.79)(dnd-core@16.0.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 6.1.0(@types/node@20.12.7)(@types/react@18.2.79)(dnd-core@16.0.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       rxjs:
         specifier: ^7.8.1
         version: 7.8.1
@@ -483,6 +509,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -491,6 +518,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/data-validation:
     dependencies:
@@ -522,6 +552,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -530,6 +561,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/design:
     dependencies:
@@ -627,6 +661,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -635,6 +670,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/docs:
     devDependencies:
@@ -662,6 +700,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -670,6 +709,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/docs-ui:
     devDependencies:
@@ -715,6 +757,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -723,6 +766,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/engine-formula:
     dependencies:
@@ -757,6 +803,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -765,6 +812,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/engine-numfmt:
     dependencies:
@@ -784,6 +834,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -792,6 +843,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/engine-render:
     dependencies:
@@ -826,6 +880,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -834,6 +889,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/facade:
     devDependencies:
@@ -891,6 +949,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest-canvas-mock:
         specifier: ^0.3.3
@@ -902,12 +961,17 @@ importers:
         specifier: ^0.3.3
         version: 0.3.3(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
 =======
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vitest-canvas-mock:
         specifier: ^0.3.3
         version: 0.3.3(vitest@1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))
+<<<<<<< HEAD
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/find-replace:
     dependencies:
@@ -957,6 +1021,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -965,6 +1030,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/image:
     dependencies:
@@ -1011,6 +1079,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1019,6 +1088,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/network:
     devDependencies:
@@ -1043,6 +1115,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1051,6 +1124,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/rpc:
     devDependencies:
@@ -1075,6 +1151,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1083,6 +1160,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/sheet-permission-ui:
     dependencies:
@@ -1181,6 +1261,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1189,6 +1270,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/sheets-conditional-formatting:
     dependencies:
@@ -1235,6 +1319,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1243,6 +1328,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/sheets-conditional-formatting-ui:
     dependencies:
@@ -1328,6 +1416,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1336,6 +1425,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/sheets-data-validation:
     dependencies:
@@ -1400,6 +1492,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1408,6 +1501,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/sheets-filter:
     devDependencies:
@@ -1535,6 +1631,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1543,6 +1640,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/sheets-formula:
     dependencies:
@@ -1607,6 +1707,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1615,6 +1716,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/sheets-numfmt:
     dependencies:
@@ -1673,6 +1777,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1681,6 +1786,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/sheets-selection-protection:
     dependencies:
@@ -1809,6 +1917,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1817,6 +1926,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/sheets-zen-editor:
     dependencies:
@@ -1869,6 +1981,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1877,6 +1990,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/slides:
     devDependencies:
@@ -1904,6 +2020,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1912,6 +2029,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/slides-ui:
     devDependencies:
@@ -1960,6 +2080,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -1968,6 +2089,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/ui:
     dependencies:
@@ -1994,6 +2118,7 @@ importers:
       '@testing-library/react-hooks':
         specifier: ^8.0.1
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 8.0.1(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 =======
 <<<<<<< HEAD
@@ -2002,6 +2127,9 @@ importers:
         version: 8.0.1(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 8.0.1(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       '@types/react':
         specifier: ^18.2.79
         version: 18.2.79
@@ -2053,6 +2181,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -2061,6 +2190,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   packages/umd:
     dependencies:
@@ -2259,6 +2391,7 @@ importers:
       vitest:
         specifier: ^1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 =======
 <<<<<<< HEAD
@@ -2267,6 +2400,9 @@ importers:
         version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+        version: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
 packages:
 
@@ -11202,6 +11338,7 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.25
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@antfu/eslint-config@2.15.0(@eslint-react/eslint-plugin@1.5.9(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@vue/compiler-sfc@3.4.24)(eslint-plugin-format@0.1.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react-refresh@0.4.6(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.5)(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))':
 =======
 <<<<<<< HEAD
@@ -11210,6 +11347,9 @@ snapshots:
   '@antfu/eslint-config@2.15.0(@eslint-react/eslint-plugin@1.5.9(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@vue/compiler-sfc@3.4.24)(eslint-plugin-format@0.1.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react-refresh@0.4.6(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.5)(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))':
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+  '@antfu/eslint-config@2.15.0(@eslint-react/eslint-plugin@1.5.9(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(@vue/compiler-sfc@3.4.24)(eslint-plugin-format@0.1.1(eslint@8.57.0))(eslint-plugin-react-hooks@4.6.0(eslint@8.57.0))(eslint-plugin-react-refresh@0.4.6(eslint@8.57.0))(eslint@8.57.0)(typescript@5.4.5)(vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))':
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     dependencies:
       '@antfu/install-pkg': 0.3.2
       '@clack/prompts': 0.7.0
@@ -11222,6 +11362,7 @@ snapshots:
       eslint-merge-processors: 0.1.0(eslint@8.57.0)
       eslint-plugin-antfu: 2.1.2(eslint@8.57.0)
 <<<<<<< HEAD
+<<<<<<< HEAD
       eslint-plugin-eslint-comments: https://r2.cnpmjs.org/eslint-plugin-eslint-comments/-/eslint-plugin-eslint-comments-3.2.0.tgz(eslint@8.57.0)
 =======
 <<<<<<< HEAD
@@ -11231,12 +11372,16 @@ snapshots:
       eslint-plugin-eslint-comments: https://r2.cnpmjs.org/eslint-plugin-eslint-comments/-/eslint-plugin-eslint-comments-3.2.0.tgz(eslint@8.57.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      eslint-plugin-eslint-comments: https://r2.cnpmjs.org/eslint-plugin-eslint-comments/-/eslint-plugin-eslint-comments-3.2.0.tgz(eslint@8.57.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       eslint-plugin-import-x: 0.5.0(eslint@8.57.0)(typescript@5.4.5)
       eslint-plugin-jsdoc: 48.2.3(eslint@8.57.0)
       eslint-plugin-jsonc: 2.15.1(eslint@8.57.0)
       eslint-plugin-markdown: 4.0.1(eslint@8.57.0)
       eslint-plugin-n: 17.3.0(eslint@8.57.0)
       eslint-plugin-no-only-tests: 3.1.0
+<<<<<<< HEAD
 <<<<<<< HEAD
       eslint-plugin-perfectionist: 2.9.0(eslint@8.57.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@8.57.0))
 =======
@@ -11246,6 +11391,9 @@ snapshots:
       eslint-plugin-perfectionist: 2.9.0(eslint@8.57.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@8.57.0))
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      eslint-plugin-perfectionist: 2.9.0(eslint@8.57.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@8.57.0))
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       eslint-plugin-toml: 0.11.0(eslint@8.57.0)
       eslint-plugin-unicorn: 52.0.0(eslint@8.57.0)
       eslint-plugin-unused-imports: 3.1.0(@typescript-eslint/eslint-plugin@7.7.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)
@@ -12150,6 +12298,7 @@ snapshots:
       cosmiconfig: 9.0.0(typescript@5.4.5)
       cosmiconfig-typescript-loader: 5.0.0(@types/node@20.12.7)(cosmiconfig@9.0.0(typescript@5.4.5))(typescript@5.4.5)
 <<<<<<< HEAD
+<<<<<<< HEAD
       lodash.isplainobject: https://r2.cnpmjs.org/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz
       lodash.merge: https://r2.cnpmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz
       lodash.uniq: https://r2.cnpmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz
@@ -12164,6 +12313,11 @@ snapshots:
       lodash.uniq: https://r2.cnpmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      lodash.isplainobject: https://r2.cnpmjs.org/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz
+      lodash.merge: https://r2.cnpmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz
+      lodash.uniq: https://r2.cnpmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     transitivePeerDependencies:
       - '@types/node'
       - typescript
@@ -12764,6 +12918,7 @@ snapshots:
       react: 18.2.0
     optionalDependencies:
 <<<<<<< HEAD
+<<<<<<< HEAD
       '@types/react': 18.2.79
 =======
 <<<<<<< HEAD
@@ -12772,10 +12927,14 @@ snapshots:
       '@types/react': 18.2.79
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      '@types/react': 18.2.79
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   '@radix-ui/react-slot@1.0.2(@types/react@18.2.79)(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.24.1
+<<<<<<< HEAD
 <<<<<<< HEAD
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.79)(react@18.2.0)
       react: 18.2.0
@@ -12788,12 +12947,17 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.1
 =======
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.79)(react@18.2.0)
       react: 18.2.0
     optionalDependencies:
       '@types/react': 18.2.79
+<<<<<<< HEAD
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   '@rc-component/color-picker@1.5.3(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
@@ -12845,6 +13009,7 @@ snapshots:
   '@react-dnd/shallowequal@4.0.2': {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@release-it-plugins/workspaces@4.2.0(release-it@17.2.0(typescript@5.4.5))':
 =======
 <<<<<<< HEAD
@@ -12853,6 +13018,9 @@ snapshots:
   '@release-it-plugins/workspaces@4.2.0(release-it@17.2.0(typescript@5.4.5))':
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+  '@release-it-plugins/workspaces@4.2.0(release-it@17.2.0(typescript@5.4.5))':
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     dependencies:
       detect-indent: 6.1.0
       detect-newline: 3.1.0
@@ -12864,6 +13032,7 @@ snapshots:
       yaml: 2.4.1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@release-it/conventional-changelog@8.0.1(release-it@17.2.0(typescript@5.4.5))':
 =======
 <<<<<<< HEAD
@@ -12872,6 +13041,9 @@ snapshots:
   '@release-it/conventional-changelog@8.0.1(release-it@17.2.0(typescript@5.4.5))':
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+  '@release-it/conventional-changelog@8.0.1(release-it@17.2.0(typescript@5.4.5))':
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     dependencies:
       concat-stream: 2.0.0
       conventional-changelog: 5.1.0
@@ -12879,6 +13051,7 @@ snapshots:
       release-it: 17.2.0(typescript@5.4.5)
       semver: 7.6.0
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   '@rollup/pluginutils@5.1.0(rollup@4.16.4)':
 =======
@@ -12888,11 +13061,15 @@ snapshots:
   '@rollup/pluginutils@5.1.0(rollup@4.16.4)':
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+  '@rollup/pluginutils@5.1.0(rollup@4.16.4)':
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     dependencies:
       '@types/estree': 1.0.5
       estree-walker: https://r2.cnpmjs.org/estree-walker/-/estree-walker-2.0.2.tgz
       picomatch: 2.3.1
     optionalDependencies:
+<<<<<<< HEAD
 <<<<<<< HEAD
       rollup: 4.16.4
 =======
@@ -12902,6 +13079,9 @@ snapshots:
       rollup: 4.16.4
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      rollup: 4.16.4
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   '@rollup/rollup-android-arm-eabi@4.16.4':
     optional: true
@@ -12954,6 +13134,7 @@ snapshots:
   '@rushstack/node-core-library@4.0.2(@types/node@20.12.7)':
     dependencies:
 <<<<<<< HEAD
+<<<<<<< HEAD
       fs-extra: https://r2.cnpmjs.org/fs-extra/-/fs-extra-7.0.1.tgz
       import-lazy: https://r2.cnpmjs.org/import-lazy/-/import-lazy-4.0.0.tgz
       jju: https://r2.cnpmjs.org/jju/-/jju-1.4.0.tgz
@@ -12968,6 +13149,11 @@ snapshots:
       jju: https://r2.cnpmjs.org/jju/-/jju-1.4.0.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      fs-extra: https://r2.cnpmjs.org/fs-extra/-/fs-extra-7.0.1.tgz
+      import-lazy: https://r2.cnpmjs.org/import-lazy/-/import-lazy-4.0.0.tgz
+      jju: https://r2.cnpmjs.org/jju/-/jju-1.4.0.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       resolve: 1.22.8
       semver: 7.5.4
       z-schema: 5.0.5
@@ -12983,6 +13169,7 @@ snapshots:
     dependencies:
       '@rushstack/node-core-library': 4.0.2(@types/node@20.12.7)
 <<<<<<< HEAD
+<<<<<<< HEAD
       supports-color: https://r2.cnpmjs.org/supports-color/-/supports-color-8.1.1.tgz
 =======
 <<<<<<< HEAD
@@ -12991,6 +13178,9 @@ snapshots:
       supports-color: https://r2.cnpmjs.org/supports-color/-/supports-color-8.1.1.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      supports-color: https://r2.cnpmjs.org/supports-color/-/supports-color-8.1.1.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     optionalDependencies:
       '@types/node': 20.12.7
 
@@ -13025,6 +13215,7 @@ snapshots:
       ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@storybook/addon-controls@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@storybook/blocks': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -13038,13 +13229,18 @@ snapshots:
       lodash: 4.17.21
       ts-dedent: 2.2.0
 =======
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
   '@storybook/addon-controls@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@storybook/blocks': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       lodash: https://r2.cnpmjs.org/lodash/-/lodash-4.17.21.tgz
       ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
+<<<<<<< HEAD
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     transitivePeerDependencies:
       - '@types/react'
       - encoding
@@ -13055,6 +13251,7 @@ snapshots:
   '@storybook/addon-docs@8.0.9':
     dependencies:
       '@babel/core': 7.24.3
+<<<<<<< HEAD
 <<<<<<< HEAD
       '@mdx-js/react': 3.0.1(@types/react@18.2.79)(react@18.2.0)
       '@storybook/blocks': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -13067,12 +13264,17 @@ snapshots:
       '@storybook/client-logger': 8.0.9
       '@storybook/components': 8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 =======
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       '@mdx-js/react': 3.0.1(@types/react@18.2.79)(react@18.2.0)
       '@storybook/blocks': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@storybook/client-logger': 8.0.9
       '@storybook/components': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+<<<<<<< HEAD
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       '@storybook/csf-plugin': 8.0.9
       '@storybook/csf-tools': 8.0.9
       '@storybook/global': 5.0.0
@@ -13093,6 +13295,7 @@ snapshots:
       - supports-color
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@storybook/addon-essentials@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@storybook/addon-actions': 8.0.9
@@ -13106,13 +13309,18 @@ snapshots:
       '@storybook/addon-backgrounds': 8.0.9
       '@storybook/addon-controls': 8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 =======
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
   '@storybook/addon-essentials@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@storybook/addon-actions': 8.0.9
       '@storybook/addon-backgrounds': 8.0.9
       '@storybook/addon-controls': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+<<<<<<< HEAD
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       '@storybook/addon-docs': 8.0.9
       '@storybook/addon-highlight': 8.0.9
       '@storybook/addon-measure': 8.0.9
@@ -13155,6 +13363,7 @@ snapshots:
       '@storybook/csf': 0.1.4
       '@storybook/global': 5.0.0
 <<<<<<< HEAD
+<<<<<<< HEAD
       ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
 =======
 <<<<<<< HEAD
@@ -13163,6 +13372,9 @@ snapshots:
       ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     optionalDependencies:
       react: 18.2.0
 
@@ -13196,6 +13408,7 @@ snapshots:
       - webpack
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@storybook/blocks@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@storybook/channels': 8.0.9
@@ -13209,13 +13422,18 @@ snapshots:
       '@storybook/client-logger': 8.0.9
       '@storybook/components': 8.0.9(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 =======
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
   '@storybook/blocks@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@storybook/channels': 8.0.9
       '@storybook/client-logger': 8.0.9
       '@storybook/components': 8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+<<<<<<< HEAD
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       '@storybook/core-events': 8.0.9
       '@storybook/csf': 0.1.4
       '@storybook/docs-tools': 8.0.9
@@ -13236,6 +13454,7 @@ snapshots:
       telejson: 7.2.0
       tocbot: 4.25.0
 <<<<<<< HEAD
+<<<<<<< HEAD
       ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
       util-deprecate: https://r2.cnpmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz
 =======
@@ -13247,6 +13466,10 @@ snapshots:
       util-deprecate: https://r2.cnpmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
+      util-deprecate: https://r2.cnpmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     optionalDependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -13291,6 +13514,7 @@ snapshots:
       case-sensitive-paths-webpack-plugin: https://r2.cnpmjs.org/case-sensitive-paths-webpack-plugin/-/case-sensitive-paths-webpack-plugin-2.4.0.tgz
       cjs-module-lexer: 1.2.3
 <<<<<<< HEAD
+<<<<<<< HEAD
       constants-browserify: https://r2.cnpmjs.org/constants-browserify/-/constants-browserify-1.0.0.tgz
 =======
 <<<<<<< HEAD
@@ -13299,12 +13523,16 @@ snapshots:
       constants-browserify: https://r2.cnpmjs.org/constants-browserify/-/constants-browserify-1.0.0.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      constants-browserify: https://r2.cnpmjs.org/constants-browserify/-/constants-browserify-1.0.0.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       css-loader: 6.10.0(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
       es-module-lexer: 1.5.0
       express: 4.19.2
       fork-ts-checker-webpack-plugin: 8.0.0(typescript@5.4.5)(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
       fs-extra: 11.2.0
       html-webpack-plugin: 5.6.0(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
+<<<<<<< HEAD
 <<<<<<< HEAD
       magic-string: 0.30.10
       path-browserify: https://r2.cnpmjs.org/path-browserify/-/path-browserify-1.0.1.tgz
@@ -13323,6 +13551,8 @@ snapshots:
       terser-webpack-plugin: 5.3.10(@swc/core@1.4.11)(esbuild@0.20.2)(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
       ts-dedent: 2.2.0
 =======
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       magic-string: 0.30.10
       path-browserify: https://r2.cnpmjs.org/path-browserify/-/path-browserify-1.0.1.tgz
       process: https://r2.cnpmjs.org/process/-/process-0.11.10.tgz
@@ -13330,8 +13560,11 @@ snapshots:
       style-loader: 3.3.4(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
       terser-webpack-plugin: 5.3.10(@swc/core@1.4.11)(esbuild@0.20.2)(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
       ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
+<<<<<<< HEAD
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       url: 0.11.3
       util: 0.12.5
       util-deprecate: https://r2.cnpmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz
@@ -13387,6 +13620,7 @@ snapshots:
       globby: 11.1.0
       jscodeshift: 0.15.2(@babel/preset-env@7.24.3(@babel/core@7.24.3))
 <<<<<<< HEAD
+<<<<<<< HEAD
       leven: https://r2.cnpmjs.org/leven/-/leven-3.1.0.tgz
       ora: https://r2.cnpmjs.org/ora/-/ora-5.4.1.tgz
 =======
@@ -13398,6 +13632,10 @@ snapshots:
       ora: https://r2.cnpmjs.org/ora/-/ora-5.4.1.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      leven: https://r2.cnpmjs.org/leven/-/leven-3.1.0.tgz
+      ora: https://r2.cnpmjs.org/ora/-/ora-5.4.1.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       prettier: 3.2.5
       prompts: https://r2.cnpmjs.org/prompts/-/prompts-2.4.2.tgz
       read-pkg-up: https://r2.cnpmjs.org/read-pkg-up/-/read-pkg-up-7.0.1.tgz
@@ -13433,6 +13671,7 @@ snapshots:
       globby: 11.1.0
       jscodeshift: 0.15.2(@babel/preset-env@7.24.3(@babel/core@7.24.3))
 <<<<<<< HEAD
+<<<<<<< HEAD
       lodash: https://r2.cnpmjs.org/lodash/-/lodash-4.17.21.tgz
 =======
 <<<<<<< HEAD
@@ -13441,12 +13680,16 @@ snapshots:
       lodash: https://r2.cnpmjs.org/lodash/-/lodash-4.17.21.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      lodash: https://r2.cnpmjs.org/lodash/-/lodash-4.17.21.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       prettier: 3.2.5
       recast: 0.23.6
       tiny-invariant: 1.3.3
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
 <<<<<<< HEAD
   '@storybook/components@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
 =======
@@ -13456,6 +13699,9 @@ snapshots:
   '@storybook/components@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+  '@storybook/components@8.0.9(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     dependencies:
       '@radix-ui/react-slot': 1.0.2(@types/react@18.2.79)(react@18.2.0)
       '@storybook/client-logger': 8.0.9
@@ -13773,6 +14019,7 @@ snapshots:
       ts-dedent: https://r2.cnpmjs.org/ts-dedent/-/ts-dedent-2.2.0.tgz
       type-fest: 2.19.0
 <<<<<<< HEAD
+<<<<<<< HEAD
       util-deprecate: https://r2.cnpmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz
 =======
 <<<<<<< HEAD
@@ -13781,6 +14028,9 @@ snapshots:
       util-deprecate: https://r2.cnpmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      util-deprecate: https://r2.cnpmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     optionalDependencies:
       typescript: 5.4.5
     transitivePeerDependencies:
@@ -13836,6 +14086,7 @@ snapshots:
       '@storybook/client-logger': 8.0.9
       '@storybook/global': 5.0.0
 <<<<<<< HEAD
+<<<<<<< HEAD
       memoizerific: https://r2.cnpmjs.org/memoizerific/-/memoizerific-1.11.3.tgz
 =======
 <<<<<<< HEAD
@@ -13844,6 +14095,9 @@ snapshots:
       memoizerific: https://r2.cnpmjs.org/memoizerific/-/memoizerific-1.11.3.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      memoizerific: https://r2.cnpmjs.org/memoizerific/-/memoizerific-1.11.3.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     optionalDependencies:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -13988,27 +14242,23 @@ snapshots:
       chalk: 3.0.0
       css.escape: https://r2.cnpmjs.org/css.escape/-/css.escape-1.5.1.tgz
       dom-accessibility-api: 0.6.3
-<<<<<<< HEAD
-      lodash: 4.17.21
-      redent: 3.0.0
-    optionalDependencies:
-      vitest: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
-
-  '@testing-library/react-hooks@8.0.1(@types/react@18.3.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-=======
       lodash: https://r2.cnpmjs.org/lodash/-/lodash-4.17.21.tgz
       redent: https://r2.cnpmjs.org/redent/-/redent-3.0.0.tgz
     optionalDependencies:
       vitest: 1.5.2(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 
   '@testing-library/react-hooks@8.0.1(@types/react@18.2.79)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+<<<<<<< HEAD
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     dependencies:
       '@babel/runtime': 7.24.1
       react: 18.2.0
       react-error-boundary: 3.1.4(react@18.2.0)
     optionalDependencies:
+<<<<<<< HEAD
 <<<<<<< HEAD
       '@types/react': 18.2.79
 =======
@@ -14018,6 +14268,9 @@ snapshots:
       '@types/react': 18.2.79
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      '@types/react': 18.2.79
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       react-dom: 18.2.0(react@18.2.0)
 
   '@testing-library/react@14.2.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
@@ -14342,6 +14595,7 @@ snapshots:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@typescript-eslint/typescript-estree@7.6.0(typescript@5.4.5)':
     dependencies:
       '@typescript-eslint/types': 7.6.0
@@ -14361,6 +14615,8 @@ snapshots:
 >>>>>>> 99f228957 (feat(selection-protection): init)
 =======
 >>>>>>> adde9bdbd (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
   '@typescript-eslint/typescript-estree@7.7.0(typescript@5.4.5)':
     dependencies:
       '@typescript-eslint/types': 7.7.0
@@ -14463,6 +14719,7 @@ snapshots:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   '@univerjs/protocol@0.1.20(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
 =======
 =======
@@ -14502,22 +14759,14 @@ snapshots:
 =======
   '@univerjs/protocol@0.1.26-permission-8.2(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
 =======
-  '@univerjs/protocol@0.1.26-permission-8.5(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
->>>>>>> 69f188406 (feat(authz): add authz io service)
->>>>>>> bd3b6ee54 (feat(authz): add authz io service)
 =======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
   '@univerjs/protocol@0.1.26-permission-8.5(@grpc/grpc-js@1.10.6)(rxjs@7.8.1)':
->>>>>>> 6462b6d72 (mend)
     dependencies:
       '@grpc/grpc-js': 1.10.6
       rxjs: 7.8.1
 
   '@vitejs/plugin-react@4.2.1(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0))':
-<<<<<<< HEAD
->>>>>>> 99f228957 (feat(selection-protection): init)
->>>>>>> 2815385ea (feat(selection-protection): init)
-=======
->>>>>>> adde9bdbd (fix: test)
     dependencies:
       '@babel/core': 7.24.3
       '@babel/plugin-transform-react-jsx-self': 7.24.1(@babel/core@7.24.3)
@@ -14791,6 +15040,7 @@ snapshots:
       minimatch: 9.0.4
       muggle-string: 0.3.1
 <<<<<<< HEAD
+<<<<<<< HEAD
       path-browserify: https://r2.cnpmjs.org/path-browserify/-/path-browserify-1.0.1.tgz
 =======
 <<<<<<< HEAD
@@ -14799,6 +15049,9 @@ snapshots:
       path-browserify: https://r2.cnpmjs.org/path-browserify/-/path-browserify-1.0.1.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      path-browserify: https://r2.cnpmjs.org/path-browserify/-/path-browserify-1.0.1.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       vue-template-compiler: 2.7.16
     optionalDependencies:
       typescript: 5.4.5
@@ -14830,10 +15083,13 @@ snapshots:
       csstype: 3.1.3
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
   '@vue/runtime-dom@3.4.24':
     dependencies:
       '@vue/runtime-core': 3.4.24
@@ -14842,9 +15098,12 @@ snapshots:
     optional: true
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
   '@vue/server-renderer@3.4.21(vue@3.4.21(typescript@5.4.5))':
     dependencies:
       '@vue/compiler-ssr': 3.4.21
@@ -15009,6 +15268,7 @@ snapshots:
       indent-string: 4.0.0
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   ajv-formats@https://r2.cnpmjs.org/ajv-formats/-/ajv-formats-2.1.1.tgz(ajv@8.12.0):
 =======
 <<<<<<< HEAD
@@ -15017,6 +15277,9 @@ snapshots:
   ajv-formats@https://r2.cnpmjs.org/ajv-formats/-/ajv-formats-2.1.1.tgz(ajv@8.12.0):
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+  ajv-formats@https://r2.cnpmjs.org/ajv-formats/-/ajv-formats-2.1.1.tgz(ajv@8.12.0):
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     optionalDependencies:
       ajv: 8.12.0
 
@@ -15840,6 +16103,7 @@ snapshots:
   cosmiconfig@9.0.0(typescript@5.4.5):
     dependencies:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
       env-paths: 2.2.1
@@ -15848,14 +16112,19 @@ snapshots:
       parse-json: 5.2.0
 =======
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       env-paths: https://r2.cnpmjs.org/env-paths/-/env-paths-2.2.1.tgz
       import-fresh: https://r2.cnpmjs.org/import-fresh/-/import-fresh-3.3.0.tgz
       js-yaml: https://r2.cnpmjs.org/js-yaml/-/js-yaml-4.1.0.tgz
       parse-json: https://r2.cnpmjs.org/parse-json/-/parse-json-5.2.0.tgz
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     optionalDependencies:
       typescript: 5.4.5
 
@@ -16641,6 +16910,7 @@ snapshots:
   eslint-plugin-no-only-tests@3.1.0: {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   eslint-plugin-perfectionist@2.9.0(eslint@8.57.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@8.57.0)):
 =======
 <<<<<<< HEAD
@@ -16649,10 +16919,14 @@ snapshots:
   eslint-plugin-perfectionist@2.9.0(eslint@8.57.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@8.57.0)):
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+  eslint-plugin-perfectionist@2.9.0(eslint@8.57.0)(typescript@5.4.5)(vue-eslint-parser@9.4.2(eslint@8.57.0)):
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     dependencies:
       '@typescript-eslint/utils': 6.21.0(eslint@8.57.0)(typescript@5.4.5)
       eslint: 8.57.0
       minimatch: 9.0.4
+<<<<<<< HEAD
 <<<<<<< HEAD
       natural-compare-lite: https://r2.cnpmjs.org/natural-compare-lite/-/natural-compare-lite-1.4.0.tgz
 =======
@@ -16662,6 +16936,9 @@ snapshots:
       natural-compare-lite: https://r2.cnpmjs.org/natural-compare-lite/-/natural-compare-lite-1.4.0.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      natural-compare-lite: https://r2.cnpmjs.org/natural-compare-lite/-/natural-compare-lite-1.4.0.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     optionalDependencies:
       vue-eslint-parser: 9.4.2(eslint@8.57.0)
     transitivePeerDependencies:
@@ -16813,6 +17090,7 @@ snapshots:
     dependencies:
       eslint: 8.57.0
 <<<<<<< HEAD
+<<<<<<< HEAD
       eslint-rule-composer: https://r2.cnpmjs.org/eslint-rule-composer/-/eslint-rule-composer-0.3.0.tgz
 =======
 <<<<<<< HEAD
@@ -16821,6 +17099,9 @@ snapshots:
       eslint-rule-composer: https://r2.cnpmjs.org/eslint-rule-composer/-/eslint-rule-composer-0.3.0.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      eslint-rule-composer: https://r2.cnpmjs.org/eslint-rule-composer/-/eslint-rule-composer-0.3.0.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 7.7.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)
 
@@ -17571,6 +17852,7 @@ snapshots:
   html-webpack-plugin@5.6.0(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2)):
     dependencies:
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
       '@types/html-minifier-terser': 6.1.0
@@ -17580,15 +17862,20 @@ snapshots:
       tapable: 2.2.1
 =======
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       '@types/html-minifier-terser': https://r2.cnpmjs.org/@types/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz
       html-minifier-terser: https://r2.cnpmjs.org/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz
       lodash: https://r2.cnpmjs.org/lodash/-/lodash-4.17.21.tgz
       pretty-error: https://r2.cnpmjs.org/pretty-error/-/pretty-error-4.0.0.tgz
       tapable: https://r2.cnpmjs.org/tapable/-/tapable-2.2.1.tgz
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     optionalDependencies:
       webpack: 5.91.0(@swc/core@1.4.11)(esbuild@0.20.2)
 
@@ -18155,6 +18442,7 @@ snapshots:
       node-dir: https://r2.cnpmjs.org/node-dir/-/node-dir-0.1.17.tgz
       recast: 0.23.6
 <<<<<<< HEAD
+<<<<<<< HEAD
       temp: https://r2.cnpmjs.org/temp/-/temp-0.8.4.tgz
       write-file-atomic: https://r2.cnpmjs.org/write-file-atomic/-/write-file-atomic-2.4.3.tgz
 =======
@@ -18166,6 +18454,10 @@ snapshots:
       write-file-atomic: https://r2.cnpmjs.org/write-file-atomic/-/write-file-atomic-2.4.3.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      temp: https://r2.cnpmjs.org/temp/-/temp-0.8.4.tgz
+      write-file-atomic: https://r2.cnpmjs.org/write-file-atomic/-/write-file-atomic-2.4.3.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     optionalDependencies:
       '@babel/preset-env': 7.24.3(@babel/core@7.24.3)
     transitivePeerDependencies:
@@ -19580,6 +19872,7 @@ snapshots:
       dnd-core: 16.0.1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   react-dnd-multi-backend@8.0.3(dnd-core@16.0.1)(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
 =======
 <<<<<<< HEAD
@@ -19588,10 +19881,14 @@ snapshots:
   react-dnd-multi-backend@8.0.3(dnd-core@16.0.1)(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+  react-dnd-multi-backend@8.0.3(dnd-core@16.0.1)(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     dependencies:
       dnd-core: 16.0.1
       dnd-multi-backend: 8.0.3(dnd-core@16.0.1)
       react: 18.2.0
+<<<<<<< HEAD
 <<<<<<< HEAD
       react-dnd: 16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0)
       react-dnd-preview: 8.0.3(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
@@ -19606,13 +19903,18 @@ snapshots:
 
   react-dnd-preview@8.0.3(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.3.1)(react@18.2.0))(react@18.2.0):
 =======
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       react-dnd: 16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0)
       react-dnd-preview: 8.0.3(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react@18.2.0)
       react-dom: 18.2.0(react@18.2.0)
 
   react-dnd-preview@8.0.3(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react@18.2.0):
+<<<<<<< HEAD
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     dependencies:
       react: 18.2.0
       react-dnd: 16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0)
@@ -19633,6 +19935,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 20.12.7
 <<<<<<< HEAD
+<<<<<<< HEAD
       '@types/react': 18.2.79
 =======
 <<<<<<< HEAD
@@ -19641,6 +19944,9 @@ snapshots:
       '@types/react': 18.2.79
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      '@types/react': 18.2.79
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
 
   react-docgen-typescript@https://r2.cnpmjs.org/react-docgen-typescript/-/react-docgen-typescript-2.2.2.tgz(typescript@5.4.5):
     dependencies:
@@ -19705,6 +20011,7 @@ snapshots:
   react-is@18.2.0: {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   react-is@https://r2.cnpmjs.org/react-is/-/react-is-17.0.2.tgz: {}
 
   react-mosaic-component@6.1.0(@types/node@20.12.7)(@types/react@18.2.79)(dnd-core@16.0.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
@@ -19717,6 +20024,11 @@ snapshots:
   react-mosaic-component@6.1.0(@types/node@20.12.7)(@types/react@18.2.79)(dnd-core@16.0.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+  react-is@https://r2.cnpmjs.org/react-is/-/react-is-17.0.2.tgz: {}
+
+  react-mosaic-component@6.1.0(@types/node@20.12.7)(@types/react@18.2.79)(dnd-core@16.0.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     dependencies:
       classnames: 2.5.1
       immutability-helper: 3.1.1
@@ -19727,6 +20039,7 @@ snapshots:
       react-dnd: 16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0)
       react-dnd-html5-backend: 16.0.1
 <<<<<<< HEAD
+<<<<<<< HEAD
       react-dnd-multi-backend: 8.0.3(dnd-core@16.0.1)(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 =======
 <<<<<<< HEAD
@@ -19735,6 +20048,9 @@ snapshots:
       react-dnd-multi-backend: 8.0.3(dnd-core@16.0.1)(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      react-dnd-multi-backend: 8.0.3(dnd-core@16.0.1)(react-dnd@16.0.1(@types/node@20.12.7)(@types/react@18.2.79)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       react-dnd-touch-backend: 16.0.1
       uuid: 9.0.1
     transitivePeerDependencies:
@@ -21003,6 +21319,7 @@ snapshots:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   vary@https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz: {}
 
   vite-node@1.5.0(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
@@ -21035,6 +21352,8 @@ snapshots:
 =======
 =======
 >>>>>>> adde9bdbd (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
   vary@https://r2.cnpmjs.org/vary/-/vary-1.1.2.tgz: {}
 
   vite-node@1.4.0(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
@@ -21072,11 +21391,6 @@ snapshots:
       - terser
 
   vite-node@1.5.2(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
-<<<<<<< HEAD
->>>>>>> 99f228957 (feat(selection-protection): init)
->>>>>>> 2815385ea (feat(selection-protection): init)
-=======
->>>>>>> adde9bdbd (fix: test)
     dependencies:
       cac: 6.7.14
       debug: 4.3.4
@@ -21094,6 +21408,7 @@ snapshots:
       - terser
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   vite-plugin-dts@3.9.0(@types/node@20.12.7)(rollup@4.16.4)(typescript@5.4.5)(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)):
     dependencies:
       '@microsoft/api-extractor': 7.43.0(@types/node@20.12.7)
@@ -21105,12 +21420,17 @@ snapshots:
       '@microsoft/api-extractor': 7.43.0(@types/node@20.12.7)
       '@rollup/pluginutils': 5.1.0(rollup@4.13.2)
 =======
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
   vite-plugin-dts@3.9.0(@types/node@20.12.7)(rollup@4.16.4)(typescript@5.4.5)(vite@5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)):
     dependencies:
       '@microsoft/api-extractor': 7.43.0(@types/node@20.12.7)
       '@rollup/pluginutils': 5.1.0(rollup@4.16.4)
+<<<<<<< HEAD
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       '@vue/language-core': 1.8.27(typescript@5.4.5)
       debug: 4.3.4
       kolorist: 1.8.0
@@ -21138,6 +21458,7 @@ snapshots:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   vitest-canvas-mock@0.3.3(vitest@1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)):
 =======
 =======
@@ -21150,6 +21471,8 @@ snapshots:
 =======
 =======
 >>>>>>> adde9bdbd (fix: test)
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
   vite@5.2.8(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
     dependencies:
       esbuild: 0.20.2
@@ -21163,6 +21486,7 @@ snapshots:
       terser: 5.30.0
 
   vitest-canvas-mock@0.3.3(vitest@1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)):
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 99f228957 (feat(selection-protection): init)
 >>>>>>> 2815385ea (feat(selection-protection): init)
@@ -21213,11 +21537,12 @@ snapshots:
   vitest@1.5.2(@types/node@20.12.7)(happy-dom@13.3.8):
 =======
 =======
+=======
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
     dependencies:
       jest-canvas-mock: 2.5.2
       vitest: 1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
 
->>>>>>> adde9bdbd (fix: test)
   vitest@1.4.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
     dependencies:
       '@vitest/expect': 1.4.0
@@ -21254,39 +21579,17 @@ snapshots:
       - terser
 
   vitest@1.5.0(@types/node@20.12.7)(happy-dom@13.3.8)(jsdom@24.0.0)(less@4.2.0)(sass@1.72.0)(terser@5.30.0):
-<<<<<<< HEAD
->>>>>>> 99f228957 (feat(selection-protection): init)
->>>>>>> 2815385ea (feat(selection-protection): init)
-    dependencies:
-      '@vitest/expect': 1.5.2
-      '@vitest/runner': 1.5.2
-      '@vitest/snapshot': 1.5.2
-      '@vitest/spy': 1.5.2
-      '@vitest/utils': 1.5.2
-=======
     dependencies:
       '@vitest/expect': 1.5.0
       '@vitest/runner': 1.5.0
       '@vitest/snapshot': 1.5.0
       '@vitest/spy': 1.5.0
       '@vitest/utils': 1.5.0
->>>>>>> adde9bdbd (fix: test)
       acorn-walk: 8.3.2
       chai: 4.4.1
       debug: 4.3.4
       execa: 8.0.1
       local-pkg: 0.5.0
-<<<<<<< HEAD
-      magic-string: 0.30.8
-      pathe: 1.1.2
-      picocolors: 1.0.0
-      std-env: 3.7.0
-      strip-literal: 2.1.0
-      tinybench: 2.6.0
-      tinypool: 0.8.3
-      vite: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
-      vite-node: 1.5.2(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
-=======
       magic-string: 0.30.10
       pathe: 1.1.2
       picocolors: https://r2.cnpmjs.org/picocolors/-/picocolors-1.0.0.tgz
@@ -21296,14 +21599,11 @@ snapshots:
       tinypool: 0.8.4
       vite: 5.2.10(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
       vite-node: 1.5.0(@types/node@20.12.7)(less@4.2.0)(sass@1.72.0)(terser@5.30.0)
->>>>>>> adde9bdbd (fix: test)
       why-is-node-running: 2.2.2
     optionalDependencies:
       '@types/node': 20.12.7
       happy-dom: 13.3.8
       jsdom: 24.0.0
-<<<<<<< HEAD
-=======
     transitivePeerDependencies:
       - less
       - lightningcss
@@ -21339,7 +21639,6 @@ snapshots:
       '@types/node': 20.12.7
       happy-dom: 13.3.8
       jsdom: 24.0.0
->>>>>>> adde9bdbd (fix: test)
     transitivePeerDependencies:
       - less
       - lightningcss
@@ -21420,6 +21719,7 @@ snapshots:
   webidl-conversions@7.0.0: {}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   webidl-conversions@https://r2.cnpmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz: {}
 
 =======
@@ -21429,6 +21729,10 @@ snapshots:
 
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+  webidl-conversions@https://r2.cnpmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz: {}
+
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
   webpack-dev-middleware@6.1.3(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2)):
     dependencies:
       colorette: 2.0.20
@@ -21478,6 +21782,7 @@ snapshots:
       neo-async: https://r2.cnpmjs.org/neo-async/-/neo-async-2.6.2.tgz
       schema-utils: 3.3.0
 <<<<<<< HEAD
+<<<<<<< HEAD
       tapable: https://r2.cnpmjs.org/tapable/-/tapable-2.2.1.tgz
 =======
 <<<<<<< HEAD
@@ -21486,6 +21791,9 @@ snapshots:
       tapable: https://r2.cnpmjs.org/tapable/-/tapable-2.2.1.tgz
 >>>>>>> adde9bdbd (fix: test)
 >>>>>>> b43a2a569 (fix: test)
+=======
+      tapable: https://r2.cnpmjs.org/tapable/-/tapable-2.2.1.tgz
+>>>>>>> ef7fa54f2 (feat(permission): support mutation interceptor)
       terser-webpack-plugin: 5.3.10(@swc/core@1.4.11)(esbuild@0.20.2)(webpack@5.91.0(@swc/core@1.4.11)(esbuild@0.20.2))
       watchpack: 2.4.1
       webpack-sources: 3.2.3
