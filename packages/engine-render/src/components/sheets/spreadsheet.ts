@@ -138,6 +138,8 @@ export class Spreadsheet extends SheetComponent {
         const extensions = this.getExtensionsByOrder();
 
         for (const extension of extensions) {
+            const m = ctx.getTransform();
+            ctx.setTransform(m.a, m.b, m.c, m.d, Math.ceil(m.e), Math.ceil(m.f));
             extension.draw(ctx, parentScale, spreadsheetSkeleton, diffRanges, {
                 viewRanges,
                 diffRanges,
@@ -226,11 +228,11 @@ export class Spreadsheet extends SheetComponent {
     }
 
     /**
-     * canvas resize calling not this function
      * @param state
      */
     override makeDirty(state: boolean = true) {
         super.makeDirty(state);
+        (this.getParent() as Scene)?.getViewports().forEach((vp) => vp.markDirty());
         if (state === false) {
             this._dirtyBounds = [];
         }
@@ -294,8 +296,11 @@ export class Spreadsheet extends SheetComponent {
 
         // 绘制之前重设画笔位置到 spreadsheet 原点, 当没有滚动时, 这个值是 (rowHeaderWidth, colHeaderHeight)
         const m = mainCtx.getTransform();
-        cacheCtx.setTransform(m.a, m.b, m.c, m.d, m.e, m.f);
-        cacheCtx.translate(-leftOrigin + bufferEdgeX, -topOrigin + bufferEdgeY);
+        cacheCtx.setTransform(m.a, m.b, m.c, m.d, 0, 0);
+
+        // leftOrigin 是 viewport 相对 sheetcorner 的偏移(不考虑缩放)
+        // - (leftOrigin - bufferEdgeX)  ----> 简化
+        cacheCtx.translateWithPrecision(m.e / m.a - leftOrigin + bufferEdgeX, m.f / m.d - topOrigin + bufferEdgeY);
         if (shouldCacheUpdate) {
             for (const diffBound of diffCacheBounds) {
                 cacheCtx.save();
@@ -309,7 +314,7 @@ export class Spreadsheet extends SheetComponent {
                 const y = diffTop - columnHeaderHeight - onePixelFix;
                 const w = diffRight - diffLeft + onePixelFix;
                 const h = diffBottom - diffTop + onePixelFix;
-                cacheCtx.rect(x, y, w, h);
+                cacheCtx.rectByPrecision(x, y, w, h);
 
 
                 // 使用 clearRect 后, 很浅很细的白色线(even not zoom has blank line)
@@ -353,11 +358,12 @@ export class Spreadsheet extends SheetComponent {
         cacheCtx.save();
         // 所以 cacheCtx.setTransform 已经包含了 rowHeaderWidth + viewport + scroll 距离
         const m = mainCtx.getTransform();
-        cacheCtx.setTransform(m.a, m.b, m.c, m.d, m.e, m.f);
+        // cacheCtx.setTransform(m.a, m.b, m.c, m.d, m.e, m.f);
+        cacheCtx.setTransform(m.a, m.b, m.c, m.d, 0, 0);
 
-        // leftOrigin 是 viewport 相对 sheetcorner 的偏移(不考虑缩放)
-        // - (leftOrigin - bufferEdgeX)  ----> 简化
-        cacheCtx.translate(-leftOrigin + bufferEdgeX, -topOrigin + bufferEdgeY);
+        // // leftOrigin 是 viewport 相对 sheetcorner 的偏移(不考虑缩放)
+        // // - (leftOrigin - bufferEdgeX)  ----> 简化
+        cacheCtx.translateWithPrecision(m.e / m.a - leftOrigin + bufferEdgeX, m.f / m.d - topOrigin + bufferEdgeY);
 
         // extension 绘制时按照内容的左上角计算, 不考虑 rowHeaderWidth
         this.draw(cacheCtx, viewportBoundsInfo);
@@ -429,7 +435,7 @@ export class Spreadsheet extends SheetComponent {
      * @returns
      */
     protected _applyCacheFreeze(
-        mainCtx: UniverRenderingContext,
+        ctx?: UniverRenderingContext,
         cacheCanvas: Canvas,
         sx: number = 0,
         sy: number = 0,
@@ -440,18 +446,18 @@ export class Spreadsheet extends SheetComponent {
         dw: number = 0,
         dh: number = 0
     ) {
-        if (!mainCtx) {
+        if (!ctx) {
             return;
         }
 
         const pixelRatio = cacheCanvas.getPixelRatio();
+
         const cacheCtx = cacheCanvas.getContext();
         cacheCtx.save();
-        mainCtx.save();
-        mainCtx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
         cacheCtx.setTransform(1, 0, 0, 1, 0, 0);
-        mainCtx.globalCompositeOperation = 'source-over';
-        mainCtx.drawImage(
+        ctx.drawImage(
             cacheCanvas.getCanvasEle(),
             sx * pixelRatio,
             sy * pixelRatio,
@@ -462,7 +468,7 @@ export class Spreadsheet extends SheetComponent {
             dw * pixelRatio,
             dh * pixelRatio
         );
-        mainCtx.restore();
+        ctx.restore();
         cacheCtx.restore();
     }
 
@@ -519,6 +525,7 @@ export class Spreadsheet extends SheetComponent {
      * @param bounds
      * @returns
      */
+    // eslint-disable-next-line max-lines-per-function
     private _drawAuxiliary(ctx: UniverRenderingContext, bounds?: IViewportInfo) {
         const spreadsheetSkeleton = this.getSkeleton();
         if (spreadsheetSkeleton == null) {
@@ -600,6 +607,48 @@ export class Spreadsheet extends SheetComponent {
             ctx.closePathByEnv();
             ctx.stroke();
         }
+        // console.log('xx2', scaleX, scaleY, columnTotalWidth, rowTotalHeight, rowHeightAccumulation, columnWidthAccumulation);
+
+        // border?.forValue((rowIndex, columnIndex, borderCaches) => {
+        //     if (!borderCaches) {
+        //         return true;
+        //     }
+
+        //     const cellInfo = spreadsheetSkeleton.getCellByIndexWithNoHeader(rowIndex, columnIndex);
+
+        //     let { startY, endY, startX, endX } = cellInfo;
+        //     const { isMerged, isMergedMainCell, mergeInfo } = cellInfo;
+
+        //     if (isMerged) {
+        //         return true;
+        //     }
+
+        //     if (isMergedMainCell) {
+        //         startY = mergeInfo.startY;
+        //         endY = mergeInfo.endY;
+        //         startX = mergeInfo.startX;
+        //         endX = mergeInfo.endX;
+        //     }
+
+        //     if (!(mergeInfo.startRow >= rowStart && mergeInfo.endRow <= rowEnd)) {
+        //         return true;
+        //     }
+
+        //     for (const key in borderCaches) {
+        //         const { type } = borderCaches[key] as BorderCacheItem;
+
+        //         clearLineByBorderType(ctx, type, { startX, startY, endX, endY });
+        //     }
+        // });
+
+        // Clearing the dashed line issue caused by overlaid auxiliary lines and strokes
+        // merge cell
+        this._clearRectangle(ctx, rowHeightAccumulation, columnWidthAccumulation, dataMergeCache);
+
+        // overflow cell
+        this._clearRectangle(ctx, rowHeightAccumulation, columnWidthAccumulation, overflowCache.toNativeArray());
+
+        this._clearBackground(ctx, backgroundPositions);
 
         ctx.restore();
     }
