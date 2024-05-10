@@ -14,5 +14,4 @@
  * limitations under the License.
  */
 
-export { SheetPermissionPanelService } from './sheet-permission-side-panel.service';
 export { SheetPermissionUserManagerService } from './sheet-permission-user-list.service';

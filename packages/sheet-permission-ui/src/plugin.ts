@@ -21,7 +21,7 @@ import { UNIVER_SHEET_PERMISSION_PLUGIN_NAME } from './const';
 import { SheetPermissionRenderController } from './controller/sheet-permission-render.controller';
 import { enUS, zhCN } from './locale';
 import { SheetPermissionOpenPanelOperation } from './operation/sheet-permission-open-panel.operation';
-import { SheetPermissionPanelService, SheetPermissionUserManagerService } from './service';
+import { SheetPermissionUserManagerService } from './service';
 import { AddRangeProtectionCommand, AddRangeProtectionFromContextMenuCommand, AddRangeProtectionFromSheetBarCommand, AddRangeProtectionFromToolbarCommand, DeleteRangeProtectionFromContextMenuCommand, DeleteRangeSelectionCommand, SetRangeProtectionCommand, SetRangeProtectionFromContextMenuCommand, ViewSheetPermissionFromContextMenuCommand, ViewSheetPermissionFromSheetBarCommand } from './command/range-protection.command';
 import { SheetPermissionOpenDialogOperation } from './operation/sheet-permission-open-dialog.operation';
 import { AddWorksheetProtectionCommand, ChangeSheetProtectionFromSheetBarCommand, DeleteWorksheetProtectionCommand, SetWorksheetProtectionCommand } from './command/worksheet-protection.command';

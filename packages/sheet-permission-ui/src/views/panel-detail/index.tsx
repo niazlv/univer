@@ -27,8 +27,8 @@ import { type ICollaborator, UnitRole } from '@univerjs/protocol';
 import type { ISelectionProtectionRule } from '@univerjs/sheets-selection-protection';
 import { SheetPermissionUserManagerService } from '../../service';
 import { UNIVER_SHEET_PERMISSION_USER_DIALOG, UNIVER_SHEET_PERMISSION_USER_DIALOG_ID } from '../../const';
-import { viewState } from '../../service/sheet-permission-side-panel.service';
-import { SheetPermissionPanelModel } from '../../service/sheet-permission-panel.model';
+
+import { SheetPermissionPanelModel, viewState } from '../../service/sheet-permission-panel.model';
 import styles from './index.module.less';
 
 export const SheetPermissionPanelDetail = ({ fromSheetBar }: { fromSheetBar: boolean }) => {
