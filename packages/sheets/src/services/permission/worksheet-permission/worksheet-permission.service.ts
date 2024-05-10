@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { IPermissionParam, IPermissionPoint, Workbook } from '@univerjs/core';
+import type { IPermissionParam, IPermissionPoint, Workbook, Worksheet } from '@univerjs/core';
 import { IPermissionService, IResourceManagerService, IUniverInstanceService, LifecycleStages, OnLifecycle, RxDisposable, SubUnitPermissionType, UniverInstanceType } from '@univerjs/core';
 import { Inject, Injector } from '@wendellhu/redi';
 import { map, takeUntil } from 'rxjs/operators';
@@ -147,12 +147,25 @@ export class WorksheetPermissionService extends RxDisposable {
 
     private _init() {
         const handleWorkbook = (workbook: Workbook) => {
-            workbook.getSheets().forEach((worksheet) => {
-                const unitId = workbook.getUnitId();
+            const unitId = workbook.getUnitId();
+            const handleWorksheet = (worksheet: Worksheet) => {
                 const subUnitId = worksheet.getSheetId();
                 getAllWorksheetPermissionPoint().forEach((F) => {
                     const instance = new F(unitId, subUnitId);
                     this._permissionService.addPermissionPoint(instance);
+                });
+            };
+            workbook.getSheets().forEach((worksheet) => {
+                handleWorksheet(worksheet);
+            });
+            workbook.sheetCreated$.subscribe((worksheet) => {
+                handleWorksheet(worksheet);
+            });
+            workbook.sheetDisposed$.subscribe((worksheet) => {
+                const subUnitId = worksheet.getSheetId();
+                getAllWorksheetPermissionPoint().forEach((F) => {
+                    const instance = new F(unitId, subUnitId);
+                    this._permissionService.deletePermissionPoint(instance.id);
                 });
             });
         };
