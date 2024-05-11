@@ -265,6 +265,7 @@ export { INumfmtService } from './services/numfmt/type';
 export { RefRangeService } from './services/ref-range/ref-range.service';
 export type { EffectRefRangeParams, IOperator } from './services/ref-range/type';
 export { EffectRefRangId, OperatorType } from './services/ref-range/type';
+export { DefinedNameDataController } from './controllers/defined-name-data.controller';
 export {
     handleBaseInsertRange,
     handleBaseMoveRowsCols,
