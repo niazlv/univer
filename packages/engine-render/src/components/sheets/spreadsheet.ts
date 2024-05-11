@@ -138,12 +138,13 @@ export class Spreadsheet extends SheetComponent {
         const extensions = this.getExtensionsByOrder();
 
         for (const extension of extensions) {
-            const m = ctx.getTransform();
-            ctx.setTransform(m.a, m.b, m.c, m.d, Math.ceil(m.e), Math.ceil(m.f));
+            // const timeKey = `extension ${viewportInfo.viewPortKey}:${extension.constructor.name}`;
+            // console.time(timeKey);
             extension.draw(ctx, parentScale, spreadsheetSkeleton, diffRanges, {
                 viewRanges,
                 checkOutOfViewBound: true,
             });
+            // console.timeEnd(timeKey);
         }
     }
 
@@ -215,6 +216,7 @@ export class Spreadsheet extends SheetComponent {
      * @param state
      */
     makeForceDirty(state = true) {
+        this.makeDirty(state);
         this._forceDirty = state;
     }
 
@@ -269,7 +271,7 @@ export class Spreadsheet extends SheetComponent {
         // support for browser native zoom
         const sourceLeft = bufferEdgeSizeX * Math.min(1, window.devicePixelRatio);
         const sourceTop = bufferEdgeSizeY * Math.min(1, window.devicePixelRatio);
-        this._applyCache(mainCtx, cacheCanvas, sourceLeft, sourceTop, dw, dh, left, top, dw, dh);
+        this._applyCache(cacheCanvas, mainCtx, sourceLeft, sourceTop, dw, dh, left, top, dw, dh);
         cacheCtx.restore();
     }
 
@@ -286,7 +288,6 @@ export class Spreadsheet extends SheetComponent {
     }) {
         const { cacheCanvas, cacheCtx, mainCtx, topOrigin, leftOrigin, bufferEdgeX, bufferEdgeY, scaleX, scaleY, columnHeaderHeight, rowHeaderWidth } = param;
         const { shouldCacheUpdate, diffCacheBounds, diffX, diffY } = viewportBoundsInfo;
-
         cacheCtx.save();
         cacheCtx.setTransform(1, 0, 0, 1, 0, 0);
         cacheCtx.globalCompositeOperation = 'copy';
@@ -436,8 +437,8 @@ export class Spreadsheet extends SheetComponent {
      * @returns
      */
     protected _applyCache(
-        ctx: UniverRenderingContext,
         cacheCanvas: Canvas,
+        ctx: UniverRenderingContext,
         sx: number = 0,
         sy: number = 0,
         sw: number = 0,
@@ -458,15 +459,21 @@ export class Spreadsheet extends SheetComponent {
         ctx.save();
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         cacheCtx.setTransform(1, 0, 0, 1, 0, 0);
+        // Math.round(num * scale) / scale;
+        const fn = (num: number, scale: number) => {
+            return Math.round(num * scale) / scale;
+        };
         ctx.imageSmoothingEnabled = false;
+        // ctx.imageSmoothingEnabled = true;
+        // ctx.imageSmoothingQuality = 'high';
         ctx.drawImage(
             cacheCanvas.getCanvasEle(),
-            sx * pixelRatio,
-            sy * pixelRatio,
+            fn(sx, pixelRatio) * pixelRatio,
+            fn(sy, pixelRatio) * pixelRatio,
             sw * pixelRatio,
             sh * pixelRatio,
-            dx * pixelRatio,
-            dy * pixelRatio,
+            fn(dx, pixelRatio) * pixelRatio,
+            fn(dy, pixelRatio) * pixelRatio,
             dw * pixelRatio,
             dh * pixelRatio
         );

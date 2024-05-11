@@ -48,7 +48,7 @@ export class Background extends SheetExtension {
         parentScale: IScale,
         spreadsheetSkeleton: SpreadsheetSkeleton,
         diffRanges: IRange[],
-        { viewRanges }: { viewRanges: IRange[] }
+        { viewRanges, checkOutOfViewBound }: { viewRanges: IRange[]; checkOutOfViewBound: boolean; viewPortKey: string }
     ) {
         const { stylesCache } = spreadsheetSkeleton;
         const { background, backgroundPositions } = stylesCache;
@@ -77,6 +77,10 @@ export class Background extends SheetExtension {
 
                 const backgroundPaths = new Path2D(); // 使用 Path 对象代替原有的 ctx.moveTo ctx.lineTo, Path 性能更好
                 backgroundCache.forValue((rowIndex, columnIndex) => {
+                    if (!checkOutOfViewBound && !inViewRanges(viewRanges, rowIndex, columnIndex)) {
+                        return true;
+                    }
+
                     // 合并单元格可能从视野外很远的位置开始, 因此需要全局遍历
                     const cellInfo = backgroundPositions?.getValue(rowIndex, columnIndex);
                     if (cellInfo == null) {
