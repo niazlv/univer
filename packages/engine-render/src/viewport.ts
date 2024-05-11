@@ -245,7 +245,7 @@ export class Viewport {
             this._resizeHandler();
         });
         this._resizeHandler();
-        this._testDisplayCache();
+        // this._testDisplayCache();
     }
 
     initCacheCanvas(props?: IViewProps) {

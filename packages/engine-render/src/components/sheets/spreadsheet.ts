@@ -261,14 +261,16 @@ export class Spreadsheet extends SheetComponent {
             if (isDirty || isForceDirty) {
                 this.refreshCacheCanvas(viewportBoundsInfo, { cacheCanvas, cacheCtx, mainCtx, topOrigin, leftOrigin, bufferEdgeX, bufferEdgeY });
             }
-            this._applyCacheFreeze(mainCtx, cacheCanvas, bufferEdgeSizeX, bufferEdgeSizeY, dw, dh, left, top, dw, dh);
         } else if (diffBounds.length !== 0 || diffX !== 0 || diffY === 0) {
             // scrolling && no dirty
             this.paintNewAreaOfCacheCanvas(viewportBoundsInfo, {
                 cacheCanvas, cacheCtx, mainCtx, topOrigin, leftOrigin, bufferEdgeX, bufferEdgeY, scaleX, scaleY, columnHeaderHeight, rowHeaderWidth,
             });
-            this._applyCacheFreeze(mainCtx, cacheCanvas, bufferEdgeSizeX, bufferEdgeSizeY, dw, dh, left, top, dw, dh);
         }
+        // support for browser native zoom
+        const sourceLeft = bufferEdgeSizeX * Math.min(1, window.devicePixelRatio);
+        const sourceTop = bufferEdgeSizeY * Math.min(1, window.devicePixelRatio);
+        this._applyCacheFreeze(mainCtx, cacheCanvas, sourceLeft, sourceTop, dw, dh, left, top, dw, dh);
         cacheCtx.restore();
     }
 
@@ -435,7 +437,7 @@ export class Spreadsheet extends SheetComponent {
      * @returns
      */
     protected _applyCacheFreeze(
-        ctx?: UniverRenderingContext,
+        ctx: UniverRenderingContext,
         cacheCanvas: Canvas,
         sx: number = 0,
         sy: number = 0,
