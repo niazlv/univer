@@ -142,7 +142,6 @@ export class Spreadsheet extends SheetComponent {
             ctx.setTransform(m.a, m.b, m.c, m.d, Math.ceil(m.e), Math.ceil(m.f));
             extension.draw(ctx, parentScale, spreadsheetSkeleton, diffRanges, {
                 viewRanges,
-                diffRanges,
                 checkOutOfViewBound: true,
             });
         }
