@@ -25,6 +25,9 @@ import { AddSelectionProtection } from './commands/mutation/add-selection-protec
 import { DeleteSelectionProtection } from './commands/mutation/delete-selection-protection.mutation';
 import { SetSelectionProtection } from './commands/mutation/set-selection-protection';
 import { PLUGIN_NAME } from './base/const';
+import { AddRangeProtectionCommand } from './commands/commands/add-selection-protection.command';
+import { SetRangeProtectionCommand } from './commands/commands/set-selection-protection.command';
+import { DeleteRangeProtectionCommand } from './commands/commands/delete-selection-protection.command';
 
 export class UniverSheetsSelectionProtectionPlugin extends Plugin {
     static override type = UniverInstanceType.UNIVER_SHEET;
@@ -32,6 +35,7 @@ export class UniverSheetsSelectionProtectionPlugin extends Plugin {
 
     static readonly dependencyList: Dependency[] = [[SelectionProtectionRenderModel], [SelectionProtectionRuleModel], [SelectionProtectionService]];
     static readonly mutationList = [AddSelectionProtection, DeleteSelectionProtection, SetSelectionProtection];
+    static readonly commandList = [AddRangeProtectionCommand, DeleteRangeProtectionCommand, SetRangeProtectionCommand];
 
     constructor(
         private _config: {
@@ -55,6 +59,9 @@ export class UniverSheetsSelectionProtectionPlugin extends Plugin {
     _initCommand() {
         UniverSheetsSelectionProtectionPlugin.mutationList.forEach((m) => {
             this._commandService.registerCommand(m);
+        });
+        UniverSheetsSelectionProtectionPlugin.commandList.forEach((c) => {
+            this._commandService.registerCommand(c);
         });
     }
 }

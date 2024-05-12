@@ -19,7 +19,7 @@ import clsx from 'clsx';
 import { Avatar, Tooltip } from '@univerjs/design';
 import { useDependency } from '@wendellhu/redi/react-bindings';
 import type { ISelectionProtectionRule } from '@univerjs/sheets-selection-protection';
-import { SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
+import { DeleteRangeProtectionCommand, SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
 import type { Workbook } from '@univerjs/core';
 import { IAuthzIoService, ICommandService, IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
 import type { IWorksheetProtectionRule } from '@univerjs/sheets';
@@ -28,7 +28,6 @@ import { ISidebarService } from '@univerjs/ui';
 import { merge } from 'rxjs';
 import type { IPermissionPoint } from '@univerjs/protocol';
 import { UnitAction } from '@univerjs/protocol';
-import { DeleteRangeSelectionCommand } from '../../command/range-protection.command';
 import { UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER } from '../../const';
 import type { IPermissionPanelRule } from '../../service/sheet-permission-panel.model';
 import { SheetPermissionPanelModel } from '../../service/sheet-permission-panel.model';
@@ -110,7 +109,7 @@ export const SheetPermissionPanelList = () => {
 
     const handleDelete = async (rule: IRuleItem) => {
         const { unitId, subUnitId } = rule;
-        const res = await commandService.executeCommand(DeleteRangeSelectionCommand.id, { unitId, subUnitId, rule });
+        const res = await commandService.executeCommand(DeleteRangeProtectionCommand.id, { unitId, subUnitId, rule });
         if (res) {
             setForceUpdateFlag(!forceUpdateFlag);
         }

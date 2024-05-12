@@ -106,7 +106,7 @@ import { FONT_FAMILY_COMPONENT, FONT_FAMILY_ITEM_COMPONENT } from '../../compone
 import { FONT_SIZE_COMPONENT } from '../../components/font-size';
 import { MENU_ITEM_INPUT_COMPONENT } from '../../components/menu-item-input';
 import { FormatPainterStatus, IFormatPainterService } from '../../services/format-painter/format-painter.service';
-import { deriveStateFromActiveSheet$, getCurrentRangeDisable$, getCurrentRangeDisable2$ } from './menu-util';
+import { deriveStateFromActiveSheet$, getCurrentRangeDisable$ } from './menu-util';
 
 export enum SheetMenuPosition {
     ROW_HEADER_CONTEXT_MENU = 'rowHeaderContextMenu',
@@ -141,7 +141,7 @@ export function FormatPainterMenuItemFactory(accessor: IAccessor): IMenuButtonIt
             };
         }),
         hidden$: getMenuHiddenObservable(accessor, UniverInstanceType.UNIVER_SHEET),
-        disabled$: getCurrentRangeDisable2$(accessor, { worksheetType: [SubUnitPermissionType.Copy], rangeType: RangeUnitPermissionType.View }),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.Copy], rangeType: RangeUnitPermissionType.View }),
     };
 }
 
@@ -1000,7 +1000,7 @@ export function PasteBesidesBorderMenuItemFactory(accessor: IAccessor): IMenuBut
     };
 }
 
-export function FitContentMenuItemFactory(): IMenuButtonItem {
+export function FitContentMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
     return {
         id: SetWorksheetRowIsAutoHeightCommand.id,
         group: MenuGroup.CONTEXT_MENU_LAYOUT,
@@ -1008,6 +1008,7 @@ export function FitContentMenuItemFactory(): IMenuButtonItem {
         positions: [SheetMenuPosition.ROW_HEADER_CONTEXT_MENU],
         icon: 'AutoHeight',
         title: 'rightClick.fitContent',
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.RowHeightColWidth] }),
     };
 }
 
@@ -1211,6 +1212,7 @@ export function SetRowHeightMenuItemFactory(accessor: IAccessor): IMenuButtonIte
             update();
             return disposable.dispose;
         })),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.RowHeightColWidth] }),
     };
 }
 
@@ -1255,6 +1257,7 @@ export function SetColWidthMenuItemFactory(accessor: IAccessor): IMenuButtonItem
             update();
             return disposable.dispose;
         })),
+        disabled$: getCurrentRangeDisable$(accessor, { worksheetType: [SubUnitPermissionType.RowHeightColWidth] }),
     };
 }
 

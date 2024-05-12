@@ -25,10 +25,10 @@ import {
     RemoveRowConfirmCommand,
 } from '../../commands/commands/remove-row-col-confirm.command';
 import { SheetMenuPosition } from './menu';
-import { getCurrentRangeDisable$ } from './menu-util';
+import { getBaseRangeMenuHidden$, getCellMenuHidden$, getCurrentRangeDisable$, getDeleteMenuHidden$ } from './menu-util';
 
 const DELETE_RANGE_MENU_ID = 'sheet.menu.delete';
-export function DeleteRangeMenuItemFactory(): IMenuSelectorItem<string> {
+export function DeleteRangeMenuItemFactory(accessor: IAccessor): IMenuSelectorItem<string> {
     return {
         id: DELETE_RANGE_MENU_ID,
         group: MenuGroup.CONTEXT_MENU_LAYOUT,
@@ -36,6 +36,7 @@ export function DeleteRangeMenuItemFactory(): IMenuSelectorItem<string> {
         title: 'rightClick.delete',
         icon: 'Reduce',
         positions: [MenuPosition.CONTEXT_MENU],
+        hidden$: getBaseRangeMenuHidden$(accessor),
     };
 }
 
@@ -48,6 +49,7 @@ export function RemoveColMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
         positions: [DELETE_RANGE_MENU_ID, SheetMenuPosition.COL_HEADER_CONTEXT_MENU],
         title: 'rightClick.deleteSelectedColumn',
         disabled$: getCurrentRangeDisable$(accessor),
+        hidden$: getDeleteMenuHidden$(accessor, 'col'),
     };
 }
 
@@ -60,6 +62,7 @@ export function RemoveRowMenuItemFactory(accessor: IAccessor): IMenuButtonItem {
         positions: [DELETE_RANGE_MENU_ID, SheetMenuPosition.ROW_HEADER_CONTEXT_MENU],
         title: 'rightClick.deleteSelectedRow',
         disabled$: getCurrentRangeDisable$(accessor),
+        hidden$: getDeleteMenuHidden$(accessor, 'row'),
     };
 }
 
@@ -72,6 +75,7 @@ export function DeleteRangeMoveLeftMenuItemFactory(accessor: IAccessor): IMenuBu
         icon: 'DeleteCellShiftLeft',
         positions: [DELETE_RANGE_MENU_ID],
         disabled$: getCurrentRangeDisable$(accessor),
+        hidden$: getCellMenuHidden$(accessor, 'col'),
     };
 }
 
@@ -84,5 +88,6 @@ export function DeleteRangeMoveUpMenuItemFactory(accessor: IAccessor): IMenuButt
         icon: 'DeleteCellShiftUp',
         positions: [DELETE_RANGE_MENU_ID],
         disabled$: getCurrentRangeDisable$(accessor),
+        hidden$: getCellMenuHidden$(accessor, 'row'),
     };
 }

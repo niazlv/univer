@@ -22,7 +22,7 @@ import { SheetPermissionRenderController } from './controller/sheet-permission-r
 import { enUS, zhCN } from './locale';
 import { SheetPermissionOpenPanelOperation } from './operation/sheet-permission-open-panel.operation';
 import { SheetPermissionUserManagerService } from './service';
-import { AddRangeProtectionCommand, AddRangeProtectionFromContextMenuCommand, AddRangeProtectionFromSheetBarCommand, AddRangeProtectionFromToolbarCommand, DeleteRangeProtectionFromContextMenuCommand, DeleteRangeSelectionCommand, SetRangeProtectionCommand, SetRangeProtectionFromContextMenuCommand, ViewSheetPermissionFromContextMenuCommand, ViewSheetPermissionFromSheetBarCommand } from './command/range-protection.command';
+import { AddRangeProtectionFromContextMenuCommand, AddRangeProtectionFromSheetBarCommand, AddRangeProtectionFromToolbarCommand, DeleteRangeProtectionFromContextMenuCommand, SetRangeProtectionFromContextMenuCommand, ViewSheetPermissionFromContextMenuCommand, ViewSheetPermissionFromSheetBarCommand } from './command/range-protection.command';
 import { SheetPermissionOpenDialogOperation } from './operation/sheet-permission-open-dialog.operation';
 import { AddWorksheetProtectionCommand, ChangeSheetProtectionFromSheetBarCommand, DeleteWorksheetProtectionCommand, SetWorksheetProtectionCommand } from './command/worksheet-protection.command';
 import { SheetPermissionPanelModel } from './service/sheet-permission-panel.model';
@@ -63,9 +63,6 @@ export class UniverSheetsPermissionUIPlugin extends Plugin {
             ChangeSheetProtectionFromSheetBarCommand,
             DeleteRangeProtectionFromContextMenuCommand,
             SetRangeProtectionFromContextMenuCommand,
-            AddRangeProtectionCommand,
-            DeleteRangeSelectionCommand,
-            SetRangeProtectionCommand,
             AddWorksheetProtectionCommand,
             DeleteWorksheetProtectionCommand,
             SetWorksheetProtectionCommand,

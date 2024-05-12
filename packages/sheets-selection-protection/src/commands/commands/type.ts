@@ -14,3 +14,21 @@
  * limitations under the License.
  */
 
+import type { ISelectionProtectionRule } from '../../model';
+
+export interface IAddRangeProtectionParams {
+    permissionId: string;
+    rule: ISelectionProtectionRule;
+}
+
+export interface ISetRangeProtectionParams {
+    permissionId: string;
+    rule: ISelectionProtectionRule;
+    oldRule: ISelectionProtectionRule;
+};
+
+export interface IDeleteRangeProtectionParams {
+    unitId: string;
+    subUnitId: string;
+    rule: ISelectionProtectionRule;
+}

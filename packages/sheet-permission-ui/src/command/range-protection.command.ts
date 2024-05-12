@@ -16,11 +16,10 @@
 
 import type { ICommand, Workbook } from '@univerjs/core';
 import { CommandType, ICommandService, IUndoRedoService, IUniverInstanceService, Rectangle, UniverInstanceType } from '@univerjs/core';
-import { AddSelectionProtection, DeleteSelectionProtection, SelectionProtectionRuleModel, SetSelectionProtection } from '@univerjs/sheets-selection-protection';
+import { AddSelectionProtection, DeleteSelectionProtection, SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
 import { SelectionManagerService } from '@univerjs/sheets';
 import { SheetPermissionOpenPanelOperation } from '../operation/sheet-permission-open-panel.operation';
 import { SheetPermissionPanelModel } from '../service/sheet-permission-panel.model';
-import type { IAddRangeProtectionParams, IDeleteRangeProtectionParams, ISetRangeProtectionParams } from './type';
 
 
 export const AddRangeProtectionFromToolbarCommand: ICommand = {
@@ -70,131 +69,6 @@ export const ViewSheetPermissionFromSheetBarCommand: ICommand = {
     async handler(accessor) {
         const commandService = accessor.get(ICommandService);
         await commandService.executeCommand(SheetPermissionOpenPanelOperation.id, { showDetail: false });
-        return true;
-    },
-};
-
-
-export const AddRangeProtectionCommand: ICommand<IAddRangeProtectionParams> = {
-    type: CommandType.COMMAND,
-    id: 'sheets.command.add-range-protection',
-    async handler(accessor, params) {
-        if (!params) {
-            return false;
-        }
-        const commandService = accessor.get(ICommandService);
-        const undoRedoService = accessor.get(IUndoRedoService);
-        const selectionProtectionModel = accessor.get(SelectionProtectionRuleModel);
-        const { rule, permissionId } = params;
-
-        const { unitId, subUnitId, ranges, name, description } = rule;
-        const rules = [{
-            ranges,
-            permissionId,
-            id: selectionProtectionModel.createRuleId(unitId, subUnitId),
-            name,
-            description,
-        }];
-
-        const result = await commandService.executeCommand(AddSelectionProtection.id, {
-            unitId,
-            subUnitId,
-            rules,
-        });
-
-        if (result) {
-            const redoMutations = [{ id: AddSelectionProtection.id, params: { unitId, subUnitId, rules } }];
-            const undoMutations = [{ id: DeleteSelectionProtection.id, params: { unitId, subUnitId, ruleIds: rules.map((rule) => rule.id) } }];
-            undoRedoService.pushUndoRedo({
-                unitID: unitId,
-                redoMutations,
-                undoMutations,
-            });
-        }
-
-        return true;
-    },
-};
-
-export const DeleteRangeSelectionCommand: ICommand<IDeleteRangeProtectionParams> = {
-    type: CommandType.COMMAND,
-    id: 'sheets.command.delete-range-protection',
-    async handler(accessor, params) {
-        if (!params) {
-            return false;
-        }
-        const commandService = accessor.get(ICommandService);
-        const undoRedoService = accessor.get(IUndoRedoService);
-        const { unitId, subUnitId, rule } = params;
-
-        const redoMutationParam = {
-            unitId,
-            subUnitId,
-            ruleIds: [rule.id],
-        };
-        const result = await commandService.executeCommand(DeleteSelectionProtection.id, redoMutationParam);
-
-        if (result) {
-            undoRedoService.pushUndoRedo({
-                unitID: unitId,
-                redoMutations: [{ id: DeleteSelectionProtection.id, params: redoMutationParam }],
-                undoMutations: [{ id: AddSelectionProtection.id, params: { unitId, subUnitId, rules: [rule] } }],
-            });
-        }
-
-        return true;
-    },
-};
-
-export const SetRangeProtectionCommand: ICommand<ISetRangeProtectionParams> = {
-    type: CommandType.COMMAND,
-    id: 'sheets.command.set-range-protection',
-    async handler(accessor, params) {
-        if (!params) {
-            return false;
-        }
-        const commandService = accessor.get(ICommandService);
-        const selectionProtectionModel = accessor.get(SelectionProtectionRuleModel);
-        const sheetPermissionPanelModel = accessor.get(SheetPermissionPanelModel);
-        const undoRedoService = accessor.get(IUndoRedoService);
-        const { rule, permissionId } = params;
-
-        const { unitId, subUnitId, ranges, name, description } = rule;
-
-        if (rule.id) {
-            const redoMutationParam = {
-                unitId,
-                subUnitId,
-                ruleId: rule.id,
-                rule: {
-                    ranges,
-                    permissionId,
-                    id: selectionProtectionModel.createRuleId(unitId, subUnitId),
-                    name,
-                    description,
-                },
-            };
-            const result = await commandService.executeCommand(SetSelectionProtection.id, redoMutationParam);
-
-            if (result) {
-                const redoMutations = [{
-                    id: SetSelectionProtection.id, params: redoMutationParam,
-                }];
-                const undoMutations = [{
-                    id: SetSelectionProtection.id, params: {
-                        unitId,
-                        subUnitId,
-                        ruleId: rule.id,
-                        rule: sheetPermissionPanelModel.oldRule,
-                    },
-                }];
-                undoRedoService.pushUndoRedo({
-                    unitID: unitId,
-                    redoMutations,
-                    undoMutations,
-                });
-            }
-        }
         return true;
     },
 };

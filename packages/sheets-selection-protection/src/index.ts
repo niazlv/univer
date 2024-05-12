@@ -19,6 +19,9 @@ export { UniverSheetsSelectionProtectionPlugin } from './selection-protection-pl
 export { getAllRangePermissionPoint, getDefaultPermission, SelectionProtectionPermissionEditPoint } from './service/selection-protection/permission-point';
 export { SelectionProtectionRenderService } from './service/selection-protection-render.service';
 export { AddSelectionProtection, DeleteSelectionProtection, SetSelectionProtection } from './commands';
+export { AddRangeProtectionCommand } from './commands/commands/add-selection-protection.command';
+export { DeleteRangeProtectionCommand } from './commands/commands/delete-selection-protection.command';
+export { SetRangeProtectionCommand } from './commands/commands/set-selection-protection.command';
 export { SelectionProtectionRenderModel } from './model/selection-protection-render.model';
 export type { ISelectionProtectionRule, ICellPermission } from './model';
 export { SelectionProtectionRuleModel } from './model';

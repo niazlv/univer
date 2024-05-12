@@ -295,12 +295,20 @@ export const DEFAULT_WORKBOOK_DATA_DEMO: IWorkbookData = {
     },
     resources: [
         {
+            name: 'SHEET_WORKSHEET_PROTECTION_PLUGIN',
+            data: '{}',
+        },
+        {
+            name: 'SHEET_SELECTION_PROTECTION_PLUGIN',
+            data: '{"sheet-1":[{"ranges":[{"startRow":8,"startColumn":3,"endRow":16,"endColumn":5,"startAbsoluteRefType":0,"endAbsoluteRefType":0,"rangeType":0}],"permissionId":"","id":"2H82","name":"工作表1(D9:F17)"}]}',
+        },
+        {
             name: 'SHEET_CONDITIONAL_FORMATTING_PLUGIN',
             data: '',
         },
         {
-            name: 'SHEET_NUMFMT_PLUGIN',
-            data: '{"model":{},"refModel":[]}',
+            name: 'SHEET_FILTER_PLUGIN',
+            data: '{}',
         },
         {
             name: 'SHEET_DEFINED_NAME_PLUGIN',
@@ -325,8 +333,8 @@ export const DEFAULT_WORKBOOK_DATA_DEMO: IWorkbookData = {
         },
     ],
     __env__: {
-        gitHash: '31af478b1',
+        gitHash: '2b66dd638',
         gitBranch: 'feat/permission-0415',
-        buildTime: '2024-04-27T11:26:05.469Z',
+        buildTime: '2024-05-11T09:42:47.540Z',
     },
 };

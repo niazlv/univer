@@ -28,7 +28,9 @@ export interface IAddSelectionProtectionParams {
     ruleId: string;
 };
 
-export const SetSelectionProtection: IMutation<IAddSelectionProtectionParams> = {
+export type ISetSelectionProtectionParams = IAddSelectionProtectionParams;
+
+export const SetSelectionProtection: IMutation<ISetSelectionProtectionParams> = {
     id: 'sheet.mutation.selection-protection.add',
     type: CommandType.MUTATION,
     handler: (accessor, params) => {
@@ -38,7 +40,7 @@ export const SetSelectionProtection: IMutation<IAddSelectionProtectionParams> = 
         return true;
     },
 };
-export const FactorySetSelectionProtection = (accessor: IAccessor, param: IAddSelectionProtectionParams) => {
+export const FactorySetSelectionProtection = (accessor: IAccessor, param: ISetSelectionProtectionParams) => {
     const { unitId, subUnitId, ruleId } = param;
     const selectionProtectionRuleModel = accessor.get(SelectionProtectionRuleModel);
     const oldRule = selectionProtectionRuleModel.getRule(unitId, subUnitId, ruleId);
