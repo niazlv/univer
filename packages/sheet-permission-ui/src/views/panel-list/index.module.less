@@ -1,5 +1,6 @@
 .sheet-permission-list-panel-wrapper {
     margin-top: var(--margin-xs);
+    height: 100%;
 }
 
 .sheet-permission-list-panel-header {
@@ -34,6 +35,15 @@
         font-size: var(--font-size-lg);
         font-weight: 500;
     }
+}
+
+.sheet-permission-list-item-header-icon {
+    &:hover {
+        background-color: rgb(var(--grey-50));
+    }
+    height: 24px;
+    padding: 4px;
+    box-sizing: border-box;
 }
 
 .sheet-permission-list-item {
@@ -98,6 +108,21 @@
             text-overflow: ellipsis;
         }
     }
+}
+
+.sheet-permission-list-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.sheet-permission-list-empty-text {
+    width: 240px;
+    word-wrap: break-word;
+    color: rgb(var(--grey-400));
+    font-size: 13px;
 }
 
 .sheet-permission-list-item-content-title {

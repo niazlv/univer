@@ -84,6 +84,31 @@ export const SheetPermissionDialog = () => {
         });
     }, []);
 
+    // const handleChangeActionPermission = () => {
+    //     const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
+    //     const worksheet = workbook?.getActiveSheet();
+    //     const unitId = workbook.getUnitId();
+    //     const subUnitId = worksheet.getSheetId();
+    //     const rule = worksheetProtectionRuleModel.getRule(unitId, subUnitId);
+    //     if (!rule) {
+    //         return;
+    //     }
+    //     const permissionId = rule.permissionId;
+    //     const actions = Object.keys(permissionMap).map((action) => {
+    //         return {
+    //             action: action as unknown as UnitAction,
+    //             allowed: permissionMap[action].allowed,
+    //         };
+    //     });
+
+    //     const permissionId = authzIoService.create({
+    //         objectType: UnitObject.Worksheet,
+    //         worksheetObject: {
+
+    //         }
+    //     })
+    // };
+
     return (
         <div className={styles.sheetPermissionDialogWrapper}>
             <div className={styles.sheetPermissionDialogSplit} />
@@ -122,7 +147,7 @@ export const SheetPermissionDialog = () => {
                 <Button
                     type="primary"
                     onClick={() => {
-                        // 生成新的permissionId 然后setRuleCommand
+                        // handleChangeActionPermission();
                         dialogService.close(UNIVER_SHEET_PERMISSION_DIALOG_ID);
                     }}
                     className={clsx(styles.sheetPermissionUserDialogFooterConfirm, styles.sheetPermissionUserDialogButton)}

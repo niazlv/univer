@@ -83,7 +83,7 @@
         "rxjs": ">=7.0.0"
     },
     "dependencies": {
-        "@univerjs/icons": "^0.1.44",
+        "@univerjs/icons": "^0.1.45",
         "@univerjs/protocol": "^0.1.26-permission-8.5"
     },
     "devDependencies": {

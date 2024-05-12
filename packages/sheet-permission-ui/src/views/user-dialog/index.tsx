@@ -21,9 +21,11 @@ import { useDependency } from '@wendellhu/redi/react-bindings';
 import { LocaleService } from '@univerjs/core';
 import { IDialogService } from '@univerjs/ui';
 import { type ICollaborator, UnitRole } from '@univerjs/protocol';
+import { CheckMarkSingle } from '@univerjs/icons';
 import { SheetPermissionUserManagerService } from '../../service';
 import { UNIVER_SHEET_PERMISSION_USER_DIALOG_ID } from '../../const';
 import styles from './index.module.less';
+import { UserEmptyBase64 } from './constant';
 
 export const SheetPermissionUserDialog = () => {
     const [inputValue, setInputValue] = React.useState('');
@@ -58,15 +60,26 @@ export const SheetPermissionUserDialog = () => {
                 />
             </div>
             <div className={styles.sheetPermissionUserList}>
-                {searchUserList?.map((item) => {
-                    return (
-                        <div key={item.subject?.userID} className={styles.sheetPermissionUserItem} onClick={() => handleChangeUser(item)}>
-                            <Avatar src={item.subject?.avatar} size={24} />
-                            <div className={styles.sheetPermissionUserItemName}>{item.subject?.name}</div>
-                            {selectUserInfo?.findIndex((v) => v.subject?.userID === item.subject?.userID) !== -1 && (<div>✅</div>)}
+                {searchUserList?.length > 0
+                    ? (
+                        <>
+                            {searchUserList?.map((item) => {
+                                return (
+                                    <div key={item.subject?.userID} className={styles.sheetPermissionUserItem} onClick={() => handleChangeUser(item)}>
+                                        <Avatar src={item.subject?.avatar} size={24} />
+                                        <div className={styles.sheetPermissionUserItemName}>{item.subject?.name}</div>
+                                        {selectUserInfo?.findIndex((v) => v.subject?.userID === item.subject?.userID) !== -1 && (<div><CheckMarkSingle /></div>)}
+                                    </div>
+                                );
+                            })}
+                        </>
+                    )
+                    : (
+                        <div className={styles.sheetPermissionUserListEmpty}>
+                            <img width={240} height={120} src={UserEmptyBase64} alt="" />
+                            <p className={styles.sheetPermissionUserListEmptyText}>no designated person , Share link to invite specific people</p>
                         </div>
-                    );
-                })}
+                    )}
             </div>
             <div className={styles.sheetPermissionSplit}></div>
             <div className={styles.sheetPermissionUserDialogFooter}>

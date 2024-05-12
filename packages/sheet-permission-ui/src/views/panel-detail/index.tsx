@@ -29,6 +29,7 @@ import { SheetPermissionUserManagerService } from '../../service';
 import { UNIVER_SHEET_PERMISSION_USER_DIALOG, UNIVER_SHEET_PERMISSION_USER_DIALOG_ID } from '../../const';
 
 import { SheetPermissionPanelModel, viewState } from '../../service/sheet-permission-panel.model';
+import { UserEmptyBase64 } from '../user-dialog/constant';
 import styles from './index.module.less';
 
 export const SheetPermissionPanelDetail = ({ fromSheetBar }: { fromSheetBar: boolean }) => {
@@ -261,7 +262,12 @@ export const SheetPermissionPanelDetail = ({ fromSheetBar }: { fromSheetBar: boo
                                     </div>
                                 );
                             })
-                            : (<div>empty</div>)}
+                            : (
+                                <div className={styles.sheetPermissionUserListEmpty}>
+                                    <img width={240} height={120} src={UserEmptyBase64} alt="" />
+                                    <p className={styles.sheetPermissionUserListEmptyText}>no designated person , Share link to invite specific people</p>
+                                </div>
+                            )}
                     </div>
                 </div>
             )}

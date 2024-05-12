@@ -19,7 +19,8 @@ import { LifecycleStages, OnLifecycle, RxDisposable } from '@univerjs/core';
 import type { IMenuItemFactory } from '@univerjs/ui';
 import { ComponentManager, IMenuService } from '@univerjs/ui';
 import { Inject, Injector } from '@wendellhu/redi';
-import { UNIVER_SHEET_PERMISSION_ALERT_DIALOG, UNIVER_SHEET_PERMISSION_DIALOG, UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER, UNIVER_SHEET_PERMISSION_USER_DIALOG } from '../const';
+import { CheckMarkSingle, DeleteSingle, LockSingle, ProtectSingle, WriteSingle } from '@univerjs/icons';
+import { permissionCheckIconKey, permissionDeleteIconKey, permissionEditIconKey, permissionLockIconKey, permissionMenuIconKey, UNIVER_SHEET_PERMISSION_ALERT_DIALOG, UNIVER_SHEET_PERMISSION_DIALOG, UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER, UNIVER_SHEET_PERMISSION_USER_DIALOG } from '../const';
 import { SheetPermissionDialog, SheetPermissionPanel, SheetPermissionPanelFooter, SheetPermissionUserDialog } from '../views';
 import { AlertDialog } from '../views/alert-dialog';
 import {
@@ -79,6 +80,26 @@ export class SheetPermissionRenderController extends RxDisposable {
 
     private _initComponents() {
         ([
+            [
+                permissionMenuIconKey,
+                ProtectSingle,
+            ],
+            [
+                permissionDeleteIconKey,
+                DeleteSingle,
+            ],
+            [
+                permissionEditIconKey,
+                WriteSingle,
+            ],
+            [
+                permissionCheckIconKey,
+                CheckMarkSingle,
+            ],
+            [
+                permissionLockIconKey,
+                LockSingle,
+            ],
             [
                 UNIVER_SHEET_PERMISSION_PANEL,
                 SheetPermissionPanel,

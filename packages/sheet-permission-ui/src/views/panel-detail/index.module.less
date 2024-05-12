@@ -14,6 +14,8 @@
     border-radius: var(--border-radius-lg);
     padding: var(--padding-base);
     margin-bottom: var(--margin-xs);
+    display: flex;
+    flex-direction: column;
 
     &-header {
         display: flex;
@@ -77,4 +79,23 @@
         ) {
         right: 0;
     }
+}
+
+.sheet-permission-design-person-panel-content {
+    flex: 1;
+}
+
+.sheet-permission-user-list-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.sheet-permission-user-list-empty-text {
+    width: 240px;
+    word-wrap: break-word;
+    color: rgb(var(--grey-400));
+    font-size: 13px;
 }

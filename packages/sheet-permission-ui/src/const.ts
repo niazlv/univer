@@ -51,3 +51,9 @@ export const subUnitPermissionTypeMap: Record<string, SubUnitPermissionType> = {
     [UnitAction.ViemRwHgtClWdt]: SubUnitPermissionType.RowHeightColWidthReadonly,
     [UnitAction.ViewFilter]: SubUnitPermissionType.FilterReadonly,
 };
+
+export const permissionMenuIconKey = 'sheet-permission-menu-icon';
+export const permissionDeleteIconKey = 'sheet-permission-delete-icon';
+export const permissionEditIconKey = 'sheet-permission-edit-icon';
+export const permissionCheckIconKey = 'sheet-permission-check-icon';
+export const permissionLockIconKey = 'sheet-permission-lock-icon';

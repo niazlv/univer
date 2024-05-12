@@ -28,10 +28,12 @@ import { ISidebarService } from '@univerjs/ui';
 import { merge } from 'rxjs';
 import type { IPermissionPoint } from '@univerjs/protocol';
 import { UnitAction } from '@univerjs/protocol';
+import { DeleteSingle } from '@univerjs/icons';
 import { UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER } from '../../const';
 import type { IPermissionPanelRule } from '../../service/sheet-permission-panel.model';
 import { SheetPermissionPanelModel } from '../../service/sheet-permission-panel.model';
 import styles from './index.module.less';
+import { panelListEmptyBase64 } from './constant';
 
 type IRuleItem = ISelectionProtectionRule | IWorksheetProtectionRule;
 export const SheetPermissionPanelList = () => {
@@ -171,61 +173,70 @@ export const SheetPermissionPanelList = () => {
                 </div>
             </div>
 
-            <div className={styles.sheetPermissionListPanelContent}>
-                {ruleList?.map((item) => {
-                    const rule = allRuleMap.get(item.objectID);
+            {ruleList?.length > 0
+                ? (
+                    <div className={styles.sheetPermissionListPanelContent}>
+                        {ruleList?.map((item) => {
+                            const rule = allRuleMap.get(item.objectID);
 
-                    if (!rule) {
-                        return null;
-                    }
+                            if (!rule) {
+                                return null;
+                            }
 
-                    const editAction = item.actions.find((action) => action.action === UnitAction.Edit);
-                    const editPermission = editAction?.allowed;
+                            const editAction = item.actions.find((action) => action.action === UnitAction.Edit);
+                            const editPermission = editAction?.allowed;
 
-                    const viewAction = item.actions.find((action) => action.action === UnitAction.View);
-                    const viewPermission = viewAction?.allowed;
+                            const viewAction = item.actions.find((action) => action.action === UnitAction.View);
+                            const viewPermission = viewAction?.allowed;
 
-                    return (
-                        <div key={item.objectID} className={styles.sheetPermissionListItem}>
-                            <div className={styles.sheetPermissionListItemHeader}>
-                                <Tooltip title={rule.name}>
-                                    <div className={styles.sheetPermissionListItemHeaderName}>{rule.name}</div>
-                                </Tooltip>
-                                {manageCollaboratorAction && (
-                                    <div className={styles.sheetPermissionListItemHeaderOperator}>
-                                        <Tooltip title={localeService.t('permission.panel.edit')}>
-                                            <div onClick={() => handleEdit(rule)}>edit</div>
+                            return (
+                                <div key={item.objectID} className={styles.sheetPermissionListItem}>
+                                    <div className={styles.sheetPermissionListItemHeader}>
+                                        <Tooltip title={rule.name}>
+                                            <div className={styles.sheetPermissionListItemHeaderName}>{rule.name}</div>
                                         </Tooltip>
-                                        <Tooltip title={localeService.t('permission.panel.delete')}>
-                                            <div onClick={() => handleDelete(rule)}>delete</div>
-                                        </Tooltip>
+                                        {manageCollaboratorAction && (
+                                            <div className={styles.sheetPermissionListItemHeaderOperator}>
+                                                <Tooltip title={localeService.t('permission.panel.edit')}>
+                                                    <div className={styles.sheetPermissionListItemHeaderIcon} onClick={() => handleEdit(rule)}>edit</div>
+                                                </Tooltip>
+                                                <Tooltip title={localeService.t('permission.panel.delete')}>
+                                                    <div className={styles.sheetPermissionListItemHeaderIcon} onClick={() => handleDelete(rule)}><DeleteSingle /></div>
+                                                </Tooltip>
+                                            </div>
+                                        )}
                                     </div>
-                                )}
-                            </div>
-                            <div className={styles.sheetPermissionListItemSplit} />
-                            <div className={styles.sheetPermissionListItemContent}>
-                                <div className={styles.sheetPermissionListItemContentEdit}>
-                                    <Avatar src={item.creator?.avatar} style={{ marginRight: 6 }} size={24} />
-                                    <span className={styles.sheetPermissionListItemContentTitle}>created</span>
-                                    <span className={styles.sheetPermissionListItemContentSub}>{editPermission ? 'i can edit' : 'i can not edit'}</span>
+                                    <div className={styles.sheetPermissionListItemSplit} />
+                                    <div className={styles.sheetPermissionListItemContent}>
+                                        <div className={styles.sheetPermissionListItemContentEdit}>
+                                            <Avatar src={item.creator?.avatar} style={{ marginRight: 6 }} size={24} />
+                                            <span className={styles.sheetPermissionListItemContentTitle}>created</span>
+                                            <span className={styles.sheetPermissionListItemContentSub}>{editPermission ? 'i can edit' : 'i can not edit'}</span>
 
-                                </div>
-                                <div className={styles.sheetPermissionListItemContentView}>
-                                    <span className={styles.sheetPermissionListItemContentTitle}>view permissions</span>
-                                    <span className={styles.sheetPermissionListItemContentSub}>{viewPermission ? 'i can view' : 'i can not view'}</span>
-                                </div>
-                                {rule.description && (
-                                    <Tooltip title={rule.description}>
-                                        <div className={styles.sheetPermissionListItemContentDesc}>
-                                            {rule.description}
                                         </div>
-                                    </Tooltip>
-                                )}
-                            </div>
-                        </div>
-                    );
-                })}
-            </div>
+                                        <div className={styles.sheetPermissionListItemContentView}>
+                                            <span className={styles.sheetPermissionListItemContentTitle}>view permissions</span>
+                                            <span className={styles.sheetPermissionListItemContentSub}>{viewPermission ? 'i can view' : 'i can not view'}</span>
+                                        </div>
+                                        {rule.description && (
+                                            <Tooltip title={rule.description}>
+                                                <div className={styles.sheetPermissionListItemContentDesc}>
+                                                    {rule.description}
+                                                </div>
+                                            </Tooltip>
+                                        )}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                )
+                : (
+                    <div className={styles.sheetPermissionListEmpty}>
+                        <img width={240} height={120} src={panelListEmptyBase64} alt="" />
+                        <p className={styles.sheetPermissionListEmptyText}>You haven't set up any ranges or sheets as protected.</p>
+                    </div>
+                )}
         </div>
     );
 };
