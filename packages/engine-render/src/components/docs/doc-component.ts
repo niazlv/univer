@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-import type { Nullable } from '@univerjs/core';
-
 import { RENDER_CLASS_TYPE } from '../../basics/const';
 import type { IDocumentSkeletonGlyph, IDocumentSkeletonLine, IDocumentSkeletonPage } from '../../basics/i-document-skeleton-cached';
 import { PageLayoutType } from '../../basics/i-document-skeleton-cached';
@@ -148,5 +146,5 @@ export abstract class DocComponent extends RenderComponent<
         return false;
     }
 
-    protected abstract _draw(ctx: UniverRenderingContext, bounds?: IViewportBound): void;
+    protected abstract _draw(ctx: UniverRenderingContext, bounds?: IViewportInfo): void;
 }

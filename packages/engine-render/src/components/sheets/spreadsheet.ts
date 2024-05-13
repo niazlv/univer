@@ -136,7 +136,6 @@ export class Spreadsheet extends SheetComponent {
             : undefined;
         const viewRanges = [spreadsheetSkeleton.getRowColumnSegmentByViewBound(viewportInfo?.cacheBound)];
         const extensions = this.getExtensionsByOrder();
-
         for (const extension of extensions) {
             // const timeKey = `extension ${viewportInfo.viewPortKey}:${extension.constructor.name}`;
             // console.time(timeKey);
@@ -232,8 +231,8 @@ export class Spreadsheet extends SheetComponent {
      * @param state
      */
     override makeDirty(state: boolean = true) {
+        (this.getParent() as Scene)?.getViewports().forEach((vp) => vp.markDirty(state));
         super.makeDirty(state);
-        (this.getParent() as Scene)?.getViewports().forEach((vp) => vp.markDirty());
         if (state === false) {
             this._dirtyBounds = [];
         }
@@ -245,7 +244,7 @@ export class Spreadsheet extends SheetComponent {
     }
 
     renderByViewport(mainCtx: UniverRenderingContext, viewportBoundsInfo: IViewportInfo, spreadsheetSkeleton: SpreadsheetSkeleton) {
-        const { diffBounds, diffX, diffY, viewPortPosition, isDirty, isForceDirty, cacheCanvas, leftOrigin, topOrigin, bufferEdgeX, bufferEdgeY } = viewportBoundsInfo as Required<IViewportInfo>;
+        const { diffBounds, diffX, diffY, viewPortPosition, cacheCanvas, leftOrigin, topOrigin, bufferEdgeX, bufferEdgeY, isDirty: isViewportDirty, isForceDirty: isViewportForceDirty } = viewportBoundsInfo as Required<IViewportInfo>;
         const { rowHeaderWidth, columnHeaderHeight } = spreadsheetSkeleton;
         const { a: scaleX = 1, d: scaleY = 1 } = mainCtx.getTransform();
         const bufferEdgeSizeX = bufferEdgeX * scaleX / window.devicePixelRatio;
@@ -257,12 +256,13 @@ export class Spreadsheet extends SheetComponent {
         const { left, top, right, bottom } = viewPortPosition;
         const dw = right - left + rowHeaderWidth;
         const dh = bottom - top + columnHeaderHeight;
-
+        const isForceDirty = isViewportForceDirty || this.isForceDirty();
+        const isDirty = isViewportDirty || this.isDirty();
         if (diffBounds.length === 0 || (diffX === 0 && diffY === 0) || isForceDirty || isDirty) {
             if (isDirty || isForceDirty) {
                 this.refreshCacheCanvas(viewportBoundsInfo, { cacheCanvas, cacheCtx, mainCtx, topOrigin, leftOrigin, bufferEdgeX, bufferEdgeY });
             }
-        } else if (diffBounds.length !== 0 || diffX !== 0 || diffY === 0) {
+        } else if (diffBounds.length !== 0 || diffX !== 0 || diffY !== 0) {
             // scrolling && no dirty
             this.paintNewAreaOfCacheCanvas(viewportBoundsInfo, {
                 cacheCanvas, cacheCtx, mainCtx, topOrigin, leftOrigin, bufferEdgeX, bufferEdgeY, scaleX, scaleY, columnHeaderHeight, rowHeaderWidth,
@@ -383,7 +383,6 @@ export class Spreadsheet extends SheetComponent {
         if (!spreadsheetSkeleton) {
             return;
         }
-
         spreadsheetSkeleton.calculateWithoutClearingCache(viewportInfo);
 
         const segment = spreadsheetSkeleton.rowColumnSegment;
@@ -394,7 +393,6 @@ export class Spreadsheet extends SheetComponent {
         ) {
             return;
         }
-
         mainCtx.save();
 
 
@@ -434,7 +432,6 @@ export class Spreadsheet extends SheetComponent {
      * @param dy
      * @param dw
      * @param dh
-     * @returns
      */
     protected _applyCache(
         cacheCanvas: Canvas,
@@ -532,7 +529,6 @@ export class Spreadsheet extends SheetComponent {
      * draw gridlines
      * @param ctx
      * @param bounds
-     * @returns
      */
     // eslint-disable-next-line max-lines-per-function
     private _drawAuxiliary(ctx: UniverRenderingContext, bounds?: IViewportInfo) {
