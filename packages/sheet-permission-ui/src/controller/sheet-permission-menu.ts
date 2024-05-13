@@ -21,10 +21,9 @@ import type { IAccessor } from '@wendellhu/redi';
 import { AddRangeProtectionFromContextMenuCommand, AddRangeProtectionFromSheetBarCommand, AddRangeProtectionFromToolbarCommand, DeleteRangeProtectionFromContextMenuCommand, SetRangeProtectionFromContextMenuCommand, ViewSheetPermissionFromContextMenuCommand, ViewSheetPermissionFromSheetBarCommand } from '../command/range-protection.command';
 import { ChangeSheetProtectionFromSheetBarCommand, DeleteWOrksheetProtectionFormSheetBarCommand } from '../command/worksheet-protection.command';
 import { permissionLockIconKey, permissionMenuIconKey } from '../const';
-import { getAddPermissionDisable$, getAddPermissionHidden$, getEditPermissionHiddenOrDelete$, getPermissionDisableBase$, getRemovePermissionDisable$, getSetPermissionDisable$ } from './utils';
+import { getAddPermissionDisable$, getAddPermissionFromSheetBarDisable$, getAddPermissionHidden$, getEditPermissionHiddenOrDelete$, getPermissionDisableBase$, getRemovePermissionDisable$, getRemovePermissionFromSheetBarDisable$, getSetPermissionFromSheetBarDisable$ } from './utils';
 
 export const tmpIcon = 'data-validation-single';
-const SHEET_PERMISSION_MENU_ID = 'sheet.menu.permission';
 const SHEET_PERMISSION_CONTEXT_MENU_ID = 'sheet.contextMenu.permission';
 
 
@@ -107,7 +106,7 @@ export function sheetPermissionProtectSheetInSheetBarMenuFactory(accessor: IAcce
         type: MenuItemType.BUTTON,
         positions: [SheetMenuPosition.SHEET_BAR],
         title: 'sheetConfig.addProtectSheet',
-        disabled$: getAddPermissionDisable$(accessor),
+        disabled$: getAddPermissionFromSheetBarDisable$(accessor),
     };
 }
 
@@ -117,7 +116,7 @@ export function sheetPermissionRemoveProtectionSheetBarMenuFactory(accessor: IAc
         type: MenuItemType.BUTTON,
         positions: [SheetMenuPosition.SHEET_BAR],
         title: 'sheetConfig.removeProtectSheet',
-        disabled$: getRemovePermissionDisable$(accessor),
+        disabled$: getRemovePermissionFromSheetBarDisable$(accessor),
     };
 }
 
@@ -127,7 +126,7 @@ export function sheetPermissionChangeSheetPermissionSheetBarMenuFactory(accessor
         type: MenuItemType.BUTTON,
         positions: [SheetMenuPosition.SHEET_BAR],
         title: 'sheetConfig.changeSheetPermission',
-        disabled$: getSetPermissionDisable$(accessor),
+        disabled$: getSetPermissionFromSheetBarDisable$(accessor),
     };
 }
 

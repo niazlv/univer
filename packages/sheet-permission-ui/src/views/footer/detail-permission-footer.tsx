@@ -68,11 +68,11 @@ export const SheetPermissionPanelDetailFooter = () => {
                             const { id } = activeRule as ISelectionProtectionRule;
                             selectionProtectionRuleModel.setRule(unitId, subUnitId, id, activeRule as ISelectionProtectionRule);
                         }
-                        // authzIoService.updateCollaborator({
-                        //     objectID: activeRule.permissionId,
-                        //     unitID: unitId,
-                        //     collaborators,
-                        // });
+                        authzIoService.putCollaborators({
+                            objectID: activeRule.permissionId,
+                            unitID: unitId,
+                            collaborators,
+                        });
                     } else {
                         if (activeRule.unitType === UnitObject.Worksheet) {
                             const permissionId = await authzIoService.create({
