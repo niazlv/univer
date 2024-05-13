@@ -15,6 +15,7 @@
  */
 
 import type { ICommandInfo,
+    IRange,
     Workbook } from '@univerjs/core';
 import { CommandType,
     ICommandService,
@@ -281,7 +282,7 @@ export class SheetRenderController extends RxDisposable {
         const activeViewports = viewports.filter((vp) => vp.isActive);
         for (const vp of activeViewports) {
             for (const b of dirtyBounds) {
-                if (Tools.hasIntersectionBetweenTwoBounds(vp.cacheBound, b)) {
+                if (Tools.hasIntersectionBetweenTwoBounds(vp.cacheBound!, b)) {
                     vp.markDirty(true);
                 }
             }

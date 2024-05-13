@@ -16,7 +16,7 @@
 
 import type { Workbook, Worksheet } from '@univerjs/core';
 import { ICommandService, RxDisposable, toDisposable } from '@univerjs/core';
-import type { IRenderContext, IRenderController, IWheelEvent } from '@univerjs/engine-render';
+import type { IRenderContext, IRenderController, IWheelEvent, Scene } from '@univerjs/engine-render';
 import {
     IRenderManagerService,
     Layer,
@@ -87,7 +87,7 @@ export class SheetCanvasView extends RxDisposable implements IRenderController {
         const sheetId = worksheet.getSheetId();
 
         const spreadsheet = new Spreadsheet(SHEET_VIEW_KEY.MAIN);
-        const _viewMain = this._addViewport(worksheet, spreadsheet);
+        const _viewMain = this._addViewport(worksheet);
 
         const spreadsheetRowHeader = new SpreadsheetRowHeader(SHEET_VIEW_KEY.ROW);
         const spreadsheetColumnHeader = new SpreadsheetColumnHeader(SHEET_VIEW_KEY.COLUMN);
@@ -115,20 +115,8 @@ export class SheetCanvasView extends RxDisposable implements IRenderController {
         scene.enableLayerCache(SHEET_COMPONENT_MAIN_LAYER_INDEX, SHEET_COMPONENT_HEADER_LAYER_INDEX);
     }
 
-    /**
-     * +-----------------+--------------------+-------------------+
-     * |  VIEW_LEFT_TOP  |  VIEW_COLUMN_LEFT  | VIEW_COLUMN_RIGHT |
-     * +-----------------+--------------------+-------------------+
-     * |  VIEW_ROW_TOP   | VIEW_MAIN_LEFT_TOP |   VIEW_MAIN_TOP   |
-     * +-----------------+--------------------+-------------------+
-     * | VIEW_ROW_BOTTOM |   VIEW_MAIN_LEFT   |     VIEW_MAIN     |
-     * +-----------------+--------------------+-------------------+
-     */
-    private _addViewport(worksheet: Worksheet) {
-        const scene = this._context.scene;
-
-        const { rowHeader, columnHeader } = worksheet.getConfig();
-
+    // eslint-disable-next-line max-lines-per-function
+    private _initViewports(scene: Scene, rowHeader: { width: number }, columnHeader: { height: number }) {
         const viewMain = new Viewport(VIEWPORT_KEY.VIEW_MAIN, scene, {
             left: rowHeader.width,
             top: columnHeader.height,
@@ -239,12 +227,12 @@ export class SheetCanvasView extends RxDisposable implements IRenderController {
      * | VIEW_ROW_BOTTOM |   VIEW_MAIN_LEFT   |     VIEW_MAIN     |
      * +-----------------+--------------------+-------------------+
      */
-    private _addViewport(worksheet: Worksheet, spreadsheet: Spreadsheet) {
-        const scene = this._scene;
+    // eslint-disable-next-line max-lines-per-function
+    private _addViewport(worksheet: Worksheet) {
+        const scene = this._context.scene;
         if (scene == null) {
             return;
         }
-
         const { rowHeader, columnHeader } = worksheet.getConfig();
         const { viewMain } = this._initViewports(scene, rowHeader, columnHeader);
 
