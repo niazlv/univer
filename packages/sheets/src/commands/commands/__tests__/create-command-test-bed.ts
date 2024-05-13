@@ -29,8 +29,8 @@ import {
 } from '@univerjs/core';
 import type { Dependency } from '@wendellhu/redi';
 import { Inject, Injector } from '@wendellhu/redi';
-import { WorkbookPermissionService } from '../../../services/permission/workbook-permission.service';
-import { WorksheetPermissionService } from '../../../services/permission/worksheet-permission.service';
+import { WorkbookPermissionService } from '../../../services/permission/workbook-permission/workbook-permission.service';
+import { WorksheetPermissionService } from '../../../services/permission/worksheet-permission/worksheet-permission.service';
 import enUS from '../../../locale/en-US';
 import { BorderStyleManagerService } from '../../../services/border-style-manager.service';
 import { SelectionManagerService } from '../../../services/selection-manager.service';
