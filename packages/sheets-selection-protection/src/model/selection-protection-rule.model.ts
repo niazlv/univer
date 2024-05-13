@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { LifecycleStages, OnLifecycle, Tools } from '@univerjs/core';
 import type { IModel, IObjectModel, ISelectionProtectionRule } from './type';
 
@@ -36,7 +36,7 @@ export class SelectionProtectionRuleModel {
 
     ruleChange$ = this._ruleChange.asObservable();
 
-    private _rangeRuleInitStateChange = new Subject<boolean>();
+    private _rangeRuleInitStateChange = new BehaviorSubject<boolean>(false);
     rangeRuleInitStateChange$ = this._rangeRuleInitStateChange.asObservable();
 
     changeRuleInitState(state: boolean) {

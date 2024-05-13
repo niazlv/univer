@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { LifecycleStages, OnLifecycle } from '@univerjs/core';
 import type { IModel, IObjectModel, IWorksheetProtectionRule } from '../type';
 
@@ -38,7 +38,7 @@ export class WorksheetProtectionRuleModel {
 
     ruleChange$ = this._ruleChange.asObservable();
 
-    private _worksheetRuleInitStateChange = new Subject<boolean>();
+    private _worksheetRuleInitStateChange = new BehaviorSubject<boolean>(false);
     worksheetRuleInitStateChange$ = this._worksheetRuleInitStateChange.asObservable();
 
     changeRuleInitState(state: boolean) {

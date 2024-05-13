@@ -114,6 +114,7 @@ export const SheetPermissionPanelDetail = ({ fromSheetBar }: { fromSheetBar: boo
             name: fromSheetBar ? `${sheetName}` : `${sheetName}(${rangeStr})`,
             unitId,
             subUnitId,
+            unitType: fromSheetBar ? UnitObject.Worksheet : UnitObject.SelectRange,
 
         });
     }, [activeRule?.permissionId, fromSheetBar, selectionManagerService, sheetPermissionPanelModel, subUnitId, unitId, worksheet]);
