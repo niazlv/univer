@@ -15,12 +15,15 @@
  */
 
 import { UnitAction } from '@univerjs/protocol';
-import { SubUnitPermissionType } from './type';
+import { RangeUnitPermissionType, SubUnitPermissionType } from './type';
 
-export function mapSubEnumToPermissionPoint(permissionEnum: UnitAction): SubUnitPermissionType {
+type ISubType = SubUnitPermissionType | RangeUnitPermissionType;
+export function mapSubEnumToPermissionPoint(permissionEnum: UnitAction): ISubType {
     switch (permissionEnum) {
         case UnitAction.View:
             return SubUnitPermissionType.View;
+        case UnitAction.Edit:
+            return RangeUnitPermissionType.Edit;
         case UnitAction.ManageCollaborator:
             return SubUnitPermissionType.ManageCollaborator;
         case UnitAction.Print:
@@ -54,10 +57,12 @@ export function mapSubEnumToPermissionPoint(permissionEnum: UnitAction): SubUnit
     }
 }
 
-export function mapPermissionPointToSubEnum(permissionPoint: SubUnitPermissionType): UnitAction {
+export function mapPermissionPointToSubEnum(permissionPoint: ISubType): UnitAction {
     switch (permissionPoint) {
         case SubUnitPermissionType.View:
             return UnitAction.View;
+        case RangeUnitPermissionType.Edit:
+            return UnitAction.Edit;
         case SubUnitPermissionType.ManageCollaborator:
             return UnitAction.ManageCollaborator;
         case SubUnitPermissionType.Print:

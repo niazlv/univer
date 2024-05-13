@@ -52,7 +52,7 @@ export class SheetPermissionController extends Disposable {
         @Inject(SelectionManagerService) private readonly _selectionManagerService: SelectionManagerService,
         @Inject(IDialogService) private readonly _dialogService: IDialogService,
         @Inject(IPermissionService) private _permissionService: IPermissionService,
-        @Inject(IAuthzIoService) private authzIoService: IAuthzIoService,
+        @Inject(IAuthzIoService) private _authzIoService: IAuthzIoService,
         @Inject(SelectionProtectionRuleModel) private _selectionProtectionRuleModel: SelectionProtectionRuleModel,
         @Inject(WorksheetProtectionRuleModel) private _worksheetProtectionRuleModel: WorksheetProtectionRuleModel,
         @Inject(RefRangeService) private readonly _refRangeService: RefRangeService,
@@ -298,7 +298,7 @@ export class SheetPermissionController extends Disposable {
                             });
                         });
                     });
-                    this.authzIoService.batchAllowed(allAllowedParams).then((permissionMap) => {
+                    this._authzIoService.batchAllowed(allAllowedParams).then((permissionMap) => {
                         permissionMap.forEach((item) => {
                             const rule = permissionIdWithRuleInstanceMap.get(item.objectID);
                             if (rule) {
@@ -321,18 +321,19 @@ export class SheetPermissionController extends Disposable {
     private _initRangePermissionChange() {
         this.disposeWithMe(
             this._selectionProtectionRuleModel.ruleChange$.subscribe((info) => {
-                this.authzIoService.allowed({
+                this._authzIoService.allowed({
                     objectID: info.rule.permissionId,
                     unitID: info.unitId,
                     objectType: UnitObject.SelectRange,
                     actions: [UnitAction.Edit, UnitAction.View],
-                }).then((permissionMap) => {
+                }).then((actionList) => {
                     getAllRangePermissionPoint().forEach((F) => {
                         const rule = info.rule;
                         const instance = new F(rule.unitId, rule.subUnitId, rule.permissionId);
                         const unitActionName = mapPermissionPointToSubEnum(instance.subType as unknown as SubUnitPermissionType);
-                        if (permissionMap.hasOwnProperty(unitActionName)) {
-                            this._permissionService.updatePermissionPoint(instance.id, permissionMap[unitActionName]);
+                        const action = actionList.find((item) => item.action === unitActionName);
+                        if (action) {
+                            this._permissionService.updatePermissionPoint(instance.id, action.allowed);
                         }
                     });
                 });
@@ -368,7 +369,7 @@ export class SheetPermissionController extends Disposable {
                         }
                     });
 
-                    this.authzIoService.batchAllowed(allAllowedParams).then((permissionMap) => {
+                    this._authzIoService.batchAllowed(allAllowedParams).then((permissionMap) => {
                         permissionMap.forEach((item) => {
                             const rule = permissionIdWithRuleInstanceMap.get(item.objectID);
                             if (rule) {
@@ -392,17 +393,18 @@ export class SheetPermissionController extends Disposable {
         this.disposeWithMe(
             this._worksheetProtectionRuleModel.ruleChange$.subscribe((info) => {
                 if (info.type !== 'delete') {
-                    this.authzIoService.allowed({
+                    this._authzIoService.allowed({
                         objectID: info.rule.permissionId,
                         unitID: info.unitId,
                         objectType: UnitObject.Worksheet,
                         actions: defaultWorksheetPermissionPoint,
-                    }).then((permissionMap) => {
+                    }).then((actionList) => {
                         getAllWorksheetPermissionPoint().forEach((F) => {
                             const instance = new F(info.unitId, info.subUnitId);
                             const unitActionName = mapPermissionPointToSubEnum(instance.subType);
-                            if (permissionMap.hasOwnProperty(unitActionName)) {
-                                this._permissionService.updatePermissionPoint(instance.id, permissionMap[unitActionName]);
+                            const action = actionList.find((item) => item.action === unitActionName);
+                            if (action) {
+                                this._permissionService.updatePermissionPoint(instance.id, action.allowed);
                             }
                         });
                     });
