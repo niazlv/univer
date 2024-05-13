@@ -21,7 +21,7 @@ import { AddWorksheetProtectionMutation } from '@univerjs/sheets/commands/mutati
 import { DeleteWorksheetProtectionMutation } from '@univerjs/sheets/commands/mutations/delete-worksheet-protection.mutation.ts';
 import { WorksheetProtectionRuleModel } from '@univerjs/sheets/services/permission/worksheet-permission/worksheet-permission.model.ts';
 import { UniverType } from '@univerjs/protocol';
-import { SetWorksheetProtectionMutation } from '@univerjs/sheets/commands/mutations/set-worksheet-protection.mutation.js';
+import { SetWorksheetProtectionMutation } from '@univerjs/sheets/commands/mutations/set-worksheet-protection.mutation.ts';
 import { SheetPermissionPanelModel } from '../service/sheet-permission-panel.model';
 import type { IAddWorksheetProtectionParams, IDeleteWorksheetProtectionParams, ISetWorksheetProtectionParams } from './type';
 

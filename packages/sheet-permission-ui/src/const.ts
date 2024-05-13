@@ -52,6 +52,22 @@ export const subUnitPermissionTypeMap: Record<string, SubUnitPermissionType> = {
     [UnitAction.ViewFilter]: SubUnitPermissionType.FilterReadonly,
 };
 
+export const defaultWorksheetUnitActionList: UnitAction[] = [
+    UnitAction.Print,
+    UnitAction.Comment,
+    UnitAction.Copy,
+    UnitAction.SetWorksheetStyle,
+    UnitAction.EditWorksheetCell,
+    UnitAction.InsertHyperlink,
+    UnitAction.Sort,
+    UnitAction.Filter,
+    UnitAction.PivotTable,
+    UnitAction.FloatImg,
+    UnitAction.RwHgtClWdt,
+    UnitAction.ViemRwHgtClWdt,
+    UnitAction.ViewFilter,
+];
+
 export const permissionMenuIconKey = 'sheet-permission-menu-icon';
 export const permissionDeleteIconKey = 'sheet-permission-delete-icon';
 export const permissionEditIconKey = 'sheet-permission-edit-icon';

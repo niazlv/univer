@@ -23,7 +23,7 @@ import type { Workbook } from '@univerjs/core';
 import { IAuthzIoService, IUniverInstanceService, LocaleService, UniverInstanceType } from '@univerjs/core';
 import { IDialogService } from '@univerjs/ui';
 import { WorksheetProtectionRuleModel } from '@univerjs/sheets';
-import { UnitAction, UnitObject } from '@univerjs/protocol';
+import { UnitAction, UnitObject, UnitRole } from '@univerjs/protocol';
 import { subUnitPermissionTypeMap, UNIVER_SHEET_PERMISSION_DIALOG_ID } from '../../const';
 import styles from './index.module.less';
 
@@ -84,30 +84,32 @@ export const SheetPermissionDialog = () => {
         });
     }, []);
 
-    // const handleChangeActionPermission = () => {
-    //     const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
-    //     const worksheet = workbook?.getActiveSheet();
-    //     const unitId = workbook.getUnitId();
-    //     const subUnitId = worksheet.getSheetId();
-    //     const rule = worksheetProtectionRuleModel.getRule(unitId, subUnitId);
-    //     if (!rule) {
-    //         return;
-    //     }
-    //     const permissionId = rule.permissionId;
-    //     const actions = Object.keys(permissionMap).map((action) => {
-    //         return {
-    //             action: action as unknown as UnitAction,
-    //             allowed: permissionMap[action].allowed,
-    //         };
-    //     });
+    const handleChangeActionPermission = () => {
+        const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
+        const worksheet = workbook?.getActiveSheet();
+        const unitId = workbook.getUnitId();
+        const subUnitId = worksheet.getSheetId();
+        const rule = worksheetProtectionRuleModel.getRule(unitId, subUnitId);
+        if (!rule) {
+            return;
+        }
+        const permissionId = rule.permissionId;
+        const actions = Object.keys(permissionMap).map((action) => {
+            return {
+                action: action as unknown as UnitAction,
+                role: permissionMap[action].allowed ? UnitRole.Editor : UnitRole.Reader,
+            };
+        });
 
-    //     const permissionId = authzIoService.create({
-    //         objectType: UnitObject.Worksheet,
-    //         worksheetObject: {
-
-    //         }
-    //     })
-    // };
+        authzIoService.update({
+            objectType: UnitObject.Worksheet,
+            objectID: permissionId,
+            unitID: unitId,
+            strategies: actions,
+            share: undefined,
+            name: '',
+        });
+    };
 
     return (
         <div className={styles.sheetPermissionDialogWrapper}>
@@ -147,7 +149,7 @@ export const SheetPermissionDialog = () => {
                 <Button
                     type="primary"
                     onClick={() => {
-                        // handleChangeActionPermission();
+                        handleChangeActionPermission();
                         dialogService.close(UNIVER_SHEET_PERMISSION_DIALOG_ID);
                     }}
                     className={clsx(styles.sheetPermissionUserDialogFooterConfirm, styles.sheetPermissionUserDialogButton)}

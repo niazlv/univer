@@ -6,6 +6,7 @@
 .radio-group-vertical {
     display: flex;
     flex-direction: column;
+    font-weight: 400;
 }
 
 .sheet-permission-design-person-panel {
@@ -98,4 +99,28 @@
     word-wrap: break-word;
     color: rgb(var(--grey-400));
     font-size: 13px;
+}
+
+.sheet-permission-panel-title {
+    font-weight: 500;
+}
+
+.permission-range-selector {
+    font-weight: 400;
+}
+
+.sheet-permission-panel-name-input-error {
+    border: 1px solid rgb(var(--red-400));
+
+    &:hover {
+        border: 1px solid rgb(var(--red-400));
+    }
+
+    &-text {
+        height: 20px;
+        line-height: 20px;
+        color: rgb(var(--red-400));
+        font-size: var(--font-size-xs);
+        font-weight: 400;
+    }
 }

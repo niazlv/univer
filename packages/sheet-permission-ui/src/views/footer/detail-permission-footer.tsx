@@ -20,10 +20,11 @@ import React from 'react';
 import { ISidebarService, useObservable } from '@univerjs/ui';
 import { IAuthzIoService, ICommandService, LocaleService } from '@univerjs/core';
 import { UnitObject, UnitRole } from '@univerjs/protocol';
-import { AddRangeProtectionCommand, type ISelectionProtectionRule, SetRangeProtectionCommand } from '@univerjs/sheets-selection-protection';
+import { AddRangeProtectionCommand, type ISelectionProtectionRule, SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
+import { WorksheetProtectionRuleModel } from '@univerjs/sheets';
 import { SheetPermissionUserManagerService } from '../../service';
-import { UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER } from '../../const';
-import { AddWorksheetProtectionCommand, SetWorksheetProtectionCommand } from '../../command/worksheet-protection.command';
+import { defaultWorksheetUnitActionList, UNIVER_SHEET_PERMISSION_PANEL, UNIVER_SHEET_PERMISSION_PANEL_FOOTER } from '../../const';
+import { AddWorksheetProtectionCommand } from '../../command/worksheet-protection.command';
 import { SheetPermissionPanelModel, viewState } from '../../service/sheet-permission-panel.model';
 import styles from './index.module.less';
 
@@ -35,6 +36,8 @@ export const SheetPermissionPanelDetailFooter = () => {
     const localeService = useDependency(LocaleService);
     const commandService = useDependency(ICommandService);
     const sheetPermissionUserManagerService = useDependency(SheetPermissionUserManagerService);
+    const worksheetProtectionRuleModel = useDependency(WorksheetProtectionRuleModel);
+    const selectionProtectionRuleModel = useDependency(SelectionProtectionRuleModel);
 
 
     return (
@@ -42,6 +45,7 @@ export const SheetPermissionPanelDetailFooter = () => {
             <Button
                 type="primary"
                 onClick={async () => {
+                    if (!activeRule.name) return;
                     let result: boolean = false;
                     const collaborators = sheetPermissionUserManagerService.selectUserList;
                     if (activeRule.viewStatus === viewState.othersCanView) {
@@ -57,42 +61,44 @@ export const SheetPermissionPanelDetailFooter = () => {
                         });
                     }
                     if (activeRule.permissionId) {
-                        const permissionId = await authzIoService.create({
-                            selectRangeObject: {
-                                collaborators,
-                                unitID: activeRule.unitId,
-                                name: activeRule.name,
-                            },
-                            objectType: UnitObject.SelectRange,
-                        });
+                        const { unitId, subUnitId } = activeRule;
                         if (activeRule.unitType === UnitObject.Worksheet) {
-                            result = await commandService.executeCommand(SetWorksheetProtectionCommand.id, {
-                                rule: activeRule,
-                                permissionId,
-                            });
+                            worksheetProtectionRuleModel.setRule(unitId, subUnitId, activeRule);
                         } else if (activeRule.unitType === UnitObject.SelectRange) {
-                            result = await commandService.executeCommand(SetRangeProtectionCommand.id, {
-                                rule: activeRule,
-                                permissionId,
-                            });
+                            const { id } = activeRule as ISelectionProtectionRule;
+                            selectionProtectionRuleModel.setRule(unitId, subUnitId, id, activeRule as ISelectionProtectionRule);
                         }
+                        // authzIoService.updateCollaborator({
+                        //     objectID: activeRule.permissionId,
+                        //     unitID: unitId,
+                        //     collaborators,
+                        // });
                     } else {
-                        const permissionId = await authzIoService.create({
-                            selectRangeObject: {
-                                collaborators,
-                                unitID: activeRule.unitId,
-                                name: activeRule.name,
-                            },
-                            objectType: UnitObject.SelectRange,
-                        });
                         if (activeRule.unitType === UnitObject.Worksheet) {
-                            const { ranges, ...sheetRule } = activeRule as ISelectionProtectionRule;
+                            const permissionId = await authzIoService.create({
+                                worksheetObject: {
+                                    collaborators,
+                                    unitID: activeRule.unitId,
+                                    name: activeRule.name,
+                                    strategies: defaultWorksheetUnitActionList.map((action) => ({ role: UnitRole.Editor, action })),
+                                },
+                                objectType: UnitObject.Worksheet,
+                            });
+                            const { ranges = [], ...sheetRule } = activeRule as ISelectionProtectionRule;
                             sheetRule.permissionId = permissionId;
                             result = await commandService.executeCommand(AddWorksheetProtectionCommand.id, {
                                 rule: sheetRule,
                                 unitId: activeRule.unitId,
                             });
                         } else if (activeRule.unitType === UnitObject.SelectRange) {
+                            const permissionId = await authzIoService.create({
+                                selectRangeObject: {
+                                    collaborators,
+                                    unitID: activeRule.unitId,
+                                    name: activeRule.name,
+                                },
+                                objectType: UnitObject.SelectRange,
+                            });
                             result = await commandService.executeCommand(AddRangeProtectionCommand.id, {
                                 rule: activeRule,
                                 permissionId,

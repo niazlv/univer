@@ -18,13 +18,14 @@ import React, { useEffect } from 'react';
 import { Avatar, FormLayout, Input, Radio, RadioGroup, Select } from '@univerjs/design';
 import { useDependency } from '@wendellhu/redi/react-bindings';
 import type { Workbook } from '@univerjs/core';
-import { createInternalEditorID, IAuthzIoService, isValidRange, IUniverInstanceService, LocaleService, UniverInstanceType, UserManagerService } from '@univerjs/core';
-import { IDialogService, RangeSelector, useObservable } from '@univerjs/ui';
+import { createInternalEditorID, IAuthzIoService, isValidRange, IUniverInstanceService, LocaleService, RANGE_TYPE, UniverInstanceType, UserManagerService } from '@univerjs/core';
+import { IDialogService, ISidebarService, RangeSelector, useObservable } from '@univerjs/ui';
 import { SelectionManagerService } from '@univerjs/sheets';
 import { serializeRange } from '@univerjs/engine-formula';
 import { UnitObject } from '@univerjs/protocol';
 import { type ICollaborator, UnitRole } from '@univerjs/protocol';
 import type { ISelectionProtectionRule } from '@univerjs/sheets-selection-protection';
+import clsx from 'clsx';
 import { SheetPermissionUserManagerService } from '../../service';
 import { UNIVER_SHEET_PERMISSION_USER_DIALOG, UNIVER_SHEET_PERMISSION_USER_DIALOG_ID } from '../../const';
 
@@ -42,6 +43,7 @@ export const SheetPermissionPanelDetail = ({ fromSheetBar }: { fromSheetBar: boo
     const userManagerService = useDependency(UserManagerService);
     const sheetPermissionUserManagerService = useDependency(SheetPermissionUserManagerService);
     const authzIoService = useDependency(IAuthzIoService);
+    const sidebarService = useDependency(ISidebarService);
 
 
     const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
@@ -94,6 +96,7 @@ export const SheetPermissionPanelDetail = ({ fromSheetBar }: { fromSheetBar: boo
                         startColumn: 0,
                         endRow: worksheet.getRowCount() - 1,
                         endColumn: worksheet.getColumnCount() - 1,
+                        rangeType: RANGE_TYPE.ALL,
                     },
                 },
             ]);
@@ -143,6 +146,7 @@ export const SheetPermissionPanelDetail = ({ fromSheetBar }: { fromSheetBar: boo
         }
     }, []);
 
+
     useEffect(() => {
         const getListCollaborators = async () => {
             const userList = await authzIoService.listCollaborators({
@@ -166,16 +170,32 @@ export const SheetPermissionPanelDetail = ({ fromSheetBar }: { fromSheetBar: boo
         });
     }, [sheetPermissionPanelModel, viewGroupValue]);
 
+    useEffect(() => {
+        const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET);
+        if (!workbook) return;
+        const activeSheetSubscribe = workbook.activeSheet$.subscribe((sheet) => {
+            if (sheet?.getSheetId() !== subUnitId) {
+                sidebarService.close();
+            }
+        });
+        return () => {
+            activeSheetSubscribe.unsubscribe();
+        };
+    }, [sidebarService, subUnitId, univerInstanceService]);
+
     return (
         <div className={styles.permissionPanelDetailWrapper}>
-            <FormLayout label={localeService.t('permission.panel.name')}>
+            <FormLayout className={styles.sheetPermissionPanelTitle} label={localeService.t('permission.panel.name')}>
                 <Input
                     value={activeRule?.name ?? ''}
                     onChange={(v) => sheetPermissionPanelModel.setRule({ name: v })}
+                    className={clsx({ [styles.sheetPermissionPanelNameInputError]: !activeRule?.name })}
                 />
+                {!activeRule?.name && <span className={styles.sheetPermissionPanelNameInputErrorText}>{localeService.t('permission.panel.nameError')}</span>}
             </FormLayout>
-            <FormLayout label={localeService.t('permission.panel.protectedRange')}>
+            <FormLayout className={styles.sheetPermissionPanelTitle} label={localeService.t('permission.panel.protectedRange')}>
                 <RangeSelector
+                    className={styles.permissionRangeSelector}
                     value={(activeRule as ISelectionProtectionRule)?.ranges?.map((i) => serializeRange(i)).join(',')}
                     id={createInternalEditorID('sheet-permission-panel')}
                     openForSheetUnitId={unitId}
@@ -206,14 +226,14 @@ export const SheetPermissionPanelDetail = ({ fromSheetBar }: { fromSheetBar: boo
 
                 />
             </FormLayout>
-            <FormLayout label={localeService.t('permission.panel.permissionDirection')}>
+            <FormLayout className={styles.sheetPermissionPanelTitle} label={localeService.t('permission.panel.permissionDirection')}>
                 <Input
                     value={activeRule?.description ?? ''}
                     onChange={(v) => sheetPermissionPanelModel.setRule({ description: v })}
                     placeholder={localeService.t('permission.panel.permissionDirectionPlaceholder')}
                 />
             </FormLayout>
-            <FormLayout label={localeService.t('permission.panel.editPermission')}>
+            <FormLayout className={styles.sheetPermissionPanelTitle} label={localeService.t('permission.panel.editPermission')}>
                 <RadioGroup
                     value={editorGroupValue}
                     onChange={(v) => {
@@ -265,13 +285,13 @@ export const SheetPermissionPanelDetail = ({ fromSheetBar }: { fromSheetBar: boo
                             : (
                                 <div className={styles.sheetPermissionUserListEmpty}>
                                     <img width={240} height={120} src={UserEmptyBase64} alt="" />
-                                    <p className={styles.sheetPermissionUserListEmptyText}>no designated person , Share link to invite specific people</p>
+                                    <p className={styles.sheetPermissionUserListEmptyText}>{localeService.t('permission.panel.userEmpty')}</p>
                                 </div>
                             )}
                     </div>
                 </div>
             )}
-            <FormLayout label={localeService.t('permission.panel.viewPermission')}>
+            <FormLayout className={styles.sheetPermissionPanelTitle} label={localeService.t('permission.panel.viewPermission')}>
                 <RadioGroup
                     value={viewGroupValue}
                     onChange={(v) => setViewGroupValue(v as viewState)}

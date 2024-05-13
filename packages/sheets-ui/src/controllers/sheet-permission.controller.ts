@@ -25,9 +25,9 @@ import { UNIVER_SHEET_PERMISSION_ALERT_DIALOG, UNIVER_SHEET_PERMISSION_ALERT_DIA
 
 import { AddRangeProtectionCommand, getAllRangePermissionPoint, SelectionProtectionRuleModel, SetRangeProtectionCommand, SetSelectionProtection } from '@univerjs/sheets-selection-protection';
 import { UnitAction, UnitObject, UniverType } from '@univerjs/protocol';
-import { MoveColsCommand, MoveRowsCommand } from '@univerjs/sheets/commands/commands/move-rows-cols.command.js';
-import type { IAddRangeProtectionParams } from '@univerjs/sheets-permission-ui/command/type.js';
-import type { ISetSelectionProtectionParams } from '@univerjs/sheets-selection-protection/commands/mutation/set-selection-protection.js';
+import { MoveColsCommand, MoveRowsCommand } from '@univerjs/sheets/commands/commands/move-rows-cols.command.ts';
+import type { IAddRangeProtectionParams } from '@univerjs/sheets-permission-ui/command/type.ts';
+import type { ISetSelectionProtectionParams } from '@univerjs/sheets-selection-protection/commands/mutation/set-selection-protection.ts';
 import { SetCellEditVisibleOperation } from '../commands/operations/cell-edit.operation';
 import { SetRangeBoldCommand, SetRangeItalicCommand, SetRangeStrickThroughCommand, SetRangeUnderlineCommand } from '../commands/commands/inline-format.command';
 import { SheetCopyCommand } from '../commands/commands/clipboard.command';
