@@ -53,7 +53,7 @@
         "@univerjs/find-replace": "workspace:*",
         "@univerjs/image": "workspace:*",
         "@univerjs/network": "workspace:*",
-        "@univerjs/protocol": "^0.1.26-permission-8.5",
+        "@univerjs/protocol": "^0.1.26-permission-8.9",
         "@univerjs/rpc": "workspace:*",
         "@univerjs/sheets": "workspace:*",
         "@univerjs/sheets-conditional-formatting": "workspace:*",
