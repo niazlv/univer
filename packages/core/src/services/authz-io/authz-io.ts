@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import type { IActionInfo, IAllowedRequest, IBatchAllowedResponse, ICollaborator, ICreateRequest, ICreateRequest_SelectRangeObject, IListPermPointRequest, IPermissionPoint, IUnitRoleKV, UnitAction } from '@univerjs/protocol';
+import type { IActionInfo, IAllowedRequest, IBatchAllowedResponse, ICollaborator, ICreateRequest, ICreateRequest_SelectRangeObject, IListPermPointRequest, IPermissionPoint, IPutCollaboratorsRequest, IUnitRoleKV, UnitAction } from '@univerjs/protocol';
 import { UnitObject, UnitRole, UniverType } from '@univerjs/protocol';
 import { Inject } from '@wendellhu/redi';
 import { Tools } from '../../shared/tools';
@@ -166,6 +166,10 @@ export class AuthzIoMockService implements IAuthzIoService {
     }
 
     async createCollaborator(): Promise<void> {
+        return undefined;
+    }
+
+    async putCollaborators(config: IPutCollaboratorsRequest): Promise<void> {
         return undefined;
     }
 }

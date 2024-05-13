@@ -16,7 +16,7 @@
 
 import type { ILogContext } from '@univerjs/core';
 import { createIdentifier } from '@wendellhu/redi';
-import type { IAllowedRequest, IAllowedResponse, IBatchAllowedResponse, ICreateCollaboratorRequest, ICreateRequest, ICreateResponse, IDeleteCollaboratorRequest, IListCollaboratorRequest, IListCollaboratorResponse, IListPermPointRequest, IListPermPointResponse, IListRolesRequest, IListRolesResponse, IUpdateCollaboratorRequest, IUpdatePermPointRequest } from '@univerjs/protocol';
+import type { IAllowedRequest, IAllowedResponse, IBatchAllowedResponse, ICreateCollaboratorRequest, ICreateRequest, ICreateResponse, IDeleteCollaboratorRequest, IListCollaboratorRequest, IListCollaboratorResponse, IListPermPointRequest, IListPermPointResponse, IListRolesRequest, IListRolesResponse, IPutCollaboratorsRequest, IUpdateCollaboratorRequest, IUpdatePermPointRequest } from '@univerjs/protocol';
 
 export interface IAuthzIoService {
     create(config: ICreateRequest, context?: ILogContext): Promise<ICreateResponse['objectID']>;
@@ -24,11 +24,12 @@ export interface IAuthzIoService {
     batchAllowed(config: IAllowedRequest[], context?: ILogContext): Promise<IBatchAllowedResponse['objectActions']>;
     list(config: IListPermPointRequest, context?: ILogContext): Promise<IListPermPointResponse['objects']>;
     listRoles(config: IListRolesRequest, context?: ILogContext): Promise<{ roles: IListRolesResponse['roles']; actions: IListRolesResponse['actions'] }>;
-    listCollaborators(config: IListCollaboratorRequest, context?: ILogContext): Promise<IListCollaboratorResponse['collaborators']>;
     update(config: IUpdatePermPointRequest, context?: ILogContext): Promise<void>;
+    listCollaborators(config: IListCollaboratorRequest, context?: ILogContext): Promise<IListCollaboratorResponse['collaborators']>;
     updateCollaborator(config: IUpdateCollaboratorRequest, context?: ILogContext): Promise<void>;
     deleteCollaborator(config: IDeleteCollaboratorRequest, context?: ILogContext): Promise<void>;
     createCollaborator(config: ICreateCollaboratorRequest, context?: ILogContext): Promise<void>;
+    putCollaborators(config: IPutCollaboratorsRequest, context?: ILogContext): Promise<void>;
 }
 
 export const IAuthzIoService = createIdentifier<IAuthzIoService>('IAuthzIoIoService');
