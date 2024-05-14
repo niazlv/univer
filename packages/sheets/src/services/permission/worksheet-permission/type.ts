@@ -15,6 +15,7 @@
  */
 
 
+import type { ICellDataForSheetInterceptor } from '@univerjs/core';
 import { UnitAction } from '@univerjs/protocol';
 
 
@@ -23,3 +24,4 @@ export const defaultSheetActions = [
     UnitAction.Copy,
 ];
 
+export type IWorksheetProtectionRenderCellData = ICellDataForSheetInterceptor & { hasWorksheetRule: boolean };

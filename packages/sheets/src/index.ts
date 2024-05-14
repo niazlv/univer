@@ -302,3 +302,4 @@ export type { GetWorkbookPermissionFunc, GetWorksheetPermission } from './servic
 export { defaultWorksheetPermissionPoint, getAllWorksheetPermissionPoint } from './services/permission';
 export type { IWorksheetProtectionRule } from './services/permission/type';
 export { WorksheetProtectionRuleModel } from './services/permission/worksheet-permission/worksheet-permission.model';
+export { WorksheetProtectionRenderService } from './services/permission/worksheet-permission/worksheet-permission-render.service';

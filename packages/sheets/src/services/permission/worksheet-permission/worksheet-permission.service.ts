@@ -49,8 +49,11 @@ import {
     WorksheetViewPermission,
 } from '../permission-point';
 import type { GetWorksheetPermission, GetWorksheetPermission$, IObjectModel, SetWorksheetPermission } from '../type';
+import { SheetInterceptorService } from '../../sheet-interceptor/sheet-interceptor.service';
+import { INTERCEPTOR_POINT } from '../../sheet-interceptor/interceptor-const';
 import { WorksheetProtectionRuleModel } from './worksheet-permission.model';
 import { getAllWorksheetPermissionPoint } from './utils';
+import type { IWorksheetProtectionRenderCellData } from './type';
 
 
 export const PLUGIN_NAME = 'SHEET_WORKSHEET_PROTECTION_PLUGIN';
@@ -135,13 +138,15 @@ export class WorksheetPermissionService extends RxDisposable {
         @Inject(IUniverInstanceService) private _univerInstanceService: IUniverInstanceService,
         @Inject(Injector) readonly _injector: Injector,
         @Inject(WorksheetProtectionRuleModel) private _worksheetProtectionRuleModel: WorksheetProtectionRuleModel,
-        @Inject(IResourceManagerService) private _resourceManagerService: IResourceManagerService
+        @Inject(IResourceManagerService) private _resourceManagerService: IResourceManagerService,
+        @Inject(SheetInterceptorService) private _sheetInterceptorService: SheetInterceptorService
     ) {
         super();
         this._init();
         this._initializePermissions();
         this._initRuleChange();
         this._initSnapshot();
+        this._initViewModelInterceptor();
     }
 
 
@@ -425,5 +430,20 @@ export class WorksheetPermissionService extends RxDisposable {
                 },
             })
         );
+    }
+
+    private _initViewModelInterceptor() {
+        this.disposeWithMe(this._sheetInterceptorService.intercept(INTERCEPTOR_POINT.CELL_CONTENT, {
+            handler: (cell = {}, context, next) => {
+                const { unitId, subUnitId } = context;
+                const worksheetRule = this._worksheetProtectionRuleModel.getRule(unitId, subUnitId);
+                if (worksheetRule) {
+                    const _cellData: IWorksheetProtectionRenderCellData = { ...cell, hasWorksheetRule: true };
+                    return next(_cellData);
+                }
+                return next(cell);
+            },
+        }
+        ));
     }
 }

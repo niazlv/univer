@@ -17,6 +17,7 @@
 import { ICommandService, LocaleService, Plugin, UniverInstanceType } from '@univerjs/core';
 import { type Dependency, Inject, Injector } from '@wendellhu/redi';
 import { SelectionProtectionRenderService } from '@univerjs/sheets-selection-protection';
+import { WorksheetProtectionRenderService } from '@univerjs/sheets';
 import { UNIVER_SHEET_PERMISSION_PLUGIN_NAME } from './const';
 import { SheetPermissionRenderController } from './controller/sheet-permission-render.controller';
 import { enUS, zhCN } from './locale';
@@ -48,6 +49,7 @@ export class UniverSheetsPermissionUIPlugin extends Plugin {
 
             [SheetPermissionRenderController],
             [SelectionProtectionRenderService],
+            [WorksheetProtectionRenderService],
         ] as Dependency[]).forEach((dep) => {
             this._injector.add(dep);
         });
