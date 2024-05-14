@@ -118,7 +118,6 @@ export class Spreadsheet extends SheetComponent {
      * diffRange 根据 diffCacheBounds 得到
      * @param ctx
      * @param viewportInfo
-     * @returns
      */
     override draw(ctx: UniverRenderingContext, viewportInfo: IViewportInfo) {
         // const { parent = { scaleX: 1, scaleY: 1 } } = this;
@@ -128,7 +127,7 @@ export class Spreadsheet extends SheetComponent {
         if (!spreadsheetSkeleton) {
             return;
         }
-
+        this._drawAuxiliary(ctx, viewportInfo);
         const parentScale = this.getParentScale();
 
         const diffRanges = this._refreshIncrementalState && viewportInfo?.diffCacheBounds
@@ -243,8 +242,8 @@ export class Spreadsheet extends SheetComponent {
         this._dirtyBounds = dirtyBounds;
     }
 
-    renderByViewport(mainCtx: UniverRenderingContext, viewportBoundsInfo: IViewportInfo, spreadsheetSkeleton: SpreadsheetSkeleton) {
-        const { diffBounds, diffX, diffY, viewPortPosition, cacheCanvas, leftOrigin, topOrigin, bufferEdgeX, bufferEdgeY, isDirty: isViewportDirty, isForceDirty: isViewportForceDirty } = viewportBoundsInfo as Required<IViewportInfo>;
+    renderByViewport(mainCtx: UniverRenderingContext, viewportInfo: IViewportInfo, spreadsheetSkeleton: SpreadsheetSkeleton) {
+        const { diffBounds, diffX, diffY, viewPortPosition, cacheCanvas, leftOrigin, topOrigin, bufferEdgeX, bufferEdgeY, isDirty: isViewportDirty, isForceDirty: isViewportForceDirty } = viewportInfo as Required<IViewportInfo>;
         const { rowHeaderWidth, columnHeaderHeight } = spreadsheetSkeleton;
         const { a: scaleX = 1, d: scaleY = 1 } = mainCtx.getTransform();
         const bufferEdgeSizeX = bufferEdgeX * scaleX / window.devicePixelRatio;
@@ -252,7 +251,6 @@ export class Spreadsheet extends SheetComponent {
 
         const cacheCtx = cacheCanvas.getContext();
         cacheCtx.save();
-
         const { left, top, right, bottom } = viewPortPosition;
         const dw = right - left + rowHeaderWidth;
         const dh = bottom - top + columnHeaderHeight;
@@ -260,15 +258,15 @@ export class Spreadsheet extends SheetComponent {
         const isDirty = isViewportDirty || this.isDirty();
         if (diffBounds.length === 0 || (diffX === 0 && diffY === 0) || isForceDirty || isDirty) {
             if (isDirty || isForceDirty) {
-                this.refreshCacheCanvas(viewportBoundsInfo, { cacheCanvas, cacheCtx, mainCtx, topOrigin, leftOrigin, bufferEdgeX, bufferEdgeY });
+                this.refreshCacheCanvas(viewportInfo, { cacheCanvas, cacheCtx, mainCtx, topOrigin, leftOrigin, bufferEdgeX, bufferEdgeY });
             }
         } else if (diffBounds.length !== 0 || diffX !== 0 || diffY !== 0) {
             // scrolling && no dirty
-            this.paintNewAreaOfCacheCanvas(viewportBoundsInfo, {
+            this.paintNewAreaOfCacheCanvas(viewportInfo, {
                 cacheCanvas, cacheCtx, mainCtx, topOrigin, leftOrigin, bufferEdgeX, bufferEdgeY, scaleX, scaleY, columnHeaderHeight, rowHeaderWidth,
             });
         }
-        // support for browser native zoom
+        // support for browser native zoom (only windows has this problem)
         const sourceLeft = bufferEdgeSizeX * Math.min(1, window.devicePixelRatio);
         const sourceTop = bufferEdgeSizeY * Math.min(1, window.devicePixelRatio);
         this._applyCache(cacheCanvas, mainCtx, sourceLeft, sourceTop, dw, dh, left, top, dw, dh);
@@ -344,7 +342,7 @@ export class Spreadsheet extends SheetComponent {
     /**
      * 整个 viewport 重绘
      */
-    refreshCacheCanvas(viewportBoundsInfo: IViewportInfo, param: {
+    refreshCacheCanvas(viewportInfo: IViewportInfo, param: {
         cacheCanvas: Canvas; cacheCtx: UniverRenderingContext; mainCtx: UniverRenderingContext;
         topOrigin: number;
         leftOrigin: number;
@@ -368,7 +366,7 @@ export class Spreadsheet extends SheetComponent {
         cacheCtx.translateWithPrecision(m.e / m.a - leftOrigin + bufferEdgeX, m.f / m.d - topOrigin + bufferEdgeY);
 
         // extension 绘制时按照内容的左上角计算, 不考虑 rowHeaderWidth
-        this.draw(cacheCtx, viewportBoundsInfo);
+        this.draw(cacheCtx, viewportInfo);
         cacheCtx.restore();
     }
 
@@ -399,7 +397,6 @@ export class Spreadsheet extends SheetComponent {
         const { rowHeaderWidth, columnHeaderHeight } = spreadsheetSkeleton;
         mainCtx.translateWithPrecision(rowHeaderWidth, columnHeaderHeight);
 
-        this._drawAuxiliary(mainCtx, viewportInfo);
 
         const { viewPortKey } = viewportInfo;
             // scene --> layer, getObjects --> viewport.render(object) --> spreadsheet
@@ -450,27 +447,25 @@ export class Spreadsheet extends SheetComponent {
         }
 
         const pixelRatio = cacheCanvas.getPixelRatio();
-
         const cacheCtx = cacheCanvas.getContext();
         cacheCtx.save();
         ctx.save();
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         cacheCtx.setTransform(1, 0, 0, 1, 0, 0);
-        // Math.round(num * scale) / scale;
         const fn = (num: number, scale: number) => {
-            return Math.round(num * scale) / scale;
+            return Math.round(num * scale);
         };
         ctx.imageSmoothingEnabled = false;
         // ctx.imageSmoothingEnabled = true;
         // ctx.imageSmoothingQuality = 'high';
         ctx.drawImage(
             cacheCanvas.getCanvasEle(),
-            fn(sx, pixelRatio) * pixelRatio,
-            fn(sy, pixelRatio) * pixelRatio,
+            fn(sx, pixelRatio),
+            fn(sy, pixelRatio),
             sw * pixelRatio,
             sh * pixelRatio,
-            fn(dx, pixelRatio) * pixelRatio,
-            fn(dy, pixelRatio) * pixelRatio,
+            fn(dx, pixelRatio),
+            fn(dy, pixelRatio),
             dw * pixelRatio,
             dh * pixelRatio
         );

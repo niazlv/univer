@@ -268,8 +268,8 @@ export class Viewport {
             cacheCanvas.getCanvasEle().style.zIndex = '100';
             cacheCanvas.getCanvasEle().style.position = 'fixed';
             cacheCanvas.getCanvasEle().style.background = '#fff';
-            cacheCanvas.getCanvasEle().style.pointerEvents = 'none'; // 禁用事件响应
-            cacheCanvas.getCanvasEle().style.border = '1px solid black'; // 设置边框样式
+            cacheCanvas.getCanvasEle().style.pointerEvents = 'none';
+            cacheCanvas.getCanvasEle().style.border = '1px solid black';
             cacheCanvas.getCanvasEle().style.transformOrigin = '100% 100%';
             cacheCanvas.getCanvasEle().style.transform = 'scale(0.5)';
             cacheCanvas.getCanvasEle().style.translate = '20% 0%';
@@ -881,7 +881,7 @@ export class Viewport {
     }
 
 
-    // eslint-disable-next-line complexity
+    // eslint-disable-next-line complexity, max-lines-per-function
     onMouseWheel(evt: IWheelEvent, state: EventState) {
         if (!this._scrollBar || this.isActive === false) {
             return;
