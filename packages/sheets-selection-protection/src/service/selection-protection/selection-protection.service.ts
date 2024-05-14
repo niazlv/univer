@@ -18,12 +18,14 @@ import { Disposable, IAuthzIoService, IPermissionService, IResourceManagerServic
 import { INTERCEPTOR_POINT, SheetInterceptorService } from '@univerjs/sheets';
 import { Inject } from '@wendellhu/redi';
 import { UnitAction, UnitObject, UniverType } from '@univerjs/protocol';
+import type { ISheetFontRenderExtension } from '@univerjs/engine-render';
 import { SelectionProtectionRuleModel } from '../../model/selection-protection-rule.model';
 import type { IObjectModel, ISelectionProtectionRule } from '../../model/type';
 import { PLUGIN_NAME } from '../../base/const';
 import { SelectionProtectionRenderModel } from '../../model/selection-protection-render.model';
 import type { ISelectionProtectionRenderCellData } from '../../render/type';
 import { getAllRangePermissionPoint } from './permission-point';
+
 
 @OnLifecycle(LifecycleStages.Starting, SelectionProtectionService)
 export class SelectionProtectionService extends Disposable {
@@ -57,7 +59,14 @@ export class SelectionProtectionService extends Disposable {
                     })
                     .filter((p) => !!p.ranges);
                 if (permissionList.length) {
-                    const _cellData: ISelectionProtectionRenderCellData = { ...cell, selectionProtection: permissionList };
+                    const isSkipFontRender = permissionList.some((p) => !p.View);
+                    const _cellData: ISelectionProtectionRenderCellData & ISheetFontRenderExtension = { ...cell, selectionProtection: permissionList };
+                    if (isSkipFontRender) {
+                        if (!_cellData.fontRenderExtension) {
+                            _cellData.fontRenderExtension = {};
+                        }
+                        _cellData.fontRenderExtension.isSkip = isSkipFontRender;
+                    }
                     return next(_cellData);
                 }
                 return next(cell);
