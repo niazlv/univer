@@ -71,6 +71,8 @@ import { SheetContextMenuRenderController } from './controllers/render-controlle
 import { EditorBridgeRenderController } from './controllers/render-controllers/editor-bridge.render-controller';
 import { AutoFillController } from './controllers/auto-fill.controller';
 import { FormatPainterController } from './controllers/format-painter/format-painter.controller';
+import { DragRenderController } from './controllers/drag-render.controller';
+import { DragManagerService } from './services/drag-manager.service';
 
 export class UniverSheetsUIPlugin extends Plugin {
     static override pluginName = 'SHEET_UI_PLUGIN_NAME';
@@ -109,6 +111,7 @@ export class UniverSheetsUIPlugin extends Plugin {
                 [IStatusBarService, { useClass: StatusBarService }],
                 [IMarkSelectionService, { useClass: MarkSelectionService }],
                 [HoverManagerService],
+                [DragManagerService],
                 [SheetCanvasPopManagerService],
                 [CellAlertManagerService],
 
@@ -155,6 +158,7 @@ export class UniverSheetsUIPlugin extends Plugin {
             ForceStringAlertRenderController,
             MarkSelectionRenderController,
             HoverRenderController,
+            DragRenderController,
             ForceStringRenderController,
             CellCustomRenderController,
             SheetContextMenuRenderController,
