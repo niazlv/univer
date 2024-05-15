@@ -119,7 +119,6 @@ export class UniverSheetsUIPlugin extends Plugin {
                 [EndEditController],
                 [FormulaEditorController],
                 [HeaderFreezeRenderController],
-                [SheetPermissionController],
                 [SheetClipboardController],
                 [SheetRenderController],
                 [SheetUIController],
@@ -161,6 +160,7 @@ export class UniverSheetsUIPlugin extends Plugin {
             CellCustomRenderController,
             SheetContextMenuRenderController,
             EditorBridgeRenderController,
+            SheetPermissionController,
         ]).forEach((controller) => {
             this.disposeWithMe(this._renderManagerService.registerRenderController(UniverInstanceType.UNIVER_SHEET, controller));
         });

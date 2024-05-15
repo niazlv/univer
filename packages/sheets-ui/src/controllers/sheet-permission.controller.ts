@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-import type { ICellDataForSheetInterceptor, ICommandInfo, IPermissionTypes, IRange, Workbook } from '@univerjs/core';
+
+import type { ICellDataForSheetInterceptor, ICommandInfo, IPermissionTypes, IRange, Nullable, Workbook } from '@univerjs/core';
 import { Disposable, DisposableCollection, IAuthzIoService, ICommandService, IPermissionService, IUniverInstanceService, LifecycleStages, mapPermissionPointToSubEnum, OnLifecycle, RangeUnitPermissionType, Rectangle, SubUnitPermissionType, Tools, UniverInstanceType } from '@univerjs/core';
 import { InsertCommand } from '@univerjs/docs';
 import type { EffectRefRangeParams, GetWorkbookPermissionFunc, GetWorksheetPermission, IInsertColCommandParams, IInsertColMutationParams, IInsertRowCommandParams, IMoveColsCommandParams, IMoveRangeCommandParams, IMoveRowsCommandParams, IMoveRowsMutationParams, IRemoveRowColCommandParams, ISetWorksheetActivateCommandParams } from '@univerjs/sheets';
-import { defaultWorksheetPermissionPoint, DeltaColumnWidthCommand, DeltaRowHeightCommand, getAllWorksheetPermissionPoint, InsertColCommand, InsertColMutation, InsertRowCommand, InsertRowMutation, MoveColsMutation, MoveRangeCommand, MoveRowsMutation, RefRangeService, RemoveColCommand, RemoveColMutation, RemoveRowCommand, RemoveRowMutation, SelectionManagerService, SetBackgroundColorCommand, SetColWidthCommand, SetRowHeightCommand, SetWorksheetActivateCommand, SetWorksheetRowIsAutoHeightCommand, SheetInterceptorService, WorkbookPermissionService, WorksheetPermissionService, WorksheetProtectionRuleModel } from '@univerjs/sheets';
+import { defaultWorksheetPermissionPoint, DeltaColumnWidthCommand, DeltaRowHeightCommand, getAllWorksheetPermissionPoint, InsertColCommand, InsertColMutation, InsertRowCommand, InsertRowMutation, MoveColsMutation, MoveRangeCommand, MoveRowsMutation, RefRangeService, RemoveColCommand, RemoveColMutation, RemoveRowCommand, RemoveRowMutation, SelectionManagerService, SetBackgroundColorCommand, SetColWidthCommand, SetRowHeightCommand, SetWorksheetActivateCommand, SetWorksheetRowIsAutoHeightCommand, WorkbookPermissionService, WorksheetPermissionService, WorksheetProtectionRuleModel } from '@univerjs/sheets';
 import { Inject } from '@wendellhu/redi';
 import { IDialogService } from '@univerjs/ui';
 import { UNIVER_SHEET_PERMISSION_ALERT_DIALOG, UNIVER_SHEET_PERMISSION_ALERT_DIALOG_ID } from '@univerjs/sheets-permission-ui';
@@ -28,10 +29,16 @@ import { UnitAction, UnitObject, UniverType } from '@univerjs/protocol';
 import { MoveColsCommand, MoveRowsCommand } from '@univerjs/sheets/commands/commands/move-rows-cols.command.ts';
 import type { IAddRangeProtectionParams } from '@univerjs/sheets-permission-ui/command/type.ts';
 import type { ISetSelectionProtectionParams } from '@univerjs/sheets-selection-protection/commands/mutation/set-selection-protection.ts';
+import type { SpreadsheetSkeleton } from '@univerjs/engine-render';
 import { SetCellEditVisibleOperation } from '../commands/operations/cell-edit.operation';
 import { SetRangeBoldCommand, SetRangeItalicCommand, SetRangeStrickThroughCommand, SetRangeUnderlineCommand } from '../commands/commands/inline-format.command';
 import { SheetCopyCommand } from '../commands/commands/clipboard.command';
 import { ApplyFormatPainterCommand } from '../commands/commands/set-format-painter.command';
+import { ISelectionRenderService } from '../services/selection/selection-render.service';
+import { AutoFillCommand } from '../commands/commands/auto-fill.command';
+import { IAutoFillService } from '../services/auto-fill/auto-fill.service';
+import { HeaderMoveRenderController } from './render-controllers/header-move.render-controller';
+import { HeaderResizeRenderController } from './render-controllers/header-resize.render-controller';
 
 type ICellPermission = Record<RangeUnitPermissionType, boolean> & { ruleId?: string; ranges?: IRange[] };
 type ICheckPermissionCommandParams = IMoveRowsCommandParams | IMoveColsCommandParams | IMoveRangeCommandParams;
@@ -39,6 +46,7 @@ type IMoveRowsOrColsMutationParams = IMoveRowsMutationParams;
 
 const mutationIdByRowCol = [InsertColMutation.id, InsertRowMutation.id, RemoveColMutation.id, RemoveRowMutation.id];
 const mutationIdArrByMove = [MoveRowsMutation.id, MoveColsMutation.id];
+
 
 @OnLifecycle(LifecycleStages.Rendered, SheetPermissionController)
 export class SheetPermissionController extends Disposable {
@@ -56,7 +64,10 @@ export class SheetPermissionController extends Disposable {
         @Inject(SelectionProtectionRuleModel) private _selectionProtectionRuleModel: SelectionProtectionRuleModel,
         @Inject(WorksheetProtectionRuleModel) private _worksheetProtectionRuleModel: WorksheetProtectionRuleModel,
         @Inject(RefRangeService) private readonly _refRangeService: RefRangeService,
-        @Inject(SheetInterceptorService) private _sheetInterceptorService: SheetInterceptorService
+        @Inject(HeaderMoveRenderController) private _headerMoveRenderController: HeaderMoveRenderController,
+        @Inject(HeaderResizeRenderController) private _headerResizeRenderController: HeaderResizeRenderController,
+        @Inject(ISelectionRenderService) private _selectionRenderService: ISelectionRenderService,
+        @Inject(IAutoFillService) private _autoFillService: IAutoFillService
     ) {
         super();
         this._initialize();
@@ -66,6 +77,10 @@ export class SheetPermissionController extends Disposable {
         this._initWorksheetPermissionChange();
         this._onRefRangeChange();
         this._correctPermissionRange();
+        this._initHeaderMovePermissionInterceptor();
+        this._initHeaderResizePermissionInterceptor();
+        this._initRangeFillPermissionInterceptor();
+        this._initRangeMovePermissionInterceptor();
     }
 
     private _haveNotPermissionHandle() {
@@ -125,17 +140,16 @@ export class SheetPermissionController extends Disposable {
                 break;
             case MoveColsCommand.id:
             case MoveRowsCommand.id:
-                // 这里有两部分拦截 要是起点包含权限位置且没有权限，这里要手势拦截；
-                // 要是重点包含权限位置且没有权限，则是command拦截
                 permission = this._permissionCheckByMoveCommand(params);
                 break;
 
             case MoveRangeCommand.id:
-                // 这里有两部分拦截 要是起点包含权限位置且没有权限，这里要手势拦截；
-                // 要是重点包含权限位置且没有权限，则是command拦截
                 permission = this._permissionCheckByMoveRangeCommand(params);
                 break;
 
+            case AutoFillCommand.id:
+                permission = this._permissionCheckByAutoFillCommand(this._autoFillService.autoFillLocation?.target);
+                break;
 
             default:
                 break;
@@ -418,33 +432,70 @@ export class SheetPermissionController extends Disposable {
         const worksheet = workbook?.getActiveSheet();
         const unitId = workbook.getUnitId();
         const subUnitId = worksheet.getSheetId();
-        const fromRange = params.fromRange;
-        if (fromRange.endRow === worksheet.getRowCount() - 1) {
-            fromRange.endColumn = fromRange.startColumn;
+        const toRange = params.toRange;
+        if (toRange.endRow === worksheet.getRowCount() - 1) {
+            toRange.endColumn = toRange.startColumn;
         } else {
-            fromRange.endRow = fromRange.startRow;
+            toRange.endRow = toRange.startRow;
         }
         const permissionLapRanges = this._selectionProtectionRuleModel.getSubunitRuleList(unitId, subUnitId).reduce((p, c) => {
             return [...p, ...c.ranges];
         }, [] as IRange[]).filter((range) => {
-            return Rectangle.intersects(range, fromRange);
+            return Rectangle.intersects(range, toRange);
         });
 
         if (permissionLapRanges.length > 0) {
             return false;
         }
-        // 这里需不需要校验有编辑权限呢 还是说有重叠就全部不允许移动
-        // permissionLapRanges.forEach((range) => {
-        //     for (let row = range.startRow; row <= range.endRow; row++) {
-        //         for (let col = range.startColumn; col <= range.endColumn; col++) {
-        //             const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
-        //             if (permission?.Edit === false) {
-        //                 return false;
-        //             }
-        //         }
-        //     }
-        // });
+        permissionLapRanges.forEach((range) => {
+            for (let row = range.startRow; row <= range.endRow; row++) {
+                for (let col = range.startColumn; col <= range.endColumn; col++) {
+                    const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
+                    if (permission?.Edit === false) {
+                        return false;
+                    }
+                }
+            }
+        });
         return true;
+    }
+
+    private _permissionCheckByAutoFillCommand(params?: { rows: number[]; cols: number[] }) {
+        if (!params) {
+            return false;
+        }
+        const { rows, cols } = params;
+        const startRow = rows[0];
+        const endRow = rows[rows.length - 1];
+        const startCol = cols[0];
+        const endCol = cols[cols.length - 1];
+
+        const targetRange = { startRow, endRow, startColumn: startCol, endColumn: endCol };
+
+        const workbook = this._univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
+        const worksheet = workbook?.getActiveSheet();
+        const unitId = workbook.getUnitId();
+        const subUnitId = worksheet.getSheetId();
+
+        const permissionLapRanges = this._selectionProtectionRuleModel.getSubunitRuleList(unitId, subUnitId).reduce((p, c) => {
+            return [...p, ...c.ranges];
+        }, [] as IRange[]).filter((range) => {
+            return Rectangle.intersects(range, targetRange);
+        });
+
+        const hasNotPermission = permissionLapRanges.some((range) => {
+            for (let row = range.startRow; row <= range.endRow; row++) {
+                for (let col = range.startColumn; col <= range.endColumn; col++) {
+                    const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
+                    if (permission?.Edit === false) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        });
+
+        return !hasNotPermission;
     }
 
     private _permissionCheckByMoveRangeCommand(params: IMoveRangeCommandParams) {
@@ -452,27 +503,26 @@ export class SheetPermissionController extends Disposable {
         const worksheet = workbook?.getActiveSheet();
         const unitId = workbook.getUnitId();
         const subUnitId = worksheet.getSheetId();
-        const fromRange = params.fromRange;
+        const toRange = params.toRange;
         const permissionLapRanges = this._selectionProtectionRuleModel.getSubunitRuleList(unitId, subUnitId).reduce((p, c) => {
             return [...p, ...c.ranges];
         }, [] as IRange[]).filter((range) => {
-            return Rectangle.intersects(range, fromRange);
+            return Rectangle.intersects(range, toRange);
         });
 
         if (permissionLapRanges.length > 0) {
             return false;
         }
-        // 这里需不需要校验有编辑权限呢 还是说有重叠就全部不允许移动
-        // permissionLapRanges.forEach((range) => {
-        //     for (let row = range.startRow; row <= range.endRow; row++) {
-        //         for (let col = range.startColumn; col <= range.endColumn; col++) {
-        //             const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
-        //             if (permission?.Edit === false) {
-        //                 return false;
-        //             }
-        //         }
-        //     }
-        // });
+        permissionLapRanges.forEach((range) => {
+            for (let row = range.startRow; row <= range.endRow; row++) {
+                for (let col = range.startColumn; col <= range.endColumn; col++) {
+                    const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
+                    if (permission?.Edit === false) {
+                        return false;
+                    }
+                }
+            }
+        });
         return true;
     }
 
@@ -934,5 +984,178 @@ export class SheetPermissionController extends Disposable {
 
     private _checkIsRightRange(range: IRange) {
         return range.startRow <= range.endRow && range.startColumn <= range.endColumn;
+    }
+
+    private _initHeaderMovePermissionInterceptor() {
+        this._headerMoveRenderController.interceptor.intercept(this._headerMoveRenderController.interceptor.getInterceptPoints().HEADER_MOVE_PERMISSION_CHECK, {
+            handler: (defaultValue: Nullable<boolean>, selectionRange: IRange) => {
+                const workbook = this._univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
+                const worksheet = workbook.getActiveSheet();
+
+                if (!selectionRange) {
+                    return true;
+                }
+
+                const unitId = workbook.getUnitId();
+                const subUnitId = worksheet.getSheetId();
+
+
+                const protectionLapRange = this._selectionProtectionRuleModel.getSubunitRuleList(unitId, subUnitId).reduce((p, c) => {
+                    return [...p, ...c.ranges];
+                }, [] as IRange[]).filter((range) => {
+                    return Rectangle.intersects(range, selectionRange);
+                });
+
+                const haveNotPermission = protectionLapRange.some((range) => {
+                    const { startRow, startColumn, endRow, endColumn } = range;
+                    for (let row = startRow; row <= endRow; row++) {
+                        for (let col = startColumn; col <= endColumn; col++) {
+                            const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
+                            if (permission?.Edit === false) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                });
+
+                return !haveNotPermission;
+            },
+        });
+    }
+
+    private _initHeaderResizePermissionInterceptor() {
+        this._headerResizeRenderController.interceptor.intercept(this._headerResizeRenderController.interceptor.getInterceptPoints().HEADER_RESIZE_PERMISSION_CHECK, {
+            handler: (defaultValue: Nullable<boolean>, rangeParams: { row?: number; col?: number }) => {
+                const workbook = this._univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
+                const worksheet = workbook.getActiveSheet();
+
+                let selectionRange: Nullable<IRange>;
+
+                if (rangeParams.row !== undefined) {
+                    selectionRange = {
+                        startRow: rangeParams.row,
+                        endRow: rangeParams.row,
+                        startColumn: 0,
+                        endColumn: worksheet.getColumnCount() - 1,
+                    };
+                } else if (rangeParams.col !== undefined) {
+                    selectionRange = {
+                        startRow: 0,
+                        endRow: worksheet.getRowCount() - 1,
+                        startColumn: rangeParams.col,
+                        endColumn: rangeParams.col,
+                    };
+                }
+
+                if (!selectionRange) {
+                    return true;
+                }
+
+                const unitId = workbook.getUnitId();
+                const subUnitId = worksheet.getSheetId();
+
+                const protectionLapRange = this._selectionProtectionRuleModel.getSubunitRuleList(unitId, subUnitId).reduce((p, c) => {
+                    return [...p, ...c.ranges];
+                }, [] as IRange[]).filter((range) => {
+                    return Rectangle.intersects(range, selectionRange);
+                });
+
+                const haveNotPermission = protectionLapRange.some((range) => {
+                    const { startRow, startColumn, endRow, endColumn } = range;
+                    for (let row = startRow; row <= endRow; row++) {
+                        for (let col = startColumn; col <= endColumn; col++) {
+                            const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
+                            if (permission?.Edit === false) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                });
+
+                return !haveNotPermission;
+            },
+        });
+    }
+
+
+    private _initRangeFillPermissionInterceptor() {
+        this._selectionRenderService.interceptor.intercept(this._selectionRenderService.interceptor.getInterceptPoints().RANGE_FILL_PERMISSION_CHECK, {
+            handler: (defaultValue: Nullable<boolean>, position: { x: number; y: number; skeleton: SpreadsheetSkeleton }) => {
+                const workbook = this._univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
+                const worksheet = workbook.getActiveSheet();
+
+                const ranges = this._selectionManagerService.getSelections()?.map((selection) => {
+                    return selection.range;
+                });
+
+                const selectionRange = ranges?.find((range) => {
+                    const cellPosition = position.skeleton.getCellByIndex(range.endRow, range.endColumn);
+                    const missX = Math.abs(cellPosition.endX - position.x);
+                    const missY = Math.abs(cellPosition.endY - position.y);
+                    return missX <= 5 && missY <= 5;
+                });
+
+                if (!selectionRange) {
+                    return true;
+                }
+
+                const { startRow, endRow, startColumn, endColumn } = selectionRange;
+
+                for (let row = startRow; row <= endRow; row++) {
+                    for (let col = startColumn; col <= endColumn; col++) {
+                        const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
+                        if (permission?.Edit === false) {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            },
+        });
+    }
+
+
+    private _initRangeMovePermissionInterceptor() {
+        this._selectionRenderService.interceptor.intercept(this._selectionRenderService.interceptor.getInterceptPoints().RANGE_MOVE_PERMISSION_CHECK, {
+            handler: (defaultValue: Nullable<boolean>, cellInfo: null) => {
+                const workbook = this._univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
+                const worksheet = workbook.getActiveSheet();
+                const unitId = workbook.getUnitId();
+                const subunitId = worksheet.getSheetId();
+
+
+                const ranges = this._selectionManagerService.getSelections()?.map((selection) => {
+                    return selection.range;
+                });
+
+                const ruleRanges = this._selectionProtectionRuleModel.getSubunitRuleList(unitId, subunitId).reduce((p, c) => {
+                    return [...p, ...c.ranges];
+                }, [] as IRange[]);
+
+                const permissionLapRanges = ranges?.filter((range) => {
+                    return ruleRanges.some((ruleRange) => {
+                        return Rectangle.intersects(ruleRange, range);
+                    });
+                });
+
+
+                const haveNotPermission = permissionLapRanges?.some((range) => {
+                    const { startRow, startColumn, endRow, endColumn } = range;
+                    for (let row = startRow; row <= endRow; row++) {
+                        for (let col = startColumn; col <= endColumn; col++) {
+                            const permission = (worksheet.getCell(row, col) as (ICellDataForSheetInterceptor & { selectionProtection: ICellPermission[] }))?.selectionProtection?.[0];
+                            if (permission?.Edit === false) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                });
+
+                return !haveNotPermission;
+            },
+        });
     }
 }
