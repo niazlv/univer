@@ -21,7 +21,7 @@ import type { IAccessor } from '@wendellhu/redi';
 import { AddRangeProtectionFromContextMenuCommand, AddRangeProtectionFromSheetBarCommand, AddRangeProtectionFromToolbarCommand, DeleteRangeProtectionFromContextMenuCommand, SetRangeProtectionFromContextMenuCommand, ViewSheetPermissionFromContextMenuCommand, ViewSheetPermissionFromSheetBarCommand } from '../command/range-protection.command';
 import { ChangeSheetProtectionFromSheetBarCommand, DeleteWOrksheetProtectionFormSheetBarCommand } from '../command/worksheet-protection.command';
 import { permissionLockIconKey, permissionMenuIconKey } from '../const';
-import { getAddPermissionDisable$, getAddPermissionFromSheetBarDisable$, getAddPermissionHidden$, getEditPermissionHiddenOrDelete$, getPermissionDisableBase$, getRemovePermissionDisable$, getRemovePermissionFromSheetBarDisable$, getSetPermissionFromSheetBarDisable$ } from './utils';
+import { getAddPermissionDisableBase$, getAddPermissionFromSheetBarDisable$, getAddPermissionHidden$, getEditPermissionHidden$, getPermissionDisableBase$, getRemovePermissionDisable$, getRemovePermissionFromSheetBarDisable$, getSetPermissionFromSheetBarDisable$ } from './utils';
 
 export const tmpIcon = 'data-validation-single';
 const SHEET_PERMISSION_CONTEXT_MENU_ID = 'sheet.contextMenu.permission';
@@ -44,7 +44,7 @@ export function sheetPermissionToolbarMenuFactory(accessor: IAccessor): IMenuIte
         group: MenuGroup.TOOLBAR_OTHERS,
         icon: permissionMenuIconKey,
         tooltip: 'permission.toolbarMenu',
-        disabled$: getAddPermissionDisable$(accessor),
+        disabled$: getAddPermissionDisableBase$(accessor),
     };
 }
 
@@ -66,7 +66,7 @@ export function sheetPermissionAddProtectContextMenuFactory(accessor: IAccessor)
         title: 'rightClick.turnOnProtectRange',
         positions: [SHEET_PERMISSION_CONTEXT_MENU_ID],
         hidden$: getAddPermissionHidden$(accessor),
-        disabled$: getPermissionDisableBase$(accessor),
+        disabled$: getAddPermissionDisableBase$(accessor),
     };
 }
 
@@ -76,7 +76,7 @@ export function sheetPermissionEditProtectContextMenuFactory(accessor: IAccessor
         type: MenuItemType.BUTTON,
         title: 'rightClick.editProtectRange',
         positions: [SHEET_PERMISSION_CONTEXT_MENU_ID],
-        hidden$: getEditPermissionHiddenOrDelete$(accessor),
+        hidden$: getEditPermissionHidden$(accessor),
         disabled$: getPermissionDisableBase$(accessor),
     };
 }

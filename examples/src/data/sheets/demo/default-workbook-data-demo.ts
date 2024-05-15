@@ -296,7 +296,7 @@ export const DEFAULT_WORKBOOK_DATA_DEMO: IWorkbookData = {
     resources: [
         {
             name: 'SHEET_WORKSHEET_PROTECTION_PLUGIN',
-            data: '{}',
+            data: '{"sheet-2":{"name":"工作表2","unitId":"book-1","subUnitId":"sheet-2","permissionId":"D8Sh1Msc","unitType":2,"id":"","viewStatus":"othersCanView"}}',
         },
         {
             name: 'SHEET_SELECTION_PROTECTION_PLUGIN',
@@ -316,25 +316,16 @@ export const DEFAULT_WORKBOOK_DATA_DEMO: IWorkbookData = {
         },
         {
             name: 'SHEET_DATA_VALIDATION_PLUGIN',
-            data: '{"sheet-1":[],"sheet-2":[],"sheet-3":[]}',
+            data: '{"sheet-1":[],"sheet-2":[]}',
         },
         {
-            name: 'SHEET_FILTER_PLUGIN',
-            data: JSON.stringify({
-                'sheet-0011': {
-                    ref: {
-                        startRow: 11,
-                        endRow: 23,
-                        startColumn: 4,
-                        endColumn: 6,
-                    },
-                },
-            }),
+            name: 'SHEET_AuthzIoMockService_PLUGIN',
+            data: '{"D8Sh1Msc":{"collaborators":[],"unitID":"book-1","name":"工作表2","strategies":[{"role":1,"action":3},{"role":1,"action":5},{"role":1,"action":6},{"role":1,"action":14},{"role":1,"action":15},{"role":1,"action":16},{"role":1,"action":17},{"role":1,"action":18},{"role":1,"action":19},{"role":1,"action":20},{"role":1,"action":22},{"role":1,"action":23},{"role":1,"action":24}],"objectType":2}}',
         },
     ],
     __env__: {
-        gitHash: '2b66dd638',
+        gitHash: '6507a4da5',
         gitBranch: 'feat/permission-0415',
-        buildTime: '2024-05-11T09:42:47.540Z',
+        buildTime: '2024-05-15T03:27:16.162Z',
     },
 };

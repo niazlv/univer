@@ -19,7 +19,7 @@ import { IUniverInstanceService, Rectangle, UniverInstanceType } from '@univerjs
 import { SelectionManagerService, WorkbookPermissionService, WorksheetProtectionRuleModel } from '@univerjs/sheets';
 import { SelectionProtectionRuleModel } from '@univerjs/sheets-selection-protection';
 import type { IAccessor } from '@wendellhu/redi';
-import { combineLatestWith, map, merge } from 'rxjs';
+import { map, merge } from 'rxjs';
 
 export function getAddPermissionHidden$(accessor: IAccessor) {
     const univerInstanceService = accessor.get(IUniverInstanceService);
@@ -45,6 +45,9 @@ export function getAddPermissionHidden$(accessor: IAccessor) {
             if (!selectionsRanges) {
                 return false;
             }
+            if (worksheetRuleModel.getRule(unitId, subUnitId)) {
+                return true;
+            }
             return selectionsRanges?.some((selectionRange) => {
                 return ruleRanges.some((ruleRange) => {
                     return Rectangle.intersects(selectionRange, ruleRange);
@@ -54,7 +57,7 @@ export function getAddPermissionHidden$(accessor: IAccessor) {
     );
 }
 
-export function getEditPermissionHiddenOrDelete$(accessor: IAccessor) {
+export function getEditPermissionHidden$(accessor: IAccessor) {
     const univerInstanceService = accessor.get(IUniverInstanceService);
     const selectionManagerService = accessor.get(SelectionManagerService);
     const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
@@ -78,8 +81,54 @@ export function getEditPermissionHiddenOrDelete$(accessor: IAccessor) {
             if (!selectedRange) {
                 return true;
             }
+            if (worksheetRuleModel.getRule(unitId, subUnitId)) {
+                return false;
+            }
             return ruleRanges.every((ruleRange) => {
                 return !Rectangle.intersects(ruleRange, selectedRange);
+            });
+        })
+    );
+}
+
+
+export function getAddPermissionDisableBase$(accessor: IAccessor) {
+    const univerInstanceService = accessor.get(IUniverInstanceService);
+    const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
+    const selectionProtectionRuleModel = accessor.get(SelectionProtectionRuleModel);
+    const worksheetProtectionRuleModel = accessor.get(WorksheetProtectionRuleModel);
+    const unitId = workbook.getUnitId();
+    const selectionRuleModel = accessor.get(SelectionProtectionRuleModel);
+    const worksheetRuleModel = accessor.get(WorksheetProtectionRuleModel);
+
+
+    const selectionManagerService = accessor.get(SelectionManagerService);
+    return merge(
+        selectionManagerService.selectionMoveEnd$,
+        selectionRuleModel.ruleChange$,
+        worksheetRuleModel.ruleChange$
+    ).pipe(
+        map(() => {
+            const selections = selectionManagerService.getSelections();
+            const selectionRanges = selections?.map((selection) => selection.range);
+            if (!selectionRanges?.length) {
+                return true;
+            }
+            const worksheet = workbook.getActiveSheet();
+            const subUnitId = worksheet.getSheetId();
+
+            const worksheetRule = worksheetProtectionRuleModel.getRule(unitId, subUnitId);
+            if (worksheetRule) {
+                return true;
+            }
+
+            const subunitRuleList = selectionProtectionRuleModel.getSubunitRuleList(unitId, subUnitId);
+            return selectionRanges?.some((selectionRange) => {
+                return subunitRuleList.some((rule) => {
+                    return rule.ranges.some((ruleRange) => {
+                        return Rectangle.intersects(selectionRange, ruleRange);
+                    });
+                });
             });
         })
     );
@@ -120,58 +169,16 @@ export function getPermissionDisableBase$(accessor: IAccessor) {
             }
 
             const subunitRuleList = selectionProtectionRuleModel.getSubunitRuleList(unitId, subUnitId);
-            return selectionRanges?.some((selectionRange) => {
+            const hasLapRange = selectionRanges?.some((selectionRange) => {
                 return subunitRuleList.some((rule) => {
                     return rule.ranges.some((ruleRange) => {
                         return Rectangle.intersects(selectionRange, ruleRange);
                     });
                 });
             });
+
+            return !hasLapRange;
         })
-    );
-}
-
-export function getAddPermissionDisable$(accessor: IAccessor) {
-    const selectionManagerService = accessor.get(SelectionManagerService);
-    const univerInstanceService = accessor.get(IUniverInstanceService);
-    const workbook = univerInstanceService.getCurrentUnitForType<Workbook>(UniverInstanceType.UNIVER_SHEET)!;
-
-    const selectionRuleModel = accessor.get(SelectionProtectionRuleModel);
-    const worksheetRuleModel = accessor.get(WorksheetProtectionRuleModel);
-
-    const areaHasProtect$ = merge(
-        selectionManagerService.selectionMoveEnd$,
-        selectionRuleModel.ruleChange$,
-        worksheetRuleModel.ruleChange$
-    ).pipe(
-        map(() => {
-            const worksheet = workbook.getActiveSheet();
-            const unitId = workbook.getUnitId();
-            const subUnitId = worksheet.getSheetId();
-            const selections = selectionManagerService.getSelections();
-            const selectionsRanges = selections?.map((selection) => selection.range);
-            const selectionRuleModel = accessor.get(SelectionProtectionRuleModel);
-            const subUnitRuleList = selectionRuleModel.getSubunitRuleList(unitId, subUnitId);
-            if (!selectionsRanges?.length || !subUnitRuleList.length) {
-                return false;
-            }
-
-            const worksheetRule = worksheetRuleModel.getRule(unitId, subUnitId);
-            if (worksheetRule) {
-                return true;
-            }
-            return selectionsRanges?.some((selectionRange) => {
-                return subUnitRuleList.some((rule) => {
-                    return rule.ranges.some((ruleRange) => {
-                        return Rectangle.intersects(selectionRange, ruleRange);
-                    });
-                });
-            });
-        })
-    );
-    return getPermissionDisableBase$(accessor).pipe(
-        combineLatestWith(areaHasProtect$),
-        map(([permissionDisable, areaHasProtect]) => permissionDisable || areaHasProtect)
     );
 }
 
